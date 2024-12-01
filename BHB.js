@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        BHB背景图片更换
+// @name        BHB聊天室背景图片更换
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @grant       none
