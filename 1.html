@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<body>
+<div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);width: 250px;height: 500px;border: 1px solid red;overflow: hidden;">
+<form name="myform" id="myform" action="" method="post">
+    <input type="file" id="webimgsrc" name='webimgsrc'>
+    <span>本地地址</span>
+    <input name='localimgsrc' type="text" min="0" max="1" step="0.01" value="0" name="" id="localimgsrc" width="100px"><br>
+    <p>上述二选一即可</p>
+    <span>顶部</span><input type="number" min="0" max="1" step="0.01" value="0" name="" id="top" name='top' width="100px"><br>
+    <span>左部</span><input type='number' min='0' max='1' step='0.01' value='0' name='' id='left' name='left' width='100px'><br>
+    <span>背景比例</span><input type='number' min='0' max='1' step='0.01' value='0' name='' id='size' name='size' width='100px'><br>
+    <span>本地图片</span><input type='radio' value='web' name='picloadsele' id='webpicon'  width='100px'><br><span>在线图片</span><input type='radio' value='local' name='picloadsele' id='localpicon'  width='100px'><br>
+    <input type="submit" id="subint">
+
+</form>
+</div>
+<div style="position: absolute;top: 50%;left: 25%;transform: translate(-75%, -50%);width: 250px;height: 500px;border: 1px solid red;overflow: hidden;">
+    <div>
+        <button id="secexit">X</button>
+        <form name="myform" id="myformsec" action='https://boyshelpboys.com/chat.htm' method="post">
+
+
+            <input type="submit" id="secsubint">
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        var subint=document.getElementById("subint");
+        var size=document.getElementById("size");
+        var left=document.getElementById("left");
+        var top=document.getElementById("top");
+        var localimgsrc=document.getElementById("localimgsrc");
+        var webimgsrc=document.getElementById("webimgsrc");
+        subint.onclick=function(){
+            localStorage.setItem("subint",subint.value);
+            localStorage.setItem("size",size.value);
+            localStorage.setItem("left",left.value);
+            localStorage.setItem("top",top.value);
+            localStorage.setItem("localimgsrc",localimgsrc.value);
+            localStorage.setItem("webimgsrc",webimgsrc.value);
+
+        }
+    });
+</script>
+</body>
+
+
+
+</html>
