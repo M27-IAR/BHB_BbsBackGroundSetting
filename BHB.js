@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name        BHB背景图片更换
+// @name        BHB聊天室背景图片更换
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @grant       none
-// @version     1.2.4
+// @version     1.2.5
 // @author      -
 // @license WTFPL
 // @description 2024/11/26 16:34:09
