@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        BHB聊天室背景图片更换
+// @name        BHB背景图片更换
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @grant       none
@@ -215,8 +215,8 @@
     let backgroundplanone="";
     let sectionplanone="";
     let PrintToBackground="";
-    let PrintToBBSGround=""
-    let Scrollstylex=""
+    let PrintToBBSGround="";
+    let Scrollstylex="";
     if (localStorage.webpiclod==="1"){//读取本地图片还是线上图片
         webpiclod="checked"
     }else{
@@ -340,10 +340,14 @@
     bac.insertAdjacentHTML("afterbegin",addmain2);
     bac.insertAdjacentHTML("afterbegin",addscript);
 
-        let NeedFixStyle=document.querySelector("body > style:nth-child(82)");//修改滚动条状态
-        NeedFixStyle.insertAdjacentHTML("afterend",'<style></style>');
+        let NeedFixStyle=document.querySelectorAll("body > style");//修改滚动条状态
+        console.log(NeedFixStyle[NeedFixStyle.length-1]);
+        console.log(NeedFixStyle.length);
+        NeedFixStyle[NeedFixStyle.length-1].insertAdjacentHTML("afterend",'<style></style>');
         let nedAddStyle=document.createTextNode(`@media(min-width: 768px) {::-webkit-scrollbar {width: 0px; height: 6px;border-radius: 20px;}::-webkit-scrollbar-track { background: var(--bs-body-bg);}::-webkit-scrollbar-thumb {background: var(--bs-secondary);border-radius: 20px;}::-webkit-scrollbar-thumb:hover {background: var(--bs-primary);}::-webkit-scrollbar-thumb:focus, ::-webkit-scrollbar-thumb:active {background: var(--bs-primary-active);}}`)
-        let FixStyle=document.querySelector("body > style:nth-child(83)");
+        let FixStyle=NeedFixStyle[NeedFixStyle.length-1].nextElementSibling
+        console.log(FixStyle);
+
         if (localStorage.scrollstyle==="1"){//背景的填充方式
             console.log(FixStyle.innerHTML);
             FixStyle.appendChild(nedAddStyle);
