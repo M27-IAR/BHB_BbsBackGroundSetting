@@ -87,11 +87,88 @@
 
 
     }
-        function addStyleToLocal() {//上传控件透明度
+    function addStyleToLocal() {//上传控件透明度
 
-            alert("1");
+        let seenum1=document.querySelector("body > div:nth-child(2) > input[type=range]:nth-child(5)");//聊天历史记录1透明度
+        let seenum2=document.querySelector("body > div:nth-child(2) > input[type=range]:nth-child(9)");//自顶栏往下部分透明度
+        let seenum3=document.querySelector("body > div:nth-child(2) > input[type=range]:nth-child(13)");//聊天历史记录2透明度
+        let seenum4=document.querySelector("body > div:nth-child(2) > input[type=range]:nth-child(17)");//聊天历史记录2透明度
+        let seecolor1=document.querySelector("body > div:nth-child(2) > input[type=color]:nth-child(6)");//聊天历史记录1颜色
+        let seecolor2=document.querySelector("body > div:nth-child(2) > input[type=color]:nth-child(10)");//自顶栏往下部分颜色
+        let seecolor3=document.querySelector("body > div:nth-child(2) > input[type=color]:nth-child(14)");//聊天历史记录2颜色
+        let seecolor4=document.querySelector("body > div:nth-child(2) > input[type=color]:nth-child(18)");//聊天历史记录2颜色
 
+        let printseenum1
+        let printseenum2
+        let printseenum3
+        let printseenum4
+
+
+        if (seenum1.value==="100"){//聊天历史记录1透明度设置
+            localStorage.setItem("CantSeeset1","");
+            printseenum1=""
+        }else if(Number(seenum1.value)<10){
+            console.log("runok")
+            localStorage.setItem("CantSeeset1","0"+seenum1.value);
+            printseenum1="0"+seenum1.value
+        }else {
+            localStorage.setItem("CantSeeset1",seenum1.value);
+            printseenum1=seenum1.value
         }
+        if (seenum2.value==="100"){//自顶栏往下部分透明度设置
+            localStorage.setItem("CantSeeset2","00");
+            printseenum2=""
+        }else if(Number(seenum2.value)<10){
+            console.log("runok")
+            localStorage.setItem("CantSeeset2","0"+seenum2.value);
+            printseenum2="0"+seenum2.value
+        }else{
+            localStorage.setItem("CantSeeset2",seenum2.value);
+            printseenum2=seenum2.value
+        }
+        if (seenum3.value==="100"){//聊天历史记录2透明度设置
+            printseenum3=""
+            localStorage.setItem("CantSeeset3","00");
+        }else if(Number(seenum3.value)<10){
+            console.log("runok")
+            localStorage.setItem("CantSeeset3","0"+seenum3.value);
+            printseenum3="0"+seenum3.value
+        }else{
+            printseenum3=seenum3.value
+            localStorage.setItem("CantSeeset3",seenum3.value);
+        }
+        if (seenum4.value==="100"){//聊天历史记录2透明度设置
+            printseenum4=""
+            localStorage.setItem("CantSeeset4","00");
+        }else if(Number(seenum4.value)<10){
+            console.log("runok")
+            localStorage.setItem("CantSeeset4","0"+seenum4.value);
+            printseenum4="0"+seenum4.value
+        }else{
+            printseenum4=seenum4.value
+            localStorage.setItem("CantSeeset4",seenum4.value);
+        }
+            localStorage.setItem("CantSeeColor1",seecolor1.value);
+            localStorage.setItem("CantSeeColor2",seecolor2.value);
+            localStorage.setItem("CantSeeColor3",seecolor3.value);
+            localStorage.setItem("CantSeeColor4",seecolor4.value);
+
+        let backb=document.querySelector("#top > div > div")//自顶栏往下部分
+        let baca=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body")//聊天历史记录1
+        let ul=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body > ul")//聊天历史记录2（位置更靠里）
+        let histor=document.querySelector("#top > div > div > main > section")//聊天页面外层边框
+
+
+
+        baca.setAttribute('style', `background-color: ${seecolor1.value}${printseenum1};`)//聊天历史记录1
+        backb.setAttribute('style', `background-color: ${seecolor2.value}${printseenum2};`)//自顶栏往下部分
+        ul.setAttribute('style', `background-color: ${seecolor3.value}${printseenum3};`)//聊天历史记录2（位置更靠里）
+        histor.setAttribute('style', `background-color: ${seecolor4.value}${printseenum4};`)//聊天页面外层边框
+
+
+
+
+    }
 
     function  handleFileSelect(){//图片转base64存储在localstorage
         let addlocalupdate=document.querySelector("#webimgsrc")
@@ -209,9 +286,41 @@
     if(!localStorage.scrollstyle){
         localStorage.setItem("scrollstyle","1")
     }
-    if(!localStorage.BorderTextSize){
-        localStorage.setItem("BorderTextSize","1");
+    if(!localStorage.CantSeeset1){//聊天历史记录1
+        localStorage.setItem("CantSeeset1","00");
     }
+    if(!localStorage.CantSeeset2){//自顶栏往下部分
+        localStorage.setItem("CantSeeset2","20");
+    }
+    if(!localStorage.CantSeeset3){//聊天历史记录2（位置更靠里
+        localStorage.setItem("CantSeeset3","00");
+    }
+    if(!localStorage.CantSeeset4){//聊天页面外层边框
+        localStorage.setItem("CantSeeset4","20");
+    }
+    if(!localStorage.CantSeeColor1){//聊天历史记录1
+        localStorage.setItem("CantSeeColor1","#2b2c40");
+    }
+    if(!localStorage.CantSeeColor2){//自顶栏往下部分
+        localStorage.setItem("CantSeeColor2","#2b2c40");
+    }
+    if(!localStorage.CantSeeColor3){//自顶栏往下部分
+        localStorage.setItem("CantSeeColor3","#2b2c40");
+    }
+    if(!localStorage.CantSeeColor4){//聊天页面外层边框
+        localStorage.setItem("CantSeeColor4","#2b2c40");
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -223,7 +332,7 @@
     let sectionplanone="";
     let PrintToBackground="";
     let PrintToBBSGround="";
-    let Scrollstylex="";
+    let Scrollstylex;
     if (localStorage.webpiclod==="1"){//读取本地图片还是线上图片
         webpiclod="checked"
     }else{
@@ -334,9 +443,9 @@
 
 
     let addHTML='<div id="backread">'
-    let addbott="<a class='fuckyou'>背景文件/渲染</a><a class='fuckyou'>背景样式</a>"
+    let addbott="<a class='fuckyou'>背景文件/渲染</a><a class='fuckyou'>控件透明度</a>"
     let addmain=`<div id="localsett"><div><button id="exit">X</button><span>背景图片/渲染设置</span><div><form name='myform' action='chat.htm'><input type='file' id='webimgsrc' accept='image/*'><br> <span>线上地址</span><input type='text'  value='${localStorage.webimgsrc}' name='' id='localimgsrc' width='150px'><br><span>删除左侧导航栏</span><input type="checkbox" ${leadermanhide} value="1" name="leadermanhide" id="leadermanhide"><br><span>聊天室名称大小</span><input type='text' onblur='if(!((/[(0-9)]/).test(value)))value=18' value='${localStorage.NameFontSize}' name='size' id='size' size="5"><br><span>聊天室名称描边颜色</span><input type="color" id="fontcolor" value="${localStorage.LocalFontColor}"><br><span>聊天室名称描边大小</span><input type="text" onblur='if(!((/[(0-9)]/).test(value)))value=1' size="2"  value="${localStorage.BorderTextSize}"  name="BorderText" id="BorderText"><br><span>顶部</span><input type='text' oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.top}' name='topp' id='top' size="5"> <span>左部</span><input type='text' oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.left}' name='leftt' id='left' size="5"><br> <span>背景宽度比例(填写0即为auto)</span><input type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100' min='0'  value='${localStorage.widthsize}' name='' id='widthsize' size='5'><br><span>背景高度比例(填写0即为auto)</span><input type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100'  min='0' value=${localStorage.heightsize} name='' id='heightsize' size="5"><br> <span>在线图片</span><input type='radio' ${webpiclod} name='picloadsele' id='webpicon'  width='100px'><span>本地图片</span><input type='radio'  name='picloadsele' ${localpiclod} id='localpicon'  width='100px'><br><hr><span>使用section写入背景只能在最底层</span><br><span>section写入</span><input type='radio'  ${sectionplanone} name='addplan' id='sectionplan'  width='100px'><br><span>body-background写入</span><input type='radio'  name='addplan' ${backgroundplanone} id='backgroundplan'  width='100px'><br><span>透明度</span><input type="range" min="0" max="1" step="0.01" value="${localStorage.canseenunber}" id="notseenumber"><hr><span>渲染到网页背景</span><input type='radio' value='1' ${PrintToBackground} name='baklocal' id='printToWebback'  width='100px'><br><span>渲染到聊天室背景</span><input type='radio' value='1' name='baklocal' ${PrintToBBSGround} id='printToBBS'  width='100px'><br> <button id='save'>提交</button></form></div>`
-    let addmain2=`<div><button id="secexit">X</button><input type="checkbox"  ${Scrollstylex} name="ScrollSett" id="ScrollSett">滚动条控制</input></div>`
+    let addmain2=`<div><button id="secexit">X</button><span>控件透明度设置</span><br><input type="checkbox"  ${Scrollstylex} name="ScrollSett" id="ScrollSett">滚动条控制</input><br><span>历史记录1透明度</span><input type="range" value="${localStorage.CantSeeset1}"><input type="color" value="${localStorage.CantSeeColor1}"><br><span>顶栏下部透明度</span><input type="range" value="${localStorage.CantSeeset2}"><input type="color" value="${localStorage.CantSeeColor2}"><br><span>历史记录2透明度</span><input type="range" value="${localStorage.CantSeeset3}"><input type="color" value="${localStorage.CantSeeColor3}"><br><span>外层边框透明度</span><input type="range" value="${localStorage.CantSeeset4}"><input type="color" value="${localStorage.CantSeeColor4}"><br><input type="submit" id="secsubint"><br><button id="reall">重置颜色|透明度配置</button></div>`
     let addscript="<script src='chrome-extension://jinjaccalgkegednnccohejagnlnfdag/BHB%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2.user.js#13'></script>"
 
 
@@ -382,10 +491,10 @@
     ScrollSettButt.addEventListener("click",SetScroll)
 
     bac.setAttribute('style',`background-color: #202040;`)//网页背景部分
-    baca.setAttribute('style', `background-color: #2b2c4000;`)//聊天历史记录1
-    backb.setAttribute('style', `background-color: #2b2c4000;`)//自顶栏往下部分
-    ul.setAttribute('style', `background-color: #2b2c4000;`)//聊天历史记录2（位置更靠里）
-    histor.setAttribute('style', `background-color: #2b2c4070;`)//聊天页面外层边框
+    baca.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1};`)//聊天历史记录1
+    backb.setAttribute('style', `background-color: ${localStorage.CantSeeColor2}${localStorage.CantSeeset2};`)//自顶栏往下部分
+    ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor3}${localStorage.CantSeeset3};`)//聊天历史记录2（位置更靠里）
+    histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4};`)//聊天页面外层边框
 
 //bac.setAttribute('style',"background-color: #00000070;background-image:url('https://t1-img.233213.xyz/2024/11/25/67447535ec930.jpg');background-repeat=no-repeat")//背景图片替换//背景颜色
     let openpic = indexedDB.open('databaseName', 4);//调用数据库
@@ -514,15 +623,32 @@
 
 
     let localget=document.querySelector("#save");
-    //let localStyleGet=document.querySelector("#secsubint")
+    let localStyleGet=document.querySelector("#secsubint")
     localget.addEventListener("click",addtolocal,false);//点击向localst保存数据
-    //localStyleGet.addEventListener("click",addStyleToLocal,false);//点击向localst保存控件透明度数据
+    localStyleGet.addEventListener("click",addStyleToLocal,false);//点击向localst保存控件透明度数据
     addlocalupdate.addEventListener("change",handleFileSelect,false)//本体提交图片时向DBD保存base64
 
     let exitbutt=document.querySelector("#exit")//设置的关闭按钮
     let secexitbutt=document.querySelector("#secexit")//设置的关闭按钮
     exitbutt.addEventListener("click",function(){adddiv.style.display="none";})//设置的关闭按钮实现
     secexitbutt.addEventListener("click",function(){adddiv2.style.display="none";})//设置的关闭按钮实现
+
+    let Recolor=document.querySelector("#reall")//重置颜色和透明度配置
+        Recolor.addEventListener("click",function(){
+                localStorage.setItem("CantSeeset1","00");
+                localStorage.setItem("CantSeeset2","20");
+                localStorage.setItem("CantSeeset3","00");
+                localStorage.setItem("CantSeeset4","20");
+                localStorage.setItem("CantSeeColor1","#2b2c40");
+                localStorage.setItem("CantSeeColor2","#2b2c40");
+                localStorage.setItem("CantSeeColor3","#2b2c40");
+                localStorage.setItem("CantSeeColor4","#2b2c40");
+                baca.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1};`)//聊天历史记录1
+                backb.setAttribute('style', `background-color: ${localStorage.CantSeeColor2}${localStorage.CantSeeset2};`)//自顶栏往下部分
+                ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor3}${localStorage.CantSeeset3};`)//聊天历史记录2（位置更靠里）
+                histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4};`)//聊天页面外层边框
+
+        })
 
 
     setInterval(function(){//定时循环对聊天室名字描边
