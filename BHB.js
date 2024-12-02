@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name        BHB背景图片更换
+// @name        BHB聊天室背景图片更换
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @grant       none
-// @version     1.3.3
+// @version     1.3.4
 // @author      -
 // @license WTFPL
 // @description 2024/11/26 16:34:09
@@ -481,8 +481,10 @@
         }
 
     let addtarge=document.querySelector("#backread");
-    let addbutt=document.querySelector("#navbar-collapse > a");
-    let addbutt2=document.querySelector("#navbar-collapse > a:nth-child(2)");
+    let addbutt=document.querySelector("#navbar-collapse > button");
+    console.log(addbutt);
+    let addbutt2=document.querySelector("#navbar-collapse > button:nth-child(2)");
+    console.log(addbutt2);
     let adddiv=document.querySelector("body > div:nth-child(3)");
     let adddiv2=document.querySelector("body > div:nth-child(2)");
     let addlocalupdate=document.querySelector("#webimgsrc");
