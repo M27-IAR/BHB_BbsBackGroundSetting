@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name        BHB聊天室背景图片更换
+// @name        BHB背景图片更换
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @grant       none
-// @version     1.3.0
+// @version     1.3.3
 // @author      -
 // @license WTFPL
 // @description 2024/11/26 16:34:09
@@ -443,7 +443,7 @@
 
 
     let addHTML='<div id="backread">'
-    let addbott="<a class='fuckyou'>背景文件/渲染</a><a class='fuckyou'>控件透明度</a>"
+    let addbott="<button class='fuckyou'>背景文件/渲染</button><button class='fuckyou'>控件透明度</button>"
     let addmain=`<div id="localsett"><div><button id="exit">X</button><span>背景图片/渲染设置</span><div><form name='myform' action='chat.htm'><input type='file' id='webimgsrc' accept='image/*'><br> <span>线上地址</span><input type='text'  value='${localStorage.webimgsrc}' name='' id='localimgsrc' width='150px'><br><span>删除左侧导航栏</span><input type="checkbox" ${leadermanhide} value="1" name="leadermanhide" id="leadermanhide"><br><span>聊天室名称大小</span><input type='text' onblur='if(!((/[(0-9)]/).test(value)))value=18' value='${localStorage.NameFontSize}' name='size' id='size' size="5"><br><span>聊天室名称描边颜色</span><input type="color" id="fontcolor" value="${localStorage.LocalFontColor}"><br><span>聊天室名称描边大小</span><input type="text" onblur='if(!((/[(0-9)]/).test(value)))value=1' size="2"  value="${localStorage.BorderTextSize}"  name="BorderText" id="BorderText"><br><span>顶部</span><input type='text' oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.top}' name='topp' id='top' size="5"> <span>左部</span><input type='text' oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.left}' name='leftt' id='left' size="5"><br> <span>背景宽度比例(填写0即为auto)</span><input type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100' min='0'  value='${localStorage.widthsize}' name='' id='widthsize' size='5'><br><span>背景高度比例(填写0即为auto)</span><input type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100'  min='0' value=${localStorage.heightsize} name='' id='heightsize' size="5"><br> <span>在线图片</span><input type='radio' ${webpiclod} name='picloadsele' id='webpicon'  width='100px'><span>本地图片</span><input type='radio'  name='picloadsele' ${localpiclod} id='localpicon'  width='100px'><br><hr><span>使用section写入背景只能在最底层</span><br><span>section写入</span><input type='radio'  ${sectionplanone} name='addplan' id='sectionplan'  width='100px'><br><span>body-background写入</span><input type='radio'  name='addplan' ${backgroundplanone} id='backgroundplan'  width='100px'><br><span>透明度</span><input type="range" min="0" max="1" step="0.01" value="${localStorage.canseenunber}" id="notseenumber"><hr><span>渲染到网页背景</span><input type='radio' value='1' ${PrintToBackground} name='baklocal' id='printToWebback'  width='100px'><br><span>渲染到聊天室背景</span><input type='radio' value='1' name='baklocal' ${PrintToBBSGround} id='printToBBS'  width='100px'><br> <button id='save'>提交</button></form></div>`
     let addmain2=`<div><button id="secexit">X</button><span>控件透明度设置</span><br><input type="checkbox"  ${Scrollstylex} name="ScrollSett" id="ScrollSett">滚动条控制</input><br><span>历史记录1透明度</span><input type="range" value="${localStorage.CantSeeset1}"><input type="color" value="${localStorage.CantSeeColor1}"><br><span>顶栏下部透明度</span><input type="range" value="${localStorage.CantSeeset2}"><input type="color" value="${localStorage.CantSeeColor2}"><br><span>历史记录2透明度</span><input type="range" value="${localStorage.CantSeeset3}"><input type="color" value="${localStorage.CantSeeColor3}"><br><span>外层边框透明度</span><input type="range" value="${localStorage.CantSeeset4}"><input type="color" value="${localStorage.CantSeeColor4}"><br><input type="submit" id="secsubint"><br><button id="reall">重置颜色|透明度配置</button></div>`
     let addscript="<script src='chrome-extension://jinjaccalgkegednnccohejagnlnfdag/BHB%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2.user.js#13'></script>"
