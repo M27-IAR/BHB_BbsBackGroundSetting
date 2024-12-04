@@ -3,8 +3,8 @@
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @grant       none
-// @version     1.3.4
-// @author      -
+// @version     1.3.8
+// @author      M27IAR
 // @license WTFPL
 // @description 2024/11/26 16:34:09
 // ==/UserScript==
@@ -406,6 +406,10 @@
 
         if (localStorage.leaderhide==="1"){//左侧导航栏的隐藏与显示
             leadermanhide="checked"
+            let DIV1=document.querySelector("#top > div")
+            DIV1.setAttribute('style', 'padding-left:0rem;');
+            let DIV2=document.querySelector("#layout-navbar");
+            DIV2.setAttribute('style', 'width:100%;left:0rem;');
             document.querySelector("#layout-menu").setAttribute('style','display:none;')
         }else{
             leadermanhide=""
@@ -444,7 +448,7 @@
 
     let addHTML='<div id="backread">'
     let addbott="<button class='fuckyou'>背景文件/渲染</button><button class='fuckyou'>控件透明度</button>"
-    let addmain=`<div id="localsett"><div><button id="exit">X</button><span>背景图片/渲染设置</span><div><form name='myform' action='chat.htm'><input type='file' id='webimgsrc' accept='image/*'><br> <span>线上地址</span><input type='text'  value='${localStorage.webimgsrc}' name='' id='localimgsrc' width='150px'><br><span>删除左侧导航栏</span><input type="checkbox" ${leadermanhide} value="1" name="leadermanhide" id="leadermanhide"><br><span>聊天室名称大小</span><input type='text' onblur='if(!((/[(0-9)]/).test(value)))value=18' value='${localStorage.NameFontSize}' name='size' id='size' size="5"><br><span>聊天室名称描边颜色</span><input type="color" id="fontcolor" value="${localStorage.LocalFontColor}"><br><span>聊天室名称描边大小</span><input type="text" onblur='if(!((/[(0-9)]/).test(value)))value=1' size="2"  value="${localStorage.BorderTextSize}"  name="BorderText" id="BorderText"><br><span>顶部</span><input type='text' oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.top}' name='topp' id='top' size="5"> <span>左部</span><input type='text' oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.left}' name='leftt' id='left' size="5"><br> <span>背景宽度比例(填写0即为auto)</span><input type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100' min='0'  value='${localStorage.widthsize}' name='' id='widthsize' size='5'><br><span>背景高度比例(填写0即为auto)</span><input type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100'  min='0' value=${localStorage.heightsize} name='' id='heightsize' size="5"><br> <span>在线图片</span><input type='radio' ${webpiclod} name='picloadsele' id='webpicon'  width='100px'><span>本地图片</span><input type='radio'  name='picloadsele' ${localpiclod} id='localpicon'  width='100px'><br><hr><span>使用section写入背景只能在最底层</span><br><span>section写入</span><input type='radio'  ${sectionplanone} name='addplan' id='sectionplan'  width='100px'><br><span>body-background写入</span><input type='radio'  name='addplan' ${backgroundplanone} id='backgroundplan'  width='100px'><br><span>透明度</span><input type="range" min="0" max="1" step="0.01" value="${localStorage.canseenunber}" id="notseenumber"><hr><span>渲染到网页背景</span><input type='radio' value='1' ${PrintToBackground} name='baklocal' id='printToWebback'  width='100px'><br><span>渲染到聊天室背景</span><input type='radio' value='1' name='baklocal' ${PrintToBBSGround} id='printToBBS'  width='100px'><br> <button id='save'>提交</button></form></div>`
+    let addmain=`<div id="localsett"><div><button id="exit">X</button><span>背景图片/渲染设置</span><div><form name='myform' action='chat.htm'><input type='file' id='webimgsrc' accept='image/*'><br> <span>线上地址</span><input type='text'  value='${localStorage.webimgsrc}' name='' id='localimgsrc' width='150px'><br><span>删除左侧导航栏</span><input type="checkbox" ${leadermanhide} value="1" name="leadermanhide" id="leadermanhide"><br><span>聊天室名称大小</span><input type='text' onblur='if(!((/[(0-9)]/).test(value)))value=18' value='${localStorage.NameFontSize}' name='size' id='size' size="5"><br><span>聊天室名称描边颜色</span><input type="color" id="fontcolor" value="${localStorage.LocalFontColor}"><br><span>聊天室名称描边大小</span><input type="text" onblur='if(!((/[(0-9)]/).test(value)))value=1' size="2"  value="${localStorage.BorderTextSize}"  name="BorderText" id="BorderText"><br><span>顶部</span><input type='text' oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.top}' name='topp' id='top' size="5"> <span>左部</span><input type='text' oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.left}' name='leftt' id='left' size="5"><br> <span>背景高度比例(填写0即为auto)</span><input type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100' min='0'  value='${localStorage.widthsize}' name='' id='widthsize' size='5'><br><span>背景宽度比例(填写0即为auto)</span><input type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100'  min='0' value=${localStorage.heightsize} name='' id='heightsize' size="5"><br> <span>在线图片</span><input type='radio' ${webpiclod} name='picloadsele' id='webpicon'  width='100px'><span>本地图片</span><input type='radio'  name='picloadsele' ${localpiclod} id='localpicon'  width='100px'><br><hr><span>使用section写入背景只能在最底层</span><br><span>section写入</span><input type='radio'  ${sectionplanone} name='addplan' id='sectionplan'  width='100px'><br><span>body-background写入</span><input type='radio'  name='addplan' ${backgroundplanone} id='backgroundplan'  width='100px'><br><span>透明度</span><input type="range" min="0" max="1" step="0.01" value="${localStorage.canseenunber}" id="notseenumber"><hr><span>渲染到网页背景</span><input type='radio' value='1' ${PrintToBackground} name='baklocal' id='printToWebback'  width='100px'><br><span>渲染到聊天室背景</span><input type='radio' value='1' name='baklocal' ${PrintToBBSGround} id='printToBBS'  width='100px'><br> <button id='save'>提交</button></form></div>`
     let addmain2=`<div><button id="secexit">X</button><span>控件透明度设置</span><br><input type="checkbox"  ${Scrollstylex} name="ScrollSett" id="ScrollSett">滚动条控制</input><br><span>历史记录1透明度</span><input type="range" value="${localStorage.CantSeeset1}"><input type="color" value="${localStorage.CantSeeColor1}"><br><span>顶栏下部透明度</span><input type="range" value="${localStorage.CantSeeset2}"><input type="color" value="${localStorage.CantSeeColor2}"><br><span>历史记录2透明度</span><input type="range" value="${localStorage.CantSeeset3}"><input type="color" value="${localStorage.CantSeeColor3}"><br><span>外层边框透明度</span><input type="range" value="${localStorage.CantSeeset4}"><input type="color" value="${localStorage.CantSeeColor4}"><br><input type="submit" id="secsubint"><br><button id="reall">重置颜色|透明度配置</button></div>`
     let addscript="<script src='chrome-extension://jinjaccalgkegednnccohejagnlnfdag/BHB%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2.user.js#13'></script>"
 
@@ -460,7 +464,7 @@
         console.log(NeedFixStyle[NeedFixStyle.length-1]);
         console.log(NeedFixStyle.length);
         NeedFixStyle[NeedFixStyle.length-1].insertAdjacentHTML("afterend",'<style></style>');
-        let nedAddStyle=document.createTextNode(` .fuckyou{background-color: #2b2c4030; color: gray; margin:5px 5px;padding: 10px 5px;border: 1px gray solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou:hover{background-color: #FFFFFF; color:#66ccff;} @media(min-width: 768px) {::-webkit-scrollbar {width: 0px; height: 6px;border-radius: 20px;}::-webkit-scrollbar-track { background: var(--bs-body-bg);}::-webkit-scrollbar-thumb {background: var(--bs-secondary);border-radius: 20px;}::-webkit-scrollbar-thumb:hover {background: var(--bs-primary);}::-webkit-scrollbar-thumb:focus, ::-webkit-scrollbar-thumb:active {background: var(--bs-primary-active);}}`)
+        let nedAddStyle=document.createTextNode(`small{-webkit-text-stroke: ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize};}  .fuckyou{background-color: #2b2c4030; color: gray; margin:5px 5px;padding: 10px 5px;border: 1px gray solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou:hover{background-color: #FFFFFF; color:#66ccff;} @media(min-width: 768px) {::-webkit-scrollbar {width: 0px; height: 6px;border-radius: 20px;}::-webkit-scrollbar-track { background: var(--bs-body-bg);}::-webkit-scrollbar-thumb {background: var(--bs-secondary);border-radius: 20px;}::-webkit-scrollbar-thumb:hover {background: var(--bs-primary);}::-webkit-scrollbar-thumb:focus, ::-webkit-scrollbar-thumb:active {background: var(--bs-primary-active);}}`)
         let FixStyle=NeedFixStyle[NeedFixStyle.length-1].nextElementSibling
         console.log(FixStyle);
 
@@ -653,17 +657,17 @@
         })
 
 
-    setInterval(function(){//定时循环对聊天室名字描边
-        let OneLi=document.querySelectorAll(`#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li`)
-        for (let i = 0; i <= OneLi.length; i++) {
-            let OneDiv=document.querySelector(`#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li:nth-child(${i}) > div > div.chat-message-wrapper.flex-grow-1 > div.text-muted.mb-1`)
-            if(!OneDiv){
-                //console.log('此项目无法修改');
-            }else{
-            OneDiv.setAttribute('style',`-webkit-text-stroke: ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize};`)
-            }
-        }
-    },100)
+    //setInterval(function(){//定时循环对聊天室名字描边
+     //   let OneLi=document.querySelectorAll(`#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li`)
+      //  for (let i = 0; i <= OneLi.length; i++) {
+      //      let OneDiv=document.querySelector(`#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li:nth-child(${i}) > div > div.chat-message-wrapper.flex-grow-1 > div.text-muted.mb-1`)
+       //     if(!OneDiv){
+       //         //console.log('此项目无法修改');
+       //     }else{
+        //    OneDiv.setAttribute('style',`-webkit-text-stroke: ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize};`)
+        //    }
+       // }
+   // },1000)
 
     }else{
         console.log("暂时不支持");
