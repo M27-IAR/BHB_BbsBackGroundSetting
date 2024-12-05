@@ -3,7 +3,7 @@
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @grant       none
-// @version     1.3.8
+// @version     1.3.9
 // @author      M27IAR
 // @license WTFPL
 // @description 2024/11/26 16:34:09
