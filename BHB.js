@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        BHB聊天室背景图片更换
+// @name        BHB背景图片更换
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @grant       none
@@ -657,17 +657,26 @@
         })
 
 
-    //setInterval(function(){//定时循环对聊天室名字描边
-     //   let OneLi=document.querySelectorAll(`#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li`)
-      //  for (let i = 0; i <= OneLi.length; i++) {
-      //      let OneDiv=document.querySelector(`#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li:nth-child(${i}) > div > div.chat-message-wrapper.flex-grow-1 > div.text-muted.mb-1`)
-       //     if(!OneDiv){
-       //         //console.log('此项目无法修改');
-       //     }else{
-        //    OneDiv.setAttribute('style',`-webkit-text-stroke: ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize};`)
-        //    }
-       // }
-   // },1000)
+        //针对@闪电炫芬批插件的外链头像图片做适配
+        document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li:nth-child(1048)  ")
+        let oldLen=0
+        setInterval(function () {
+            let Liloader= document.querySelectorAll("#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li")
+            if (oldLen ===Liloader.length){
+                console.log("DAMN");
+            }else{
+                for (let i = 0; i < Liloader.length; i++) {
+                let imgfix=Liloader[i].querySelector("div > div.user-avatar.flex-shrink-0.me-4 > div > img")
+                if (imgfix.src.includes("https://boyshelpboys.com/.")){
+                console.log(imgfix.src)
+                console.log("1122334")
+                let needFix=imgfix.src
+                imgfix.src=needFix.substring(26);
+                }
+                }
+            }
+            oldLen= Liloader.length;
+        },1000)
 
     }else{
         console.log("暂时不支持");
