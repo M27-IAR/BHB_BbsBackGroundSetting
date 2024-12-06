@@ -3,7 +3,7 @@
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @grant       none
-// @version     1.4.0
+// @version     1.4.2
 // @author      M27IAR
 // @license WTFPL
 // @description 2024/11/26 16:34:09
@@ -416,7 +416,7 @@
 
     let NeedFixStyle=document.querySelectorAll("body > style");//修改滚动条状态
     NeedFixStyle[NeedFixStyle.length-1].insertAdjacentHTML("afterend",'<style></style>');
-    let nedAddStyle=document.createTextNode(`small{-webkit-text-stroke: ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize}; color:${localStorage.LocalFontColorsec}}  .fuckyou{background-color: #2b2c4030; color: gray; margin:5px 5px;padding: 10px 5px;border: 1px gray solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou:hover{background-color: #FFFFFF; color:#66ccff;} @media(min-width: 768px) {::-webkit-scrollbar {width: 0px; height: 6px;border-radius: 20px;}::-webkit-scrollbar-track { background: var(--bs-body-bg);}::-webkit-scrollbar-thumb {background: var(--bs-secondary);border-radius: 20px;}::-webkit-scrollbar-thumb:hover {background: var(--bs-primary);}::-webkit-scrollbar-thumb:focus, ::-webkit-scrollbar-thumb:active {background: var(--bs-primary-active);}}`)
+    let nedAddStyle=document.createTextNode(`small{-webkit-text-stroke: ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec}}  .fuckyou{background-color: #2b2c4030; color: gray; margin:5px 5px;padding: 10px 5px;border: 1px gray solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou:hover{background-color: #FFFFFF; color:#66ccff;} @media(min-width: 768px) {::-webkit-scrollbar {width: 0px; height: 6px;border-radius: 20px;}::-webkit-scrollbar-track { background: var(--bs-body-bg);}::-webkit-scrollbar-thumb {background: var(--bs-secondary);border-radius: 20px;}::-webkit-scrollbar-thumb:hover {background: var(--bs-primary);}::-webkit-scrollbar-thumb:focus, ::-webkit-scrollbar-thumb:active {background: var(--bs-primary-active);}}`)
     let FixStyle=NeedFixStyle[NeedFixStyle.length-1].nextElementSibling
         if (localStorage.scrollstyle==="1"){//背景的填充方式
             FixStyle.appendChild(nedAddStyle);
