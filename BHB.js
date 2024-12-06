@@ -245,6 +245,9 @@
     if(!localStorage.LocalFontColorsec){
         localStorage.setItem("LocalFontColorsec","#7071a4")
     }
+    if(!localStorage.LocalFontColorsec){
+        localStorage.setItem("BorderTextSize","1");
+    }
     if(!localStorage.scrollstyle){
         localStorage.setItem("scrollstyle","1")
     }
