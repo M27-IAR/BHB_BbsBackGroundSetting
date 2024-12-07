@@ -3,7 +3,7 @@
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @grant       none
-// @version     1.4.6
+// @version     1.4.7
 // @author      M27IAR
 // @license WTFPL
 // @description 2024/11/26 16:34:09
@@ -369,19 +369,8 @@
     //初始值部分结束
     let nowurl = window.location.href;//读取当前所在网页
     if (nowurl.includes('https://boyshelpboys.com/chat.htm')) {//如果当前网页为聊天室页面
-        let coookie = document.cookie.split(';');
-        let namecoookie=""
-        let piccoookie=""
-        for (let i = 0; i < coookie.length; i++) {
-            let localpiccook=coookie[i].indexOf("userinfo_avatar=");
+        console.log("运行中")
 
-            if (localpiccook===1){
-                console.log(coookie[i].lastIndexOf("="));
-                piccoookie = coookie[i].slice(coookie[i].lastIndexOf("=")+1);
-                console.log(piccoookie);
-            }
-
-        }
 
         document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div > div.message-actions.d-flex.align-items-center > button").setAttribute("style","align-items: center !important;")
         if (localStorage.leaderhide==="1"){//左侧导航栏的隐藏与显示
@@ -421,7 +410,7 @@
         let addbott="<button class='fuckyou' >背景文件/渲染</button><button class='fuckyou'>控件透明度</button><button class='fuckyou'>Test滚出来</button>"
         let addmain=`<div id="localsett"><div><button id="exit">X</button><span>背景图片/渲染设置</span><div><form name='myform' action='chat.htm'><input type='file' id='webimgsrc' accept='image/*'><br> <span>线上地址</span><input type='text'  value='${localStorage.webimgsrc}' name='' id='localimgsrc' width='150px'><br><span>删除左侧导航栏</span><input type="checkbox" ${leadermanhide} value="1" name="leadermanhide" id="leadermanhide"><br><span>聊天室名称大小</span><input type='text' onblur='if(!((/[(0-9)]/).test(value)))value=18' value='${localStorage.NameFontSize}' name='size' id='size' size="5"><br><span>聊天室名称描边/字体颜色</span><input type="color" id="fontcolor" value="${localStorage.LocalFontColor}"><input type="color" id="fontcolorsec" value="${localStorage.LocalFontColorsec}"><br><span>聊天室名称描边大小</span><input type="text" onblur='if(!((/[(0-9)]/).test(value)))value=1' size="2"  value="${localStorage.BorderTextSize}"  name="BorderText" id="BorderText"><br><span>顶部</span><input type='text' oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.top}' name='topp' id='top' size="5"> <span>左部</span><input type='text' oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.left}' name='leftt' id='left' size="5"><br> <span>背景高度比例(填写0即为auto)</span><input type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100' min='0'  value='${localStorage.widthsize}' name='' id='widthsize' size='5'><br><span>背景宽度比例(填写0即为auto)</span><input type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100'  min='0' value=${localStorage.heightsize} name='' id='heightsize' size="5"><br> <span>在线图片</span><input type='radio' ${webpiclod} name='picloadsele' id='webpicon'  width='100px'><span>本地图片</span><input type='radio'  name='picloadsele' ${localpiclod} id='localpicon'  width='100px'><hr><span>使用section写入背景只能在最底层</span><br><span>section写入</span><input type='radio'  ${sectionplanone} name='addplan' id='sectionplan'  width='100px'><br><span>body-background写入</span><input type='radio'  name='addplan' ${backgroundplanone} id='backgroundplan'  width='100px'><br><span>透明度</span><input type="range" min="0" max="1" step="0.01" value="${localStorage.canseenunber}" id="notseenumber"><hr><span>渲染到网页背景</span><input type='radio' value='1' ${PrintToBackground} name='baklocal' id='printToWebback'  width='100px'><br><span>渲染到聊天室背景</span><input type='radio' value='1' name='baklocal' ${PrintToBBSGround} id='printToBBS'  width='100px'><br> <button id='save'>提交</button></form></div>`
         let addmain2=`<div id="cantseegive"><button id="secexit">X</button><span>控件透明度设置</span><br><input type="checkbox"  ${Scrollstylex} name="ScrollSett" id="ScrollSett">滚动条控制</input><br><span>历史记录1透明度</span><input type="range" id="MsgSeeNum1" value="${localStorage.CantSeeset1}"><input type="color" id="Msgcolor1" value="${localStorage.CantSeeColor1}"><br><span>顶栏下部透明度</span><input type="range" id="MsgSeeNum2" value="${localStorage.CantSeeset2}"><input type="color" id="Msgcolor2" value="${localStorage.CantSeeColor2}"><br><span>历史记录2透明度</span><input type="range" id="MsgSeeNum3" value="${localStorage.CantSeeset3}"><input type="color" id="Msgcolor3" value="${localStorage.CantSeeColor3}"><br><span>外层边框透明度</span><input type="range" id="MsgSeeNum4" value="${localStorage.CantSeeset4}"><input type="color" id="Msgcolor4" value="${localStorage.CantSeeColor4}"><br><span>顶栏透明度</span><input type="range" id="MsgSeeNum5" value="${localStorage.CantSeeset5}"><input type="color" id="Msgcolor5" value="${localStorage.CantSeeColor5}"><br><span>发送边框透明度</span><input type="range" id="MsgSeeNum6" value="${localStorage.CantSeeset6}"><input type="color" id="Msgcolor6" value="${localStorage.CantSeeColor6}"><br><span>发送框透明度</span><input type="range" id="MsgSeeNum7" value="${localStorage.CantSeeset7}"><input type="color" id="Msgcolor7" value="${localStorage.CantSeeColor7}"><br><span>发送框描边</span><input type="range" id="MsgSeeNum8" value="${localStorage.CantSeeset8}"><input type="color" id="Msgcolor8" value="${localStorage.CantSeeColor8}"><br><span>'聊天留言'透明度</span><input type="range" id="MsgSeeNum9" value="${localStorage.CantSeeset9}"><input type="color" id="Msgcolor9" value="${localStorage.CantSeeColor9}"><br><input type="submit" id="secsubint"><br><button id="reall">重置颜色|透明度配置</button></div>`
-        let addmain3=`<div id="test"><p><span>修改1</span><input type="radio" name="testman" id="one"><input type="text"></p><p><span>修改2</span><input type="radio" name="testman" id="two"><input type="text"></p><p><span>修改3</span><input type="radio" name="testman" id="three"><input type="text"></p><p><span>原厂</span><input type="radio" checked name="testman" id="four" value=""><input type="text" value=${piccoookie}></p><span></span></div>`
+        let addmain3=`<div id="test"></div>`
         let addscript="<script src='chrome-extension://jinjaccalgkegednnccohejagnlnfdag/BHB%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2.user.js#13'></script>"
 
         bac.insertAdjacentHTML("afterbegin",addHTML);//插入section 填充背景
@@ -461,6 +450,9 @@
         ScrollSettButt.addEventListener("click",SetScroll)
         let msginputbox=document.querySelector("#msg")
         let LiuYanTop=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom")
+        let gameline=document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.chat-toolbar")
+        gameline.setAttribute("style",`display: flex;gap: 15px; padding: 12px 20px;border-top: 1px solid rgba(0,0,0,0.1);background: var(#f8f9fa);align-items: center;justify-content: flex-start;position: relative;box-shadow: 0 -1px 3px rgba(0,0,0,0.05);`)
+
         LiuYanTop.setAttribute("style",`background-color:${localStorage.CantSeeColor9}${localStorage.CantSeeset9};border:0px !important;`);
         bac.setAttribute('style',`background-color: #202040;`)//网页背景部分
         baca.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1};`)//聊天历史记录1
@@ -657,25 +649,7 @@
         let cachetest4=document.querySelector("#four")
         let cacheText41=document.querySelector("#test > p:nth-child(4) > input[type=text]:nth-child(3)")
 
-        function x(){
-            if (cachetest1.checked){
-                console.log("1one  checked");
-                document.cookie=`userinfo_avatar=${cacheText11.value}`;
-            }else if(cachetest2.checked){
-                console.log("2tow checked");
-                document.cookie=`userinfo_avatar=${cacheText21.value}`;
-            }else if(cachetest3.checked){
-                console.log("3three  checked");
-                document.cookie=`userinfo_avatar=${cacheText31.value}`;
-            }else if(cachetest4.checked){
-                console.log("4four  checked");
-                document.cookie=`userinfo_avatar=${cacheText41.value}`;
-            }
-        }
-        cachetest1.addEventListener("click", x);
-        cachetest2.addEventListener("click", x);
-        cachetest3.addEventListener("click", x);
-        cachetest4.addEventListener("click", x);
+
 
     }else{
         console.log("暂时不支持");
