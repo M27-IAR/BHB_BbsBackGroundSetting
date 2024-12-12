@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name        BHB聊天室背景图片更换
+// @name        BHB聊天室背景图片更换（已全局兼容）
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @grant       none
-// @version     2.0.0
+// @version     2.0.3
 // @author      M27IAR
 // @license WTFPL
 // @description 2024/11/26 16:34:09
@@ -12,15 +12,19 @@
 // ==/UserScript==
 
 (function(){
+
     window.history.replaceState(null, null, window.location.href);
 
     function leftANDtop() {
+        console.log("聊天室界面运行")
         let NeedFixStyle=document.querySelectorAll("body > style");//插入样式表修改左侧与顶栏样式
-        NeedFixStyle[NeedFixStyle.length-1].insertAdjacentHTML("afterend",'<style></style>');
-        let nedAddStyle=document.createTextNode(`small{-webkit-text-stroke: ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec}}  .fuckyou{background-color: #2b2c4030; color: gray; margin:5px 5px;padding: 10px 5px;border: 1px gray solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou:hover{background-color: #FFFFFF; color:#66ccff;} @media(min-width: 768px) {::-webkit-scrollbar {width: 0px; height: 6px;border-radius: 20px;}::-webkit-scrollbar-track { background: var(--bs-body-bg);}::-webkit-scrollbar-thumb {background: var(--bs-secondary);border-radius: 20px;}::-webkit-scrollbar-thumb:hover {background: var(--bs-primary);}::-webkit-scrollbar-thumb:focus, ::-webkit-scrollbar-thumb:active {background: var(--bs-primary-active);}}`)
+        NeedFixStyle[NeedFixStyle.length-1].insertAdjacentHTML("afterend",'<style id="style1"></style>');
+        let nedAddStyle=document.createTextNode(`small{-webkit-text-stroke: ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec}}  .fuckyou{background-color: #2b2c4030; color: gray; margin:5px 5px;padding: 10px 5px;border: 1px gray solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou:hover{background-color: #FFFFFF; color:#66ccff;}`)
         let FixStyle=NeedFixStyle[NeedFixStyle.length-1].nextElementSibling
         FixStyle.appendChild(nedAddStyle);
         document.querySelector("body").setAttribute("style",'background-color:#202040');
+
+
         if (localStorage.leaderhide==="1"){//左侧导航栏的隐藏与显示
             leadermanhide="checked"
             let DIV1=document.querySelector("#top > div")
@@ -322,10 +326,11 @@
         }
     }
     function addsett(leange1,leange2,leange3,nowurl) {//添加设置项目
+        console.log(nowurl);
         console.log("woRkto!")
         let oldaddtarge=document.querySelector("#navbar-collapse")
         let addbott="<button class='fuckyou' >背景文件/渲染</button><button class='fuckyou'>控件透明度</button><button class='fuckyou'>介绍</button>"
-        let addmain=`<div id="localsett"><div><button id="exit">X</button><span>背景图片/渲染设置</span><div><form name='myform' method="POST" action='${nowurl}'><input type='file' id='webimgsrc' accept='image/*'><br> <span>${leange1[0]}</span><input type='text'  value='${localStorage.webimgsrc}' name='' id='localimgsrc' width='150px'><br><span>${leange1[1]}</span><input type="checkbox" ${leadermanhide} value="1" name="leadermanhide" id="leadermanhide"><br><span>${leange1[2]}</span><input type='text' onblur='if(!((/[(0-9)]/).test(value)))value=18' value='${localStorage.NameFontSize}' name='size' id='size' size="5"><br><span>${leange1[3]}</span><input type="color" id="fontcolor" value="${localStorage.LocalFontColor}"><input type="color" id="fontcolorsec" value="${localStorage.LocalFontColorsec}"><br><span>${leange1[4]}</span><input type="text" onblur='if(!((/[(0-9)]/).test(value)))value=1' size="5"  value="${localStorage.BorderTextSize}"  name="BorderText" id="BorderText"><br><span>${leange1[5]}</span><input type='text' oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.top}' name='topp' id='top' size="5"> <span>${leange1[6]}</span><input type='text' oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.left}' name='leftt' id='left' size="5"><br> <span>${leange1[7]}</span><input type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100' min='0'  value='${localStorage.widthsize}' name='' id='widthsize' size='5'><br><span>${leange1[8]}</span><input type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100'  min='0' value=${localStorage.heightsize} name='' id='heightsize' size="5"><br> <span>${leange1[9]}</span><input type='radio' ${webpiclod} name='picloadsele' id='webpicon'  width='100px'><span>${leange1[10]}</span><input type='radio'  name='picloadsele' ${localpiclod} id='localpicon'  width='100px'><hr><span>使用section写入背景只能在最底层</span><br><span>${leange1[11]}</span><input type='radio'  ${sectionplanone} name='addplan' id='sectionplan'  width='100px'><br><span>${leange1[12]}</span><input type='radio'  name='addplan' ${backgroundplanone} id='backgroundplan'  width='100px'><br><span>透明度</span><input type="range" min="0" max="1" step="0.01" value="${localStorage.canseenunber}" id="notseenumber"><hr><span>${leange1[13]}</span><input type='radio' value='1' ${PrintToBackground} name='baklocal' id='printToWebback'  width='100px'><br><span>${leange1[14]}</span><input type='radio' value='1' name='baklocal' ${PrintToBBSGround} id='printToBBS'  width='100px'><br> <button id='save' type="sumbit">提交</button></form></div>`
+        let addmain=`<div id="localsett"><div><button id="exit">X</button><span>背景图片/渲染设置</span><div><form name='myform' method="POST" action='${nowurl}'><input type='file' id='webimgsrc' accept='image/*'><br> <span>${leange1[0]}</span><input type='text'  value='${localStorage.webimgsrc}' name='' id='localimgsrc' width='150px'><br><span>${leange1[1]}</span><input type="checkbox" ${leadermanhide} value="1" name="leadermanhide" id="leadermanhide"><br><span>${leange1[2]}</span><input type='text' onblur='if(!((/[(0-9)]/).test(value)))value=18' value='${localStorage.NameFontSize}' name='size' id='size' size="5"><br><span>${leange1[3]}</span><input type="color" id="fontcolor" value="${localStorage.LocalFontColor}"><input type="color" id="fontcolorsec" value="${localStorage.LocalFontColorsec}"><br><span>${leange1[4]}</span><input type="text" onblur='if(!((/[(0-9)]/).test(value)))value=1' size="5"  value="${localStorage.BorderTextSize}"  name="BorderText" id="BorderText"><br><span>${leange1[5]}</span><input type='text' oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.top}' name='topp' id='top' size="5"> <span>${leange1[6]}</span><input type='text' oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.left}' name='leftt' id='left' size="5"><br> <span>${leange1[7]}</span><input type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100' min='0'  value='${localStorage.widthsize}' name='' id='widthsize' size='5'><br><span>${leange1[8]}</span><input type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100'  min='0' value=${localStorage.heightsize} name='' id='heightsize' size="5"><br> <span>${leange1[9]}</span><input type='radio' ${webpiclod} name='picloadsele' id='webpicon'  width='100px'><span>${leange1[10]}</span><input type='radio'  name='picloadsele' ${localpiclod} id='localpicon'  width='100px'><hr><span>使用section写入背景只能在最底层</span><br><span>${leange1[11]}</span><input type='radio'  ${sectionplanone} name='addplan' id='sectionplan'  width='100px'><br><span>${leange1[12]}</span><input type='radio'  name='addplan' ${backgroundplanone} id='backgroundplan'  width='100px'><br><span>透明度</span><input type="range" min="0" max="1" step="0.01" value="${localStorage.canseenunber}" id="notseenumber"><hr><span>${leange1[13]}</span><input type='radio' value='1' ${PrintToBackground} name='baklocal' id='printToWebback'  width='100px'><br><span>${leange1[14]}</span><input type='radio' value='1' name='baklocal' ${PrintToBBSGround} id='printToBBS'  width='100px'><br> <button id='save' type="submit">提交</button></form></div>`
         let addmain2=`<div id="cantseegive"><button id="secexit">X</button><span>控件透明度设置</span><br><input type="checkbox"  ${Scrollstylex} name="ScrollSett" id="ScrollSett">${leange2[0]}</input><br><span>${leange2[1]}</span><input type="range" id="MsgSeeNum1" value="${localStorage.CantSeeset1}"><input type="color" id="Msgcolor1" value="${localStorage.CantSeeColor1}"><br><span>${leange2[2]}</span><input type="range" id="MsgSeeNum2" value="${localStorage.CantSeeset2}"><input type="color" id="Msgcolor2" value="${localStorage.CantSeeColor2}"><br><span>${leange2[3]}</span><input type="range" id="MsgSeeNum3" value="${localStorage.CantSeeset3}"><input type="color" id="Msgcolor3" value="${localStorage.CantSeeColor3}"><br><span>${leange2[4]}</span><input type="range" id="MsgSeeNum4" value="${localStorage.CantSeeset4}"><input type="color" id="Msgcolor4" value="${localStorage.CantSeeColor4}"><br><span>${leange2[5]}</span><input type="range" id="MsgSeeNum5" value="${localStorage.CantSeeset5}"><input type="color" id="Msgcolor5" value="${localStorage.CantSeeColor5}"><br><span>${leange2[6]}</span><input type="range" id="MsgSeeNum6" value="${localStorage.CantSeeset6}"><input type="color" id="Msgcolor6" value="${localStorage.CantSeeColor6}"><br><span>${leange2[7]}</span><input type="range" id="MsgSeeNum7" value="${localStorage.CantSeeset7}"><input type="color" id="Msgcolor7" value="${localStorage.CantSeeColor7}"><br><span>${leange2[8]}</span><input type="range" id="MsgSeeNum8" value="${localStorage.CantSeeset8}"><input type="color" id="Msgcolor8" value="${localStorage.CantSeeColor8}"><br><span>${leange2[9]}</span><input type="range" id="MsgSeeNum9" value="${localStorage.CantSeeset9}"><input type="color" id="Msgcolor9" value="${localStorage.CantSeeColor9}"><br><input type="submit" id="secsubint"><br><button id="reall">重置颜色|透明度配置</button></div>`
         let addmain3=`<div id="test"><span></span></div>`
         let addscript="<script src='chrome-extension://jinjaccalgkegednnccohejagnlnfdag/BHB%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2.user.js#13'></script>"
@@ -560,25 +565,21 @@
     document.querySelector("body").insertAdjacentHTML("afterbegin",addHTML);
     let addtarge=document.querySelector("#backread");
     let bac=document.querySelector("body")//网页本体
-    bac.setAttribute("style","background-color:202040")
+
 
     let nowurl = window.location.href;//读取当前所在网页
-    if (nowurl.includes('https://boyshelpboys.com/chat.htm')) {//如果当前网页为聊天室页面
-        document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div > div.message-actions.d-flex.align-items-center > button").setAttribute("style","align-items: center !important;")
-        let DIV2=document.querySelector("#layout-navbar");
-        if (localStorage.leaderhide==="1"){//左侧导航栏的隐藏与显示
-            leadermanhide="checked"
-            let DIV1=document.querySelector("#top > div")
-            DIV1.setAttribute('style', 'padding-left:0rem;');
-            DIV2.setAttribute('style', `width:100%;left:0rem;background-color:${localStorage.CantSeeColor5}${localStorage.CantSeeset5} !important;backdrop-filter:saturate(100%) !important;`);
-            document.querySelector("#layout-menu").setAttribute('style','display:none;')
-        }else{
-            leadermanhide=""
-            DIV2.setAttribute('style', `background-color:${localStorage.CantSeeColor5}${localStorage.CantSeeset5} !important;backdrop-filter:saturate(100%) !important;`);
-            let DIV3=document.querySelector("#layout-menu")
-            DIV3.setAttribute('style','background-color:#00000000;')
+    console.log(nowurl);
 
-        }
+    if (nowurl.includes('https://boyshelpboys.com/chat.htm')) {//如果当前网页为聊天室页面
+        WidthHeingtSet();
+        let printstr1=["线上地址","删除左侧导航栏","聊天室名称大小","聊天室名称描边/字体颜色","聊天室名称描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
+        let printstr2=["滚动条不显示","历史记录1透明度","顶栏下部透明度","历史记录2透明度","外层边框透明度","顶栏透明度","发送边框透明度","发送框透明度","发送框描边","'聊天留言'透明度"]
+        let printstr3=[]
+        addsett(printstr1,printstr2,printstr3,nowurl);
+        leftANDtop();
+
+        console.log("chattime")
+
         console.log(nowurl);
 
         let backb=document.querySelector("#top > div > div")//自顶栏往下部分
@@ -592,26 +593,29 @@
         fackone.className='shadow-xs'//修改输入框部分css，删除上部的渐变黑条
         fackone.setAttribute('style',`padding: .5rem .5rem; position: relative; border-radius: .375rem; margin: 0 1.5rem 1rem 1.5rem;background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6}`)
 
-        WidthHeingtSet();
-        let printstr1=["线上地址","删除左侧导航栏","聊天室名称大小","聊天室名称描边/字体颜色","聊天室名称描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
-        let printstr2=["滚动条控制","历史记录1透明度","顶栏下部透明度","历史记录2透明度","外层边框透明度","顶栏透明度","发送边框透明度","发送框透明度","发送框描边","'聊天留言'透明度"]
-        let printstr3=[]
-        addsett(printstr1,printstr2,printstr3,nowurl);
+
+
 
         let NeedFixStyle=document.querySelectorAll("body > style");//修改滚动条状态
-        NeedFixStyle[NeedFixStyle.length-1].insertAdjacentHTML("afterend",'<style></style>');
-        let nedAddStyle=document.createTextNode(`small{-webkit-text-stroke: ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec}}  .fuckyou{background-color: #2b2c4030; color: gray; margin:5px 5px;padding: 10px 5px;border: 1px gray solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou:hover{background-color: #FFFFFF; color:#66ccff;} @media(min-width: 768px) {::-webkit-scrollbar {width: 0px; height: 6px;border-radius: 20px;}::-webkit-scrollbar-track { background: var(--bs-body-bg);}::-webkit-scrollbar-thumb {background: var(--bs-secondary);border-radius: 20px;}::-webkit-scrollbar-thumb:hover {background: var(--bs-primary);}::-webkit-scrollbar-thumb:focus, ::-webkit-scrollbar-thumb:active {background: var(--bs-primary-active);}}`)
-        let FixStyle=NeedFixStyle[NeedFixStyle.length-1].nextElementSibling
+        NeedFixStyle[NeedFixStyle.length-1].insertAdjacentHTML("afterend",'<style id="style2"></style>');
+        let nedAddStyle=document.createTextNode(`@media(min-width: 768px) {::-webkit-scrollbar {width: 0px; height: 6px;border-radius: 20px;}::-webkit-scrollbar-track { background: var(--bs-body-bg);}::-webkit-scrollbar-thumb {background: var(--bs-secondary);border-radius: 20px;}::-webkit-scrollbar-thumb:hover {background: var(--bs-primary);}::-webkit-scrollbar-thumb:focus, ::-webkit-scrollbar-thumb:active {background: var(--bs-primary-active);}}`)
+        let AddStylesec=document.createTextNode(`@media(min-width: 768px) {::-webkit-scrollbar {width: 3px; height: 6px;border-radius: 20px;}::-webkit-scrollbar-track { background: var(--bs-body-bg);}::-webkit-scrollbar-thumb {background: var(--bs-secondary);border-radius: 20px;}::-webkit-scrollbar-thumb:hover {background: var(--bs-primary);}::-webkit-scrollbar-thumb:focus, ::-webkit-scrollbar-thumb:active {background: var(--bs-primary-active);}} `)
+        let FixStyle=document.querySelector("#style2")
         if (localStorage.scrollstyle==="1"){//背景的填充方式
             FixStyle.appendChild(nedAddStyle);
+        }else{
+            FixStyle.appendChild(AddStylesec);
+            console.log("check1");
         }
         function SetScroll() {//滚动条样式调整
+            console.log(FixStyle.innerHTML)
             if (FixStyle.innerHTML==""){
                 localStorage.setItem("scrollstyle","1")
                 FixStyle.appendChild(nedAddStyle);
             }else{
                 localStorage.setItem("scrollstyle","0")
-                FixStyle.innerHTML="";
+                FixStyle.innerHTML=""
+                console.log("check2");
             }
         }
 
@@ -701,17 +705,24 @@
             oldLen= Liloader.length;
         },1000)
     }else if(nowurl.includes('https://boyshelpboys.com/plugin')){
+        console.log(nowurl);
         console.log("damn");
-    }else if(nowurl.includes('https://boyshelpboys.com/my.htm')){
+
+    }else if(nowurl.includes('https://boyshelpboys.com/my-')){
+        console.log(nowurl);
+        bac.setAttribute("style","background-color:202040")
+        console.log("dohier");
         let printstr1=["线上地址","删除左侧导航栏","淡色字体大小","淡色字描边/字体颜色","淡色字描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
         let printstr2=["滚动条控制(在此页面不生效)","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","'*没做*'*没做*"]
         let printstr3=[]
-        addsett(printstr1,printstr2,printstr3);
+        addsett(printstr1,printstr2,printstr3,nowurl);
         leftANDtop();
         WidthHeingtSet();
         backPrint();
     }else if(nowurl ==="https://boyshelpboys.com/"||nowurl.includes("https://boyshelpboys.com/#")||nowurl.includes("https://boyshelpboys.com/index")){
-        console.log("workfoit")
+        console.log(nowurl);
+        bac.setAttribute("style","background-color:202040")
+        console.log("workfoit");
         document.querySelector("#top > div > div > main > div > div.col-lg-9.main > div.card").setAttribute('style', 'display:none');
         document.querySelector("#top > div > div > main > div > div.col-lg-3.aside > div:nth-child(3)").setAttribute('style', 'display:none');
         let spanprint=document.querySelector("#top > div > div > main > div > div.col-lg-9.main > div.card-threadlist").querySelectorAll("span,time,div");
@@ -743,6 +754,9 @@
 
 
     }else{
+        console.log(nowurl);
+        console.log("dohere");
+        bac.setAttribute("style","background-color:202040")
         setInterval(function(){if (bac.style.backgroundColor==''){console.log("reprint"); bac.setAttribute('style',`background-color: #202040;`)}},1)
         leftANDtop();
         WidthHeingtSet();
