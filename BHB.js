@@ -3,7 +3,7 @@
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @grant       none
-// @version     2.0.3
+// @version     2.1.0
 // @author      M27IAR
 // @license WTFPL
 // @description 2024/11/26 16:34:09
@@ -16,14 +16,12 @@
     window.history.replaceState(null, null, window.location.href);
 
     function leftANDtop() {
-        console.log("聊天室界面运行")
-        let NeedFixStyle=document.querySelectorAll("body > style");//插入样式表修改左侧与顶栏样式
-        NeedFixStyle[NeedFixStyle.length-1].insertAdjacentHTML("afterend",'<style id="style1"></style>');
-        let nedAddStyle=document.createTextNode(`small{-webkit-text-stroke: ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec}}  .fuckyou{background-color: #2b2c4030; color: gray; margin:5px 5px;padding: 10px 5px;border: 1px gray solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou:hover{background-color: #FFFFFF; color:#66ccff;}`)
-        let FixStyle=NeedFixStyle[NeedFixStyle.length-1].nextElementSibling
+        let NeedFixStyle=document.querySelector("head");//插入样式表修改左侧与顶栏样式
+        NeedFixStyle.insertAdjacentHTML("afterbegin",'<style id="style1"></style>');
+        let nedAddStyle=document.createTextNode(` ::selection{color:#0000FF !important;} ::-moz-selection{color:#0000FF !important;} .GameBarFix{background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6} !important;border:0 !important;margin:0 !important; transition: 0.3s;} hr{margin: 0.125rem 0 !important;color:#f0f5f9;} small{-webkit-text-stroke: ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec}} .fuckyou2{background-color: #2b2c4030; color: gray; margin:0px;padding: 2px 7px;border: 1px gray solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou2:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;} .fuckyou3{background-color: #2b2c4030; color: gray; margin:0px;padding: 2px 7px;border: 1px gray solid;cursor: pointer;transition: background-color 0.3s;border-radius: 0px;}.fuckyou3:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;}  .fuckyou{background-color: #2b2c4030; color: gray; margin:0.3125rem;padding: 0.3125rem;border: 0.125rem gray solid;font-size:1rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;} .fuckyou:hover{background-color: #FFFFFF; color:#66ccff;} @media (max-width:426px){.fuckyou{background-color: #2b2c4030; color: gray; padding: 0.3125rem 0.5rem;border: 0.125rem gray solid;font-size:0.5rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}}`)
+        let FixStyle=document.querySelector("#style1");
         FixStyle.appendChild(nedAddStyle);
         document.querySelector("body").setAttribute("style",'background-color:#202040');
-
 
         if (localStorage.leaderhide==="1"){//左侧导航栏的隐藏与显示
             leadermanhide="checked"
@@ -58,6 +56,8 @@
         let LocalFontColorset=document.querySelector("#fontcolor");//聊天室描边颜色
         let LocalFontColorsetsec=document.querySelector("#fontcolorsec");//聊天室字体颜色
         let BorderTextSize=document.querySelector("#BorderText");//聊天室描边大小输入框
+        let printSelcetBox=document.querySelector("#selectBox");//背景渲染方式
+        let centerPosion=document.querySelector("#center")//居中渲染按钮
 
 
 
@@ -114,6 +114,18 @@
             localStorage.setItem("leaderhide",1);
         }else{
             localStorage.setItem("leaderhide",0);
+        }
+        if(centerPosion.checked){
+            localStorage.setItem("centerPosition",centerPosion.value);
+        }else{
+            localStorage.setItem("centerPosition","");
+        }
+        if(printSelcetBox.value==="default"){//判断用户选择的渲染状态
+            localStorage.setItem("BackgroundPrint","");
+        }else if(printSelcetBox.value==="PicFirst"){
+            localStorage.setItem("BackgroundPrint","cover");
+        }else if(printSelcetBox.value==="WebFirst"){
+            localStorage.setItem("BackgroundPrint","contain");
         }
         let adddiv=document.querySelector("#localsett");
         adddiv.style.display="none";
@@ -223,16 +235,21 @@
 
     function WidthHeingtSet(){//背景宽高设定
 
-        //id是webimgsrc的是离线文件 写错了
-        if (localStorage.heightsize==="auto"||localStorage.heightsize==="NaN"){
-            localHightSize="auto"
-        }else{
-            localHightSize=localStorage.heightsize+'%'
-        }
-        if (localStorage.widthsize==="auto"||localStorage.widthsize==="NaN"){
-            localWidthSize="auto"
-        }else{
-            localWidthSize=localStorage.widthsize+'%'
+        if(localStorage.BackgroundPrint===""){
+            if (localStorage.heightsize==="auto"||localStorage.heightsize==="NaN"){
+            localHightSize="auto";
+            }else{
+            localHightSize=localStorage.heightsize+'%';
+            }
+            if (localStorage.widthsize==="auto"||localStorage.widthsize==="NaN"){
+            localWidthSize="auto";
+            }else{
+            localWidthSize=localStorage.widthsize+'%';
+            }
+        }else if(localStorage.BackgroundPrint==="cover"){
+            localHightSize="";localWidthSize="cover";
+        }else if(localStorage.BackgroundPrint==="contain"){
+            localHightSize="";localWidthSize="contain";
         }
     }
 
@@ -252,7 +269,7 @@
             let queryObjectStore = queryTransaction.objectStore('storeName');
             let query = queryObjectStore.get(1);
             query.onsuccess = function(event) {
-                //转换透明度的数值为RGBA的数值
+                //转换透明度的数值
                 let BackimagePrintPlanNum=(localStorage.canseenunber*100)%100
                 if(BackimagePrintPlanNum===0&&localStorage.canseenunber==="0"){BackimagePrintPlanNum=""}
                 console.log(BackimagePrintPlanNum)
@@ -262,61 +279,57 @@
 
                     if(localStorage.sectionplan === "1") {//用户选择方案为section方法
                         if (localStorage.webpiclod === "1") {
-                            addtarge.setAttribute('style', `background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; display: flex; align-items: center; justify-content: center; position: fixed; top: ${localStorage.top}%; left: ${localStorage.left}%; right: 0; bottom: 0; pointer-events: none; opacity: ${localStorage.canseenunber}; z-index:0; `)
+                            addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft}; background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; display: flex; align-items: center; justify-content: center; position: fixed; top:0; left:0;  right: 0; bottom: 0; pointer-events: none; opacity: ${localStorage.canseenunber}; z-index:0; `)
                         } else if (localStorage.localpiclod === "1") {
                             alert('数据库无图片相关内容存储，将加载在线图片，请在设置添加本地图片')//如果数据库没有本地图片数据且选择渲染本地图片
-                            addtarge.setAttribute('style', `background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; display: flex; align-items: center; justify-content: center; position: fixed; top: ${localStorage.top}%; left: ${localStorage.left}%; right: 0; bottom: 0; pointer-events: none; opacity: ${localStorage.canseenunber}; z-index:0; `)
+                            addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; display: flex; align-items: center; justify-content: center; position: fixed; top:0; left:0;  right: 0; bottom: 0; pointer-events: none; opacity: ${localStorage.canseenunber}; z-index:0; `)
                         }
                     }else if(localStorage.backgroundplan==="1"){//用户选择方案为background方法
 
                         if (localStorage.webpiclod === "1") {
                             if(localStorage.printToBack==="1"){
                                 //通过section写入项目留下的标签实现颜色覆盖
-                                console.log("bad");
-                                bac.setAttribute('style', `background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-position: ${localStorage.left}% ${localStorage.top}%; background-attachment:fixed;`);
-                                addtarge.setAttribute('style', `background-color: #202040${BackimagePrintPlanNum};background-repeat: no-repeat;background-size:cover;display: flex;align-items: center;justify-content: center;position: fixed;pointer-events: none;z-index:0;height:100%;width:100%;`);
-                                console.log("good");
+                                bac.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-attachment:fixed;`);
+                                addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-color: #202040${BackimagePrintPlanNum};background-repeat: no-repeat;background-size:cover;display: flex;align-items: center;justify-content: center;position: fixed;pointer-events: none;z-index:0;height:100%;width:100%;`);
                             }else if(localStorage.printToBBS==="1"){
-                                BBSmsgBack.setAttribute('style', `background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-position: ${localStorage.left}% ${localStorage.top}%; background-attachment:fixed;`);
+                                BBSmsgBack.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; b background-attachment:fixed;`);
                             }
                         } else if (localStorage.localpiclod === "1") {
                             if(localStorage.printToBack==="1"){
                                 alert('数据库无图片相关内容存储，将加载在线图片，请在设置添加本地图片')//如果数据库没有本地图片数据且选择渲染本地图片
-                                bac.setAttribute('style', `background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-position: ${localStorage.left}% ${localStorage.top}%; background-attachment:fixed;`);
+                                bac.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};  background-attachment:fixed;`);
                             }else if(localStorage.printToBBS==="1"){
                                 alert('数据库无图片相关内容存储，将加载在线图片，请在设置添加本地图片')//如果数据库没有本地图片数据且选择渲染本地图片
-                                BBSmsgBack.setAttribute('style', `background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-position: ${localStorage.left}% ${localStorage.top}%; background-attachment:fixed;`);
+                                BBSmsgBack.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-attachment:fixed;`);
                             }
                         }
                     }
                 }else{//如果数据库有本地图片数据
                     if(localStorage.sectionplan === "1") {//用户选择方案为section方法
                         if (localStorage.webpiclod === "1") {
-                            addtarge.setAttribute('style', `background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; display: flex; align-items: center; justify-content: center; position: fixed; top: ${localStorage.top}%; left: ${localStorage.left}%; right: 0; bottom: 0; pointer-events: none; opacity: ${localStorage.canseenunber}; z-index:0; `)
+                            addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; display: flex; align-items: center; justify-content: center; position: fixed; top:0; left:0; right: 0; bottom: 0; pointer-events: none; opacity: ${localStorage.canseenunber}; z-index:0; `)
                         } else if (localStorage.localpiclod === "1" ) {
 
-                            addtarge.setAttribute('style', `background-image: url('${event.target.result.name}');background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; display: flex; align-items: center; justify-content: center; position: fixed; top: ${localStorage.top}%; left: ${localStorage.left}%; right: 0; bottom: 0; pointer-events: none; opacity: ${localStorage.canseenunber}; z-index:0; `)
+                            addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url('${event.target.result.name}');background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; display: flex; align-items: center; justify-content: center; position: fixed; top:0; left:0; right: 0; bottom: 0; pointer-events: none; opacity: ${localStorage.canseenunber}; z-index:0; `)
                         }
                     }else if(localStorage.backgroundplan==="1"){//用户选择方案为background方法
                         if (localStorage.webpiclod === "1") {
                             if(localStorage.printToBack==="1"){
                                 //通过section写入项目留下的标签实现颜色覆盖
-                                console.log("bad");
-                                bac.setAttribute('style', `background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-position: ${localStorage.left}% ${localStorage.top}%; background-attachment:fixed;`);
-                                addtarge.setAttribute('style', `background-color: #202040${BackimagePrintPlanNum};background-repeat: no-repeat;background-size:cover;display: flex;align-items: center;justify-content: center;position: fixed;pointer-events: none;z-index:0;height:100%;width:100%;`);
-                                console.log("good");
+                                bac.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-attachment:fixed;`);
+                                addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-color: #202040${BackimagePrintPlanNum};background-repeat: no-repeat;background-size:cover;display: flex;align-items: center;justify-content: center;position: fixed;pointer-events: none;z-index:0;height:100%;width:100%;`);
                             }else if(localStorage.printToBBS==="1"){
-                                BBSmsgBack.setAttribute('style', `background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-position: ${localStorage.left}% ${localStorage.top}%; background-attachment:fixed;`);
+                                BBSmsgBack.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};background-attachment:fixed;`);
                             }
                         } else if (localStorage.localpiclod === "1") {
                             if(localStorage.printToBack==="1"){
                                 //通过section写入项目留下的标签实现颜色覆盖
                                 console.log("bad");
-                                bac.setAttribute('style', `background-image: url(${event.target.result.name});background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-position: ${localStorage.left}% ${localStorage.top}%; background-attachment:fixed;`)
-                                addtarge.setAttribute('style', `background-color: #202040${BackimagePrintPlanNum};background-repeat: no-repeat;background-size:cover;display: flex;align-items: center;justify-content: center;position: fixed;pointer-events: none;z-index:0;height:100%;width:100%; `);
+                                bac.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${event.target.result.name});background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};  background-attachment:fixed;`)
+                                addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-color: #202040${BackimagePrintPlanNum};background-repeat: no-repeat;background-size:cover;display: flex;align-items: center;justify-content: center;position: fixed;pointer-events: none;z-index:0;height:100%;width:100%; `);
                                 console.log("good");
                             }else if(localStorage.printToBBS==="1"){
-                                BBSmsgBack.setAttribute('style', `background-image: url(${event.target.result.name});background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-position: ${localStorage.left}% ${localStorage.top}%; background-attachment:fixed;`)
+                                BBSmsgBack.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${event.target.result.name});background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};background-attachment:fixed;`)
                             }
                         }
                     }
@@ -325,21 +338,33 @@
             db.close();
         }
     }
+    function checkPrint() {//验证用户选择的渲染方式
+        let printSelcetBox=document.querySelector("#selectBox");
+        if(printSelcetBox.value!=="default"){
+            document.querySelector("#top").disabled=true;
+            document.querySelector("#left").disabled=true;
+            document.querySelector("#widthsize").disabled=true;
+            document.querySelector("#heightsize").disabled=true;
+        }else if(printSelcetBox.value==="default"){
+            document.querySelector("#top").disabled=false;
+            document.querySelector("#left").disabled=false;
+            document.querySelector("#widthsize").disabled=false;
+            document.querySelector("#heightsize").disabled=false;
+        }
+    }
     function addsett(leange1,leange2,leange3,nowurl) {//添加设置项目
         console.log(nowurl);
-        console.log("woRkto!")
         let oldaddtarge=document.querySelector("#navbar-collapse")
         let addbott="<button class='fuckyou' >背景文件/渲染</button><button class='fuckyou'>控件透明度</button><button class='fuckyou'>介绍</button>"
-        let addmain=`<div id="localsett"><div><button id="exit">X</button><span>背景图片/渲染设置</span><div><form name='myform' method="POST" action='${nowurl}'><input type='file' id='webimgsrc' accept='image/*'><br> <span>${leange1[0]}</span><input type='text'  value='${localStorage.webimgsrc}' name='' id='localimgsrc' width='150px'><br><span>${leange1[1]}</span><input type="checkbox" ${leadermanhide} value="1" name="leadermanhide" id="leadermanhide"><br><span>${leange1[2]}</span><input type='text' onblur='if(!((/[(0-9)]/).test(value)))value=18' value='${localStorage.NameFontSize}' name='size' id='size' size="5"><br><span>${leange1[3]}</span><input type="color" id="fontcolor" value="${localStorage.LocalFontColor}"><input type="color" id="fontcolorsec" value="${localStorage.LocalFontColorsec}"><br><span>${leange1[4]}</span><input type="text" onblur='if(!((/[(0-9)]/).test(value)))value=1' size="5"  value="${localStorage.BorderTextSize}"  name="BorderText" id="BorderText"><br><span>${leange1[5]}</span><input type='text' oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.top}' name='topp' id='top' size="5"> <span>${leange1[6]}</span><input type='text' oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.left}' name='leftt' id='left' size="5"><br> <span>${leange1[7]}</span><input type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100' min='0'  value='${localStorage.widthsize}' name='' id='widthsize' size='5'><br><span>${leange1[8]}</span><input type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100'  min='0' value=${localStorage.heightsize} name='' id='heightsize' size="5"><br> <span>${leange1[9]}</span><input type='radio' ${webpiclod} name='picloadsele' id='webpicon'  width='100px'><span>${leange1[10]}</span><input type='radio'  name='picloadsele' ${localpiclod} id='localpicon'  width='100px'><hr><span>使用section写入背景只能在最底层</span><br><span>${leange1[11]}</span><input type='radio'  ${sectionplanone} name='addplan' id='sectionplan'  width='100px'><br><span>${leange1[12]}</span><input type='radio'  name='addplan' ${backgroundplanone} id='backgroundplan'  width='100px'><br><span>透明度</span><input type="range" min="0" max="1" step="0.01" value="${localStorage.canseenunber}" id="notseenumber"><hr><span>${leange1[13]}</span><input type='radio' value='1' ${PrintToBackground} name='baklocal' id='printToWebback'  width='100px'><br><span>${leange1[14]}</span><input type='radio' value='1' name='baklocal' ${PrintToBBSGround} id='printToBBS'  width='100px'><br> <button id='save' type="submit">提交</button></form></div>`
-        let addmain2=`<div id="cantseegive"><button id="secexit">X</button><span>控件透明度设置</span><br><input type="checkbox"  ${Scrollstylex} name="ScrollSett" id="ScrollSett">${leange2[0]}</input><br><span>${leange2[1]}</span><input type="range" id="MsgSeeNum1" value="${localStorage.CantSeeset1}"><input type="color" id="Msgcolor1" value="${localStorage.CantSeeColor1}"><br><span>${leange2[2]}</span><input type="range" id="MsgSeeNum2" value="${localStorage.CantSeeset2}"><input type="color" id="Msgcolor2" value="${localStorage.CantSeeColor2}"><br><span>${leange2[3]}</span><input type="range" id="MsgSeeNum3" value="${localStorage.CantSeeset3}"><input type="color" id="Msgcolor3" value="${localStorage.CantSeeColor3}"><br><span>${leange2[4]}</span><input type="range" id="MsgSeeNum4" value="${localStorage.CantSeeset4}"><input type="color" id="Msgcolor4" value="${localStorage.CantSeeColor4}"><br><span>${leange2[5]}</span><input type="range" id="MsgSeeNum5" value="${localStorage.CantSeeset5}"><input type="color" id="Msgcolor5" value="${localStorage.CantSeeColor5}"><br><span>${leange2[6]}</span><input type="range" id="MsgSeeNum6" value="${localStorage.CantSeeset6}"><input type="color" id="Msgcolor6" value="${localStorage.CantSeeColor6}"><br><span>${leange2[7]}</span><input type="range" id="MsgSeeNum7" value="${localStorage.CantSeeset7}"><input type="color" id="Msgcolor7" value="${localStorage.CantSeeColor7}"><br><span>${leange2[8]}</span><input type="range" id="MsgSeeNum8" value="${localStorage.CantSeeset8}"><input type="color" id="Msgcolor8" value="${localStorage.CantSeeColor8}"><br><span>${leange2[9]}</span><input type="range" id="MsgSeeNum9" value="${localStorage.CantSeeset9}"><input type="color" id="Msgcolor9" value="${localStorage.CantSeeColor9}"><br><input type="submit" id="secsubint"><br><button id="reall">重置颜色|透明度配置</button></div>`
+        let addmain=`<div id="localsett"><div><button id="exit" class="fuckyou3">X</button><span>背景图片/渲染设置</span><div><form name='myform' method="POST" action='${nowurl}'><input type='file' id='webimgsrc' accept='image/*'><br> <span>${leange1[0]}</span><input type='text'  value='${localStorage.webimgsrc}' name='' id='localimgsrc' width='150px'><br><input type="checkbox" ${leadermanhide} value="leadermanhide" name="leadermanhide" id="leadermanhide"><label for="leadermanhide">${leange1[1]}</label><br><span>${leange1[2]}</span><input type='text' onblur='if(!((/[(0-9)]/).test(value)))value=18' value='${localStorage.NameFontSize}' name='size' id='size' size="5"><br><span>${leange1[3]}</span><input type="color" id="fontcolor" value="${localStorage.LocalFontColor}"><input type="color" id="fontcolorsec" value="${localStorage.LocalFontColorsec}"><br><span>${leange1[4]}</span><input type="text" onblur='if(!((/[(0-9)]/).test(value)))value=1' size="5"  value="${localStorage.BorderTextSize}"  name="BorderText" id="BorderText"><br><span>图像渲染方式</span><select name="selectBox" id="selectBox"><option value="default" ${(function(){if(BackPrintSelectBox==="default"){return "selected";}})()}>自定义</option><option value="PicFirst" ${(function(){if(BackPrintSelectBox==="PicFirst"){return "selected";}})()}>图像尺寸定位</option><option value="WebFirst" ${(function(){if(BackPrintSelectBox==="WebFirst"){return "selected";}})()}>网站尺寸优先</option></select><input type="checkbox" id="center" ${(function (){if (localStorage.centerPosition!==""){return "checked";}else{return "";}})()}  value="center"><label for="center">居中渲染</label><br><span>${leange1[5]}</span><input type='text'  oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.top}' name='topp' id='top' size="5"> <span>${leange1[6]}</span><input type='text' oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.left}' name='leftt' id='left' size="5"><br> <span>${leange1[7]}</span><input type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100' min='0'  value='${localStorage.widthsize}' name='' id='widthsize' size='5'><br><span>${leange1[8]}</span><input type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100'  min='0' value=${localStorage.heightsize} name='' id='heightsize' size="5"><br><input type='radio' ${webpiclod} name='picloadsele' id='webpicon'  width='100px' value="webpicon"> <label for="webpicon">${leange1[9]}</label><input type='radio'  name='picloadsele' ${localpiclod} id='localpicon' value="localpicon"  width='100px'><label for="localpicon">${leange1[10]}</label><hr><span>使用section写入背景只能在最底层</span><br><input type='radio'  ${sectionplanone} name='addplan' id='sectionplan' value="sectionplan" width='100px'><label for="sectionplan">${leange1[11]}</label><input type='radio'  name='addplan' ${backgroundplanone} id='backgroundplan' value="backgroundplan"  width='100px'><label for="backgroundplan">${leange1[12]}</label><br><span>透明度</span><input type="range" min="0" max="1" step="0.01" value="${localStorage.canseenunber}" id="notseenumber"><hr><input type='radio' value='1' ${PrintToBackground} name='baklocal' id='printToWebback' value="printToWebback"  width='100px'><label for="printToWebback">${leange1[13]}</label><input type='radio' value='printToBBS' name='baklocal' ${PrintToBBSGround} id='printToBBS'  width='100px'><label for="printToBBS">${leange1[14]}</label><br> <button class='fuckyou2' id='save' type="submit">提交</button></form></div>`
+        let addmain2=`<div id="cantseegive"><button id="secexit" class="fuckyou3">X</button><span>控件透明度设置</span><br><input type="checkbox"  ${Scrollstylex} name="ScrollSett" id="ScrollSett">${leange2[0]}</input><br><span>${leange2[1]}</span><input type="range" id="MsgSeeNum1" value="${localStorage.CantSeeset1}"><input type="color" id="Msgcolor1" value="${localStorage.CantSeeColor1}"><br><span>${leange2[2]}</span><input type="range" id="MsgSeeNum2" value="${localStorage.CantSeeset2}"><input type="color" id="Msgcolor2" value="${localStorage.CantSeeColor2}"><br><span>${leange2[3]}</span><input type="range" id="MsgSeeNum3" value="${localStorage.CantSeeset3}"><input type="color" id="Msgcolor3" value="${localStorage.CantSeeColor3}"><br><span>${leange2[4]}</span><input type="range" id="MsgSeeNum4" value="${localStorage.CantSeeset4}"><input type="color" id="Msgcolor4" value="${localStorage.CantSeeColor4}"><br><span>${leange2[5]}</span><input type="range" id="MsgSeeNum5" value="${localStorage.CantSeeset5}"><input type="color" id="Msgcolor5" value="${localStorage.CantSeeColor5}"><br><span>${leange2[6]}</span><input type="range" id="MsgSeeNum6" value="${localStorage.CantSeeset6}"><input type="color" id="Msgcolor6" value="${localStorage.CantSeeColor6}"><br><span>${leange2[7]}</span><input type="range" id="MsgSeeNum7" value="${localStorage.CantSeeset7}"><input type="color" id="Msgcolor7" value="${localStorage.CantSeeColor7}"><br><span>${leange2[8]}</span><input type="range" id="MsgSeeNum8" value="${localStorage.CantSeeset8}"><input type="color" id="Msgcolor8" value="${localStorage.CantSeeColor8}"><br><span>${leange2[9]}</span><input type="range" id="MsgSeeNum9" value="${localStorage.CantSeeset9}"><input type="color" id="Msgcolor9" value="${localStorage.CantSeeColor9}"><br><input  class="fuckyou2" type="submit" id="secsubint"><br><button id="reall"  class="fuckyou2">重置颜色|透明度配置</button></div>`
         let addmain3=`<div id="test"><span></span></div>`
-        let addscript="<script src='chrome-extension://jinjaccalgkegednnccohejagnlnfdag/BHB%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2.user.js#13'></script>"
 
         oldaddtarge.insertAdjacentHTML("afterbegin",addbott);
         bac.insertAdjacentHTML("afterbegin",addmain);
         bac.insertAdjacentHTML("afterbegin",addmain2);
         bac.insertAdjacentHTML("afterbegin",addmain3);
-        bac.insertAdjacentHTML("afterbegin",addscript);
+
 
         let addbutt=document.querySelector("#navbar-collapse > button");
         let addbutt2=document.querySelector("#navbar-collapse > button:nth-child(2)");
@@ -347,10 +372,13 @@
         let adddiv=document.querySelector("#localsett");
         let adddiv2=document.querySelector("#cantseegive");
         let adddiv3=document.querySelector("#test");
+        checkPrint();
+        let printSelcetBox=document.querySelector("#selectBox");
 
-        adddiv.setAttribute('style','position: absolute;top: 55%;left: 50%;transform: translate(-45%, -50%);width: 300px;height: 550px;border: 1px solid red;overflow: hidden;z-index:1;display:none;background-color:#66ccff;color:black;')
-        adddiv2.setAttribute('style','position: absolute;top: 50%;left: 49%;transform: translate(-51%, -50%);width: 300px;height: 500px;border: 1px solid red;overflow: hidden;z-index:1;display:none;background-color:#66ccff;color:black;')
-        adddiv3.setAttribute('style','position: absolute;top: 50%;left: 49%;transform: translate(-55%, -50%);width: 300px;height: 500px;border: 1px solid red;overflow: hidden;z-index:1;display:none;background-color:#66ccff;color:black;')
+        printSelcetBox.addEventListener("change",function(){checkPrint();})
+        adddiv.setAttribute('style', 'border-radius: 5px;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);width: 300px;height: 550px;border: 1px solid gray;overflow: hidden;z-index:1;display:none;background-color:rgba(30, 32, 34, 0.70);color:#f0f5f9;-webkit-text-stroke:0.3px #52616b;')
+        adddiv2.setAttribute('style','border-radius: 5px;position: absolute;top: 50%;left: 50%;transform: translate(-51%, -50%);width: 300px;height: 500px;border: 1px solid gray;overflow: hidden;z-index:1;display:none;background-color:rgba(30, 32, 34, 0.70);color:#f0f5f9;-webkit-text-stroke:0.3px #52616b;')
+        adddiv3.setAttribute('style','border-radius: 5px;position: absolute;top: 50%;left: 50%;transform: translate(-52%, -50%);width: 300px;height: 500px;border: 1px solid gray;overflow: hidden;z-index:1;display:none;background-color:rgba(30, 32, 34, 0.70);color:#f0f5f9;-webkit-text-stroke:0.3px #52616b;')
         addbutt.addEventListener("click",function(){//开关设置栏1
             let adddiv=document.querySelector("#localsett")
             if (adddiv.style.display==="block"){
@@ -376,17 +404,43 @@
             }
         });
 
+
         let exitbutt=document.querySelector("#exit")//设置的关闭按钮
         let secexitbutt=document.querySelector("#secexit")//设置的关闭按钮
         exitbutt.addEventListener("click",function(){adddiv.style.display="none";})//设置的关闭按钮实现
         secexitbutt.addEventListener("click",function(){adddiv2.style.display="none";})//设置的关闭按钮实现
     }
-
+    function ResetSeenum() {
+        localStorage.setItem("CantSeeset1","00");
+        localStorage.setItem("CantSeeset2","20");
+        localStorage.setItem("CantSeeset3","00");
+        localStorage.setItem("CantSeeset4","20");
+        localStorage.setItem("CantSeeset5","20");
+        localStorage.setItem("CantSeeset6","100");
+        localStorage.setItem("CantSeeset7","20");
+        localStorage.setItem("CantSeeset8","50");
+        localStorage.setItem("CantSeeset9","20");
+        localStorage.setItem("CantSeeColor1","#2b2c40");
+        localStorage.setItem("CantSeeColor2","#2b2c40");
+        localStorage.setItem("CantSeeColor3","#2b2c40");
+        localStorage.setItem("CantSeeColor4","#2b2c40");
+        localStorage.setItem("CantSeeColor5","#2b2c40");
+        localStorage.setItem("CantSeeColor6","#2b2c40");
+        localStorage.setItem("CantSeeColor7","#2b2c40");
+        localStorage.setItem("CantSeeColor8","#66ccff");
+        localStorage.setItem("CantSeeColor9","#2b2c40");
+    }
 
 
 
 
     //本地存储检测
+    if(!localStorage.BackgroundPrint){
+        localStorage.setItem("BackgroundPrint","");
+    }
+    if(!localStorage.centerPosition){
+        localStorage.setItem("centerPosition","");
+    }
     if(!localStorage.heightsize){
         localStorage.setItem("heightsize",'100');
     }
@@ -508,6 +562,15 @@
     let PrintToBackground="";
     let PrintToBBSGround="";
     let Scrollstylex;
+    let BackPrintSelectBox="";
+    let Backleft;
+    let BackTop;
+    if (localStorage.centerPosition===""){
+        Backleft=localStorage.left+"px";
+        BackTop=localStorage.top+"px";
+    }else{
+        Backleft=BackTop="";
+    }
     if (localStorage.webpiclod==="1"){//读取本地图片还是线上图片
         webpiclod="checked"
     }else{
@@ -527,6 +590,13 @@
         Scrollstylex="checked"
     }else{
         Scrollstylex=""
+    }
+    if(localStorage.BackgroundPrint===""){
+        BackPrintSelectBox="default"
+    }else if(localStorage.BackgroundPrint==="cover"){
+        BackPrintSelectBox="PicFirst"
+    }else if(localStorage.BackgroundPrint==="contain"){
+        BackPrintSelectBox="WebFirst"
     }
     //通过读取本地存储数据进行选择值设定结束
     let request = indexedDB.open('databaseName', 4);
@@ -581,7 +651,7 @@
         console.log("chattime")
 
         console.log(nowurl);
-
+        document.querySelector("#navbar-collapse > div").innerHTML=""
         let backb=document.querySelector("#top > div > div")//自顶栏往下部分
         let baca=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body")//聊天历史记录1
         let ul=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body > ul")//聊天历史记录2（位置更靠里）
@@ -590,11 +660,13 @@
         let msginputbox=document.querySelector("#msg")
         let LiuYanTop=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom")
         let BBSmsgBack=document.querySelector("#top > div > div > main > section > div")
+        let msgInputBoxOutsite=document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write")
         fackone.className='shadow-xs'//修改输入框部分css，删除上部的渐变黑条
         fackone.setAttribute('style',`padding: .5rem .5rem; position: relative; border-radius: .375rem; margin: 0 1.5rem 1rem 1.5rem;background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6}`)
 
+        document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.chat-toolbar").className="chat-toolbar GameBarFix"
 
-
+        let DIV2=document.querySelector("#layout-navbar");
 
         let NeedFixStyle=document.querySelectorAll("body > style");//修改滚动条状态
         NeedFixStyle[NeedFixStyle.length-1].insertAdjacentHTML("afterend",'<style id="style2"></style>');
@@ -622,17 +694,17 @@
         let addlocalupdate=document.querySelector("#webimgsrc");
         let ScrollSettButt=document.querySelector("#ScrollSett")
         ScrollSettButt.addEventListener("click",SetScroll)
-        let gameline=document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.chat-toolbar")
-        gameline.setAttribute("style",`display: flex;gap: 15px; padding: 12px 20px;border-top: 1px solid rgba(0,0,0,0.1);background: var(#f8f9fa);align-items: center;justify-content: flex-start;position: relative;box-shadow: 0 -1px 3px rgba(0,0,0,0.05);`)
+
         bac.setAttribute('style',`background-color: #202040;`)//网页背景部分
         LiuYanTop.setAttribute("style",`background-color:${localStorage.CantSeeColor9}${localStorage.CantSeeset9};border:0px !important;`);
 
-        baca.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1};`)//聊天历史记录1
-        backb.setAttribute('style', `background-color: ${localStorage.CantSeeColor2}${localStorage.CantSeeset2};`)//自顶栏往下部分
-        ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor3}${localStorage.CantSeeset3};`)//聊天历史记录2（位置更靠里）
-        histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4};`)//聊天页面外层边框
-        msginputbox.setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7};border:1px solid ${localStorage.CantSeeColor8}${localStorage.CantSeeset8} !important;`)
-
+        baca.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1} !important;`)//聊天历史记录1
+        backb.setAttribute('style', `background-color: ${localStorage.CantSeeColor2}${localStorage.CantSeeset2} !important;`)//自顶栏往下部分
+        ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor3}${localStorage.CantSeeset3} !important;`)//聊天历史记录2（位置更靠里）
+        histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4} !important;`)//聊天页面外层边框
+        msginputbox.setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;border:1px solid ${localStorage.CantSeeColor8}${localStorage.CantSeeset8} !important;height:40px !important;`)//输入框部分
+        msgInputBoxOutsite.setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;height:48px;`)
+        document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write > button").setAttribute("style","height:40px !important;width:40px !important;")  //站长工具栏启动按钮
 //bac.setAttribute('style',"background-color: #00000070;background-image:url('https://t1-img.233213.xyz/2024/11/25/67447535ec930.jpg');background-repeat=no-repeat")//背景图片替换//背景颜色
         backPrint(BBSmsgBack);
         let adddiv=document.querySelector("#localsett");
@@ -653,34 +725,17 @@
 
         let Recolor=document.querySelector("#reall")//重置颜色和透明度配置
         Recolor.addEventListener("click",function(){
+            ResetSeenum();
             let DIV2=document.querySelector("#layout-navbar");
             let fackone=document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs")//输入框部分
             let LiuYanTop=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom")
-            localStorage.setItem("CantSeeset1","00");
-            localStorage.setItem("CantSeeset2","20");
-            localStorage.setItem("CantSeeset3","00");
-            localStorage.setItem("CantSeeset4","20");
-            localStorage.setItem("CantSeeset5","20");
-            localStorage.setItem("CantSeeset6","100");
-            localStorage.setItem("CantSeeset7","20");
-            localStorage.setItem("CantSeeset8","50");
-            localStorage.setItem("CantSeeset9","20");
-            localStorage.setItem("CantSeeColor1","#2b2c40");
-            localStorage.setItem("CantSeeColor2","#2b2c40");
-            localStorage.setItem("CantSeeColor3","#2b2c40");
-            localStorage.setItem("CantSeeColor4","#2b2c40");
-            localStorage.setItem("CantSeeColor5","#2b2c40");
-            localStorage.setItem("CantSeeColor6","#2b2c40");
-            localStorage.setItem("CantSeeColor7","#2b2c40");
-            localStorage.setItem("CantSeeColor8","#66ccff");
-            localStorage.setItem("CantSeeColor9","#2b2c40");
             msginputbox.setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7};border:1px solid ${localStorage.CantSeeColor8}${localStorage.CantSeeset8} !important;`)//发送框的调整
             baca.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1};`)//聊天历史记录1
             backb.setAttribute('style', `background-color: ${localStorage.CantSeeColor2}${localStorage.CantSeeset2};`)//自顶栏往下部分
             ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor3}${localStorage.CantSeeset3};`)//聊天历史记录2（位置更靠里）
             histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4};`)//聊天页面外层边框
-            DIV2.setAttribute('style', `background-color:${localStorage.CantSeeColor5}${localStorage.CantSeeset5} !important;backdrop-filter:saturate(100%) !important;`);
-            fackone.setAttribute('style',`padding: .5rem .5rem; position: relative; border-radius: .375rem; margin: 0 1.5rem 1rem 1.5rem;background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6}`)
+            DIV2.setAttribute('style', `background-color:${localStorage.CantSeeColor5}${localStorage.CantSeeset5} !important;backdrop-filter:saturate(100%) !important;`);//顶栏
+            fackone.setAttribute('style',`padding: .5rem .5rem; position: relative; border-radius: .375rem; margin: 0 1.5rem 1rem 1.5rem;background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6}`)//发送栏外层边框
             LiuYanTop.setAttribute("style",`background-color:${localStorage.CantSeeColor9}${localStorage.CantSeeset9};border:0px !important;`);
         })
 
@@ -694,7 +749,7 @@
                 for (let i = 0; i < Liloader.length; i++) {
                     let imgfix=Liloader[i].querySelector("div > div.user-avatar.flex-shrink-0.me-4 > div > img")
 
-                    if (imgfix.src.includes("https://boyshelpboys.com/.")){
+                    if (imgfix!==null&&imgfix.src.includes("https://boyshelpboys.com/.")){
                         console.log(imgfix.src)
                         console.log("1122334")
                         let needFix=imgfix.src
@@ -708,7 +763,7 @@
         console.log(nowurl);
         console.log("damn");
 
-    }else if(nowurl.includes('https://boyshelpboys.com/my-')){
+    }else if(nowurl.includes('https://boyshelpboys.com/my')){
         console.log(nowurl);
         bac.setAttribute("style","background-color:202040")
         console.log("dohier");
