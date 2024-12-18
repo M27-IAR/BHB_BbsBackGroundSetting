@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name        BHB聊天室背景图片更换（已全局兼容）
+// @name        BHB背景图片更换（已全局兼容）
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @grant       none
-// @version     2.1.3
+// @version     2.1.4
 // @author      M27IAR
 // @license WTFPL
 // @description 2024/11/26 16:34:09
@@ -638,7 +638,7 @@
     document.querySelector("body").insertAdjacentHTML("afterbegin",addHTML);
     let addtarge=document.querySelector("#backread");
     let bac=document.querySelector("body")//网页本体
-
+    document.querySelector("#navbar-collapse > div").innerHTML=""
 
     let nowurl = window.location.href;//读取当前所在网页
     console.log(nowurl);
@@ -655,7 +655,7 @@
         console.log("chattime")
 
         console.log(nowurl);
-        document.querySelector("#navbar-collapse > div").innerHTML=""
+
         let backb=document.querySelector("#top > div > div")//自顶栏往下部分
         let baca=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body")//聊天历史记录1
         let ul=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body > ul")//聊天历史记录2（位置更靠里）
@@ -751,8 +751,8 @@
             if (oldLen ===Liloader.length){
             }else{
                 for (let i = 0; i < Liloader.length; i++) {
-                    let imgfix=Liloader[i].querySelector("div > div.user-avatar.flex-shrink-0.me-4 > div > img")
-
+                    let imgfix=Liloader[i].querySelector("div > div.user-avatar.flex-shrink-0.me-4 > div > a > img")
+                    console.log(imgfix)
                     if (imgfix!==null&&imgfix.src.includes("https://boyshelpboys.com/.")){
                         console.log(imgfix.src)
                         console.log("1122334")
@@ -816,7 +816,7 @@
         console.log(nowurl);
         console.log("dohere");
         bac.setAttribute("style","background-color:202040")
-        setInterval(function(){if (bac.style.backgroundColor==''){console.log("reprint"); bac.setAttribute('style',`background-color: #202040;`)}},1)
+        setInterval(function(){if (bac.style.backgroundColor===''){console.log("reprint"); bac.setAttribute('style',`background-color: #202040;`)}},1)
         leftANDtop();
         WidthHeingtSet();
         backPrint(bac);
