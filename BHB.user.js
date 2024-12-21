@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name        BHB背景图片更换（已全局兼容）
+// @name        BHB聊天室背景图片更换（已全局兼容）
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @grant       none
-// @version     2.1.4
+// @version     2.1.5
 // @author      M27IAR
 // @license WTFPL
 // @description 2024/11/26 16:34:09
@@ -137,7 +137,7 @@
 
 
     }
-    function addStyleToLocal(backb,baca,ul,histor,DIV2,fackone,msginputbox,LiuYanTop) {//上传控件透明度
+    function addStyleToLocal(backb,baca,ul,histor,DIV2,FackOne,MsgInputBox,LiuYanTop) {//上传控件透明度
         if (!LiuYanTop){}else{
         let seenum=document.querySelectorAll("#cantseegive > input[type=range]")//透明度获取
         console.log(seenum);
@@ -153,7 +153,6 @@
 
         let printseenum={}
         for(let i=0;i<seenum.length;i++){
-            console.log(`第${i}个`+seenum[i].value);
             if (seenum[i].value=="100"){
                 localStorage.setItem(`CantSeeset${i+1}`,"*");
                 printseenum[i]=""
@@ -161,7 +160,7 @@
                 console.log("runok")
                 localStorage.setItem(`CantSeeset${i+1}`,"0"+seenum[i].value);
                 printseenum[i]="0"+seenum[i].value
-            }else {
+            }else{
                 localStorage.setItem(`CantSeeset${i+1}`,seenum[i].value);
                 printseenum[i]=seenum[i].value
             }
@@ -177,13 +176,13 @@
         localStorage.setItem("CantSeeColor9",seecolor9.value);
         console.log(printseenum)
 
-        backb.setAttribute('style', `background-color: ${seecolor2.value}${printseenum[1]};`)//自顶栏往下部分
-        baca.setAttribute('style', `background-color: ${seecolor1.value}${printseenum[0]};`)//聊天历史记录1
-        ul.setAttribute('style', `background-color: ${seecolor3.value}${printseenum[2]};`)//聊天历史记录2（位置更靠里）
-        histor.setAttribute('style', `background-color: ${seecolor4.value}${printseenum[3]};`)//聊天页面外层边框
+        backb.setAttribute('style', `background-color: ${seecolor2.value}${printseenum[1]} !important;`)//自顶栏往下部分
+        baca.setAttribute('style', `background-color: ${seecolor1.value}${printseenum[0]} !important;`)//聊天历史记录1
+        ul.setAttribute('style', `background-color: ${seecolor3.value}${printseenum[2]} !important;`)//聊天历史记录2（位置更靠里）
+        histor.setAttribute('style', `background-color: ${seecolor4.value}${printseenum[3]} !important;`)//聊天页面外层边框
         DIV2.setAttribute('style', `width:100%;left:0rem;background-color:${localStorage.CantSeeColor5}${printseenum[4]} !important;backdrop-filter:saturate(100%) !important;`);
-        fackone.setAttribute('style', `padding: .5rem .5rem; position: relative; border-radius: .375rem; margin: 0 1.5rem 1rem 1.5rem;background-color: ${seecolor6.value}${printseenum[5]};`)
-        msginputbox.setAttribute('style',`background-color: ${seecolor7.value}${printseenum[6]};border:1px solid ${seecolor8.value}${printseenum[7]} !important;`)
+        FackOne.setAttribute('style', `padding: .5rem .5rem; position: relative; border-radius: .375rem; margin: 0 1.5rem 1rem 1.5rem;background-color: ${seecolor6.value}${printseenum[5]} !important;`)
+        MsgInputBox.setAttribute('style',`background-color: ${seecolor7.value}${printseenum[6]} !important;border:1px solid ${seecolor8.value}${printseenum[7]} !important;height:40px !important`)
         LiuYanTop.setAttribute("style",`background-color:${seecolor9.value}${printseenum[8]};border:0px !important;`);
         leftANDtop()
         }
@@ -406,8 +405,8 @@
                 adddiv3.style.display="block";
             }
         });
-
-
+        let ScrollSettButt=document.querySelector("#ScrollSett")
+        ScrollSettButt.addEventListener("click",function () {SetScroll()})
         let exitbutt=document.querySelector("#exit")//设置的关闭按钮
         let secexitbutt=document.querySelector("#secexit")//设置的关闭按钮
         exitbutt.addEventListener("click",function(){adddiv.style.display="none";})//设置的关闭按钮实现
@@ -433,9 +432,49 @@
         localStorage.setItem("CantSeeColor8","#66ccff");
         localStorage.setItem("CantSeeColor9","#2b2c40");
     }
+    let nedAddStyle=document.createTextNode(`*{scrollbar-width:none !important; } @media(min-width: 768px) {::-webkit-scrollbar {width: 0px; height: 6px;border-radius: 20px;}::-webkit-scrollbar-track { background: var(--bs-body-bg);}::-webkit-scrollbar-thumb {background: var(--bs-secondary);border-radius: 20px;}::-webkit-scrollbar-thumb:hover {background: var(--bs-primary);}::-webkit-scrollbar-thumb:focus, ::-webkit-scrollbar-thumb:active {background: var(--bs-primary-active);}}`)
+    let AddStylesec=document.createTextNode(`@media(min-width: 768px) {::-webkit-scrollbar {width: 3px; height: 6px;border-radius: 20px;}::-webkit-scrollbar-track { background: var(--bs-body-bg);}::-webkit-scrollbar-thumb {background: var(--bs-secondary);border-radius: 20px;}::-webkit-scrollbar-thumb:hover {background: var(--bs-primary);}::-webkit-scrollbar-thumb:focus, ::-webkit-scrollbar-thumb:active {background: var(--bs-primary-active);}} `)
 
-
-
+    function ScrollHidden() {
+        let NeedFixStyle=document.querySelectorAll("body > style");//修改滚动条状态
+        NeedFixStyle[NeedFixStyle.length-1].insertAdjacentHTML("afterend",'<style id="style2"></style>');
+        let FixStyle=document.querySelector("#style2")
+        if (localStorage.scrollstyle==="1"){//背景的填充方式
+            FixStyle.appendChild(nedAddStyle);
+        }else{
+            FixStyle.appendChild(AddStylesec);
+            console.log("check1");
+        }
+    }
+    function SetScroll() {//滚动条样式调整
+        let FixStyle=document.querySelector("#style2")
+        if (FixStyle.innerHTML==""){
+            localStorage.setItem("scrollstyle","1")
+            FixStyle.appendChild(nedAddStyle);
+        }else{
+            localStorage.setItem("scrollstyle","0")
+            FixStyle.innerHTML=""
+            console.log("check2");
+        }
+    }
+    function leftContent() {
+        let TrackerLine=document.querySelectorAll("#layout-menu > nav > ul>li");
+        for (let i=0; i<TrackerLine.length; i++) {
+            TrackerLine[i].addEventListener('mouseenter', ()=> {
+                TrackerLine[i].style.backgroundColor="#FF8FA290";
+                TrackerLine[i].style.color="#ffffff";
+                TrackerLine[i].querySelector("a").style.color="#ffffff";
+            })
+            TrackerLine[i].addEventListener('mouseleave', ()=> {
+                TrackerLine[i].style.backgroundColor="#00000000";
+                TrackerLine[i].querySelector("a").style.color="#a3a4cc"
+            })
+            TrackerLine[i].addEventListener('click', ()=> {
+                TrackerLine[i].style.backgroundColor="#FF8FA2";
+                TrackerLine[i].style.color="#ffffff";
+            })
+        }
+    }
 
     //本地存储检测
     if(!localStorage.BackgroundPrint){
@@ -643,6 +682,7 @@
     let nowurl = window.location.href;//读取当前所在网页
     console.log(nowurl);
 
+
     if (nowurl.includes('https://boyshelpboys.com/chat.htm')) {//如果当前网页为聊天室页面
         WidthHeingtSet();
         let printstr1=["线上地址","删除左侧导航栏","聊天室名称大小","聊天室名称描边/字体颜色","聊天室名称描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
@@ -650,12 +690,8 @@
         let printstr3=[]
         addsett(printstr1,printstr2,printstr3,nowurl);
         leftANDtop();
-
-
-        console.log("chattime")
-
-        console.log(nowurl);
-
+        ScrollHidden();
+        leftContent();
         let backb=document.querySelector("#top > div > div")//自顶栏往下部分
         let baca=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body")//聊天历史记录1
         let ul=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body > ul")//聊天历史记录2（位置更靠里）
@@ -672,32 +708,10 @@
 
         let DIV2=document.querySelector("#layout-navbar");
 
-        let NeedFixStyle=document.querySelectorAll("body > style");//修改滚动条状态
-        NeedFixStyle[NeedFixStyle.length-1].insertAdjacentHTML("afterend",'<style id="style2"></style>');
-        let nedAddStyle=document.createTextNode(`@media(min-width: 768px) {::-webkit-scrollbar {width: 0px; height: 6px;border-radius: 20px;}::-webkit-scrollbar-track { background: var(--bs-body-bg);}::-webkit-scrollbar-thumb {background: var(--bs-secondary);border-radius: 20px;}::-webkit-scrollbar-thumb:hover {background: var(--bs-primary);}::-webkit-scrollbar-thumb:focus, ::-webkit-scrollbar-thumb:active {background: var(--bs-primary-active);}}`)
-        let AddStylesec=document.createTextNode(`@media(min-width: 768px) {::-webkit-scrollbar {width: 3px; height: 6px;border-radius: 20px;}::-webkit-scrollbar-track { background: var(--bs-body-bg);}::-webkit-scrollbar-thumb {background: var(--bs-secondary);border-radius: 20px;}::-webkit-scrollbar-thumb:hover {background: var(--bs-primary);}::-webkit-scrollbar-thumb:focus, ::-webkit-scrollbar-thumb:active {background: var(--bs-primary-active);}} `)
-        let FixStyle=document.querySelector("#style2")
-        if (localStorage.scrollstyle==="1"){//背景的填充方式
-            FixStyle.appendChild(nedAddStyle);
-        }else{
-            FixStyle.appendChild(AddStylesec);
-            console.log("check1");
-        }
-        function SetScroll() {//滚动条样式调整
-            console.log(FixStyle.innerHTML)
-            if (FixStyle.innerHTML==""){
-                localStorage.setItem("scrollstyle","1")
-                FixStyle.appendChild(nedAddStyle);
-            }else{
-                localStorage.setItem("scrollstyle","0")
-                FixStyle.innerHTML=""
-                console.log("check2");
-            }
-        }
+
 
         let addlocalupdate=document.querySelector("#webimgsrc");
-        let ScrollSettButt=document.querySelector("#ScrollSett")
-        ScrollSettButt.addEventListener("click",SetScroll)
+
 
         bac.setAttribute('style',`background-color: #202040;`)//网页背景部分
         LiuYanTop.setAttribute("style",`background-color:${localStorage.CantSeeColor9}${localStorage.CantSeeset9};border:0px !important;`);
@@ -752,10 +766,7 @@
             }else{
                 for (let i = 0; i < Liloader.length; i++) {
                     let imgfix=Liloader[i].querySelector("div > div.user-avatar.flex-shrink-0.me-4 > div > a > img")
-                    console.log(imgfix)
                     if (imgfix!==null&&imgfix.src.includes("https://boyshelpboys.com/.")){
-                        console.log(imgfix.src)
-                        console.log("1122334")
                         let needFix=imgfix.src
                         imgfix.src=needFix.substring(26);
                     }
@@ -772,12 +783,14 @@
         bac.setAttribute("style","background-color:202040")
         console.log("dohier");
         let printstr1=["线上地址","删除左侧导航栏","淡色字体大小","淡色字描边/字体颜色","淡色字描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
-        let printstr2=["滚动条控制(在此页面不生效)","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","'*没做*'*没做*"]
+        let printstr2=["滚动条不显示","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","'*没做*'*没做*"]
         let printstr3=[]
         addsett(printstr1,printstr2,printstr3,nowurl);
         leftANDtop();
         WidthHeingtSet();
         backPrint();
+        ScrollHidden();
+        leftContent();
     }else if(nowurl ==="https://boyshelpboys.com/"||nowurl.includes("https://boyshelpboys.com/#")||nowurl.includes("https://boyshelpboys.com/index")){
         console.log(nowurl);
         bac.setAttribute("style","background-color:202040")
@@ -790,15 +803,17 @@
             spanprint[i].setAttribute('style', `-webkit-text-stroke: ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec}`);
             }
         }
+        ScrollHidden()
         leftANDtop();
         WidthHeingtSet();
         backPrint();
+        leftContent();
         let Tiezi1=document.querySelector("#top > div > div > main > div > div.col-lg-9.main > div.card-threadlist > div.card.card-body.py-2");
         let Tiezi2
         console.log(localStorage.CantSeeset1)
         Tiezi1.setAttribute('style', `background-color:${localStorage.CantSeeColor1}${localStorage.CantSeeset1};`);
         let printstr1=["线上地址","删除左侧导航栏","淡色字体大小","淡色字描边/字体颜色","淡色字描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
-        let printstr2=["滚动条控制(在此页面不生效)","帖子栏1透明度","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","'*没做*'*没做*"]
+        let printstr2=["滚动条不显示","帖子栏1透明度","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","'*没做*'*没做*"]
         let printstr3=[]
         addsett(printstr1,printstr2,printstr3,nowurl);
 
@@ -820,11 +835,11 @@
         leftANDtop();
         WidthHeingtSet();
         backPrint(bac);
-
+        ScrollHidden()
 
 
         let printstr1=["线上地址","删除左侧导航栏","聊天室名称大小","聊天室名称描边/字体颜色","聊天室名称描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
-        let printstr2=["滚动条控制(在此页面不生效)","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","'*没做*'*没做*"]
+        let printstr2=["滚动条不显示","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","'*没做*'*没做*"]
         let printstr3=[]
         addsett(printstr1,printstr2,printstr3,nowurl);
         let addlocalupdate=document.querySelector("#webimgsrc");
