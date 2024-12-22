@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name        BHB聊天室背景图片更换（已全局兼容）
+// @name        BHB背景图片更换（已全局兼容）
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @grant       none
-// @version     2.1.5
+// @version     2.2.0
 // @author      M27IAR
 // @license WTFPL
 // @description 2024/11/26 16:34:09
@@ -18,9 +18,16 @@
     function leftANDtop() {
         let NeedFixStyle=document.querySelector("head");//插入样式表修改左侧与顶栏样式
         NeedFixStyle.insertAdjacentHTML("afterbegin",'<style id="style1"></style>');
-        let nedAddStyle=document.createTextNode(` ::selection{color:#0000FF !important;} ::-moz-selection{color:#0000FF !important;} .RangeSetting{height:0.5rem;width:7.8125rem;} .ColorSettinr{width:2.75rem;} .SettiingInput{padding:2px 1px;border:0.125rem 0rem;} .GameBarFix{background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6} !important;border:0 !important;margin:0 !important; transition: 0.3s;} hr{margin: 0.125rem 0 !important;color:#f0f5f9;} small{-webkit-text-stroke: ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec}} .fuckyou2{background-color: #2b2c4030; color: gray; margin:0px;padding: 2px 7px;border: 1px gray solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou2:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;} .fuckyou3{background-color: #2b2c4030; color: gray; margin:0px;padding: 2px 7px;border: 1px gray solid;cursor: pointer;transition: background-color 0.3s;border-radius: 0px;}.fuckyou3:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;}  .fuckyou{background-color: #2b2c4030; color: gray; margin:0.3125rem;padding: 0.3125rem;border: 0.125rem gray solid;font-size:1rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;} .fuckyou:hover{background-color: #FFFFFF; color:#66ccff;} @media (max-width:426px){.fuckyou{background-color: #2b2c4030; color: gray; padding: 0.3125rem 0.5rem;border: 0.125rem gray solid;font-size:0.5rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}}`)
+        let nedAddStyle=document.createTextNode(` ::selection{color:#0000FF !important;} ::-moz-selection{color:#0000FF !important;} .RangeSetting{height:0.5rem;width:7.8125rem;} .ColorSettinr{width:2.75rem;} .SettiingInput{padding:2px 1px;border:0.125rem 0rem;} .GameBarFix{background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6} !important;border:0 !important;margin:0 !important; transition: 0.3s;} hr{margin: 0.125rem 0 !important;color:#f0f5f9;} small{-webkit-text-stroke: ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec}} .fuckyou2{background-color: #2b2c4030; color: gray; margin:0px;padding: 2px 7px;border: 1px gray solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou2:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;} .fuckyou3{background-color: #2b2c4030; color: gray; margin:0px;padding: 2px 7px;border: 1px gray solid;cursor: pointer;transition: background-color 0.3s;border-radius: 0px;}.fuckyou3:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;}  .fuckyou{background-color: #2b2c4030; color: gray; margin:0.3125rem;padding: 0.3125rem;border: 0.125rem gray solid;font-size:1rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;} .fuckyou:hover{background-color: #FFFFFF; color:#66ccff;} @media (max-width:426px){.fuckyou{background-color: #2b2c4030; color: gray; padding: 0.3125rem 0.5rem;border: 0.125rem gray solid;font-size:0.5rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}} .send-btn-M27{padding:0.3125rem 0.625rem !important;width:4.5rem !important;height:2.5rem !important;border:0.125rem solid hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-radius:20px !important;margin-left:0.3125rem !important;} .send-btn-M27:hover{background-color:hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-color:while !important;}`)
         let FixStyle=document.querySelector("#style1");
         FixStyle.appendChild(nedAddStyle);
+        //方片动态背景的相关css
+        let BorderRGBRed=Number("0x"+localStorage.BoxBorderColor.substring(1,3)),BorderRGBGreen=Number("0x"+localStorage.BoxBorderColor.substring(3,5)),BorderRGBBlue=Number("0x"+localStorage.BoxBorderColor.substring(5))
+        NeedFixStyle.insertAdjacentHTML("afterbegin",'<style id="style3"></style>');
+        let nedAddStyleSec=document.createTextNode(`.M27flexDivSet{pointer-events: none; transition: background-color 2s;width:${localStorage.BoxSize}px;height:${localStorage.BoxSize}px;flex-basis:${localStorage.BoxSize}px;border:1px solid rgba(${BorderRGBRed},${BorderRGBGreen},${BorderRGBBlue},0.${localStorage.BoxBorderCansee});margin;0px;}`)
+        let FixStyleSec=document.querySelector("#style3");
+        FixStyleSec.appendChild(nedAddStyleSec);
+
         document.querySelector("body").setAttribute("style",'background-color:#202040');
 
         if (localStorage.leaderhide==="1"){//左侧导航栏的隐藏与显示
@@ -40,8 +47,7 @@
         }
     }
 
-    function addtolocal() {
-        console.log("work1");
+    function addtolocal() {//保存背景设置
         let heightsize=document.getElementById("heightsize");//高度比例
         let widthsize=document.getElementById("widthsize");//宽度比例
         let left=document.getElementById("left");//离左侧的距离
@@ -58,7 +64,7 @@
         let BorderTextSize=document.querySelector("#BorderText");//聊天室描边大小输入框
         let printSelcetBox=document.querySelector("#selectBox");//背景渲染方式
         let centerPosion=document.querySelector("#center")//居中渲染按钮
-
+        let PrintPlan=document.querySelector("#PrintPicplan");//图片渲染启用选择框
 
 
         let uplodeheightsize=parseInt(heightsize.value)//高度比例(转数字)
@@ -69,6 +75,12 @@
         localStorage.setItem("userset",true);//写入判定用户是否修改
         console.log(uplodeheightsize);
         //开始写入数据
+        console.log(PrintPlan.checked)
+        if(PrintPlan.checked){//判断用户是否启用图片背景
+            localStorage.setItem("PrintPicplan","true")
+        }else{
+            localStorage.setItem("PrintPicplan","false")
+        }
         if (uplodeheightsize=="0"){//判断宽度比例和高度比例是否输入为0
             localStorage.setItem("heightsize","auto");
         }else{
@@ -137,7 +149,7 @@
 
 
     }
-    function addStyleToLocal(backb,baca,ul,histor,DIV2,FackOne,MsgInputBox,LiuYanTop) {//上传控件透明度
+    function addStyleToLocal(backb,baca,ul,histor,DIV2,FackOne,MsgInputBox,LiuYanTop) {//保存控件透明度
         if (!LiuYanTop){}else{
         let seenum=document.querySelectorAll("#cantseegive > input[type=range]")//透明度获取
         console.log(seenum);
@@ -235,7 +247,7 @@
     }//图片转base64存储在localstorage部分结束
 
 
-    function WidthHeingtSet(){//背景宽高设定
+    function WidthHeightSet(){//背景宽高设定
 
         if(localStorage.BackgroundPrint===""){
             if (localStorage.heightsize==="auto"||localStorage.heightsize==="NaN"){
@@ -275,63 +287,67 @@
                 let BackimagePrintPlanNum=(localStorage.canseenunber*100)%100
                 if(BackimagePrintPlanNum===0&&localStorage.canseenunber==="0"){BackimagePrintPlanNum=""}
                 console.log(BackimagePrintPlanNum)
-                if(event.target.result.name==="空"){//如果数据库没有本地图片数据
-                    console.log('图片对象', event.target.result.name);
-                    console.log('数据库无图片相关内容存储');
+                if (localStorage.PrintPicplan==="false"){//如果用户选择不渲染图片背景
+                    bac.setAttribute("style","bakcground:#202040;")
+                }else{
+                    if(event.target.result.name==="空"){//如果数据库没有本地图片数据
+                        console.log('图片对象', event.target.result.name);
+                        console.log('数据库无图片相关内容存储');
 
-                    if(localStorage.sectionplan === "1") {//用户选择方案为section方法
-                        if (localStorage.webpiclod === "1") {
-                            addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft}; background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; display: flex; align-items: center; justify-content: center; position: fixed; top:0; left:0;  right: 0; bottom: 0; pointer-events: none; opacity: ${localStorage.canseenunber}; z-index:0; `)
-                        } else if (localStorage.localpiclod === "1") {
-                            alert('数据库无图片相关内容存储，将加载在线图片，请在设置添加本地图片')//如果数据库没有本地图片数据且选择渲染本地图片
-                            addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; display: flex; align-items: center; justify-content: center; position: fixed; top:0; left:0;  right: 0; bottom: 0; pointer-events: none; opacity: ${localStorage.canseenunber}; z-index:0; `)
-                        }
-                    }else if(localStorage.backgroundplan==="1"){//用户选择方案为background方法
-
-                        if (localStorage.webpiclod === "1") {
-                            if(localStorage.printToBack==="1"){
-                                //通过section写入项目留下的标签实现颜色覆盖
-                                bac.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-attachment:fixed;`);
-                                addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-color: #202040${BackimagePrintPlanNum};background-repeat: no-repeat;background-size:cover;display: flex;align-items: center;justify-content: center;position: fixed;pointer-events: none;z-index:0;height:100%;width:100%;`);
-                            }else if(localStorage.printToBBS==="1"){
-                                BBSmsgBack.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; b background-attachment:fixed;`);
-                            }
-                        } else if (localStorage.localpiclod === "1") {
-                            if(localStorage.printToBack==="1"){
+                        if(localStorage.sectionplan === "1") {//用户选择方案为section方法
+                            if (localStorage.webpiclod === "1") {
+                                addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft}; background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; display: flex; align-items: center; justify-content: center; position: fixed; top:0; left:0;  right: 0; bottom: 0; pointer-events: none; opacity: ${localStorage.canseenunber}; z-index:0; `)
+                            } else if (localStorage.localpiclod === "1") {
                                 alert('数据库无图片相关内容存储，将加载在线图片，请在设置添加本地图片')//如果数据库没有本地图片数据且选择渲染本地图片
-                                bac.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};  background-attachment:fixed;`);
-                            }else if(localStorage.printToBBS==="1"){
-                                alert('数据库无图片相关内容存储，将加载在线图片，请在设置添加本地图片')//如果数据库没有本地图片数据且选择渲染本地图片
-                                BBSmsgBack.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-attachment:fixed;`);
+                                addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; display: flex; align-items: center; justify-content: center; position: fixed; top:0; left:0;  right: 0; bottom: 0; pointer-events: none; opacity: ${localStorage.canseenunber}; z-index:0; `)
                             }
-                        }
-                    }
-                }else{//如果数据库有本地图片数据
-                    if(localStorage.sectionplan === "1") {//用户选择方案为section方法
-                        if (localStorage.webpiclod === "1") {
-                            addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; display: flex; align-items: center; justify-content: center; position: fixed; top:0; left:0; right: 0; bottom: 0; pointer-events: none; opacity: ${localStorage.canseenunber}; z-index:0; `)
-                        } else if (localStorage.localpiclod === "1" ) {
+                        }else if(localStorage.backgroundplan==="1"){//用户选择方案为background方法
 
-                            addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url('${event.target.result.name}');background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; display: flex; align-items: center; justify-content: center; position: fixed; top:0; left:0; right: 0; bottom: 0; pointer-events: none; opacity: ${localStorage.canseenunber}; z-index:0; `)
-                        }
-                    }else if(localStorage.backgroundplan==="1"){//用户选择方案为background方法
-                        if (localStorage.webpiclod === "1") {
-                            if(localStorage.printToBack==="1"){
-                                //通过section写入项目留下的标签实现颜色覆盖
-                                bac.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-attachment:fixed;`);
-                                addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-color: #202040${BackimagePrintPlanNum};background-repeat: no-repeat;background-size:cover;display: flex;align-items: center;justify-content: center;position: fixed;pointer-events: none;z-index:0;height:100%;width:100%;`);
-                            }else if(localStorage.printToBBS==="1"){
-                                BBSmsgBack.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};background-attachment:fixed;`);
+                            if (localStorage.webpiclod === "1") {
+                                if(localStorage.printToBack==="1"){
+                                    //通过section写入项目留下的标签实现颜色覆盖
+                                    bac.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-attachment:fixed;`);
+                                    addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-color: #202040${BackimagePrintPlanNum};background-repeat: no-repeat;background-size:cover;display: flex;align-items: center;justify-content: center;position: fixed;pointer-events: none;z-index:0;height:100%;width:100%;`);
+                                }else if(localStorage.printToBBS==="1"){
+                                    BBSmsgBack.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; b background-attachment:fixed;`);
+                                }
+                            } else if (localStorage.localpiclod === "1") {
+                                if(localStorage.printToBack==="1"){
+                                    alert('数据库无图片相关内容存储，将加载在线图片，请在设置添加本地图片')//如果数据库没有本地图片数据且选择渲染本地图片
+                                    bac.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};  background-attachment:fixed;`);
+                                }else if(localStorage.printToBBS==="1"){
+                                    alert('数据库无图片相关内容存储，将加载在线图片，请在设置添加本地图片')//如果数据库没有本地图片数据且选择渲染本地图片
+                                    BBSmsgBack.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-attachment:fixed;`);
+                                }
                             }
-                        } else if (localStorage.localpiclod === "1") {
-                            if(localStorage.printToBack==="1"){
-                                //通过section写入项目留下的标签实现颜色覆盖
-                                console.log("bad");
-                                bac.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${event.target.result.name});background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};  background-attachment:fixed;`)
-                                addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-color: #202040${BackimagePrintPlanNum};background-repeat: no-repeat;background-size:cover;display: flex;align-items: center;justify-content: center;position: fixed;pointer-events: none;z-index:0;height:100%;width:100%; `);
-                                console.log("good");
-                            }else if(localStorage.printToBBS==="1"){
-                                BBSmsgBack.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${event.target.result.name});background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};background-attachment:fixed;`)
+                        }
+                    }else{//如果数据库有本地图片数据
+                        if(localStorage.sectionplan === "1") {//用户选择方案为section方法
+                            if (localStorage.webpiclod === "1") {
+                                addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; display: flex; align-items: center; justify-content: center; position: fixed; top:0; left:0; right: 0; bottom: 0; pointer-events: none; opacity: ${localStorage.canseenunber}; z-index:0; `)
+                            } else if (localStorage.localpiclod === "1" ) {
+
+                                addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url('${event.target.result.name}');background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; display: flex; align-items: center; justify-content: center; position: fixed; top:0; left:0; right: 0; bottom: 0; pointer-events: none; opacity: ${localStorage.canseenunber}; z-index:0; `)
+                            }
+                        }else if(localStorage.backgroundplan==="1"){//用户选择方案为background方法
+                            if (localStorage.webpiclod === "1") {
+                                if(localStorage.printToBack==="1"){
+                                    //通过section写入项目留下的标签实现颜色覆盖
+                                    bac.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-attachment:fixed;`);
+                                    addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-color: #202040${BackimagePrintPlanNum};background-repeat: no-repeat;background-size:cover;display: flex;align-items: center;justify-content: center;position: fixed;pointer-events: none;z-index:0;height:100%;width:100%;`);
+                                }else if(localStorage.printToBBS==="1"){
+                                    BBSmsgBack.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};background-attachment:fixed;`);
+                                }
+                            } else if (localStorage.localpiclod === "1") {
+                                if(localStorage.printToBack==="1"){
+                                    //通过section写入项目留下的标签实现颜色覆盖
+                                    console.log("bad");
+                                    bac.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${event.target.result.name});background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};  background-attachment:fixed;`)
+                                    addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-color: #202040${BackimagePrintPlanNum};background-repeat: no-repeat;background-size:cover;display: flex;align-items: center;justify-content: center;position: fixed;pointer-events: none;z-index:0;height:100%;width:100%; `);
+                                    console.log("good");
+                                }else if(localStorage.printToBBS==="1"){
+                                    BBSmsgBack.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${event.target.result.name});background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};background-attachment:fixed;`)
+                                }
                             }
                         }
                     }
@@ -355,12 +371,15 @@
         }
     }
     function addsett(leange1,leange2,leange3,nowurl) {//添加设置项目
-        console.log(nowurl);
+
+        let BoxPrintCheckOn;
+        if(localStorage.BoxPrint!=="no"){BoxPrintCheckOn='checked'}else{BoxPrintCheckOn=''}
+
         let oldaddtarge=document.querySelector("#navbar-collapse")
-        let addbott="<button class='fuckyou' >背景文件/渲染</button><button class='fuckyou'>控件透明度</button><button class='fuckyou'>介绍</button>"
-        let addmain=`<div id="localsett"><div><button id="exit" class="fuckyou3">X</button><span>背景图片/渲染设置</span><div><form name='myform' method="POST" action='${nowurl}'><input class="SettiingInput" type='file' id='webimgsrc' accept='image/*'><br> <span>${leange1[0]}</span><input class="SettiingInput" type='text'  value='${localStorage.webimgsrc}' name='' id='localimgsrc' width='150px'><br><input class="SettiingInput" type="checkbox" ${leadermanhide} value="leadermanhide" name="leadermanhide" id="leadermanhide"><label for="leadermanhide">${leange1[1]}</label><br><span>${leange1[2]}</span><input class="SettiingInput" type='text' onblur='if(!((/[(0-9)]/).test(value)))value=18' value='${localStorage.NameFontSize}' name='size' id='size' size="5"><br><span>${leange1[3]}</span><input class="SettiingInput ColorSettinr" type="color" id="fontcolor" value="${localStorage.LocalFontColor}"><input class="SettiingInput ColorSettinr"  type="color" id="fontcolorsec" value="${localStorage.LocalFontColorsec}"><br><span>${leange1[4]}</span><input class="SettiingInput" type="text" onblur='if(!((/[(0-9)]/).test(value)))value=1' size="5"  value="${localStorage.BorderTextSize}"  name="BorderText" id="BorderText"><br><span>图像渲染方式</span><select style="padding:0;" name="selectBox" id="selectBox"><option value="default" ${(function(){if(BackPrintSelectBox==="default"){return "selected";}})()}>自定义</option><option value="PicFirst" ${(function(){if(BackPrintSelectBox==="PicFirst"){return "selected";}})()}>图像尺寸定位</option><option value="WebFirst" ${(function(){if(BackPrintSelectBox==="WebFirst"){return "selected";}})()}>网站尺寸优先</option></select><input class="SettiingInput" type="checkbox" id="center" ${(function (){if (localStorage.centerPosition!==""){return "checked";}else{return "";}})()}  value="center"><label for="center">居中渲染</label><br><span>${leange1[5]}</span><input class="SettiingInput" type='text'  oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.top}' name='topp' id='top' size="5"> <span>${leange1[6]}</span><input class="SettiingInput" type='text' oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.left}' name='leftt' id='left' size="5"><br> <span>${leange1[7]}</span><input class="SettiingInput" type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100' min='0'  value='${localStorage.widthsize}' name='' id='widthsize' size='5'><br><span>${leange1[8]}</span><input class="SettiingInput" type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100'  min='0' value=${localStorage.heightsize} name='' id='heightsize' size="5"><br><input class="SettiingInput" type='radio' ${webpiclod} name='picloadsele' id='webpicon'  width='100px' value="webpicon"> <label for="webpicon">${leange1[9]}</label><input class="SettiingInput" type='radio'  name='picloadsele' ${localpiclod} id='localpicon' value="localpicon"  width='100px'><label for="localpicon">${leange1[10]}</label><hr><span>使用section写入背景只能在最底层</span><br><input class="SettiingInput" type='radio'  ${sectionplanone} name='addplan' id='sectionplan' value="sectionplan" width='100px'><label for="sectionplan">${leange1[11]}</label><input class="SettiingInput" type='radio'  name='addplan' ${backgroundplanone} id='backgroundplan' value="backgroundplan"  width='100px'><label for="backgroundplan">${leange1[12]}</label><br><span>透明度</span><input class="SettiingInput RangeSetting" type="range" min="0" max="1" step="0.01" value="${localStorage.canseenunber}" id="notseenumber"><hr><input class="SettiingInput" type='radio' value='1' ${PrintToBackground} name='baklocal' id='printToWebback' value="printToWebback"  width='100px'><label for="printToWebback">${leange1[13]}</label><input class="SettiingInput" type='radio' value='printToBBS' name='baklocal' ${PrintToBBSGround} id='printToBBS'  width='100px'><label for="printToBBS">${leange1[14]}</label><br> <button class='fuckyou2' id='save' type="submit">提交</button></form></div>`
+        let addbott="<button class='fuckyou' >背景文件/渲染</button><button class='fuckyou'>控件透明度</button><button class='fuckyou'>渲染特效</button>"
+        let addmain=`<div id="localsett"><div><button id="exit" class="fuckyou3">X</button><span>背景图片/渲染设置</span><input ${(function (){if (localStorage.PrintPicplan!=="false"){return "checked";}else{return "";}})()} type="checkbox" class="SettiingInput" name="PrintPicplan" id="PrintPicplan" value="PrintPicplan"><label for="PrintPicplan">启用图像背景</label><div><form name='myform' method="POST" action='${nowurl}'><input class="SettiingInput" type='file' id='webimgsrc' accept='image/*'><br> <span>${leange1[0]}</span><input class="SettiingInput" type='text'  value='${localStorage.webimgsrc}' name='' id='localimgsrc' width='150px'><br><input class="SettiingInput" type="checkbox" ${leadermanhide} value="leadermanhide" name="leadermanhide" id="leadermanhide"><label for="leadermanhide">${leange1[1]}</label><br><span>${leange1[2]}</span><input class="SettiingInput" type='text' onblur='if(!((/[(0-9)]/).test(value)))value=18' value='${localStorage.NameFontSize}' name='size' id='size' size="5"><br><span>${leange1[3]}</span><input class="SettiingInput ColorSettinr" type="color" id="fontcolor" value="${localStorage.LocalFontColor}"><input class="SettiingInput ColorSettinr"  type="color" id="fontcolorsec" value="${localStorage.LocalFontColorsec}"><br><span>${leange1[4]}</span><input class="SettiingInput" type="text" onblur='if(!((/[(0-9)]/).test(value)))value=1' size="5"  value="${localStorage.BorderTextSize}"  name="BorderText" id="BorderText"><br><span>图像渲染方式</span><select style="padding:0;" name="selectBox" id="selectBox"><option value="default" ${(function(){if(BackPrintSelectBox==="default"){return "selected";}})()}>自定义</option><option value="PicFirst" ${(function(){if(BackPrintSelectBox==="PicFirst"){return "selected";}})()}>图像尺寸定位</option><option value="WebFirst" ${(function(){if(BackPrintSelectBox==="WebFirst"){return "selected";}})()}>网站尺寸优先</option></select><input class="SettiingInput" type="checkbox" id="center" ${(function (){if (localStorage.centerPosition!==""){return "checked";}else{return "";}})()}  value="center"><label for="center">居中渲染</label><br><span>${leange1[5]}</span><input class="SettiingInput" type='text'  oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.top}' name='topp' id='top' size="5"> <span>${leange1[6]}</span><input class="SettiingInput" type='text' oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.left}' name='leftt' id='left' size="5"><br> <span>${leange1[7]}</span><input class="SettiingInput" type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100' min='0'  value='${localStorage.widthsize}' name='' id='widthsize' size='5'><br><span>${leange1[8]}</span><input class="SettiingInput" type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100'  min='0' value=${localStorage.heightsize} name='' id='heightsize' size="5"><br><input class="SettiingInput" type='radio' ${webpiclod} name='picloadsele' id='webpicon'  width='100px' value="webpicon"> <label for="webpicon">${leange1[9]}</label><input class="SettiingInput" type='radio'  name='picloadsele' ${localpiclod} id='localpicon' value="localpicon"  width='100px'><label for="localpicon">${leange1[10]}</label><hr><span>使用section写入背景只能在最底层</span><br><input class="SettiingInput" type='radio'  ${sectionplanone} name='addplan' id='sectionplan' value="sectionplan" width='100px'><label for="sectionplan">${leange1[11]}</label><input class="SettiingInput" type='radio'  name='addplan' ${backgroundplanone} id='backgroundplan' value="backgroundplan"  width='100px'><label for="backgroundplan">${leange1[12]}</label><br><span>透明度</span><input class="SettiingInput RangeSetting" type="range" min="0" max="1" step="0.01" value="${localStorage.canseenunber}" id="notseenumber"><hr><input class="SettiingInput" type='radio' value='1' ${PrintToBackground} name='baklocal' id='printToWebback' value="printToWebback"  width='100px'><label for="printToWebback">${leange1[13]}</label><input class="SettiingInput" type='radio' value='printToBBS' name='baklocal' ${PrintToBBSGround} id='printToBBS'  width='100px'><label for="printToBBS">${leange1[14]}</label><br> <button class='fuckyou2' id='save' type="submit">提交</button></form></div>`
         let addmain2=`<div id="cantseegive"><button id="secexit" class="fuckyou3">X</button><span>控件透明度设置</span><br><input class="SettiingInput" type="checkbox"  ${Scrollstylex} name="ScrollSett" id="ScrollSett">${leange2[0]}</input><br><span>${leange2[1]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum1" value="${localStorage.CantSeeset1}"><input class="SettiingInput  ColorSettinr" type="color" id="Msgcolor1" value="${localStorage.CantSeeColor1}"><br><span>${leange2[2]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum2" value="${localStorage.CantSeeset2}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor2" value="${localStorage.CantSeeColor2}"><br><span>${leange2[3]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum3" value="${localStorage.CantSeeset3}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor3" value="${localStorage.CantSeeColor3}"><br><span>${leange2[4]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum4" value="${localStorage.CantSeeset4}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor4" value="${localStorage.CantSeeColor4}"><br><span>${leange2[5]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum5" value="${localStorage.CantSeeset5}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor5" value="${localStorage.CantSeeColor5}"><br><span>${leange2[6]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum6" value="${localStorage.CantSeeset6}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor6" value="${localStorage.CantSeeColor6}"><br><span>${leange2[7]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum7" value="${localStorage.CantSeeset7}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor7" value="${localStorage.CantSeeColor7}"><br><span>${leange2[8]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum8" value="${localStorage.CantSeeset8}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor8" value="${localStorage.CantSeeColor8}"><br><span>${leange2[9]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum9" value="${localStorage.CantSeeset9}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor9" value="${localStorage.CantSeeColor9}"><br><button class="fuckyou2"  id="secsubint">提交</button><br><button id="reall"  class="fuckyou2">重置颜色|透明度配置</button></div>`
-        let addmain3=`<div id="test"><span></span></div>`
+        let addmain3=`<div id="test"><button id="threxit" class="fuckyou3">X</button><span>特殊效果设置(刷新生效)</span><br><input class="SettiingInput" type="checkbox" name="BoxPrintEn" id="BoxPrintEn" value="BoxPrintEn" ${BoxPrintCheckOn}  ><label for="BoxPrintEn">启用方块特效</label><br><div id="BoxPrintSet"  ><span>背景方格大小</span><input class="SettiingInput RangeSetting" type="range" min="50" max="150" step="1" onchange='localStorage.BoxSize=value' value="${localStorage.BoxSize}" id="BoxSizeNum"><br><span>边框线设置</span><input class="SettiingInput ColorSettinr" type="color" id="BoxBorderColor" onchange="localStorage.BoxBorderColor=value" value="${localStorage.BoxBorderColor}"><input class="SettiingInput RangeSetting" type="range" min="0" max="99" step="1" onchange='localStorage.BoxBorderCansee=value' value="${localStorage.BoxBorderCansee}" id="BoxPrintCansee"><br><span>方片颜色</span><input class="SettiingInput ColorSettinr" type="color" id="BoxColor" onchange="localStorage.BoxColor=value" value="${localStorage.BoxColor}"></div></div>`
 
         oldaddtarge.insertAdjacentHTML("afterbegin",addbott);
         bac.insertAdjacentHTML("afterbegin",addmain);
@@ -376,6 +395,7 @@
         let adddiv3=document.querySelector("#test");
         checkPrint();
         let printSelcetBox=document.querySelector("#selectBox");
+
 
         printSelcetBox.addEventListener("change",function(){checkPrint();})
         adddiv.setAttribute('style', 'overflow:auto; border-radius: 5px;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);width: 330px;height: 550px;border: 1px solid gray;z-index:1;display:none;background-color:rgba(30, 32, 34, 0.70);color:#f0f5f9;-webkit-text-stroke:0.3px #52616b;')
@@ -405,14 +425,45 @@
                 adddiv3.style.display="block";
             }
         });
+
+
+
         let ScrollSettButt=document.querySelector("#ScrollSett")
         ScrollSettButt.addEventListener("click",function () {SetScroll()})
         let exitbutt=document.querySelector("#exit")//设置的关闭按钮
         let secexitbutt=document.querySelector("#secexit")//设置的关闭按钮
+        let threxitbutt=document.querySelector("#threxit")//设置的关闭按钮
         exitbutt.addEventListener("click",function(){adddiv.style.display="none";})//设置的关闭按钮实现
         secexitbutt.addEventListener("click",function(){adddiv2.style.display="none";})//设置的关闭按钮实现
+        threxitbutt.addEventListener("click",function(){adddiv3.style.display="none";})//设置的关闭按钮实现
+
+        let localget=document.querySelector("#save");
+        localget.addEventListener("click",addtolocal,false);//点击向localst保存数据
+
+
+        let BoxPrintCheck=document.querySelector("#BoxPrintEn")//设定特效设置界面的显示与消失
+        let BoxPrintDiv=document.querySelector("#BoxPrintSet")
+        if (BoxPrintCheck.checked){
+            BoxPrintDiv.style.display="block";
+
+        }else{
+            BoxPrintDiv.style.display="none";
+
+        }
+        BoxPrintCheck.addEventListener("change",()=>{
+            if (BoxPrintCheck.checked){
+                BoxPrintDiv.style.display="block";
+                localStorage.setItem("BoxPrint","yes")
+            }else{
+                BoxPrintDiv.style.display="none";
+                localStorage.setItem("BoxPrint","no")
+            }
+        })
     }
-    function ResetSeenum() {
+
+
+
+    function ResetSeenum() {//重置透明度
         localStorage.setItem("CantSeeset1","00");
         localStorage.setItem("CantSeeset2","20");
         localStorage.setItem("CantSeeset3","00");
@@ -435,7 +486,7 @@
     let nedAddStyle=document.createTextNode(`*{scrollbar-width:none !important; } @media(min-width: 768px) {::-webkit-scrollbar {width: 0px; height: 6px;border-radius: 20px;}::-webkit-scrollbar-track { background: var(--bs-body-bg);}::-webkit-scrollbar-thumb {background: var(--bs-secondary);border-radius: 20px;}::-webkit-scrollbar-thumb:hover {background: var(--bs-primary);}::-webkit-scrollbar-thumb:focus, ::-webkit-scrollbar-thumb:active {background: var(--bs-primary-active);}}`)
     let AddStylesec=document.createTextNode(`@media(min-width: 768px) {::-webkit-scrollbar {width: 3px; height: 6px;border-radius: 20px;}::-webkit-scrollbar-track { background: var(--bs-body-bg);}::-webkit-scrollbar-thumb {background: var(--bs-secondary);border-radius: 20px;}::-webkit-scrollbar-thumb:hover {background: var(--bs-primary);}::-webkit-scrollbar-thumb:focus, ::-webkit-scrollbar-thumb:active {background: var(--bs-primary-active);}} `)
 
-    function ScrollHidden() {
+    function ScrollHidden() {//滚动条调整
         let NeedFixStyle=document.querySelectorAll("body > style");//修改滚动条状态
         NeedFixStyle[NeedFixStyle.length-1].insertAdjacentHTML("afterend",'<style id="style2"></style>');
         let FixStyle=document.querySelector("#style2")
@@ -454,10 +505,9 @@
         }else{
             localStorage.setItem("scrollstyle","0")
             FixStyle.innerHTML=""
-            console.log("check2");
         }
     }
-    function leftContent() {
+    function leftContent() {//左侧栏交互修改
         let TrackerLine=document.querySelectorAll("#layout-menu > nav > ul>li");
         for (let i=0; i<TrackerLine.length; i++) {
             TrackerLine[i].addEventListener('mouseenter', ()=> {
@@ -475,8 +525,79 @@
             })
         }
     }
+    function rePrint(webWidth,webHeight) {//绘制启用方格特效时所需方格
+        if(localStorage.BoxPrint==="yes"){
+            let RGBRed=Number("0x"+localStorage.BoxColor.substring(1,3)),RGBGreen=Number("0x"+localStorage.BoxColor.substring(3,5)),RGBBlue=Number("0x"+localStorage.BoxColor.substring(5))
 
+            printNunber=(Math.ceil((webHeight*1.2)/DIVboxsize))*(Math.ceil(webWidth/DIVboxsize));
+            DIVmax.innerHTML="";
+            for(let i=0;i<=printNunber;i++){
+                let ansRandom=Math.floor((Math.random()*40+10));
+                if(ansRandom===0){ansRandom="";}
+                let addDIV=`<div id="PrintDIV${i}" class="M27flexDivSet"></div>`
+                DIVmax.insertAdjacentHTML("beforeend",addDIV);
+                let strDIV=document.querySelector(`#PrintDIV${i}`);
+                strDIV.setAttribute("style",`background-color: rgba(${RGBRed},${RGBGreen},${RGBBlue},0.${ansRandom});order: ${i};`);
+
+            }
+        }else{
+            console.log("开摆！");
+        }
+    }
+    function changeBackground(){//设置方格定时刷新效果
+        let j=0,x=100
+        let RGBRed=Number("0x"+localStorage.BoxColor.substring(1,3)),RGBGreen=Number("0x"+localStorage.BoxColor.substring(3,5)),RGBBlue=Number("0x"+localStorage.BoxColor.substring(5))
+
+        for(let i=0;i<=Math.ceil(printNunber*0.5);i++){
+
+            setTimeout(function(){
+                let id=Math.floor((Math.random()*printNunber+1))
+                if(typeof (arr[i])=="undefined"){
+                    arr[i]=id;
+                }else{
+                    for (let j=0;j<arr[i].length;j++){
+                        if(arr[j]===id){
+                            while(arr[j]!==id){
+                                id=Math.floor((Math.random()*(printNunber+1)))
+                            }
+                            arr[j]=id;
+                        }else{
+                            arr[j]=id;
+                        }
+                    }
+                }
+                let strDIV=document.querySelector(`#PrintDIV${id}`);
+                strDIV.setAttribute("style",`background-color: rgba(${RGBRed},${RGBGreen},${RGBBlue},0.${Math.floor((Math.random()*60+10))});order: ${id};`)
+
+            },x)
+            j++
+            if(j===10){
+                x=x+100
+                j=0
+            }
+
+        }
+
+    }
     //本地存储检测
+    if(!localStorage.PrintPicplan){
+        localStorage.setItem("PrintPicplan","true")
+    }
+    if(!localStorage.BoxColor){
+        localStorage.setItem("BoxColor","#000000");
+    }
+    if(!localStorage.BoxBorderColor){
+        localStorage.setItem("BoxBorderColor","#000000");
+    }
+    if(!localStorage.BoxBorderCansee){
+        localStorage.setItem("BoxBorderCansee","99");
+    }
+    if(!localStorage.BoxPrint){
+        localStorage.setItem("BoxPrint","no");
+    }
+    if(!localStorage.BoxSize){
+        localStorage.setItem("BoxSize","50");
+    }
     if(!localStorage.BackgroundPrint){
         localStorage.setItem("BackgroundPrint","");
     }
@@ -681,10 +802,40 @@
 
     let nowurl = window.location.href;//读取当前所在网页
     console.log(nowurl);
+    //方片特效准备
+    let webWidth = window.innerWidth;
+    let webHeight = window.innerHeight;
+    let DIVboxsize=localStorage.BoxSize;
+    let printNunber
+    let arr={};
+    let addBoxinputlocal=document.querySelector("#backread")
+    let addDIVmax=`<div id='Maxdiv' style='width:120%;pointer-events: none; position: fixed;top:0;left:-5%;right:-5%;bottom: 0;display: flex;flex-direction: row;flex-wrap:wrap;justify-content:left;align-items: flex-start;'></div>`
+    addBoxinputlocal.insertAdjacentHTML("afterend",addDIVmax);
+    let DIVmax=document.querySelector("#Maxdiv");
+    rePrint(webWidth,webHeight);
+
+    let tiner=setInterval(changeBackground,3000);//设置方片波动效果
+    if(localStorage.BoxPrint==="no"){
+        clearInterval(tiner)
+    }
+
+    window.addEventListener('resize', function(){//在界面尺寸变更时重新填充背景方块
+        clearInterval(tiner);
+        webWidth=window.innerWidth;
+        webHeight=window.innerHeight;
+        console.log(webWidth+" "+webHeight);
+        setTimeout(function () {
+            rePrint(webWidth,webHeight);
+        },100)
+        tiner=setInterval(changeBackground,3000);
+        if(localStorage.BoxPrint==="no"){
+            clearInterval(tiner)
+        }
+    })
 
 
     if (nowurl.includes('https://boyshelpboys.com/chat.htm')) {//如果当前网页为聊天室页面
-        WidthHeingtSet();
+        WidthHeightSet();
         let printstr1=["线上地址","删除左侧导航栏","聊天室名称大小","聊天室名称描边/字体颜色","聊天室名称描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
         let printstr2=["滚动条不显示","历史记录1透明度","顶栏下部透明度","历史记录2透明度","外层边框透明度","顶栏透明度","发送边框透明度","发送框透明度","发送框描边","'聊天留言'透明度"]
         let printstr3=[]
@@ -692,12 +843,13 @@
         leftANDtop();
         ScrollHidden();
         leftContent();
+
         let backb=document.querySelector("#top > div > div")//自顶栏往下部分
         let baca=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body")//聊天历史记录1
         let ul=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body > ul")//聊天历史记录2（位置更靠里）
         let histor=document.querySelector("#top > div > div > main > section")//聊天页面外层边框
         let fackone=document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs")//输入框部分
-        let msginputbox=document.querySelector("#msg")
+        let msginputbox=document.querySelector("#msg")//输入框自己
         let LiuYanTop=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom")
         let BBSmsgBack=document.querySelector("#top > div > div > main > section > div")
         let msgInputBoxOutsite=document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write")
@@ -712,7 +864,7 @@
 
         let addlocalupdate=document.querySelector("#webimgsrc");
 
-
+        backPrint(BBSmsgBack);
         bac.setAttribute('style',`background-color: #202040;`)//网页背景部分
         LiuYanTop.setAttribute("style",`background-color:${localStorage.CantSeeColor9}${localStorage.CantSeeset9};border:0px !important;`);
 
@@ -720,26 +872,20 @@
         backb.setAttribute('style', `background-color: ${localStorage.CantSeeColor2}${localStorage.CantSeeset2} !important;`)//自顶栏往下部分
         ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor3}${localStorage.CantSeeset3} !important;`)//聊天历史记录2（位置更靠里）
         histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4} !important;`)//聊天页面外层边框
-        msginputbox.setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;border:1px solid ${localStorage.CantSeeColor8}${localStorage.CantSeeset8} !important;height:40px !important;`)//输入框部分
-        msgInputBoxOutsite.setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;height:48px;`)
-        document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write > button").setAttribute("style","height:40px !important;width:40px !important;")  //站长工具栏启动按钮
-//bac.setAttribute('style',"background-color: #00000070;background-image:url('https://t1-img.233213.xyz/2024/11/25/67447535ec930.jpg');background-repeat=no-repeat")//背景图片替换//背景颜色
-        backPrint(BBSmsgBack);
-        let adddiv=document.querySelector("#localsett");
-        let adddiv2=document.querySelector("#cantseegive");
+        msginputbox.setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;border:1px solid ${localStorage.CantSeeColor8}${localStorage.CantSeeset8} !important;height:2.5rem !important;`)//输入框部分
+        msgInputBoxOutsite.setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;height:48px;`)//输入框外框调整
+        document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write > button").setAttribute("style","height:40px !important;width:40px !important;border-radius:20px;margin:0  0.3125rem 0 0;")  //站长工具栏启动按钮
 
+        document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write > div > button > i").insertAdjacentHTML("beforebegin",`<span style="margin-right: 0.125rem">发送</span>`)
+        //发送按钮
+        let SendButton=document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write > div > button");
+        SendButton.className='send-btn send-btn-M27'
 
-
-        let localget=document.querySelector("#save");
-        let localStyleGet=document.querySelector("#secsubint")
-        localget.addEventListener("click",addtolocal,false);//点击向localst保存数据
+        let localStyleGet=document.querySelector("#secsubint")//第二个提交按钮的方法
         localStyleGet.addEventListener("click",function x(){addStyleToLocal(backb,baca,ul,histor,DIV2,fackone,msginputbox,LiuYanTop)},false);//点击向localst保存控件透明度数据
         addlocalupdate.addEventListener("change",handleFileSelect,false)//本体提交图片时向DBD保存base64
 
-        let exitbutt=document.querySelector("#exit")//设置的关闭按钮
-        let secexitbutt=document.querySelector("#secexit")//设置的关闭按钮
-        exitbutt.addEventListener("click",function(){adddiv.style.display="none";})//设置的关闭按钮实现
-        secexitbutt.addEventListener("click",function(){adddiv2.style.display="none";})//设置的关闭按钮实现
+
 
         let Recolor=document.querySelector("#reall")//重置颜色和透明度配置
         Recolor.addEventListener("click",function(){
@@ -787,10 +933,11 @@
         let printstr3=[]
         addsett(printstr1,printstr2,printstr3,nowurl);
         leftANDtop();
-        WidthHeingtSet();
+        WidthHeightSet();
         backPrint();
         ScrollHidden();
         leftContent();
+
     }else if(nowurl ==="https://boyshelpboys.com/"||nowurl.includes("https://boyshelpboys.com/#")||nowurl.includes("https://boyshelpboys.com/index")){
         console.log(nowurl);
         bac.setAttribute("style","background-color:202040")
@@ -805,9 +952,10 @@
         }
         ScrollHidden()
         leftANDtop();
-        WidthHeingtSet();
+        WidthHeightSet();
         backPrint();
         leftContent();
+
         let Tiezi1=document.querySelector("#top > div > div > main > div > div.col-lg-9.main > div.card-threadlist > div.card.card-body.py-2");
         let Tiezi2
         console.log(localStorage.CantSeeset1)
@@ -833,9 +981,12 @@
         bac.setAttribute("style","background-color:202040")
         setInterval(function(){if (bac.style.backgroundColor===''){console.log("reprint"); bac.setAttribute('style',`background-color: #202040;`)}},1)
         leftANDtop();
-        WidthHeingtSet();
+        WidthHeightSet();
         backPrint(bac);
-        ScrollHidden()
+        ScrollHidden();
+        rePrint(webWidth,webHeight);
+        leftContent()
+
 
 
         let printstr1=["线上地址","删除左侧导航栏","聊天室名称大小","聊天室名称描边/字体颜色","聊天室名称描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
