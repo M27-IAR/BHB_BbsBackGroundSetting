@@ -2,6 +2,7 @@
 // @name        BHB背景图片更换（已全局兼容）
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
+// @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
 // @version     2.2.1
 // @author      M27IAR
@@ -27,6 +28,13 @@
         let nedAddStyleSec=document.createTextNode(`.M27flexDivSet{pointer-events: none; transition: background-color 2s;width:${localStorage.BoxSize}px;height:${localStorage.BoxSize}px;flex-basis:${localStorage.BoxSize}px;border:1px solid rgba(${BorderRGBRed},${BorderRGBGreen},${BorderRGBBlue},0.${localStorage.BoxBorderCansee});margin;0px;}`)
         let FixStyleSec=document.querySelector("#style3");
         FixStyleSec.appendChild(nedAddStyleSec);
+
+        let NeedFixStyleThee=document.querySelectorAll("body > style");//修改站长加的消息时间
+        NeedFixStyleThee[NeedFixStyleThee.length-1].insertAdjacentHTML("afterend",'<style id="style4"></style>');
+        let FixStyleThee=document.querySelector("#style4")
+        let nedAddStyleThee=document.createTextNode(`@keyframes M27shineGreen{0%{opacity:0.5;background-color:#217100;}100%{opacity:1;background-color:green;}} @keyframes M27shineYellow{0%{opacity:0.5;background-color:#716401;}100%{opacity:1;background-color:yellow;}} @keyframes M27shineRed{0%{opacity:0.5;background-color:#710101;}100%{opacity:1;background-color:red;}} .linkOpen{animation:M27shineGreen 5s ease-in infinite alternate} .linkBadWeb{animation:M27shineRed 2s ease-in infinite alternate} .linkOutTime{animation:M27shineYellow 4s ease-in infinite alternate} .message-time {opacity: 1;transition: opacity 0.2s ease;}.loading-more {text-align: center;padding: 10px;color: #666;font-size: 12px;background-color: #66CCFF00; }`)
+        FixStyleThee.appendChild(nedAddStyleThee);
+
 
         document.querySelector("body").setAttribute("style",'background-color:#202040');
 
@@ -417,7 +425,7 @@
                 adddiv2.style.display="block";
             }
         });
-        addbutt3.addEventListener("click",function(){//开关设置栏2
+        addbutt3.addEventListener("click",function(){//开关设置栏3
             let adddiv3=document.querySelector("#test")
             if (adddiv3.style.display==="block"){
                 adddiv3.style.display="none";
@@ -430,12 +438,12 @@
 
         let ScrollSettButt=document.querySelector("#ScrollSett")
         ScrollSettButt.addEventListener("click",function () {SetScroll()})
-        let exitbutt=document.querySelector("#exit")//设置的关闭按钮
-        let secexitbutt=document.querySelector("#secexit")//设置的关闭按钮
-        let threxitbutt=document.querySelector("#threxit")//设置的关闭按钮
-        exitbutt.addEventListener("click",function(){adddiv.style.display="none";})//设置的关闭按钮实现
-        secexitbutt.addEventListener("click",function(){adddiv2.style.display="none";})//设置的关闭按钮实现
-        threxitbutt.addEventListener("click",function(){adddiv3.style.display="none";})//设置的关闭按钮实现
+        let exitbutt=document.querySelector("#exit")//设置的关闭按钮1
+        let secexitbutt=document.querySelector("#secexit")//设置的关闭按钮2
+        let threxitbutt=document.querySelector("#threxit")//设置的关闭按钮3
+        exitbutt.addEventListener("click",function(){adddiv.style.display="none";})//设置的关闭按钮实现1
+        secexitbutt.addEventListener("click",function(){adddiv2.style.display="none";})//设置的关闭按钮实现2
+        threxitbutt.addEventListener("click",function(){adddiv3.style.display="none";})//设置的关闭按钮实现3
 
         let localget=document.querySelector("#save");
         localget.addEventListener("click",addtolocal,false);//点击向localst保存数据
@@ -490,7 +498,7 @@
         let NeedFixStyle=document.querySelectorAll("body > style");//修改滚动条状态
         NeedFixStyle[NeedFixStyle.length-1].insertAdjacentHTML("afterend",'<style id="style2"></style>');
         let FixStyle=document.querySelector("#style2")
-        if (localStorage.scrollstyle==="1"){//背景的填充方式
+        if (localStorage.scrollstyle==="1"){
             FixStyle.appendChild(nedAddStyle);
         }else{
             FixStyle.appendChild(AddStylesec);
@@ -507,7 +515,7 @@
             FixStyle.innerHTML=""
         }
     }
-    function leftContent() {//左侧栏交互修改
+    function leftContentContent() {//左侧栏交互修改
         let TrackerLine=document.querySelectorAll("#layout-menu > nav > ul>li");
         for (let i=0; i<TrackerLine.length; i++) {
             TrackerLine[i].addEventListener('mouseenter', ()=> {
@@ -842,7 +850,7 @@
         addsett(printstr1,printstr2,printstr3,nowurl);
         leftANDtop();
         ScrollHidden();
-        leftContent();
+        leftContentContent();
 
         let backb=document.querySelector("#top > div > div")//自顶栏往下部分
         let baca=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body")//聊天历史记录1
@@ -903,6 +911,54 @@
             LiuYanTop.setAttribute("style",`background-color:${localStorage.CantSeeColor9}${localStorage.CantSeeset9};border:0px !important;`);
         })
 
+        //聊天室消息状态指示灯
+        let MsgServerTime=`<span id="MsgServer" class="" style="border-radius: 50%;border:1px solid gray;height:16px;width:16px;text-align: center;background-color: gray;"></span>`
+        document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom > div").insertAdjacentHTML("afterend",MsgServerTime)
+        let MsgLight=document.querySelector("#MsgServer");
+        let WebMsgId;
+        setInterval(function(){
+            let Msg=document.querySelectorAll("#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li")
+            let MsgId=Msg[Msg.length-1].getAttribute("data-index");
+            let nowTime,Time
+            $.ajax({
+                    type:"GET",
+                    url: `https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg${function(){if(WebMsgId!=null){return '&type=new&last_id='+WebMsgId;}else if(MsgId!=null){return '&type=new&last_id='+MsgId;}else{return '&type=new';}}()} `,
+                    async:true,
+                    beforeSend:function(){nowTime=Date.now();},
+
+                    complete:function(date,xhr){
+                        Time=Date.now();
+                        console.log(nowTime+''+Time);
+                        console.log(Time-nowTime)
+                        console.log(xhr)
+                        let ReportCode=date.status;
+                        if(xhr==='timeout'||(Time-nowTime>700)){
+                            console.log(Time-nowTime)
+                            MsgLight.style.color="yellow";
+                            MsgLight.style.boxShadow= "0px 0px 30px yellow"
+                            MsgLight.style.border="1px solid yellow";
+                            MsgLight.className="linkOutTime";
+                        }else if (ReportCode===200){
+                            MsgLight.style.backgroundColor="green";
+                            MsgLight.style.boxShadow= "0px 0px 30px green";
+                            MsgLight.style.border="1px solid green";
+                            MsgLight.className="linkOpen";
+                        }else if(ReportCode>=400||ReportCode>=500){
+                            MsgLight.style.color="red";
+                            MsgLight.style.boxShadow= "0px 0px 30px red";
+                            MsgLight.style.border="1px solid red";
+                            MsgLight.className="linkBadWeb";
+                        }
+
+                    },
+                    error: function (xhr){
+                        alert(xhr.responseText);
+                    },
+                }
+
+            )
+        },10000)
+
         //针对@闪电炫芬批插件的外链头像图片做适配
         document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li:nth-child(1048)  ")
         let oldLen=0
@@ -936,7 +992,7 @@
         WidthHeightSet();
         backPrint();
         ScrollHidden();
-        leftContent();
+        leftContentContent();
 
     }else if(nowurl ==="https://boyshelpboys.com/"||nowurl.includes("https://boyshelpboys.com/#")||nowurl.includes("https://boyshelpboys.com/index")){
         console.log(nowurl);
@@ -954,7 +1010,7 @@
         leftANDtop();
         WidthHeightSet();
         backPrint();
-        leftContent();
+        leftContentContent();
 
         let Tiezi1=document.querySelector("#top > div > div > main > div > div.col-lg-9.main > div.card-threadlist > div.card.card-body.py-2");
         let Tiezi2
@@ -965,15 +1021,12 @@
         let printstr3=[]
         addsett(printstr1,printstr2,printstr3,nowurl);
 
-
-
         let addlocalupdate=document.querySelector("#webimgsrc");
         let localget=document.querySelector("#save");
         let localStyleGet=document.querySelector("#secsubint")
         localget.addEventListener("click",addtolocal,false);//点击向localst保存数据
         localStyleGet.addEventListener("click",function x(){addStyleToLocal(Tiezi1,Tiezi2)},false);//点击向localst保存控件透明度数据
         addlocalupdate.addEventListener("change",handleFileSelect,false)//本体提交图片时向DBD保存base64
-
 
     }else{
         console.log(nowurl);
@@ -985,9 +1038,7 @@
         backPrint(bac);
         ScrollHidden();
         rePrint(webWidth,webHeight);
-        leftContent()
-
-
+        leftContentContent();
 
         let printstr1=["线上地址","删除左侧导航栏","聊天室名称大小","聊天室名称描边/字体颜色","聊天室名称描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
         let printstr2=["滚动条不显示","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","'*没做*'*没做*"]
