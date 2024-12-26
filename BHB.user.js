@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name        BHB背景图片更换（已全局兼容）
+// @name        BHB聊天室背景图片更换（已全局兼容）
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     2.2.1
+// @version     2.3.1
 // @author      M27IAR
 // @license WTFPL
 // @description 2024/11/26 16:34:09
@@ -14,12 +14,13 @@
 
 (function(){
 
+    //window.alert = function() {};
     window.history.replaceState(null, null, window.location.href);
 
     function leftANDtop() {
         let NeedFixStyle=document.querySelector("head");//插入样式表修改左侧与顶栏样式
         NeedFixStyle.insertAdjacentHTML("afterbegin",'<style id="style1"></style>');
-        let nedAddStyle=document.createTextNode(` ::selection{color:#0000FF !important;} ::-moz-selection{color:#0000FF !important;} .RangeSetting{height:0.5rem;width:7.8125rem;} .ColorSettinr{width:2.75rem;} .SettiingInput{padding:2px 1px;border:0.125rem 0rem;} .GameBarFix{background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6} !important;border:0 !important;margin:0 !important; transition: 0.3s;} hr{margin: 0.125rem 0 !important;color:#f0f5f9;} small{-webkit-text-stroke: ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec}} .fuckyou2{background-color: #2b2c4030; color: gray; margin:0px;padding: 2px 7px;border: 1px gray solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou2:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;} .fuckyou3{background-color: #2b2c4030; color: gray; margin:0px;padding: 2px 7px;border: 1px gray solid;cursor: pointer;transition: background-color 0.3s;border-radius: 0px;}.fuckyou3:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;}  .fuckyou{background-color: #2b2c4030; color: gray; margin:0.3125rem;padding: 0.3125rem;border: 0.125rem gray solid;font-size:1rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;} .fuckyou:hover{background-color: #FFFFFF; color:#66ccff;} @media (max-width:426px){.fuckyou{background-color: #2b2c4030; color: gray; padding: 0.3125rem 0.5rem;border: 0.125rem gray solid;font-size:0.5rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}} .send-btn-M27{padding:0.3125rem 0.625rem !important;width:4.5rem !important;height:2.5rem !important;border:0.125rem solid hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-radius:20px !important;margin-left:0.3125rem !important;} .send-btn-M27:hover{background-color:hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-color:while !important;}`)
+        let nedAddStyle=document.createTextNode(` ::selection{color:#0000FF !important;} ::-moz-selection{color:#0000FF !important;} .RangeSetting{height:0.5rem;width:7.8125rem;} .ColorSettinr{width:2.75rem;} .SettiingInput{padding:2px 1px;border:0.125rem 0rem;} .GameBarFix{background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6} !important;border:0 !important;margin:0 !important; transition: 0.3s;} hr{margin: 0.125rem 0 !important;color:#f0f5f9;} small{text-shadow: 1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor} ;font-size:${localStorage.NameFontSize}px !important; color:${localStorage.LocalFontColorsec} } .fuckyou2{background-color: #2b2c4030; color: gray; margin:0px;padding: 2px 7px;border: 1px gray solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou2:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;} .fuckyou3{background-color: #2b2c4030; color: gray; margin:0px;padding: 2px 7px;border: 1px gray solid;cursor: pointer;transition: background-color 0.3s;border-radius: 0px;}.fuckyou3:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;}  .fuckyou{background-color: #2b2c4030; color: gray; margin:0.3125rem;padding: 0.3125rem;border: 0.125rem gray solid;font-size:1rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;} .fuckyou:hover{background-color: #FFFFFF; color:#66ccff;} @media (max-width:426px){.fuckyou{background-color: #2b2c4030; color: gray; padding: 0.3125rem 0.5rem;border: 0.125rem gray solid;font-size:0.5rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}} .send-btn-M27{padding:0.3125rem 0.625rem !important;width:4.5rem !important;height:2.5rem !important;border:0.125rem solid hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-radius:20px !important;margin-left:0.3125rem !important;} .send-btn-M27:hover{background-color:hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-color:while !important;}`)
         let FixStyle=document.querySelector("#style1");
         FixStyle.appendChild(nedAddStyle);
         //方片动态背景的相关css
@@ -32,7 +33,7 @@
         let NeedFixStyleThee=document.querySelectorAll("body > style");//修改站长加的消息时间
         NeedFixStyleThee[NeedFixStyleThee.length-1].insertAdjacentHTML("afterend",'<style id="style4"></style>');
         let FixStyleThee=document.querySelector("#style4")
-        let nedAddStyleThee=document.createTextNode(`@keyframes M27shineGreen{0%{opacity:0.5;background-color:#217100;}100%{opacity:1;background-color:green;}} @keyframes M27shineYellow{0%{opacity:0.5;background-color:#716401;}100%{opacity:1;background-color:yellow;}} @keyframes M27shineRed{0%{opacity:0.5;background-color:#710101;}100%{opacity:1;background-color:red;}} .linkOpen{animation:M27shineGreen 5s ease-in infinite alternate} .linkBadWeb{animation:M27shineRed 2s ease-in infinite alternate} .linkOutTime{animation:M27shineYellow 4s ease-in infinite alternate} .message-time {opacity: 1;transition: opacity 0.2s ease;}.loading-more {text-align: center;padding: 10px;color: #666;font-size: 12px;background-color: #66CCFF00; }`)
+        let nedAddStyleThee=document.createTextNode(`@keyframes M27shineGreen{0%{opacity:0.5;background-color:green;}100%{opacity:1;background-color:green;}} @keyframes M27shineYellow{0%{opacity:0.5;background-color:yellow;}100%{opacity:1;background-color:yellow;}} @keyframes M27shineRed{0%{opacity:0.5;background-color:red;}100%{opacity:1;background-color:red;}} .linkOpen{animation:M27shineGreen 5s ease-in infinite alternate} .linkBadWeb{animation:M27shineRed 2s ease-in infinite alternate} .linkOutTime{animation:M27shineYellow 4s ease-in infinite alternate} .message-time {opacity: 1;transition: opacity 0.2s ease;}.loading-more {text-align: center;padding: 10px;color: #666;font-size: 12px;background-color: #66CCFF00; }`)
         FixStyleThee.appendChild(nedAddStyleThee);
 
 
@@ -882,7 +883,15 @@
         histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4} !important;`)//聊天页面外层边框
         msginputbox.setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;border:1px solid ${localStorage.CantSeeColor8}${localStorage.CantSeeset8} !important;height:2.5rem !important;`)//输入框部分
         msgInputBoxOutsite.setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;height:48px;`)//输入框外框调整
-        document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write > button").setAttribute("style","height:40px !important;width:40px !important;border-radius:20px;margin:0  0.3125rem 0 0;")  //站长工具栏启动按钮
+
+                //站长工具栏启动按钮
+
+            setInterval(function(){
+                let ToolBar=document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write > button")
+                if(ToolBar.style.height==="") {
+                    ToolBar.setAttribute("style","height:40px !important;width:40px !important;border-radius:20px;margin:0  0.3125rem 0 0;")
+            }
+            },1)
 
         document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write > div > button > i").insertAdjacentHTML("beforebegin",`<span style="margin-right: 0.125rem">发送</span>`)
         //发送按钮
@@ -915,49 +924,47 @@
         let MsgServerTime=`<span id="MsgServer" class="" style="border-radius: 50%;border:1px solid gray;height:16px;width:16px;text-align: center;background-color: gray;"></span>`
         document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom > div").insertAdjacentHTML("afterend",MsgServerTime)
         let MsgLight=document.querySelector("#MsgServer");
-        let WebMsgId;
         setInterval(function(){
             let Msg=document.querySelectorAll("#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li")
             let MsgId=Msg[Msg.length-1].getAttribute("data-index");
             let nowTime,Time
             $.ajax({
                     type:"GET",
-                    url: `https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg${function(){if(WebMsgId!=null){return '&type=new&last_id='+WebMsgId;}else if(MsgId!=null){return '&type=new&last_id='+MsgId;}else{return '&type=new';}}()} `,
-                    async:true,
+                    url: `https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg${function(){if(MsgId!=null){return '&type=new&last_id='+MsgId;}else{return '&type=new';}}()} `,
+                    async:false,
                     beforeSend:function(){nowTime=Date.now();},
-
                     complete:function(date,xhr){
                         Time=Date.now();
-                        console.log(nowTime+''+Time);
-                        console.log(Time-nowTime)
-                        console.log(xhr)
                         let ReportCode=date.status;
-                        if(xhr==='timeout'||(Time-nowTime>700)){
-                            console.log(Time-nowTime)
+                        if(xhr==='success'&&(Time-nowTime>1000)){
                             MsgLight.style.color="yellow";
                             MsgLight.style.boxShadow= "0px 0px 30px yellow"
                             MsgLight.style.border="1px solid yellow";
                             MsgLight.className="linkOutTime";
-                        }else if (ReportCode===200){
+                        }else if (ReportCode===200&&xhr==="success"){
                             MsgLight.style.backgroundColor="green";
                             MsgLight.style.boxShadow= "0px 0px 30px green";
                             MsgLight.style.border="1px solid green";
                             MsgLight.className="linkOpen";
-                        }else if(ReportCode>=400||ReportCode>=500){
+                        }else if(ReportCode>=400||ReportCode>=500||xhr!=="success"){
                             MsgLight.style.color="red";
                             MsgLight.style.boxShadow= "0px 0px 30px red";
                             MsgLight.style.border="1px solid red";
                             MsgLight.className="linkBadWeb";
                         }
-
                     },
-                    error: function (xhr){
-                        alert(xhr.responseText);
+                    error: function (date,xhr){
+                        console.log(date.responseText);
+                        console.log(xhr);
+                        MsgLight.style.color="red";
+                        MsgLight.style.boxShadow= "0px 0px 30px red";
+                        MsgLight.style.border="1px solid red";
+                        MsgLight.className="linkBadWeb";
                     },
                 }
 
             )
-        },10000)
+        },3000)
 
         //针对@闪电炫芬批插件的外链头像图片做适配
         document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li:nth-child(1048)  ")
@@ -1003,7 +1010,7 @@
         let spanprint=document.querySelector("#top > div > div > main > div > div.col-lg-9.main > div.card-threadlist").querySelectorAll("span,time,div");
         for (let i = 0; i < spanprint.length; i++){
             if(spanprint[i].className==="username "||spanprint[i].className==="date text-muted hidden-sm"||spanprint[i].className==="last-post username mx-1 text-muted d-inline-block"||spanprint[i].className==="date text-muted "||spanprint[i].className==="text-muted small"){
-            spanprint[i].setAttribute('style', `-webkit-text-stroke: ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec}`);
+            spanprint[i].setAttribute('style', `text-shadow: 0 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec}`);
             }
         }
         ScrollHidden()
