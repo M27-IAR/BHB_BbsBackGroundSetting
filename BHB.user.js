@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name        BHB背景图片更换（已全局兼容）
+// @name        BHB聊天室背景图片更换（已全局兼容）
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     2.4.1
+// @version     2.4.7
 // @author      M27IAR
 // @license WTFPL
 // @description 2024/11/26 16:34:09
@@ -87,6 +87,9 @@
 
         localStorage.setItem("userset",true);//写入判定用户是否修改;
         //开始写入数据
+        if(!localStorage.MsgLightCheck){
+            localStorage.setItem("MsgLightCheck",'true')
+        }
         if(!localStorage.TransparencySet){
             localStorage.setItem("TransparencySet","true");
         }else{
@@ -113,9 +116,9 @@
             localStorage.setItem("IdPrintCheck","false")
         }
         if(PrintPlan.checked){//判断用户是否启用图片背景
-            localStorage.setItem("PrintPicplan","true")
+            localStorage.setItem("PrintPicplanChk","true")
         }else{
-            localStorage.setItem("PrintPicplan","false")
+            localStorage.setItem("PrintPicplanChk","false")
         }
         if (uplodeheightsize=="0"){//判断宽度比例和高度比例是否输入为0
             localStorage.setItem("heightsize","auto");
@@ -414,12 +417,13 @@
     </div>
 <div>
 <form name='myform' method="POST" action='${nowurl}'>
-<input class="SettiingInput" type="checkbox" ${leadermanhide} value="leadermanhide" name="leadermanhide" id="leadermanhide"><label for="leadermanhide">${leange1[1]}</label>
-<input class="SettiingInput" type="checkbox" ${Scrollstylex} name="ScrollSett" id="ScrollSett">${leange2[0]}</input><br>
+<input type="checkbox" style="user-select:none;-moz-user-select: none; " name="MsgLightCheck" id="MsgLightCheck" ${(()=>{if(localStorage.MsgLightCheck==="true"){return "checked"}else{return ""}})()}><label for="MsgLightCheck">关闭指示灯</label>
+<input style="user-select:none;-moz-user-select: none;" class="SettiingInput" type="checkbox" ${leadermanhide} value="leadermanhide" name="leadermanhide" id="leadermanhide"><label for="leadermanhide">${leange1[1]}</label>
+<input style="user-select:none;-moz-user-select: none;" class="SettiingInput" type="checkbox" ${Scrollstylex} name="ScrollSett" id="ScrollSett">${leange2[0]}</input><br>
 <div id="PrintPicCheck" style="width:100%;background-color: rgba(36,70,88,0.4);border:1px solid aqua;display: flex;">
-<div style="width:5%;${(()=>{if(localStorage.PrintPicplan!=="false"){return 'transform: rotate(90deg);'}else{return 'transform: rotate(0deg);'}})()};" id="UnderIcon1">></div><input style="display:none;" ${(function (){if (localStorage.PrintPicplan!=="false"){return "checked";}else{return "";}})()} type="checkbox" class="SettiingInput" name="PrintPicplan" id="PrintPicplan" value="PrintPicplan"><label id="PrintPicplanLabel" for="PrintPicplan" style="margin:0;user-select:none;-moz-user-select:none;width: 90%;">图像背景</label>
+<div style="width:5%;${(()=>{if(localStorage.PrintPicplanChk!=="false"){return 'transform: rotate(90deg);'}else{return 'transform: rotate(0deg);'}})()};" id="UnderIcon1">></div><input style="display:none;" ${(function (){if (localStorage.PrintPicplanChk!=="false"){return "checked";}else{return "";}})()} type="checkbox" class="SettiingInput" name="PrintPicplan" id="PrintPicplan" value="PrintPicplan"><label id="PrintPicplanLabel" for="PrintPicplan" style="margin:0;user-select:none;-moz-user-select:none;width: 90%;">图像背景</label>
 </div>
-<div id="PrintPicBox" style="${(()=>{if (localStorage.PrintPicplan!=="false"){return "display:block;";}else{return "display:none;";}})()}">
+<div id="PrintPicBox" style="${(()=>{if (localStorage.PrintPicplanChk!=="false"){return "display:block;";}else{return "display:none;";}})()}">
 <input  ${(()=>{if (localStorage.PrintPic!=="false"){return "checked";}else{return "";}})()} type="checkbox" class="SettiingInput" name="PrintPic" id="PrintPic" value="PrintPicplan"><label id="PrintPicplanLabel" for="PrintPic" style="margin:0;user-select:none;-moz-user-select:none;width: 90%;">启用图像背景</label><br>
 <input class="SettiingInput" type='radio'  name='picloadsele' ${localpiclod} id='localpicon' value="localpicon"  width='100px'><label style="user-select:none;-moz-user-select:none;" for="localpicon">${leange1[10]}</label>
 <input class="SettiingInput" type='file' id='webimgsrc' accept='image/*' style='width:50%;'><br> 
@@ -678,6 +682,7 @@
 
     }
     //本地存储检测
+
     if(!localStorage.TransparencySet){
         localStorage.setItem("TransparencySet","false");
     }
@@ -693,8 +698,8 @@
     if(!localStorage.IdPrintCheck){
         localStorage.setItem("IdPrintCheck","false");
     }
-    if(!localStorage.PrintPicplan){
-        localStorage.setItem("PrintPicplan","true")
+    if(!localStorage.PrintPicplanChk){
+        localStorage.setItem("PrintPicplanChk","true")
     }
     if(!localStorage.BoxColor){
         localStorage.setItem("BoxColor","#000000");
@@ -1025,9 +1030,28 @@
         })
 
         //聊天室消息状态指示灯
-        let MsgServerTime=`<span id="MsgServer" class="" style="border-radius: 50%;border:1px solid gray;height:16px;width:16px;text-align: center;background-color: gray;"></span>`
+        let MsgServerTime=` <span id="MsgServer" class="" style="display: ${(()=>{if(localStorage.MsgLightCheck==='true'){return 'none';}else{return 'block';}})()};border-radius: 50%;border:1px solid gray;height:16px;width:16px;text-align: center;background-color: gray;"></span>`
         document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom > div").insertAdjacentHTML("afterend",MsgServerTime)
         let MsgLight=document.querySelector("#MsgServer");
+        let MsgServerReport=`<div id="MsgBox" style="display:none; top: 10px;right:50px;position: absolute;width: 150px;height: 50px;background-color: rgba(40, 64, 120, 0.4);border: 1px solid aqua;"><span id="Msg"></span> </div>`
+        document.querySelector("#top > div > div > main > section > div > div > div > div.online-users-panel").insertAdjacentHTML("afterend",MsgServerReport)
+        let MsgPrint= document.querySelector("#Msg");
+        document.querySelector("#MsgLightCheck").addEventListener("click",(e)=>{
+            if(e.target.checked){
+                localStorage.setItem("MsgLightCheck","true");
+                MsgLight.style.display="block";
+            }else{
+                localStorage.setItem("MsgLightCheck","false");
+                MsgLight.style.display="none";
+            }
+        })
+        MsgLight.addEventListener("click",()=>{
+            if(document.querySelector("#MsgBox").style.display==="none"){
+                document.querySelector("#MsgBox").style.display="block";
+            }else{
+                document.querySelector("#MsgBox").style.display="none";
+            }
+        })
         setInterval(function MesWebTestPlan(){
             let Msg=document.querySelectorAll("#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li")
             let MsgId=Msg[Msg.length-1].getAttribute("data-index");
@@ -1046,16 +1070,19 @@
                             MsgLight.style.boxShadow= "0px 1px 10px #F6D603,0px 1px 10px yellow,-1px 0px 10px #F6D603,0px 0-1px 10px #F6D603"
                             MsgLight.style.border="1px solid #F6D603";
                             MsgLight.className="linkOutTime";
+                            MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>网络状态一般`
                         }else if (ReportCode===200&&xhr==="success"){
                             MsgLight.style.backgroundColor="green";
                             MsgLight.style.boxShadow= "0px 1px 10px #77F602,0px -1px 10px #77F602,-1px 0px 10px #77F602,1px 0px 10px #77F602";
                             MsgLight.style.border="1px solid #77F602";
                             MsgLight.className="linkOpen";
+                            MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>网络状态良好`
                         }else if(ReportCode>=400||ReportCode>=500||xhr!=="success"){
                             MsgLight.style.color="red";
                             MsgLight.style.boxShadow= "0px 1px 10px #F60303,0px -1px 10px #F60303,1px 0px 10px #F60303,-1px 0px 10px #F60303";
                             MsgLight.style.border="1px solid #F60303";
                             MsgLight.className="linkBadWeb";
+                            MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>无法链接到服务器`
                         }
                     },
                     error: function (date,xhr){
@@ -1065,6 +1092,7 @@
                         MsgLight.style.boxShadow= "0px 1px 10px #F60303,0px -1px 10px #F60303,1px 0px 10px #F60303,-1px 0px 10px #F60303";
                         MsgLight.style.border="1px solid red";
                         MsgLight.className="linkBadWeb";
+                        MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>无法链接到服务器`
                     },
                 }
 
