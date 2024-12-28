@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name        BHB聊天室背景图片更换（已全局兼容）
+// @name        BHB背景图片更换（已全局兼容）
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     2.3.1
+// @version     2.4.1
 // @author      M27IAR
 // @license WTFPL
 // @description 2024/11/26 16:34:09
@@ -20,23 +20,23 @@
     function leftANDtop() {
         let NeedFixStyle=document.querySelector("head");//插入样式表修改左侧与顶栏样式
         NeedFixStyle.insertAdjacentHTML("afterbegin",'<style id="style1"></style>');
-        let nedAddStyle=document.createTextNode(` ::selection{color:#0000FF !important;} ::-moz-selection{color:#0000FF !important;} .RangeSetting{height:0.5rem;width:7.8125rem;} .ColorSettinr{width:2.75rem;} .SettiingInput{padding:2px 1px;border:0.125rem 0rem;} .GameBarFix{background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6} !important;border:0 !important;margin:0 !important; transition: 0.3s;} hr{margin: 0.125rem 0 !important;color:#f0f5f9;} small{text-shadow: 1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor} ;font-size:${localStorage.NameFontSize}px !important; color:${localStorage.LocalFontColorsec} } .fuckyou2{background-color: #2b2c4030; color: gray; margin:0px;padding: 2px 7px;border: 1px gray solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou2:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;} .fuckyou3{background-color: #2b2c4030; color: gray; margin:0px;padding: 2px 7px;border: 1px gray solid;cursor: pointer;transition: background-color 0.3s;border-radius: 0px;}.fuckyou3:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;}  .fuckyou{background-color: #2b2c4030; color: gray; margin:0.3125rem;padding: 0.3125rem;border: 0.125rem gray solid;font-size:1rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;} .fuckyou:hover{background-color: #FFFFFF; color:#66ccff;} @media (max-width:426px){.fuckyou{background-color: #2b2c4030; color: gray; padding: 0.3125rem 0.5rem;border: 0.125rem gray solid;font-size:0.5rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}} .send-btn-M27{padding:0.3125rem 0.625rem !important;width:4.5rem !important;height:2.5rem !important;border:0.125rem solid hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-radius:20px !important;margin-left:0.3125rem !important;} .send-btn-M27:hover{background-color:hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-color:while !important;}`)
+        let nedAddStyle=document.createTextNode(` ::selection{color:#0000FF !important;} ::-moz-selection{color:#0000FF !important;} .RangeSetting{height:0.5rem;width:7.8125rem;} .ColorSettinr{width:2.75rem;} .SettiingInput{padding:2px 1px;border:0.125rem 0rem;} .GameBarFix{background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6} !important;border:0 !important;margin:0 !important; transition: 0.3s;} hr{margin: 0.125rem 0 !important;color:#f0f5f9;} small{text-shadow: 1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor} ;font-size:${localStorage.NameFontSize}px !important; color:${localStorage.LocalFontColorsec} } .fuckyou2{background-color:rgba(40,64,120,0.4); color: aqua; margin:0px;padding: 2px 7px;border: 1px aqua solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou2:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;} .fuckyou3{background-color: rgba(40,64,120,0.4); color: aqua; margin:0px;padding: 2px 7px;border: 1px aqua solid;cursor: pointer;transition: background-color 0.3s;border-radius: 0px;}.fuckyou3:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;}  .fuckyou{background-color: #2b2c4030; color: gray; margin:0.3125rem;padding: 0.3125rem;border: 0.125rem gray solid;font-size:1rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;} .fuckyou:hover{background-color: #FFFFFF; color:#66ccff;} @media (max-width:426px){.fuckyou{background-color: #2b2c4030; color: gray; padding: 0.3125rem 0.5rem;border: 0.125rem gray solid;font-size:0.5rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}} .send-btn-M27{padding:0.3125rem 0.625rem !important;width:4.5rem !important;height:2.5rem !important;border:0.125rem solid hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-radius:20px !important;margin-left:0.3125rem !important;} .send-btn-M27:hover{background-color:hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-color:while !important;}`)
         let FixStyle=document.querySelector("#style1");
         FixStyle.appendChild(nedAddStyle);
         //方片动态背景的相关css
         let BorderRGBRed=Number("0x"+localStorage.BoxBorderColor.substring(1,3)),BorderRGBGreen=Number("0x"+localStorage.BoxBorderColor.substring(3,5)),BorderRGBBlue=Number("0x"+localStorage.BoxBorderColor.substring(5))
         NeedFixStyle.insertAdjacentHTML("afterbegin",'<style id="style3"></style>');
-        let nedAddStyleSec=document.createTextNode(`.M27flexDivSet{pointer-events: none; transition: background-color 2s;width:${localStorage.BoxSize}px;height:${localStorage.BoxSize}px;flex-basis:${localStorage.BoxSize}px;border:1px solid rgba(${BorderRGBRed},${BorderRGBGreen},${BorderRGBBlue},0.${localStorage.BoxBorderCansee});margin;0px;}`)
+        let nedAddStyleSec=document.createTextNode(`.M27MojPackImg{width:100px; height:100px;background-size:cover;background-color:#000000;} .M27flexDivSet{pointer-events: none; transition: background-color 2s;width:${localStorage.BoxSize}px;height:${localStorage.BoxSize}px;flex-basis:${localStorage.BoxSize}px;border:1px solid rgba(${BorderRGBRed},${BorderRGBGreen},${BorderRGBBlue},0.${localStorage.BoxBorderCansee});margin;0px;}`)
         let FixStyleSec=document.querySelector("#style3");
         FixStyleSec.appendChild(nedAddStyleSec);
 
-        let NeedFixStyleThee=document.querySelectorAll("body > style");//修改站长加的消息时间
+        let NeedFixStyleThee=document.querySelectorAll("body > style");//修改站长加的消息时间|添加指示灯的相关css动画样式
         NeedFixStyleThee[NeedFixStyleThee.length-1].insertAdjacentHTML("afterend",'<style id="style4"></style>');
         let FixStyleThee=document.querySelector("#style4")
-        let nedAddStyleThee=document.createTextNode(`@keyframes M27shineGreen{0%{opacity:0.5;background-color:green;}100%{opacity:1;background-color:green;}} @keyframes M27shineYellow{0%{opacity:0.5;background-color:yellow;}100%{opacity:1;background-color:yellow;}} @keyframes M27shineRed{0%{opacity:0.5;background-color:red;}100%{opacity:1;background-color:red;}} .linkOpen{animation:M27shineGreen 5s ease-in infinite alternate} .linkBadWeb{animation:M27shineRed 2s ease-in infinite alternate} .linkOutTime{animation:M27shineYellow 4s ease-in infinite alternate} .message-time {opacity: 1;transition: opacity 0.2s ease;}.loading-more {text-align: center;padding: 10px;color: #666;font-size: 12px;background-color: #66CCFF00; }`)
+        let nedAddStyleThee=document.createTextNode(`.dropdown-item {line-height: 1.54;backdrop-filter: blur(5px);}.offcanvas {background-color: rgba(43,44,64,0.5); }@keyframes M27shineGreen{0%{opacity:0.5;background-color:green;}100%{opacity:1;background-color:#77F602;}} @keyframes M27shineYellow{0%{opacity:0.5;background-color:yellow;}100%{opacity:1;background-color:#F6D603;}} @keyframes M27shineRed{0%{opacity:0.5;background-color:red;}100%{opacity:1;background-color:#F60303;}} .linkOpen{animation:M27shineGreen 5s ease-in infinite alternate} .linkBadWeb{animation:M27shineRed 2s ease-in infinite alternate} .linkOutTime{animation:M27shineYellow 4s ease-in infinite alternate} .message-time {opacity: 1;transition: opacity 0.2s ease;}.loading-more {text-align: center;padding: 10px;color: #666;font-size: 12px;background-color: #66CCFF00; }`)
         FixStyleThee.appendChild(nedAddStyleThee);
 
-
+        document.querySelector("#statelyMyInfoModal > ul > div").setAttribute("style","backdrop-filter: blur(5px);")
         document.querySelector("body").setAttribute("style",'background-color:#202040');
 
         if (localStorage.leaderhide==="1"){//左侧导航栏的隐藏与显示
@@ -51,7 +51,7 @@
             let DIV2=document.querySelector("#layout-navbar");
             DIV2.setAttribute('style', `background-color:${localStorage.CantSeeColor5}${localStorage.CantSeeset5} !important;backdrop-filter:saturate(100%) !important;`);
             let DIV3=document.querySelector("#layout-menu")
-            DIV3.setAttribute('style','background-color:#00000000;')
+            DIV3.setAttribute('style','background-color:rgba(43,44,64,0.3);')
 
         }
     }
@@ -73,7 +73,11 @@
         let BorderTextSize=document.querySelector("#BorderText");//聊天室描边大小输入框
         let printSelcetBox=document.querySelector("#selectBox");//背景渲染方式
         let centerPosion=document.querySelector("#center")//居中渲染按钮
-        let PrintPlan=document.querySelector("#PrintPicplan");//图片渲染启用选择框
+        let PrintOpen=document.querySelector("#PrintPic");//图像渲染启动按钮
+        let PrintPlan=document.querySelector("#PrintPicplan");//图片渲染板块选择框
+        let IdPrintOpenchec=document.querySelector("#OpenIdPrint")//id渲染板块启用框
+        let PrintPlanChec=document.querySelector("#PrintPlan");//渲染模式板块启用框
+        let PrintVisabelOpen=document.querySelector("#PrintVisable")//特效板块启用框
 
 
         let uplodeheightsize=parseInt(heightsize.value)//高度比例(转数字)
@@ -81,10 +85,33 @@
         let uplodeleft=parseInt(left.value)//左侧距离(转数字)
         let uplodetop=parseInt(top.value)//顶部距离(转数字)
 
-        localStorage.setItem("userset",true);//写入判定用户是否修改
-        console.log(uplodeheightsize);
+        localStorage.setItem("userset",true);//写入判定用户是否修改;
         //开始写入数据
-        console.log(PrintPlan.checked)
+        if(!localStorage.TransparencySet){
+            localStorage.setItem("TransparencySet","true");
+        }else{
+            localStorage.setItem("TransparencySet","false")
+        }
+        if(PrintVisabelOpen.checked){
+            localStorage.setItem("PrintVisable","true")
+        }else{
+            localStorage.setItem("PrintVisable","false")
+        }
+        if(PrintOpen.checked){
+            localStorage.setItem("PrintPic","true");
+        }else{
+            localStorage.setItem("PrintPic","false");
+        }
+        if(PrintPlanChec.checked){
+            localStorage.setItem("PrintPlanCheck","true")
+        }else{
+            localStorage.setItem("PrintPlanCheck","false")
+        }
+        if(IdPrintOpenchec.checked){
+            localStorage.setItem("IdPrintCheck","true")
+        }else{
+            localStorage.setItem("IdPrintCheck","false")
+        }
         if(PrintPlan.checked){//判断用户是否启用图片背景
             localStorage.setItem("PrintPicplan","true")
         }else{
@@ -161,7 +188,6 @@
     function addStyleToLocal(backb,baca,ul,histor,DIV2,FackOne,MsgInputBox,LiuYanTop) {//保存控件透明度
         if (!LiuYanTop){}else{
         let seenum=document.querySelectorAll("#cantseegive > input[type=range]")//透明度获取
-        console.log(seenum);
         let seecolor1=document.querySelector("#Msgcolor1");//聊天历史记录1颜色
         let seecolor2=document.querySelector("#Msgcolor2");//自顶栏往下部分颜色
         let seecolor3=document.querySelector("#Msgcolor3");//聊天历史记录2颜色
@@ -209,7 +235,7 @@
         }
     }
 
-    function  handleFileSelect(){//图片转base64存储在localstorage
+    function  handleFileSelect(){//图片转base64存储在indexedDB
         let addlocalupdate=document.querySelector("#webimgsrc")
         let imgFile = new FileReader();
         imgFile.readAsDataURL(addlocalupdate.files[0]);
@@ -255,9 +281,7 @@
 
     }//图片转base64存储在localstorage部分结束
 
-
     function WidthHeightSet(){//背景宽高设定
-
         if(localStorage.BackgroundPrint===""){
             if (localStorage.heightsize==="auto"||localStorage.heightsize==="NaN"){
             localHightSize="auto";
@@ -296,7 +320,7 @@
                 let BackimagePrintPlanNum=(localStorage.canseenunber*100)%100
                 if(BackimagePrintPlanNum===0&&localStorage.canseenunber==="0"){BackimagePrintPlanNum=""}
                 console.log(BackimagePrintPlanNum)
-                if (localStorage.PrintPicplan==="false"){//如果用户选择不渲染图片背景
+                if (localStorage.PrintPic==="false"){//如果用户选择不渲染图片背景
                     bac.setAttribute("style","bakcground:#202040;")
                 }else{
                     if(event.target.result.name==="空"){//如果数据库没有本地图片数据
@@ -350,10 +374,8 @@
                             } else if (localStorage.localpiclod === "1") {
                                 if(localStorage.printToBack==="1"){
                                     //通过section写入项目留下的标签实现颜色覆盖
-                                    console.log("bad");
                                     bac.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${event.target.result.name});background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};  background-attachment:fixed;`)
                                     addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-color: #202040${BackimagePrintPlanNum};background-repeat: no-repeat;background-size:cover;display: flex;align-items: center;justify-content: center;position: fixed;pointer-events: none;z-index:0;height:100%;width:100%; `);
-                                    console.log("good");
                                 }else if(localStorage.printToBBS==="1"){
                                     BBSmsgBack.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${event.target.result.name});background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};background-attachment:fixed;`)
                                 }
@@ -383,33 +405,94 @@
 
         let BoxPrintCheckOn;
         if(localStorage.BoxPrint!=="no"){BoxPrintCheckOn='checked'}else{BoxPrintCheckOn=''}
-
         let oldaddtarge=document.querySelector("#navbar-collapse")
-        let addbott="<button class='fuckyou' >背景文件/渲染</button><button class='fuckyou'>控件透明度</button><button class='fuckyou'>渲染特效</button>"
-        let addmain=`<div id="localsett"><div><button id="exit" class="fuckyou3">X</button><span>背景图片/渲染设置</span><input ${(function (){if (localStorage.PrintPicplan!=="false"){return "checked";}else{return "";}})()} type="checkbox" class="SettiingInput" name="PrintPicplan" id="PrintPicplan" value="PrintPicplan"><label for="PrintPicplan">启用图像背景</label><div><form name='myform' method="POST" action='${nowurl}'><input class="SettiingInput" type='file' id='webimgsrc' accept='image/*'><br> <span>${leange1[0]}</span><input class="SettiingInput" type='text'  value='${localStorage.webimgsrc}' name='' id='localimgsrc' width='150px'><br><input class="SettiingInput" type="checkbox" ${leadermanhide} value="leadermanhide" name="leadermanhide" id="leadermanhide"><label for="leadermanhide">${leange1[1]}</label><br><span>${leange1[2]}</span><input class="SettiingInput" type='text' onblur='if(!((/[(0-9)]/).test(value)))value=18' value='${localStorage.NameFontSize}' name='size' id='size' size="5"><br><span>${leange1[3]}</span><input class="SettiingInput ColorSettinr" type="color" id="fontcolor" value="${localStorage.LocalFontColor}"><input class="SettiingInput ColorSettinr"  type="color" id="fontcolorsec" value="${localStorage.LocalFontColorsec}"><br><span>${leange1[4]}</span><input class="SettiingInput" type="text" onblur='if(!((/[(0-9)]/).test(value)))value=1' size="5"  value="${localStorage.BorderTextSize}"  name="BorderText" id="BorderText"><br><span>图像渲染方式</span><select style="padding:0;" name="selectBox" id="selectBox"><option value="default" ${(function(){if(BackPrintSelectBox==="default"){return "selected";}})()}>自定义</option><option value="PicFirst" ${(function(){if(BackPrintSelectBox==="PicFirst"){return "selected";}})()}>图像尺寸定位</option><option value="WebFirst" ${(function(){if(BackPrintSelectBox==="WebFirst"){return "selected";}})()}>网站尺寸优先</option></select><input class="SettiingInput" type="checkbox" id="center" ${(function (){if (localStorage.centerPosition!==""){return "checked";}else{return "";}})()}  value="center"><label for="center">居中渲染</label><br><span>${leange1[5]}</span><input class="SettiingInput" type='text'  oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.top}' name='topp' id='top' size="5"> <span>${leange1[6]}</span><input class="SettiingInput" type='text' oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.left}' name='leftt' id='left' size="5"><br> <span>${leange1[7]}</span><input class="SettiingInput" type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100' min='0'  value='${localStorage.widthsize}' name='' id='widthsize' size='5'><br><span>${leange1[8]}</span><input class="SettiingInput" type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100'  min='0' value=${localStorage.heightsize} name='' id='heightsize' size="5"><br><input class="SettiingInput" type='radio' ${webpiclod} name='picloadsele' id='webpicon'  width='100px' value="webpicon"> <label for="webpicon">${leange1[9]}</label><input class="SettiingInput" type='radio'  name='picloadsele' ${localpiclod} id='localpicon' value="localpicon"  width='100px'><label for="localpicon">${leange1[10]}</label><hr><span>使用section写入背景只能在最底层</span><br><input class="SettiingInput" type='radio'  ${sectionplanone} name='addplan' id='sectionplan' value="sectionplan" width='100px'><label for="sectionplan">${leange1[11]}</label><input class="SettiingInput" type='radio'  name='addplan' ${backgroundplanone} id='backgroundplan' value="backgroundplan"  width='100px'><label for="backgroundplan">${leange1[12]}</label><br><span>透明度</span><input class="SettiingInput RangeSetting" type="range" min="0" max="1" step="0.01" value="${localStorage.canseenunber}" id="notseenumber"><hr><input class="SettiingInput" type='radio' value='1' ${PrintToBackground} name='baklocal' id='printToWebback' value="printToWebback"  width='100px'><label for="printToWebback">${leange1[13]}</label><input class="SettiingInput" type='radio' value='printToBBS' name='baklocal' ${PrintToBBSGround} id='printToBBS'  width='100px'><label for="printToBBS">${leange1[14]}</label><br> <button class='fuckyou2' id='save' type="submit">提交</button></form></div>`
-        let addmain2=`<div id="cantseegive"><button id="secexit" class="fuckyou3">X</button><span>控件透明度设置</span><br><input class="SettiingInput" type="checkbox"  ${Scrollstylex} name="ScrollSett" id="ScrollSett">${leange2[0]}</input><br><span>${leange2[1]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum1" value="${localStorage.CantSeeset1}"><input class="SettiingInput  ColorSettinr" type="color" id="Msgcolor1" value="${localStorage.CantSeeColor1}"><br><span>${leange2[2]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum2" value="${localStorage.CantSeeset2}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor2" value="${localStorage.CantSeeColor2}"><br><span>${leange2[3]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum3" value="${localStorage.CantSeeset3}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor3" value="${localStorage.CantSeeColor3}"><br><span>${leange2[4]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum4" value="${localStorage.CantSeeset4}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor4" value="${localStorage.CantSeeColor4}"><br><span>${leange2[5]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum5" value="${localStorage.CantSeeset5}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor5" value="${localStorage.CantSeeColor5}"><br><span>${leange2[6]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum6" value="${localStorage.CantSeeset6}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor6" value="${localStorage.CantSeeColor6}"><br><span>${leange2[7]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum7" value="${localStorage.CantSeeset7}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor7" value="${localStorage.CantSeeColor7}"><br><span>${leange2[8]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum8" value="${localStorage.CantSeeset8}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor8" value="${localStorage.CantSeeColor8}"><br><span>${leange2[9]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum9" value="${localStorage.CantSeeset9}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor9" value="${localStorage.CantSeeColor9}"><br><button class="fuckyou2"  id="secsubint">提交</button><br><button id="reall"  class="fuckyou2">重置颜色|透明度配置</button></div>`
-        let addmain3=`<div id="test"><button id="threxit" class="fuckyou3">X</button><span>特殊效果设置(刷新生效)</span><br><input class="SettiingInput" type="checkbox" name="BoxPrintEn" id="BoxPrintEn" value="BoxPrintEn" ${BoxPrintCheckOn}  ><label for="BoxPrintEn">启用方块特效</label><br><div id="BoxPrintSet"  ><span>背景方格大小</span><input class="SettiingInput RangeSetting" type="range" min="50" max="150" step="1" onchange='localStorage.BoxSize=value' value="${localStorage.BoxSize}" id="BoxSizeNum"><br><span>边框线设置</span><input class="SettiingInput ColorSettinr" type="color" id="BoxBorderColor" onchange="localStorage.BoxBorderColor=value" value="${localStorage.BoxBorderColor}"><input class="SettiingInput RangeSetting" type="range" min="0" max="99" step="1" onchange='localStorage.BoxBorderCansee=value' value="${localStorage.BoxBorderCansee}" id="BoxPrintCansee"><br><span>方片颜色</span><input class="SettiingInput ColorSettinr" type="color" id="BoxColor" onchange="localStorage.BoxColor=value" value="${localStorage.BoxColor}"></div></div>`
+        let addbott="<button class='fuckyou'>插件设置</button>"
+        let addmain=`<div id="localsett">
+<div >
+<div style="position: sticky ;height:28px;width:100%;top: 0;left:0;background-color: rgba(36,70,88,0.4);backdrop-filter: blur(5px);">
+    <button id="exit" class="fuckyou3">X</button><span>插件设置</span>
+    </div>
+<div>
+<form name='myform' method="POST" action='${nowurl}'>
+<input class="SettiingInput" type="checkbox" ${leadermanhide} value="leadermanhide" name="leadermanhide" id="leadermanhide"><label for="leadermanhide">${leange1[1]}</label>
+<input class="SettiingInput" type="checkbox" ${Scrollstylex} name="ScrollSett" id="ScrollSett">${leange2[0]}</input><br>
+<div id="PrintPicCheck" style="width:100%;background-color: rgba(36,70,88,0.4);border:1px solid aqua;display: flex;">
+<div style="width:5%;${(()=>{if(localStorage.PrintPicplan!=="false"){return 'transform: rotate(90deg);'}else{return 'transform: rotate(0deg);'}})()};" id="UnderIcon1">></div><input style="display:none;" ${(function (){if (localStorage.PrintPicplan!=="false"){return "checked";}else{return "";}})()} type="checkbox" class="SettiingInput" name="PrintPicplan" id="PrintPicplan" value="PrintPicplan"><label id="PrintPicplanLabel" for="PrintPicplan" style="margin:0;user-select:none;-moz-user-select:none;width: 90%;">图像背景</label>
+</div>
+<div id="PrintPicBox" style="${(()=>{if (localStorage.PrintPicplan!=="false"){return "display:block;";}else{return "display:none;";}})()}">
+<input  ${(()=>{if (localStorage.PrintPic!=="false"){return "checked";}else{return "";}})()} type="checkbox" class="SettiingInput" name="PrintPic" id="PrintPic" value="PrintPicplan"><label id="PrintPicplanLabel" for="PrintPic" style="margin:0;user-select:none;-moz-user-select:none;width: 90%;">启用图像背景</label><br>
+<input class="SettiingInput" type='radio'  name='picloadsele' ${localpiclod} id='localpicon' value="localpicon"  width='100px'><label style="user-select:none;-moz-user-select:none;" for="localpicon">${leange1[10]}</label>
+<input class="SettiingInput" type='file' id='webimgsrc' accept='image/*' style='width:50%;'><br> 
+<input class="SettiingInput" type='radio' ${webpiclod} name='picloadsele' id='webpicon'  width='100px' value="webpicon"> <label style="user-select:none;-moz-user-select:none;" for="webpicon">${leange1[9]}</label>
+<span>${leange1[0]}</span><input class="SettiingInput" type='text'  value='${localStorage.webimgsrc}' name='' id='localimgsrc' width='150px'><br>
+<input class="SettiingInput" type='radio'  name='addplan' ${backgroundplanone} id='backgroundplan' value="backgroundplan"  width='100px'><label style="user-select:none;-moz-user-select:none;" for="backgroundplan">${leange1[12]}</label>
+<input class="SettiingInput" type='radio'  ${sectionplanone} name='addplan' id='sectionplan' value="sectionplan" width='100px'><label style="user-select:none;-moz-user-select:none;" for="sectionplan">${leange1[11]}</label><br>
+<input class="SettiingInput" type='radio' value='1' ${PrintToBackground} name='baklocal' id='printToWebback' value="printToWebback"  width='100px'><label style="user-select:none;-moz-user-select:none;" for="printToWebback">${leange1[13]}</label>
+<input class="SettiingInput" type='radio' value='printToBBS' name='baklocal' ${PrintToBBSGround} id='printToBBS'  width='100px'><label style="user-select:none;-moz-user-select:none;" for="printToBBS">${leange1[14]}</label><br>
+<span>透明度</span><input class="SettiingInput RangeSetting" type="range" min="0" max="1" step="0.01" value="${localStorage.canseenunber}" id="notseenumber"><br>
+<span>使用section写入背景只能在最底层</span>
+</div>
+<hr>
+<div id="IdPrintCheck" style="width:100%;background-color: rgba(36,70,88,0.4);border:1px solid aqua;display: flex;">
+<div style="width:5%;${(()=>{if(localStorage.IdPrintCheck!=="false"){return 'transform: rotate(90deg);'}else{return 'transform: rotate(0deg);'}})()};" id="UnderIcon2">></div><input style="display:none;" type="checkbox" class="SettiingInput" name="OpneIDPrint" id="OpenIdPrint" ${(function (){if (localStorage.IdPrintCheck!=="false"){return "checked";}else{return "";}})()}><label style="user-select:none;-moz-user-select:none;width: 90%;margin:0;" for="OpenIdPrint">Id名称渲染</label>
+</div>
+<div id="IdPrintBox" style="${(()=>{if (localStorage.IdPrintCheck!=="false"){return "display:block;";}else{return "display:none;";}})()}">
+<span>${leange1[2]}</span><input class="SettiingInput" type='text' onblur='if(!((/[(0-9)]/).test(value)))value=18' value='${localStorage.NameFontSize}' name='size' id='size' size="5"><br>
+<span>${leange1[3]}</span>
+<input class="SettiingInput ColorSettinr" type="color" id="fontcolor" value="${localStorage.LocalFontColor}"><input class="SettiingInput ColorSettinr"  type="color" id="fontcolorsec" value="${localStorage.LocalFontColorsec}"><br>
+<span>${leange1[4]}</span><input class="SettiingInput" type="text" onblur='if(!((/[(0-9)]/).test(value)))value=1' size="5"  value="${localStorage.BorderTextSize}"  name="BorderText" id="BorderText"><br>
+</div>
+<hr>
+<div id="PrintPlanCheck" style="width:100%;background-color: rgba(36,70,88,0.4);border:1px solid aqua;display: flex;">
+<div style="width:5%;${(()=>{if(localStorage.PrintPlanCheck!=="false"){return 'transform: rotate(90deg);'}else{return 'transform: rotate(0deg);'}})()};" id="UnderIcon3">></div><input style="display:none;" type="checkbox" class="SettiingInput" name="PrintPlan" id="PrintPlan" ${(function (){if (localStorage.PrintPlanCheck!=="false"){return "checked";}else{return "";}})()}><label style="user-select:none;-moz-user-select:none;width: 90%;margin:0;" for="PrintPlan">渲染定位</label>
+</div>
+<div id="PrintPlanBox" style="${(()=>{if (localStorage.PrintPlanCheck!=="false"){return "display:block;";}else{return "display:none;";}})()}">
+<span>图像渲染方式</span><select style="padding:0;" name="selectBox" id="selectBox"><option value="default" ${(function(){if(BackPrintSelectBox==="default"){return "selected";}})()}>自定义</option><option value="PicFirst" ${(function(){if(BackPrintSelectBox==="PicFirst"){return "selected";}})()}>图像尺寸优先</option><option value="WebFirst" ${(function(){if(BackPrintSelectBox==="WebFirst"){return "selected";}})()}>网站尺寸优先</option></select>
+<input class="SettiingInput" type="checkbox" id="center" ${(function (){if (localStorage.centerPosition!==""){return "checked";}else{return "";}})()}  value="center"><label for="center">居中渲染</label><br>
+<span>${leange1[5]}</span><input class="SettiingInput" type='text'  oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.top}' name='topp' id='top' size="5"> <span>${leange1[6]}</span>
+<input class="SettiingInput" type='text' oninput='if(!((/[(0-9)/-]/).test(value)))value=0' value='${localStorage.left}' name='leftt' id='left' size="5"><br> <span>${leange1[7]}</span>
+<input class="SettiingInput" type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100' min='0'  value='${localStorage.widthsize}' name='' id='widthsize' size='5'><br>
+<span>${leange1[8]}</span><input class="SettiingInput" type='text' onblur='if(!((/[(0-9)]/).test(value))&&value!=="auto")value=100'  min='0' value=${localStorage.heightsize} name='' id='heightsize' size="5"><hr>
+</div>
+<hr>
+<div id="PrintVisableCheck" style="width:100%;background-color: rgba(36,70,88,0.4);border:1px solid aqua;display: flex;">
+<div style="width:5%;${(()=>{if(localStorage.PrintVisable!=="false"){return 'transform: rotate(90deg);'}else{return 'transform: rotate(0deg);'}})()};" id="UnderIcon4">></div><input style="display:none;" type="checkbox" class="SettiingInput" name="PrintVisable" id="PrintVisable" ${(function (){if (localStorage.PrintVisable!=="false"){return "checked";}else{return "";}})()}><label style="user-select:none;-moz-user-select:none;width: 90%;margin:0;" for="PrintVisable">特殊效果</label>
+</div>
+<div id="BoxPrintSet" style="${(()=>{if (localStorage.PrintVisable!=="false"){return "display:block;";}else{return "display:none;";}})()}">
+<input class="SettiingInput" type="checkbox" name="BoxPrintEn" id="BoxPrintEn" value="BoxPrintEn" ${BoxPrintCheckOn}><label for="BoxPrintEn">启用方块特效</label><br>
+<span>背景方格大小</span><input class="SettiingInput RangeSetting" type="range" min="50" max="150" step="1" onchange='localStorage.BoxSize=value' value="${localStorage.BoxSize}" id="BoxSizeNum"><br>
+<span>边框线设置</span><input class="SettiingInput ColorSettinr" type="color" id="BoxBorderColor" onchange="localStorage.BoxBorderColor=value" value="${localStorage.BoxBorderColor}"><input class="SettiingInput RangeSetting" type="range" min="0" max="99" step="1" onchange='localStorage.BoxBorderCansee=value' value="${localStorage.BoxBorderCansee}" id="BoxPrintCansee"><br>
+<span>方片颜色</span><input class="SettiingInput ColorSettinr" type="color" id="BoxColor" onchange="localStorage.BoxColor=value" value="${localStorage.BoxColor}">
+</div>
+<hr>
+<div id="PrintPlanCheck" style="width:100%;background-color: rgba(36,70,88,0.4);border:1px solid aqua;display: flex;">
+<div style="width:5%;${(()=>{if(localStorage.TransparencySet!=="false"){return 'transform: rotate(90deg);'}else{return 'transform: rotate(0deg);'}})()};" id="UnderIcon5">></div><input style="display:none;" type="checkbox" class="SettiingInput" name="TransparencySet" id="TransparencySet" ${(function (){if (localStorage.TransparencySet!=="false"){return "checked";}else{return "";}})()}><label style="user-select:none;-moz-user-select:none;width: 90%;margin:0;" for="TransparencySet">透明度设置</label>
+</div>
+<div id="cantseegive" style="${(()=>{if (localStorage.TransparencySet!=="false"){return "display:block;";}else{return "display:none;";}})()}">
+<span>${leange2[1]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum1" value="${localStorage.CantSeeset1}"><input class="SettiingInput  ColorSettinr" type="color" id="Msgcolor1" value="${localStorage.CantSeeColor1}"><br>
+<span>${leange2[2]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum2" value="${localStorage.CantSeeset2}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor2" value="${localStorage.CantSeeColor2}"><br>
+<span>${leange2[3]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum3" value="${localStorage.CantSeeset3}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor3" value="${localStorage.CantSeeColor3}"><br>
+<span>${leange2[4]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum4" value="${localStorage.CantSeeset4}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor4" value="${localStorage.CantSeeColor4}"><br>
+<span>${leange2[5]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum5" value="${localStorage.CantSeeset5}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor5" value="${localStorage.CantSeeColor5}"><br>
+<span>${leange2[6]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum6" value="${localStorage.CantSeeset6}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor6" value="${localStorage.CantSeeColor6}"><br>
+<span>${leange2[7]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum7" value="${localStorage.CantSeeset7}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor7" value="${localStorage.CantSeeColor7}"><br>
+<span>${leange2[8]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum8" value="${localStorage.CantSeeset8}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor8" value="${localStorage.CantSeeColor8}"><br>
+<span>${leange2[9]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum9" value="${localStorage.CantSeeset9}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor9" value="${localStorage.CantSeeColor9}"><br>
+<button class="fuckyou2"  id="secsubint">应用</button>
+<br><button id="reall"  class="fuckyou2">重置颜色|透明度配置</button></div>
+<hr>
+<button class='fuckyou2' id='save' type="submit">提交</button></form></div>`
 
         oldaddtarge.insertAdjacentHTML("afterbegin",addbott);
         bac.insertAdjacentHTML("afterbegin",addmain);
-        bac.insertAdjacentHTML("afterbegin",addmain2);
-        bac.insertAdjacentHTML("afterbegin",addmain3);
-
 
         let addbutt=document.querySelector("#navbar-collapse > button");
-        let addbutt2=document.querySelector("#navbar-collapse > button:nth-child(2)");
-        let addbutt3=document.querySelector("#navbar-collapse > button:nth-child(3)");
         let adddiv=document.querySelector("#localsett");
-        let adddiv2=document.querySelector("#cantseegive");
-        let adddiv3=document.querySelector("#test");
         checkPrint();
         let printSelcetBox=document.querySelector("#selectBox");
 
-
         printSelcetBox.addEventListener("change",function(){checkPrint();})
-        adddiv.setAttribute('style', 'overflow:auto; border-radius: 5px;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);width: 330px;height: 550px;border: 1px solid gray;z-index:1;display:none;background-color:rgba(30, 32, 34, 0.70);color:#f0f5f9;-webkit-text-stroke:0.3px #52616b;')
-        adddiv2.setAttribute('style','overflow:auto; border-radius: 5px;position: absolute;top: 50%;left: 50%;transform: translate(-51%, -50%);width: 330px;height: 500px;border: 1px solid gray;z-index:1;display:none;background-color:rgba(30, 32, 34, 0.70);color:#f0f5f9;-webkit-text-stroke:0.3px #52616b;')
-        adddiv3.setAttribute('style','overflow:auto; border-radius: 5px;position: absolute;top: 50%;left: 50%;transform: translate(-52%, -50%);width: 330px;height: 500px;border: 1px solid gray;z-index:1;display:none;background-color:rgba(30, 32, 34, 0.70);color:#f0f5f9;-webkit-text-stroke:0.3px #52616b;')
+        adddiv.setAttribute('style', 'overflow:auto; border-radius: 5px;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);width: 330px;height: 550px;border: 1px solid aqua;z-index:10000;display:none;background-color:rgba(40,64,120,0.4);color:#f0f5f9;text-shadow:0 1px 0.5px #32353E,0 -1px 0.5px #32353E,1px 0 0.5px #32353E,-1px 0 0.5px #32353E;')
         addbutt.addEventListener("click",function(){//开关设置栏1
             let adddiv=document.querySelector("#localsett")
             if (adddiv.style.display==="block"){
@@ -418,59 +501,63 @@
                 adddiv.style.display="block";
             }
         });
-        addbutt2.addEventListener("click",function(){//开关设置栏2
-            let adddiv2=document.querySelector("#cantseegive")
-            if (adddiv2.style.display==="block"){
-                adddiv2.style.display="none";
+
+        document.querySelector("#OpenIdPrint").addEventListener("click",function(e){
+            if (e.target.checked){
+                document.querySelector("#IdPrintBox").style.display="block";
+                document.querySelector("#UnderIcon2").style.transform="rotate(90deg)";
             }else{
-                adddiv2.style.display="block";
+                document.querySelector("#IdPrintBox").style.display="none";
+                document.querySelector("#UnderIcon2").style.transform="rotate(0deg)";
             }
-        });
-        addbutt3.addEventListener("click",function(){//开关设置栏3
-            let adddiv3=document.querySelector("#test")
-            if (adddiv3.style.display==="block"){
-                adddiv3.style.display="none";
+        })
+        document.querySelector("#PrintPicplan").addEventListener("click",function(e) {
+            if (e.target.checked){
+                document.querySelector("#PrintPicBox").style.display="block";
+                document.querySelector("#UnderIcon1").style.transform="rotate(90deg)";
             }else{
-                adddiv3.style.display="block";
+                document.querySelector("#PrintPicBox").style.display="none";
+                document.querySelector("#UnderIcon1").style.transform="rotate(0deg)";
             }
-        });
+        })
+        document.querySelector("#PrintPlan").addEventListener("click",function(e) {
+            if (e.target.checked){
+                document.querySelector("#PrintPlanBox").style.display="block";
+                document.querySelector("#UnderIcon3").style.transform="rotate(90deg)";
+            }else{
+                document.querySelector("#PrintPlanBox").style.display="none";
+                document.querySelector("#UnderIcon3").style.transform="rotate(0deg)";
+            }
+        })
+        document.querySelector("#PrintVisable").addEventListener("click",function(e) {
+            if (e.target.checked){
+                document.querySelector("#BoxPrintSet").style.display="block";
+                document.querySelector("#UnderIcon4").style.transform="rotate(90deg)";
+            }else{
+                document.querySelector("#BoxPrintSet").style.display="none";
+                document.querySelector("#UnderIcon4").style.transform="rotate(0deg)";
+            }
+        })
+        document.querySelector("#TransparencySet").addEventListener("click",function(e) {
+            if (e.target.checked){
+                document.querySelector("#cantseegive").style.display="block";
+                document.querySelector("#UnderIcon5").style.transform="rotate(90deg)";
+            }else{
+                document.querySelector("#cantseegive").style.display="none";
+                document.querySelector("#UnderIcon5").style.transform="rotate(0deg)";
+            }
+        })
 
 
 
         let ScrollSettButt=document.querySelector("#ScrollSett")
         ScrollSettButt.addEventListener("click",function () {SetScroll()})
         let exitbutt=document.querySelector("#exit")//设置的关闭按钮1
-        let secexitbutt=document.querySelector("#secexit")//设置的关闭按钮2
-        let threxitbutt=document.querySelector("#threxit")//设置的关闭按钮3
         exitbutt.addEventListener("click",function(){adddiv.style.display="none";})//设置的关闭按钮实现1
-        secexitbutt.addEventListener("click",function(){adddiv2.style.display="none";})//设置的关闭按钮实现2
-        threxitbutt.addEventListener("click",function(){adddiv3.style.display="none";})//设置的关闭按钮实现3
 
         let localget=document.querySelector("#save");
         localget.addEventListener("click",addtolocal,false);//点击向localst保存数据
-
-
-        let BoxPrintCheck=document.querySelector("#BoxPrintEn")//设定特效设置界面的显示与消失
-        let BoxPrintDiv=document.querySelector("#BoxPrintSet")
-        if (BoxPrintCheck.checked){
-            BoxPrintDiv.style.display="block";
-
-        }else{
-            BoxPrintDiv.style.display="none";
-
-        }
-        BoxPrintCheck.addEventListener("change",()=>{
-            if (BoxPrintCheck.checked){
-                BoxPrintDiv.style.display="block";
-                localStorage.setItem("BoxPrint","yes")
-            }else{
-                BoxPrintDiv.style.display="none";
-                localStorage.setItem("BoxPrint","no")
-            }
-        })
     }
-
-
 
     function ResetSeenum() {//重置透明度
         localStorage.setItem("CantSeeset1","00");
@@ -519,6 +606,8 @@
     function leftContentContent() {//左侧栏交互修改
         let TrackerLine=document.querySelectorAll("#layout-menu > nav > ul>li");
         for (let i=0; i<TrackerLine.length; i++) {
+            if(i!==TrackerLine.length-1){
+            }
             TrackerLine[i].addEventListener('mouseenter', ()=> {
                 TrackerLine[i].style.backgroundColor="#FF8FA290";
                 TrackerLine[i].style.color="#ffffff";
@@ -589,6 +678,21 @@
 
     }
     //本地存储检测
+    if(!localStorage.TransparencySet){
+        localStorage.setItem("TransparencySet","false");
+    }
+    if(!localStorage.PrintVisabel){
+        localStorage.setItem("PrintVisabe","false")
+    }
+    if(!localStorage.PrintPic){
+        localStorage.setItem("PrintPic","false")
+    }
+    if(!localStorage.PrintPlanCheck){
+        localStorage.setItem("PrintPlanCheck","false")
+    }
+    if(!localStorage.IdPrintCheck){
+        localStorage.setItem("IdPrintCheck","false");
+    }
     if(!localStorage.PrintPicplan){
         localStorage.setItem("PrintPicplan","true")
     }
@@ -845,14 +949,14 @@
 
     if (nowurl.includes('https://boyshelpboys.com/chat.htm')) {//如果当前网页为聊天室页面
         WidthHeightSet();
-        let printstr1=["线上地址","删除左侧导航栏","聊天室名称大小","聊天室名称描边/字体颜色","聊天室名称描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
+        let printstr1=["线上地址","删除左侧导航栏","聊天室名称大小","聊天室名称字体/描边颜色","聊天室名称描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
         let printstr2=["滚动条不显示","历史记录1透明度","顶栏下部透明度","历史记录2透明度","外层边框透明度","顶栏透明度","发送边框透明度","发送框透明度","发送框描边","'聊天留言'透明度"]
         let printstr3=[]
-        addsett(printstr1,printstr2,printstr3,nowurl);
+
         leftANDtop();
         ScrollHidden();
         leftContentContent();
-
+        addsett(printstr1,printstr2,printstr3,nowurl);
         let backb=document.querySelector("#top > div > div")//自顶栏往下部分
         let baca=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body")//聊天历史记录1
         let ul=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body > ul")//聊天历史记录2（位置更靠里）
@@ -916,7 +1020,7 @@
             ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor3}${localStorage.CantSeeset3};`)//聊天历史记录2（位置更靠里）
             histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4};`)//聊天页面外层边框
             DIV2.setAttribute('style', `background-color:${localStorage.CantSeeColor5}${localStorage.CantSeeset5} !important;backdrop-filter:saturate(100%) !important;`);//顶栏
-            fackone.setAttribute('style',`padding: .5rem .5rem; position: relative; border-radius: .375rem; margin: 0 1.5rem 1rem 1.5rem;background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6}`)//发送栏外层边框
+            fackone.setAttribute('style',`padding: .5rem .5rem; position: relative; border-radius: .375rem; margin: 0 1.5rem 1rem 1.5rem;background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6};`)//发送栏外层边框
             LiuYanTop.setAttribute("style",`background-color:${localStorage.CantSeeColor9}${localStorage.CantSeeset9};border:0px !important;`);
         })
 
@@ -924,32 +1028,33 @@
         let MsgServerTime=`<span id="MsgServer" class="" style="border-radius: 50%;border:1px solid gray;height:16px;width:16px;text-align: center;background-color: gray;"></span>`
         document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom > div").insertAdjacentHTML("afterend",MsgServerTime)
         let MsgLight=document.querySelector("#MsgServer");
-        setInterval(function(){
+        setInterval(function MesWebTestPlan(){
             let Msg=document.querySelectorAll("#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li")
             let MsgId=Msg[Msg.length-1].getAttribute("data-index");
             let nowTime,Time
             $.ajax({
                     type:"GET",
                     url: `https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg${function(){if(MsgId!=null){return '&type=new&last_id='+MsgId;}else{return '&type=new';}}()} `,
-                    async:false,
+                    async:true,
+                    timeout:3000,
                     beforeSend:function(){nowTime=Date.now();},
                     complete:function(date,xhr){
                         Time=Date.now();
                         let ReportCode=date.status;
                         if(xhr==='success'&&(Time-nowTime>1000)){
                             MsgLight.style.color="yellow";
-                            MsgLight.style.boxShadow= "0px 0px 30px yellow"
-                            MsgLight.style.border="1px solid yellow";
+                            MsgLight.style.boxShadow= "0px 1px 10px #F6D603,0px 1px 10px yellow,-1px 0px 10px #F6D603,0px 0-1px 10px #F6D603"
+                            MsgLight.style.border="1px solid #F6D603";
                             MsgLight.className="linkOutTime";
                         }else if (ReportCode===200&&xhr==="success"){
                             MsgLight.style.backgroundColor="green";
-                            MsgLight.style.boxShadow= "0px 0px 30px green";
-                            MsgLight.style.border="1px solid green";
+                            MsgLight.style.boxShadow= "0px 1px 10px #77F602,0px -1px 10px #77F602,-1px 0px 10px #77F602,1px 0px 10px #77F602";
+                            MsgLight.style.border="1px solid #77F602";
                             MsgLight.className="linkOpen";
                         }else if(ReportCode>=400||ReportCode>=500||xhr!=="success"){
                             MsgLight.style.color="red";
-                            MsgLight.style.boxShadow= "0px 0px 30px red";
-                            MsgLight.style.border="1px solid red";
+                            MsgLight.style.boxShadow= "0px 1px 10px #F60303,0px -1px 10px #F60303,1px 0px 10px #F60303,-1px 0px 10px #F60303";
+                            MsgLight.style.border="1px solid #F60303";
                             MsgLight.className="linkBadWeb";
                         }
                     },
@@ -957,7 +1062,7 @@
                         console.log(date.responseText);
                         console.log(xhr);
                         MsgLight.style.color="red";
-                        MsgLight.style.boxShadow= "0px 0px 30px red";
+                        MsgLight.style.boxShadow= "0px 1px 10px #F60303,0px -1px 10px #F60303,1px 0px 10px #F60303,-1px 0px 10px #F60303";
                         MsgLight.style.border="1px solid red";
                         MsgLight.className="linkBadWeb";
                     },
@@ -983,6 +1088,19 @@
             }
             oldLen= Liloader.length;
         },1000)
+        let MojPack=`<button id="MojPack" class="toolbar-btn">😀</button>`
+        let ToolBar= document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.chat-toolbar.GameBarFix > div");
+        ToolBar.insertAdjacentHTML("afterend",MojPack)
+        let MojPackOut=document.querySelector("#MojPack");
+        let adddiv4=`<div id="MojPackBack" ></div>`
+        bac.insertAdjacentHTML("beforeend",adddiv4)
+        let adddiv4Out=document.querySelector("#MojPackBack");
+        adddiv4Out.setAttribute('style','overflow:auto; border-radius: 5px;position: absolute;top: 40%;left: 20%;transform: translate(0%, -45%);width: 70%;height: 45%;border: 1px solid gray;z-index:1;display:none;background-color:rgba(30, 32, 34, 0.70);color:#f0f5f9;flex-wrap:wrap;flex-direction:row;justify-content:space-around;align-items:center;')
+        MojPackOut.addEventListener('click',()=>{if(adddiv4Out.style.display==="none" ){adddiv4Out.style.display="flex"}else{adddiv4Out.style.display="none"}})
+        let MojPackAdd=`<div class="M27MojPackImg la la-plus-circle" title="点击添加图片" style="text-align: center;line-height: 100px; font-size: 80px;" id="MojPackAddImg" ></div>`
+        adddiv4Out.insertAdjacentHTML("afterbegin",MojPackAdd);
+        let MojPackAddGet=document.querySelector("#MojPackAddImg");
+
     }else if(nowurl.includes('https://boyshelpboys.com/plugin')){
         console.log(nowurl);
         console.log("damn");
@@ -994,13 +1112,13 @@
         let printstr1=["线上地址","删除左侧导航栏","淡色字体大小","淡色字描边/字体颜色","淡色字描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
         let printstr2=["滚动条不显示","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","'*没做*'*没做*"]
         let printstr3=[]
-        addsett(printstr1,printstr2,printstr3,nowurl);
+
         leftANDtop();
         WidthHeightSet();
         backPrint();
         ScrollHidden();
         leftContentContent();
-
+        addsett(printstr1,printstr2,printstr3,nowurl);
     }else if(nowurl ==="https://boyshelpboys.com/"||nowurl.includes("https://boyshelpboys.com/#")||nowurl.includes("https://boyshelpboys.com/index")){
         console.log(nowurl);
         bac.setAttribute("style","background-color:202040")
