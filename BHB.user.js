@@ -4,7 +4,7 @@
 // @match       https://boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     2.4.7
+// @version     2.4.9
 // @author      M27IAR
 // @license WTFPL
 // @description 2024/11/26 16:34:09
@@ -1066,8 +1066,8 @@
                         Time=Date.now();
                         let ReportCode=date.status;
                         if(xhr==='success'&&(Time-nowTime>1000)){
+                            MsgLight.style.boxShadow= "0px 1px 10px #F6D603,1px 0px 10px #F6D603,-1px 0px 10px #F6D603,0px -1px 10px #F6D603";
                             MsgLight.style.color="yellow";
-                            MsgLight.style.boxShadow= "0px 1px 10px #F6D603,0px 1px 10px yellow,-1px 0px 10px #F6D603,0px 0-1px 10px #F6D603"
                             MsgLight.style.border="1px solid #F6D603";
                             MsgLight.className="linkOutTime";
                             MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>网络状态一般`
