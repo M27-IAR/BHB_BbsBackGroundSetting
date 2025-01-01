@@ -4,9 +4,9 @@
 // @match       https://boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     2.4.9
+// @version     2.4.11
 // @author      M27IAR
-// @license WTFPL
+// @license     MPL
 // @description 2024/11/26 16:34:09
 // @downloadURL https://update.greasyfork.org/scripts/519010/BHB%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2.user.js
 // @updateURL https://update.greasyfork.org/scripts/519010/BHB%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2.meta.js
@@ -20,7 +20,7 @@
     function leftANDtop() {
         let NeedFixStyle=document.querySelector("head");//插入样式表修改左侧与顶栏样式
         NeedFixStyle.insertAdjacentHTML("afterbegin",'<style id="style1"></style>');
-        let nedAddStyle=document.createTextNode(` ::selection{color:#0000FF !important;} ::-moz-selection{color:#0000FF !important;} .RangeSetting{height:0.5rem;width:7.8125rem;} .ColorSettinr{width:2.75rem;} .SettiingInput{padding:2px 1px;border:0.125rem 0rem;} .GameBarFix{background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6} !important;border:0 !important;margin:0 !important; transition: 0.3s;} hr{margin: 0.125rem 0 !important;color:#f0f5f9;} small{text-shadow: 1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor} ;font-size:${localStorage.NameFontSize}px !important; color:${localStorage.LocalFontColorsec} } .fuckyou2{background-color:rgba(40,64,120,0.4); color: aqua; margin:0px;padding: 2px 7px;border: 1px aqua solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou2:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;} .fuckyou3{background-color: rgba(40,64,120,0.4); color: aqua; margin:0px;padding: 2px 7px;border: 1px aqua solid;cursor: pointer;transition: background-color 0.3s;border-radius: 0px;}.fuckyou3:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;}  .fuckyou{background-color: #2b2c4030; color: gray; margin:0.3125rem;padding: 0.3125rem;border: 0.125rem gray solid;font-size:1rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;} .fuckyou:hover{background-color: #FFFFFF; color:#66ccff;} @media (max-width:426px){.fuckyou{background-color: #2b2c4030; color: gray; padding: 0.3125rem 0.5rem;border: 0.125rem gray solid;font-size:0.5rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}} .send-btn-M27{padding:0.3125rem 0.625rem !important;width:4.5rem !important;height:2.5rem !important;border:0.125rem solid hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-radius:20px !important;margin-left:0.3125rem !important;} .send-btn-M27:hover{background-color:hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-color:while !important;}`)
+        let nedAddStyle=document.createTextNode(` ::selection{color:#0000FF !important;} ::-moz-selection{color:#0000FF !important;} .RangeSetting{height:0.5rem;width:7.8125rem;} .ColorSettinr{width:2.75rem;} .SettiingInput{padding:2px 1px;border:0.125rem 0rem;} .GameBarFix{background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6} !important;border:0 !important;margin:0 !important; transition: 0.3s;} hr{margin: 0.125rem 0 !important;color:#f0f5f9;} small{text-shadow: 1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor} ;font-size:${localStorage.NameFontSize}px !important; color:${localStorage.LocalFontColorsec} } .fuckyou2{background-color:rgba(40,64,120,0.4); color: aqua; margin:0px;padding: 2px 7px;border: 1px aqua solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou2:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;} .fuckyou3{background-color: rgba(40,64,120,0.4); color: aqua; margin:0px;padding: 2px 7px;border: 1px aqua solid;cursor: pointer;transition: background-color 0.3s;border-radius: 0px;}.fuckyou3:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;}  .fuckyou{background-color: #2b2c4030; color: gray; margin:0.3125rem;padding: 0.3125rem;border: 0.125rem gray solid;font-size:1rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;} .fuckyou:hover{background-color: #FFFFFF; color:#66ccff;} @media (max-width:426px){.fuckyou{background-color: #2b2c4030; color: gray; padding: 0.3125rem 0.5rem;border: 0.125rem gray solid;font-size:0.5rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}} .send-btn-M27{padding:0.3125rem 0.625rem !important;width:4.5rem !important;height:2.5rem !important;border:0.125rem solid hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-radius:20px !important;margin-left:0.3125rem !important;} .send-btn-M27:hover{background-color:hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-color:while !important;}`)
         let FixStyle=document.querySelector("#style1");
         FixStyle.appendChild(nedAddStyle);
         //方片动态背景的相关css
@@ -101,9 +101,9 @@
             localStorage.setItem("PrintVisable","false")
         }
         if(PrintOpen.checked){
-            localStorage.setItem("PrintPic","true");
+            localStorage.setItem("PrintPicOpen","true");
         }else{
-            localStorage.setItem("PrintPic","false");
+            localStorage.setItem("PrintPicOpen","false");
         }
         if(PrintPlanChec.checked){
             localStorage.setItem("PrintPlanCheck","true")
@@ -323,7 +323,7 @@
                 let BackimagePrintPlanNum=(localStorage.canseenunber*100)%100
                 if(BackimagePrintPlanNum===0&&localStorage.canseenunber==="0"){BackimagePrintPlanNum=""}
                 console.log(BackimagePrintPlanNum)
-                if (localStorage.PrintPic==="false"){//如果用户选择不渲染图片背景
+                if (localStorage.PrintPicOpen==="false"){//如果用户选择不渲染图片背景
                     bac.setAttribute("style","bakcground:#202040;")
                 }else{
                     if(event.target.result.name==="空"){//如果数据库没有本地图片数据
@@ -424,7 +424,7 @@
 <div style="width:5%;${(()=>{if(localStorage.PrintPicplanChk!=="false"){return 'transform: rotate(90deg);'}else{return 'transform: rotate(0deg);'}})()};" id="UnderIcon1">></div><input style="display:none;" ${(function (){if (localStorage.PrintPicplanChk!=="false"){return "checked";}else{return "";}})()} type="checkbox" class="SettiingInput" name="PrintPicplan" id="PrintPicplan" value="PrintPicplan"><label id="PrintPicplanLabel" for="PrintPicplan" style="margin:0;user-select:none;-moz-user-select:none;width: 90%;">图像背景</label>
 </div>
 <div id="PrintPicBox" style="${(()=>{if (localStorage.PrintPicplanChk!=="false"){return "display:block;";}else{return "display:none;";}})()}">
-<input  ${(()=>{if (localStorage.PrintPic!=="false"){return "checked";}else{return "";}})()} type="checkbox" class="SettiingInput" name="PrintPic" id="PrintPic" value="PrintPicplan"><label id="PrintPicplanLabel" for="PrintPic" style="margin:0;user-select:none;-moz-user-select:none;width: 90%;">启用图像背景</label><br>
+<input  ${(()=>{if (localStorage.PrintPicOpenPrintPicOpen!=="false"){return "checked";}else{return "";}})()} type="checkbox" class="SettiingInput" name="PrintPic" id="PrintPic" value="PrintPicplan"><label id="PrintPicplanLabel" for="PrintPic" style="margin:0;user-select:none;-moz-user-select:none;width: 90%;">启用图像背景</label><br>
 <input class="SettiingInput" type='radio'  name='picloadsele' ${localpiclod} id='localpicon' value="localpicon"  width='100px'><label style="user-select:none;-moz-user-select:none;" for="localpicon">${leange1[10]}</label>
 <input class="SettiingInput" type='file' id='webimgsrc' accept='image/*' style='width:50%;'><br> 
 <input class="SettiingInput" type='radio' ${webpiclod} name='picloadsele' id='webpicon'  width='100px' value="webpicon"> <label style="user-select:none;-moz-user-select:none;" for="webpicon">${leange1[9]}</label>
@@ -683,14 +683,14 @@
     }
     //本地存储检测
 
-    if(!localStorage.TransparencySet){
+    if(!localStorage.TransparencySet){//透明度模块是否显示
         localStorage.setItem("TransparencySet","false");
     }
     if(!localStorage.PrintVisabel){
         localStorage.setItem("PrintVisabe","false")
     }
-    if(!localStorage.PrintPic){
-        localStorage.setItem("PrintPic","false")
+    if(!localStorage.PrintPicOpen){
+        localStorage.setItem("PrintPicOpen","true")
     }
     if(!localStorage.PrintPlanCheck){
         localStorage.setItem("PrintPlanCheck","false")
@@ -716,29 +716,26 @@
     if(!localStorage.BoxSize){
         localStorage.setItem("BoxSize","50");
     }
-    if(!localStorage.BackgroundPrint){
-        localStorage.setItem("BackgroundPrint","");
+    if(!localStorage.BackgroundPrint){//图像背景尺寸设置
+        localStorage.setItem("BackgroundPrint","cover");
     }
-    if(!localStorage.centerPosition){
-        localStorage.setItem("centerPosition","");
+    if(!localStorage.centerPosition){//居中渲染设定
+        localStorage.setItem("centerPosition","center");
     }
-    if(!localStorage.heightsize){
+    if(!localStorage.heightsize){//宽度默认值
         localStorage.setItem("heightsize",'100');
     }
-    if(!localStorage.widthsize){
+    if(!localStorage.widthsize){//高度默认值
         localStorage.setItem("widthsize",'100');
     }
-    if(!localStorage.left){
+    if(!localStorage.left){//左侧偏转角度
         localStorage.setItem("left",'0');
     }
-    if(!localStorage.top){
+    if(!localStorage.top){//顶部偏转角度
         localStorage.setItem("top",'0');
     }
-    if(!localStorage.localimgsrc){
-        localStorage.setItem("localimgsrc",'1');
-    }
     if(!localStorage.webimgsrc){
-        localStorage.setItem("webimgsrc",'https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png');
+        localStorage.setItem("webimgsrc",'https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg');
     }
     if(!localStorage.webpiclod){
         localStorage.setItem("webpiclod",1);
@@ -755,28 +752,28 @@
     if(!localStorage.leaderhide){
         localStorage.setItem("leaderhide",0);
     }
-    if(!localStorage.canseenunber){
+    if(!localStorage.canseenunber){//透明度数字
         localStorage.setItem("canseenunber",0.50);
     }
-    if(!localStorage.printToBack){
+    if(!localStorage.printToBack){//渲染到背景
         localStorage.setItem("printToBack",1);
     }
-    if(!localStorage.printToBBS){
+    if(!localStorage.printToBBS){//渲染到聊天界面
         localStorage.setItem("printToBBS",0);
     }
-    if(!localStorage.NameFontSize){
+    if(!localStorage.NameFontSize){//聊天室ID|其他页面部分字体的尺寸
         localStorage.setItem("NameFontSize",18);
     }
-    if(!localStorage.LocalFontColor){
+    if(!localStorage.LocalFontColor){//聊天室ID|其他页面部分字体的颜色
         localStorage.setItem("LocalFontColor","#ffffff")
     }
-    if(!localStorage.LocalFontColorsec){
+    if(!localStorage.LocalFontColorsec){//聊天室ID|其他页面部分字体的描边
         localStorage.setItem("LocalFontColorsec","#7071a4")
     }
-    if(!localStorage.LocalFontColorsec){
+    if(!localStorage.LocalFontColorsec){//聊天室ID|其他页面部分字体的描边粗细
         localStorage.setItem("BorderTextSize","1");
     }
-    if(!localStorage.scrollstyle){
+    if(!localStorage.scrollstyle){//滚动条状态
         localStorage.setItem("scrollstyle","1")
     }
     if(!localStorage.CantSeeset1){//聊天历史记录1
@@ -833,6 +830,17 @@
     if(!localStorage.CantSeeColor9){//聊天页面外层边框
         localStorage.setItem("CantSeeColor9","#2b2c40");
     }
+    if(!localStorage.Version||localStorage.Version!=="2.4.11"){//更新后修改部分选项，理论上不会影响用户
+        localStorage.setItem("version","2.4.11");
+        if(localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png") {
+            localStorage.setItem("webimgsrc", 'https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg');
+        }
+    }
+    /*
+    这里是历史使用过的默认在线URL，需要自取：
+    https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png
+    https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg
+    */
     //本地数值设定结束
     //通过读取本地存储数据进行选择值设定
     let webpiclod="";
@@ -846,7 +854,7 @@
     let BackPrintSelectBox="";
     let Backleft;
     let BackTop;
-    if (localStorage.centerPosition===""){
+    if (localStorage.centerPosition===""){//是否启用居中渲染
         Backleft=localStorage.left+"px";
         BackTop=localStorage.top+"px";
     }else{
@@ -910,6 +918,8 @@
     };
     //初始值部分结束
 
+
+    //背景图片需要的div插入
     let localHightSize="";
     let localWidthSize="";
     let addHTML='<div id="backread">'
@@ -920,6 +930,8 @@
 
     let nowurl = window.location.href;//读取当前所在网页
     console.log(nowurl);
+
+
     //方片特效准备
     let webWidth = window.innerWidth;
     let webHeight = window.innerHeight;
