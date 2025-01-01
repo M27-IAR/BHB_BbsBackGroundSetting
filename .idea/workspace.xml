@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="添加了关闭指示灯的按钮和延迟信息按钮（点击指示灯即可）">
-      <change beforePath="$PROJECT_DIR$/1.html" beforeDir="false" afterPath="$PROJECT_DIR$/1.html" afterDir="false" />
+    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="看着不爽提交一下">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,7 +143,8 @@
       <workItem from="1735221890330" duration="6535000" />
       <workItem from="1735289099413" duration="8526000" />
       <workItem from="1735350221935" duration="27565000" />
-      <workItem from="1735400893974" duration="348000" />
+      <workItem from="1735400893974" duration="667000" />
+      <workItem from="1735738946325" duration="2390000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -433,7 +434,39 @@
       <option name="project" value="LOCAL" />
       <updated>1735400844145</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="添加了关闭指示灯的按钮和延迟信息按钮（点击指示灯即可）&#10;修复了延迟超过1000ms状态（黄灯）状态下阴影不正常显示的问题">
+      <option name="closed" value="true" />
+      <created>1735401494764</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1735401494764</updated>
+    </task>
+    <task id="LOCAL-00038" summary="看着不爽提交一下">
+      <option name="closed" value="true" />
+      <created>1735401510780</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1735401510780</updated>
+    </task>
+    <task id="LOCAL-00039" summary="看着不爽提交一下">
+      <option name="closed" value="true" />
+      <created>1735401552276</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1735401552276</updated>
+    </task>
+    <task id="LOCAL-00040" summary="看着不爽提交一下">
+      <option name="closed" value="true" />
+      <created>1735401557347</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1735401557347</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,8 +484,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test" />
-    <MESSAGE value="修改了检索方式" />
     <MESSAGE value="添加了描边大小修改功能" />
     <MESSAGE value="修改设置按钮样式" />
     <MESSAGE value="添加控件透明度调整设置" />
@@ -476,6 +507,8 @@
     <MESSAGE value="优化了务器状态指示灯（我的灯更好看）&#10;修改了字体描边办法" />
     <MESSAGE value="调整了服务器状态指示灯策略（我的灯更好看）&#10;重写了设置菜单" />
     <MESSAGE value="添加了关闭指示灯的按钮和延迟信息按钮（点击指示灯即可）" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了关闭指示灯的按钮和延迟信息按钮（点击指示灯即可）" />
+    <MESSAGE value="添加了关闭指示灯的按钮和延迟信息按钮（点击指示灯即可）&#10;修复了延迟超过1000ms状态（黄灯）状态下阴影不正常显示的问题" />
+    <MESSAGE value="看着不爽提交一下" />
+    <option name="LAST_COMMIT_MESSAGE" value="看着不爽提交一下" />
   </component>
 </project>
