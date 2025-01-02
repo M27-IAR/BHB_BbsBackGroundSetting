@@ -1,4 +1,4 @@
-主体文件为BHB.JS
+主体文件为BHB.user.JS
 
 BHB论坛背景图片更换，目前只支持聊天室
 BHB论坛页面：https://boyshelpboys.com/

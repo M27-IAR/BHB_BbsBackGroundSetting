@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name        BHB聊天室背景图片更换（已全局兼容）
+// @name        BHB背景图片更换（已全局兼容）
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     2.4.11
+// @version     2.4.13
 // @author      M27IAR
 // @license     MPL
 // @description 2024/11/26 16:34:09
@@ -405,7 +405,7 @@
         }
     }
     function addsett(leange1,leange2,leange3,nowurl) {//添加设置项目
-
+        console.log(localStorage.PrintPicOpen+"测试")
         let BoxPrintCheckOn;
         if(localStorage.BoxPrint!=="no"){BoxPrintCheckOn='checked'}else{BoxPrintCheckOn=''}
         let oldaddtarge=document.querySelector("#navbar-collapse")
@@ -424,7 +424,7 @@
 <div style="width:5%;${(()=>{if(localStorage.PrintPicplanChk!=="false"){return 'transform: rotate(90deg);'}else{return 'transform: rotate(0deg);'}})()};" id="UnderIcon1">></div><input style="display:none;" ${(function (){if (localStorage.PrintPicplanChk!=="false"){return "checked";}else{return "";}})()} type="checkbox" class="SettiingInput" name="PrintPicplan" id="PrintPicplan" value="PrintPicplan"><label id="PrintPicplanLabel" for="PrintPicplan" style="margin:0;user-select:none;-moz-user-select:none;width: 90%;">图像背景</label>
 </div>
 <div id="PrintPicBox" style="${(()=>{if (localStorage.PrintPicplanChk!=="false"){return "display:block;";}else{return "display:none;";}})()}">
-<input  ${(()=>{if (localStorage.PrintPicOpenPrintPicOpen!=="false"){return "checked";}else{return "";}})()} type="checkbox" class="SettiingInput" name="PrintPic" id="PrintPic" value="PrintPicplan"><label id="PrintPicplanLabel" for="PrintPic" style="margin:0;user-select:none;-moz-user-select:none;width: 90%;">启用图像背景</label><br>
+<input  ${(()=>{if (localStorage.PrintPicOpen!=="false"){return "checked";}else{return "";}})()} type="checkbox" class="SettiingInput" name="PrintPic" id="PrintPic" value="PrintPicplan"><label id="PrintPicplanLabel" for="PrintPic" style="margin:0;user-select:none;-moz-user-select:none;width: 90%;">启用图像背景</label><br>
 <input class="SettiingInput" type='radio'  name='picloadsele' ${localpiclod} id='localpicon' value="localpicon"  width='100px'><label style="user-select:none;-moz-user-select:none;" for="localpicon">${leange1[10]}</label>
 <input class="SettiingInput" type='file' id='webimgsrc' accept='image/*' style='width:50%;'><br> 
 <input class="SettiingInput" type='radio' ${webpiclod} name='picloadsele' id='webpicon'  width='100px' value="webpicon"> <label style="user-select:none;-moz-user-select:none;" for="webpicon">${leange1[9]}</label>
@@ -551,7 +551,13 @@
                 document.querySelector("#UnderIcon5").style.transform="rotate(0deg)";
             }
         })
-
+        document.querySelector("#BoxPrintEn").addEventListener("click",(e)=> {
+            if (e.target.checked){
+                localStorage.setItem("BoxPrint","yes");
+            }else{
+                localStorage.setItem("BoxPrint","no");
+            }
+        })
 
 
         let ScrollSettButt=document.querySelector("#ScrollSett")
@@ -770,8 +776,8 @@
     if(!localStorage.LocalFontColorsec){//聊天室ID|其他页面部分字体的描边
         localStorage.setItem("LocalFontColorsec","#7071a4")
     }
-    if(!localStorage.LocalFontColorsec){//聊天室ID|其他页面部分字体的描边粗细
-        localStorage.setItem("BorderTextSize","1");
+    if(!localStorage.BorderTextSize){//聊天室ID|其他页面部分字体的描边粗细
+        localStorage.setItem("BorderTextSize",1);
     }
     if(!localStorage.scrollstyle){//滚动条状态
         localStorage.setItem("scrollstyle","1")
@@ -830,8 +836,8 @@
     if(!localStorage.CantSeeColor9){//聊天页面外层边框
         localStorage.setItem("CantSeeColor9","#2b2c40");
     }
-    if(!localStorage.Version||localStorage.Version!=="2.4.11"){//更新后修改部分选项，理论上不会影响用户
-        localStorage.setItem("version","2.4.11");
+    if(!localStorage.Version||localStorage.Version!=="2.4.12"){//更新后修改部分选项，理论上不会影响用户
+        localStorage.setItem("version","2.4.12");
         if(localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png") {
             localStorage.setItem("webimgsrc", 'https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg');
         }

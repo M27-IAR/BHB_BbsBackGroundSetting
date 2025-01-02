@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="看着不爽提交一下">
+    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修改了默认绘制图片背景的设置">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +145,8 @@
       <workItem from="1735289099413" duration="8526000" />
       <workItem from="1735350221935" duration="27565000" />
       <workItem from="1735400893974" duration="667000" />
-      <workItem from="1735738946325" duration="2390000" />
+      <workItem from="1735738946325" duration="3324000" />
+      <workItem from="1735779651035" duration="2616000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -466,7 +468,23 @@
       <option name="project" value="LOCAL" />
       <updated>1735401557347</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="修改了默认绘制图片背景的设置">
+      <option name="closed" value="true" />
+      <created>1735741392275</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1735741392275</updated>
+    </task>
+    <task id="LOCAL-00042" summary="修改了默认绘制图片背景的设置">
+      <option name="closed" value="true" />
+      <created>1735741405963</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1735741405963</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -484,7 +502,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加了描边大小修改功能" />
     <MESSAGE value="修改设置按钮样式" />
     <MESSAGE value="添加控件透明度调整设置" />
     <MESSAGE value="0" />
@@ -509,6 +526,7 @@
     <MESSAGE value="添加了关闭指示灯的按钮和延迟信息按钮（点击指示灯即可）" />
     <MESSAGE value="添加了关闭指示灯的按钮和延迟信息按钮（点击指示灯即可）&#10;修复了延迟超过1000ms状态（黄灯）状态下阴影不正常显示的问题" />
     <MESSAGE value="看着不爽提交一下" />
-    <option name="LAST_COMMIT_MESSAGE" value="看着不爽提交一下" />
+    <MESSAGE value="修改了默认绘制图片背景的设置" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改了默认绘制图片背景的设置" />
   </component>
 </project>
