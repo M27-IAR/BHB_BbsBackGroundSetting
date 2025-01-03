@@ -4,7 +4,7 @@
 // @match       https://boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     2.4.13
+// @version     2.4.15
 // @author      M27IAR
 // @license     MPL
 // @description 2024/11/26 16:34:09
@@ -85,10 +85,12 @@
         let uplodeleft=parseInt(left.value)//左侧距离(转数字)
         let uplodetop=parseInt(top.value)//顶部距离(转数字)
 
-        localStorage.setItem("userset",true);//写入判定用户是否修改;
+        //localStorage.setItem("userset",true);//写入判定用户是否修改;
         //开始写入数据
         if(!localStorage.MsgLightCheck){
             localStorage.setItem("MsgLightCheck",'true')
+        }else{
+            localStorage.setItem("MsgLightCheck",'false')
         }
         if(!localStorage.TransparencySet){
             localStorage.setItem("TransparencySet","true");
@@ -184,8 +186,6 @@
         let adddiv=document.querySelector("#localsett");
         adddiv.style.display="none";
         location.reload();
-
-
 
     }
     function addStyleToLocal(backb,baca,ul,histor,DIV2,FackOne,MsgInputBox,LiuYanTop) {//保存控件透明度
@@ -410,14 +410,14 @@
         if(localStorage.BoxPrint!=="no"){BoxPrintCheckOn='checked'}else{BoxPrintCheckOn=''}
         let oldaddtarge=document.querySelector("#navbar-collapse")
         let addbott="<button class='fuckyou'>插件设置</button>"
-        let addmain=`<div id="localsett">
+        let addmain=`<div id="localsett" >
 <div >
 <div style="position: sticky ;height:28px;width:100%;top: 0;left:0;background-color: rgba(36,70,88,0.4);backdrop-filter: blur(5px);">
     <button id="exit" class="fuckyou3">X</button><span>插件设置</span>
     </div>
 <div>
 <form name='myform' method="POST" action='${nowurl}'>
-<input type="checkbox" style="user-select:none;-moz-user-select: none; " name="MsgLightCheck" id="MsgLightCheck" ${(()=>{if(localStorage.MsgLightCheck==="true"){return "checked"}else{return ""}})()}><label for="MsgLightCheck">关闭指示灯</label>
+<input type="checkbox" style="user-select:none;-moz-user-select: none; " name="MsgLightCheck" id="MsgLightCheck" ${(()=>{if(localStorage.MsgLightCheck==="true"){return "checked"}else{return ""}})()}><label for="MsgLightCheck">启用指示灯</label>
 <input style="user-select:none;-moz-user-select: none;" class="SettiingInput" type="checkbox" ${leadermanhide} value="leadermanhide" name="leadermanhide" id="leadermanhide"><label for="leadermanhide">${leange1[1]}</label>
 <input style="user-select:none;-moz-user-select: none;" class="SettiingInput" type="checkbox" ${Scrollstylex} name="ScrollSett" id="ScrollSett">${leange2[0]}</input><br>
 <div id="PrintPicCheck" style="width:100%;background-color: rgba(36,70,88,0.4);border:1px solid aqua;display: flex;">
@@ -433,7 +433,7 @@
 <input class="SettiingInput" type='radio'  ${sectionplanone} name='addplan' id='sectionplan' value="sectionplan" width='100px'><label style="user-select:none;-moz-user-select:none;" for="sectionplan">${leange1[11]}</label><br>
 <input class="SettiingInput" type='radio' value='1' ${PrintToBackground} name='baklocal' id='printToWebback' value="printToWebback"  width='100px'><label style="user-select:none;-moz-user-select:none;" for="printToWebback">${leange1[13]}</label>
 <input class="SettiingInput" type='radio' value='printToBBS' name='baklocal' ${PrintToBBSGround} id='printToBBS'  width='100px'><label style="user-select:none;-moz-user-select:none;" for="printToBBS">${leange1[14]}</label><br>
-<span>透明度</span><input class="SettiingInput RangeSetting" type="range" min="0" max="1" step="0.01" value="${localStorage.canseenunber}" id="notseenumber"><br>
+<span>背景图片透明度</span><input class="SettiingInput RangeSetting" type="range" min="0" max="1" step="0.01" value="${localStorage.canseenunber}" id="notseenumber"><br>
 <span>使用section写入背景只能在最底层</span>
 </div>
 <hr>
@@ -496,7 +496,7 @@
         let printSelcetBox=document.querySelector("#selectBox");
 
         printSelcetBox.addEventListener("change",function(){checkPrint();})
-        adddiv.setAttribute('style', 'overflow:auto; border-radius: 5px;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);width: 330px;height: 550px;border: 1px solid aqua;z-index:10000;display:none;background-color:rgba(40,64,120,0.4);color:#f0f5f9;text-shadow:0 1px 0.5px #32353E,0 -1px 0.5px #32353E,1px 0 0.5px #32353E,-1px 0 0.5px #32353E;')
+        adddiv.setAttribute('style', 'position: fixed;left:50%;top:50%;overflow:auto; border-radius: 5px;transform: translate(-50%, -50%);width: 330px;height: 550px;border: 1px solid aqua;z-index:10000;display:none;background-color:rgba(40,64,120,0.4);color:#f0f5f9;text-shadow:0 1px 0.5px #32353E,0 -1px 0.5px #32353E,1px 0 0.5px #32353E,-1px 0 0.5px #32353E;')
         addbutt.addEventListener("click",function(){//开关设置栏1
             let adddiv=document.querySelector("#localsett")
             if (adddiv.style.display==="block"){
@@ -924,6 +924,61 @@
     };
     //初始值部分结束
 
+    function MesWebTestPlan(MsgLight,MsgPrint){//信号灯
+        let Msg=document.querySelectorAll("#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li")
+        let MsgId
+        if(Msg!==undefined&&Msg.length>0){MsgId=Msg[Msg.length-1].getAttribute("data-index");}
+        let nowTime,Time
+        console.log("setwOrk");
+        $.ajax({
+                type:"GET",
+                url: `https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg${function(){if(MsgId!=null){return '&type=new&last_id='+MsgId;}else{return '&type=new';}}()} `,
+                async:true,
+                timeout:3000,
+                beforeSend:function(){nowTime=Date.now();},
+                complete:function(date,xhr){
+                    Time=Date.now();
+                    let ReportCode=date.status;
+                    if((Time-nowTime)>=3000){
+                        MsgLight.style.color="red";
+                        MsgLight.style.boxShadow= "0px 1px 10px #F60303,0px -1px 10px #F60303,1px 0px 10px #F60303,-1px 0px 10px #F60303";
+                        MsgLight.style.border="1px solid #F60303";
+                        MsgLight.className="linkBadWeb";
+                        MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>收信延迟过高`
+                    }else if(xhr==='success'&&(Time-nowTime>1000)){
+                        MsgLight.style.boxShadow= "0px 1px 10px #F6D603,1px 0px 10px #F6D603,-1px 0px 10px #F6D603,0px -1px 10px #F6D603";
+                        MsgLight.style.color="yellow";
+                        MsgLight.style.border="1px solid #F6D603";
+                        MsgLight.className="linkOutTime";
+                        MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>网络状态一般`
+                    }else if (ReportCode===200&&xhr==="success"){
+                        MsgLight.style.backgroundColor="green";
+                        MsgLight.style.boxShadow= "0px 1px 10px #77F602,0px -1px 10px #77F602,-1px 0px 10px #77F602,1px 0px 10px #77F602";
+                        MsgLight.style.border="1px solid #77F602";
+                        MsgLight.className="linkOpen";
+                        MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>网络状态良好`
+                    }else if(ReportCode>=400||ReportCode>=500||xhr!=="success"){
+                        MsgLight.style.color="red";
+                        MsgLight.style.boxShadow= "0px 1px 10px #F60303,0px -1px 10px #F60303,1px 0px 10px #F60303,-1px 0px 10px #F60303";
+                        MsgLight.style.border="1px solid #F60303";
+                        MsgLight.className="linkBadWeb";
+                        MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>但无法正确链接到服务器`
+                    }
+                },
+                error: function (date,xhr,errorThrown){
+                    console.log(date);
+                    console.log(xhr);
+                    console.log(errorThrown);
+                    MsgLight.style.color="red";
+                    MsgLight.style.boxShadow= "0px 1px 10px #F60303,0px -1px 10px #F60303,1px 0px 10px #F60303,-1px 0px 10px #F60303";
+                    MsgLight.style.border="1px solid red";
+                    MsgLight.className="linkBadWeb";
+                    MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>但无法正确链接到服务器`
+                },
+            }
+
+        )
+    }
 
     //背景图片需要的div插入
     let localHightSize="";
@@ -932,11 +987,10 @@
     document.querySelector("body").insertAdjacentHTML("afterbegin",addHTML);
     let addtarge=document.querySelector("#backread");
     let bac=document.querySelector("body")//网页本体
-    document.querySelector("#navbar-collapse > div").innerHTML=""
+    document.querySelector("#navbar-collapse > div").innerHTML=""//删除手机模式下顶部的图标
 
     let nowurl = window.location.href;//读取当前所在网页
     console.log(nowurl);
-
 
     //方片特效准备
     let webWidth = window.innerWidth;
@@ -969,7 +1023,6 @@
         }
     })
 
-
     if (nowurl.includes('https://boyshelpboys.com/chat.htm')) {//如果当前网页为聊天室页面
         WidthHeightSet();
         let printstr1=["线上地址","删除左侧导航栏","聊天室名称大小","聊天室名称字体/描边颜色","聊天室名称描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
@@ -995,15 +1048,11 @@
         document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.chat-toolbar").className="chat-toolbar GameBarFix"
 
         let DIV2=document.querySelector("#layout-navbar");
-
-
-
         let addlocalupdate=document.querySelector("#webimgsrc");
 
         backPrint(BBSmsgBack);
         bac.setAttribute('style',`background-color: #202040;`)//网页背景部分
         LiuYanTop.setAttribute("style",`background-color:${localStorage.CantSeeColor9}${localStorage.CantSeeset9};border:0px !important;`);
-
         baca.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1} !important;`)//聊天历史记录1
         backb.setAttribute('style', `background-color: ${localStorage.CantSeeColor2}${localStorage.CantSeeset2} !important;`)//自顶栏往下部分
         ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor3}${localStorage.CantSeeset3} !important;`)//聊天历史记录2（位置更靠里）
@@ -1048,21 +1097,32 @@
         })
 
         //聊天室消息状态指示灯
-        let MsgServerTime=` <span id="MsgServer" class="" style="display: ${(()=>{if(localStorage.MsgLightCheck==='true'){return 'none';}else{return 'block';}})()};border-radius: 50%;border:1px solid gray;height:16px;width:16px;text-align: center;background-color: gray;"></span>`
+        let MsgServerTime=` <span id="MsgServer" class="" style="display: ${(()=>{if(localStorage.MsgLightCheck==='true'){return 'block';}else{return 'none';}})()};border-radius: 50%;border:1px solid gray;height:16px;width:16px;text-align: center;background-color: gray;"></span>`
         document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom > div").insertAdjacentHTML("afterend",MsgServerTime)
         let MsgLight=document.querySelector("#MsgServer");
-        let MsgServerReport=`<div id="MsgBox" style="display:none; top: 10px;right:50px;position: absolute;width: 150px;height: 50px;background-color: rgba(40, 64, 120, 0.4);border: 1px solid aqua;"><span id="Msg"></span> </div>`
+        let MsgServerReport=`<div id="MsgBox" style="z-index:1000001;display:none; top: 10px;right:50px;position: absolute;width: 180px;height: 50px;background-color: rgba(40, 64, 120, 0.4);border: 1px solid aqua;"><span id="Msg"></span> </div>`
         document.querySelector("#top > div > div > main > section > div > div > div > div.online-users-panel").insertAdjacentHTML("afterend",MsgServerReport)
         let MsgPrint= document.querySelector("#Msg");
+
+        //指示灯计时器
+        let IntTime=setInterval(()=> {
+            MesWebTestPlan(MsgLight,MsgPrint);
+        },3000)
+
         document.querySelector("#MsgLightCheck").addEventListener("click",(e)=>{
             if(e.target.checked){
                 localStorage.setItem("MsgLightCheck","true");
                 MsgLight.style.display="block";
+                IntTime=setInterval(()=> {
+                    MesWebTestPlan(MsgLight,MsgPrint)
+                },3000);
             }else{
                 localStorage.setItem("MsgLightCheck","false");
                 MsgLight.style.display="none";
+                clearInterval(IntTime);
             }
         })
+
         MsgLight.addEventListener("click",()=>{
             if(document.querySelector("#MsgBox").style.display==="none"){
                 document.querySelector("#MsgBox").style.display="block";
@@ -1070,57 +1130,11 @@
                 document.querySelector("#MsgBox").style.display="none";
             }
         })
-        setInterval(function MesWebTestPlan(){
-            let Msg=document.querySelectorAll("#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li")
-            let MsgId=Msg[Msg.length-1].getAttribute("data-index");
-            let nowTime,Time
-            $.ajax({
-                    type:"GET",
-                    url: `https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg${function(){if(MsgId!=null){return '&type=new&last_id='+MsgId;}else{return '&type=new';}}()} `,
-                    async:true,
-                    timeout:3000,
-                    beforeSend:function(){nowTime=Date.now();},
-                    complete:function(date,xhr){
-                        Time=Date.now();
-                        let ReportCode=date.status;
-                        if(xhr==='success'&&(Time-nowTime>1000)){
-                            MsgLight.style.boxShadow= "0px 1px 10px #F6D603,1px 0px 10px #F6D603,-1px 0px 10px #F6D603,0px -1px 10px #F6D603";
-                            MsgLight.style.color="yellow";
-                            MsgLight.style.border="1px solid #F6D603";
-                            MsgLight.className="linkOutTime";
-                            MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>网络状态一般`
-                        }else if (ReportCode===200&&xhr==="success"){
-                            MsgLight.style.backgroundColor="green";
-                            MsgLight.style.boxShadow= "0px 1px 10px #77F602,0px -1px 10px #77F602,-1px 0px 10px #77F602,1px 0px 10px #77F602";
-                            MsgLight.style.border="1px solid #77F602";
-                            MsgLight.className="linkOpen";
-                            MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>网络状态良好`
-                        }else if(ReportCode>=400||ReportCode>=500||xhr!=="success"){
-                            MsgLight.style.color="red";
-                            MsgLight.style.boxShadow= "0px 1px 10px #F60303,0px -1px 10px #F60303,1px 0px 10px #F60303,-1px 0px 10px #F60303";
-                            MsgLight.style.border="1px solid #F60303";
-                            MsgLight.className="linkBadWeb";
-                            MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>无法链接到服务器`
-                        }
-                    },
-                    error: function (date,xhr){
-                        console.log(date.responseText);
-                        console.log(xhr);
-                        MsgLight.style.color="red";
-                        MsgLight.style.boxShadow= "0px 1px 10px #F60303,0px -1px 10px #F60303,1px 0px 10px #F60303,-1px 0px 10px #F60303";
-                        MsgLight.style.border="1px solid red";
-                        MsgLight.className="linkBadWeb";
-                        MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>无法链接到服务器`
-                    },
-                }
-
-            )
-        },3000)
 
         //针对@闪电炫芬批插件的外链头像图片做适配
         document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li:nth-child(1048)  ")
         let oldLen=0
-        setInterval(function () {
+        setInterval(()=> {
             let Liloader= document.querySelectorAll("#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li")
             if (oldLen ===Liloader.length){
             }else{
@@ -1134,6 +1148,7 @@
             }
             oldLen= Liloader.length;
         },1000)
+        //表情功能 暂时搁置
         let MojPack=`<button id="MojPack" class="toolbar-btn">😀</button>`
         let ToolBar= document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.chat-toolbar.GameBarFix > div");
         ToolBar.insertAdjacentHTML("afterend",MojPack)
