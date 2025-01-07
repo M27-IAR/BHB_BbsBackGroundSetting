@@ -4,7 +4,7 @@
 // @match       https://boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     2.4.15
+// @version     2.4.19
 // @author      M27IAR
 // @license     MPL
 // @description 2024/11/26 16:34:09
@@ -20,7 +20,7 @@
     function leftANDtop() {
         let NeedFixStyle=document.querySelector("head");//插入样式表修改左侧与顶栏样式
         NeedFixStyle.insertAdjacentHTML("afterbegin",'<style id="style1"></style>');
-        let nedAddStyle=document.createTextNode(` ::selection{color:#0000FF !important;} ::-moz-selection{color:#0000FF !important;} .RangeSetting{height:0.5rem;width:7.8125rem;} .ColorSettinr{width:2.75rem;} .SettiingInput{padding:2px 1px;border:0.125rem 0rem;} .GameBarFix{background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6} !important;border:0 !important;margin:0 !important; transition: 0.3s;} hr{margin: 0.125rem 0 !important;color:#f0f5f9;} small{text-shadow: 1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor} ;font-size:${localStorage.NameFontSize}px !important; color:${localStorage.LocalFontColorsec} } .fuckyou2{background-color:rgba(40,64,120,0.4); color: aqua; margin:0px;padding: 2px 7px;border: 1px aqua solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou2:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;} .fuckyou3{background-color: rgba(40,64,120,0.4); color: aqua; margin:0px;padding: 2px 7px;border: 1px aqua solid;cursor: pointer;transition: background-color 0.3s;border-radius: 0px;}.fuckyou3:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;}  .fuckyou{background-color: #2b2c4030; color: gray; margin:0.3125rem;padding: 0.3125rem;border: 0.125rem gray solid;font-size:1rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;} .fuckyou:hover{background-color: #FFFFFF; color:#66ccff;} @media (max-width:426px){.fuckyou{background-color: #2b2c4030; color: gray; padding: 0.3125rem 0.5rem;border: 0.125rem gray solid;font-size:0.5rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}} .send-btn-M27{padding:0.3125rem 0.625rem !important;width:4.5rem !important;height:2.5rem !important;border:0.125rem solid hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-radius:20px !important;margin-left:0.3125rem !important;} .send-btn-M27:hover{background-color:hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-color:while !important;}`)
+        let nedAddStyle=document.createTextNode(` ::selection{color:#0000FF !important;} ::-moz-selection{color:#0000FF !important;} .RangeSetting{height:0.5rem;width:7.8125rem;} .ColorSettinr{width:2.75rem;} .SettiingInput{padding:2px 1px;border:0.125rem 0rem;} .GameBarFix{background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6} !important;border:0 !important;margin:0 !important; transition: 0.3s;} hr{margin: 0.125rem 0 !important;color:#f0f5f9;} small{text-shadow: 1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor} ;font-size:${localStorage.NameFontSize}px !important; color:${localStorage.LocalFontColorsec} } .fuckyou2{background-color:rgba(40,64,120,0.4); color: aqua; margin:0px;padding: 2px 7px;border: 1px aqua solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou2:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;} .fuckyou3{background-color: rgba(40,64,120,0.4); color: aqua; margin:0px;padding: 2px 7px;border: 1px aqua solid;cursor: pointer;transition: background-color 0.3s;border-radius: 0px;}.fuckyou3:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;}  .fuckyou{background-color: #2b2c4030; color: white; margin:0.3125rem;padding: 0.3125rem;border: 0.125rem gray solid;font-size:1rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;} .fuckyou:hover{background-color: #FFFFFF; color:#66ccff;} @media (max-width:426px){.fuckyou{background-color: #2b2c4030; color: white; padding: 0.3125rem 0.5rem;border: 0.125rem gray solid;font-size:1rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}} .send-btn-M27{padding:0.3125rem 0.625rem !important;width:4.5rem !important;height:2.5rem !important;border:0.125rem solid hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-radius:20px !important;margin-left:0.3125rem !important;} .send-btn-M27:hover{background-color:hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-color:while !important;}`)
         let FixStyle=document.querySelector("#style1");
         FixStyle.appendChild(nedAddStyle);
         //方片动态背景的相关css
@@ -29,11 +29,12 @@
         let nedAddStyleSec=document.createTextNode(`.M27MojPackImg{width:100px; height:100px;background-size:cover;background-color:#000000;} .M27flexDivSet{pointer-events: none; transition: background-color 2s;width:${localStorage.BoxSize}px;height:${localStorage.BoxSize}px;flex-basis:${localStorage.BoxSize}px;border:1px solid rgba(${BorderRGBRed},${BorderRGBGreen},${BorderRGBBlue},0.${localStorage.BoxBorderCansee});margin;0px;}`)
         let FixStyleSec=document.querySelector("#style3");
         FixStyleSec.appendChild(nedAddStyleSec);
-
-        let NeedFixStyleThee=document.querySelectorAll("body > style");//修改站长加的消息时间|添加指示灯的相关css动画样式
+        //修改站长加的消息时间|添加指示灯的相关css动画样式
+        let MsgBoxRed=Number("0x"+localStorage.MsgBoxColor.substring(1,3)),MsgBoxGreen=Number("0x"+localStorage.MsgBoxColor.substring(3,5)),MsgBoxBlue=Number("0x"+localStorage.MsgBoxColor.substring(5))
+        let NeedFixStyleThee=document.querySelectorAll("body > style");
         NeedFixStyleThee[NeedFixStyleThee.length-1].insertAdjacentHTML("afterend",'<style id="style4"></style>');
         let FixStyleThee=document.querySelector("#style4")
-        let nedAddStyleThee=document.createTextNode(`.dropdown-item {line-height: 1.54;backdrop-filter: blur(5px);}.offcanvas {background-color: rgba(43,44,64,0.5); }@keyframes M27shineGreen{0%{opacity:0.5;background-color:green;}100%{opacity:1;background-color:#77F602;}} @keyframes M27shineYellow{0%{opacity:0.5;background-color:yellow;}100%{opacity:1;background-color:#F6D603;}} @keyframes M27shineRed{0%{opacity:0.5;background-color:red;}100%{opacity:1;background-color:#F60303;}} .linkOpen{animation:M27shineGreen 5s ease-in infinite alternate} .linkBadWeb{animation:M27shineRed 2s ease-in infinite alternate} .linkOutTime{animation:M27shineYellow 4s ease-in infinite alternate} .message-time {opacity: 1;transition: opacity 0.2s ease;}.loading-more {text-align: center;padding: 10px;color: #666;font-size: 12px;background-color: #66CCFF00; }`)
+        let nedAddStyleThee=document.createTextNode(`.chat-message-text{backdrop-filter: blur(5px);background-color: rgba(${MsgBoxRed},${MsgBoxGreen},${MsgBoxBlue},${localStorage.MsgBoxTra}) !important;box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .25) !important;} .dropdown-item {line-height: 1.54;backdrop-filter: blur(5px);}.offcanvas {background-color: rgba(43,44,64,0.5); }@keyframes M27shineGreen{0%{opacity:0.5;background-color:green;}100%{opacity:1;background-color:#77F602;}} @keyframes M27shineYellow{0%{opacity:0.5;background-color:yellow;}100%{opacity:1;background-color:#F6D603;}} @keyframes M27shineRed{0%{opacity:0.5;background-color:red;}100%{opacity:1;background-color:#F60303;}} .linkOpen{animation:M27shineGreen 5s ease-in infinite alternate} .linkBadWeb{animation:M27shineRed 2s ease-in infinite alternate} .linkOutTime{animation:M27shineYellow 4s ease-in infinite alternate} .loading-more {text-align: center;padding: 10px;color: #666;font-size: 12px;background-color: #66CCFF00; }`)
         FixStyleThee.appendChild(nedAddStyleThee);
 
         document.querySelector("#statelyMyInfoModal > ul > div").setAttribute("style","backdrop-filter: blur(5px);")
@@ -78,6 +79,7 @@
         let IdPrintOpenchec=document.querySelector("#OpenIdPrint")//id渲染板块启用框
         let PrintPlanChec=document.querySelector("#PrintPlan");//渲染模式板块启用框
         let PrintVisabelOpen=document.querySelector("#PrintVisable")//特效板块启用框
+        let TranSet=document.querySelector("#TransparencySet")//透明度板块启用框
 
 
         let uplodeheightsize=parseInt(heightsize.value)//高度比例(转数字)
@@ -87,12 +89,8 @@
 
         //localStorage.setItem("userset",true);//写入判定用户是否修改;
         //开始写入数据
-        if(!localStorage.MsgLightCheck){
-            localStorage.setItem("MsgLightCheck",'true')
-        }else{
-            localStorage.setItem("MsgLightCheck",'false')
-        }
-        if(!localStorage.TransparencySet){
+
+        if(TranSet.checked){
             localStorage.setItem("TransparencySet","true");
         }else{
             localStorage.setItem("TransparencySet","false")
@@ -224,7 +222,6 @@
         localStorage.setItem("CantSeeColor7",seecolor7.value);
         localStorage.setItem("CantSeeColor8",seecolor8.value);
         localStorage.setItem("CantSeeColor9",seecolor9.value);
-        console.log(printseenum)
 
         backb.setAttribute('style', `background-color: ${seecolor2.value}${printseenum[1]} !important;`)//自顶栏往下部分
         baca.setAttribute('style', `background-color: ${seecolor1.value}${printseenum[0]} !important;`)//聊天历史记录1
@@ -417,7 +414,7 @@
     </div>
 <div>
 <form name='myform' method="POST" action='${nowurl}'>
-<input type="checkbox" style="user-select:none;-moz-user-select: none; " name="MsgLightCheck" id="MsgLightCheck" ${(()=>{if(localStorage.MsgLightCheck==="true"){return "checked"}else{return ""}})()}><label for="MsgLightCheck">启用指示灯</label>
+<input type="checkbox" style="user-select:none;-moz-user-select: none; " name="MsgLightCheck" id="MsgLightCheck" ${(()=>{if(localStorage.MsgLightCheckX==="true"){return "checked"}else{return ""}})()}><label for="MsgLightCheck">启用指示灯</label>
 <input style="user-select:none;-moz-user-select: none;" class="SettiingInput" type="checkbox" ${leadermanhide} value="leadermanhide" name="leadermanhide" id="leadermanhide"><label for="leadermanhide">${leange1[1]}</label>
 <input style="user-select:none;-moz-user-select: none;" class="SettiingInput" type="checkbox" ${Scrollstylex} name="ScrollSett" id="ScrollSett">${leange2[0]}</input><br>
 <div id="PrintPicCheck" style="width:100%;background-color: rgba(36,70,88,0.4);border:1px solid aqua;display: flex;">
@@ -436,7 +433,7 @@
 <span>背景图片透明度</span><input class="SettiingInput RangeSetting" type="range" min="0" max="1" step="0.01" value="${localStorage.canseenunber}" id="notseenumber"><br>
 <span>使用section写入背景只能在最底层</span>
 </div>
-<hr>
+<hr  id="MsgUrlAddLine">
 <div id="IdPrintCheck" style="width:100%;background-color: rgba(36,70,88,0.4);border:1px solid aqua;display: flex;">
 <div style="width:5%;${(()=>{if(localStorage.IdPrintCheck!=="false"){return 'transform: rotate(90deg);'}else{return 'transform: rotate(0deg);'}})()};" id="UnderIcon2">></div><input style="display:none;" type="checkbox" class="SettiingInput" name="OpneIDPrint" id="OpenIdPrint" ${(function (){if (localStorage.IdPrintCheck!=="false"){return "checked";}else{return "";}})()}><label style="user-select:none;-moz-user-select:none;width: 90%;margin:0;" for="OpenIdPrint">Id名称渲染</label>
 </div>
@@ -485,7 +482,8 @@
 <button class="fuckyou2"  id="secsubint">应用</button>
 <br><button id="reall"  class="fuckyou2">重置颜色|透明度配置</button></div>
 <hr>
-<button class='fuckyou2' id='save' type="submit">提交</button></form></div>`
+<button class='fuckyou2' id='save' type="submit">提交</button>
+</form></div>`
 
         oldaddtarge.insertAdjacentHTML("afterbegin",addbott);
         bac.insertAdjacentHTML("afterbegin",addmain);
@@ -558,7 +556,6 @@
                 localStorage.setItem("BoxPrint","no");
             }
         })
-
 
         let ScrollSettButt=document.querySelector("#ScrollSett")
         ScrollSettButt.addEventListener("click",function () {SetScroll()})
@@ -688,7 +685,15 @@
 
     }
     //本地存储检测
-
+    if(!localStorage.MsgLightCheckX){
+        localStorage.setItem("MsgLightCheckX",'true')
+    }
+    if(!localStorage.MsgSet){
+        localStorage.setItem("MsgSet","false");
+    }
+    if(!localStorage.MsgSetVisable){
+        localStorage.setItem("MsgSetVisable","false");
+    }
     if(!localStorage.TransparencySet){//透明度模块是否显示
         localStorage.setItem("TransparencySet","false");
     }
@@ -712,6 +717,12 @@
     }
     if(!localStorage.BoxBorderColor){
         localStorage.setItem("BoxBorderColor","#000000");
+    }
+    if(!localStorage.MsgBoxTra){
+        localStorage.setItem("MsgBoxTra",'0.2');
+    }
+    if(!localStorage.MsgBoxColor){
+        localStorage.setItem("MsgBoxColor","#000000");
     }
     if(!localStorage.BoxBorderCansee){
         localStorage.setItem("BoxBorderCansee","99");
@@ -929,7 +940,6 @@
         let MsgId
         if(Msg!==undefined&&Msg.length>0){MsgId=Msg[Msg.length-1].getAttribute("data-index");}
         let nowTime,Time
-        console.log("setwOrk");
         $.ajax({
                 type:"GET",
                 url: `https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg${function(){if(MsgId!=null){return '&type=new&last_id='+MsgId;}else{return '&type=new';}}()} `,
@@ -1033,6 +1043,25 @@
         ScrollHidden();
         leftContentContent();
         addsett(printstr1,printstr2,printstr3,nowurl);
+        //聊天室页面的独占设置内容
+        let AddSetter=`
+<div id="MsgSet" style="width:100%;background-color: rgba(36,70,88,0.4);border:1px solid aqua;display: flex;">
+<div style="width:5%;${(()=>{if(localStorage.MsgSet!=="false"){return 'transform: rotate(90deg);'}else{return 'transform: rotate(0deg);'}})()};" id="UnderIcon6">></div><input style="display:none;" type="checkbox" class="SettiingInput" name="MsgSetCheck" id="MsgSetCheck" ${(function (){if (localStorage.MsgSet!=="false"){return "checked";}else{return "";}})()}><label style="user-select:none;-moz-user-select:none;width: 90%;margin:0;" for="MsgSetCheck">消息页面设置</label>
+</div>
+<div id="MsgSetSet" style="${(()=>{if (localStorage.MsgSet!=="false"){return "display:block;";}else{return "display:none;";}})()}">
+<span>消息气泡调整</span><input class="SettiingInput RangeSetting" type="range" min="0" max="1" step="0.01" value="${localStorage.MsgBoxTra}"onchange="localStorage.MsgBoxTra=value" id="MsgBoxTra" ><input class="SettiingInput ColorSettinr" type="color" id="MsgBoxColor" onchange="localStorage.MsgBoxColor=value" value="${localStorage.MsgBoxColor}"><br>
+</div>`
+        document.querySelector("#MsgUrlAddLine").insertAdjacentHTML("afterend",AddSetter);
+        document.querySelector("#MsgSetCheck").addEventListener("click",function(e) {
+            if (e.target.checked){
+                document.querySelector("#MsgSetSet").style.display="block";
+                document.querySelector("#UnderIcon6").style.transform="rotate(90deg)";
+            }else{
+                document.querySelector("#MsgSetSet").style.display="none";
+                document.querySelector("#UnderIcon6").style.transform="rotate(0deg)";
+            }
+        })
+
         let backb=document.querySelector("#top > div > div")//自顶栏往下部分
         let baca=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body")//聊天历史记录1
         let ul=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body > ul")//聊天历史记录2（位置更靠里）
@@ -1095,9 +1124,9 @@
             fackone.setAttribute('style',`padding: .5rem .5rem; position: relative; border-radius: .375rem; margin: 0 1.5rem 1rem 1.5rem;background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6};`)//发送栏外层边框
             LiuYanTop.setAttribute("style",`background-color:${localStorage.CantSeeColor9}${localStorage.CantSeeset9};border:0px !important;`);
         })
-
+        console.log(localStorage.MsgLightCheckX)
         //聊天室消息状态指示灯
-        let MsgServerTime=` <span id="MsgServer" class="" style="display: ${(()=>{if(localStorage.MsgLightCheck==='true'){return 'block';}else{return 'none';}})()};border-radius: 50%;border:1px solid gray;height:16px;width:16px;text-align: center;background-color: gray;"></span>`
+        let MsgServerTime=` <span id="MsgServer" class="" style="display: ${(()=>{if(localStorage.MsgLightCheckX==='true'){return 'block';}else{return 'none';}})()};border-radius: 50%;border:1px solid gray;height:16px;width:16px;text-align: center;background-color: gray;"></span>`
         document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom > div").insertAdjacentHTML("afterend",MsgServerTime)
         let MsgLight=document.querySelector("#MsgServer");
         let MsgServerReport=`<div id="MsgBox" style="z-index:1000001;display:none; top: 10px;right:50px;position: absolute;width: 180px;height: 50px;background-color: rgba(40, 64, 120, 0.4);border: 1px solid aqua;"><span id="Msg"></span> </div>`
@@ -1111,18 +1140,17 @@
 
         document.querySelector("#MsgLightCheck").addEventListener("click",(e)=>{
             if(e.target.checked){
-                localStorage.setItem("MsgLightCheck","true");
+                localStorage.setItem("MsgLightCheckX","true");
                 MsgLight.style.display="block";
                 IntTime=setInterval(()=> {
                     MesWebTestPlan(MsgLight,MsgPrint)
                 },3000);
             }else{
-                localStorage.setItem("MsgLightCheck","false");
+                localStorage.setItem("MsgLightCheckX","false");
                 MsgLight.style.display="none";
                 clearInterval(IntTime);
             }
         })
-
         MsgLight.addEventListener("click",()=>{
             if(document.querySelector("#MsgBox").style.display==="none"){
                 document.querySelector("#MsgBox").style.display="block";
@@ -1130,7 +1158,6 @@
                 document.querySelector("#MsgBox").style.display="none";
             }
         })
-
         //针对@闪电炫芬批插件的外链头像图片做适配
         document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li:nth-child(1048)  ")
         let oldLen=0

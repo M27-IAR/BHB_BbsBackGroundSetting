@@ -147,6 +147,8 @@
       <workItem from="1735738946325" duration="3324000" />
       <workItem from="1735779651035" duration="3677000" />
       <workItem from="1735901268152" duration="8578000" />
+      <workItem from="1735915142292" duration="38000" />
+      <workItem from="1736247236596" duration="12522000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -500,7 +502,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735799888896</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="修复了滚动页面后设置栏不会置于页面中心的问题&#10;优化了信号灯的运行逻辑，现在在关闭后不会再进行请求&#10;修改了部分菜单选项的描述">
+      <option name="closed" value="true" />
+      <created>1735915150336</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1735915150336</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -518,7 +528,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加控件透明度调整设置" />
     <MESSAGE value="0" />
     <MESSAGE value="添加控件透明度和颜色调整功能" />
     <MESSAGE value=" empty" />
@@ -543,6 +552,7 @@
     <MESSAGE value="看着不爽提交一下" />
     <MESSAGE value="修改了默认绘制图片背景的设置" />
     <MESSAGE value="修复了描边效果不正常设定的问题&#10;修复方块特效不能正常启用的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复了描边效果不正常设定的问题&#10;修复方块特效不能正常启用的问题" />
+    <MESSAGE value="修复了滚动页面后设置栏不会置于页面中心的问题&#10;优化了信号灯的运行逻辑，现在在关闭后不会再进行请求&#10;修改了部分菜单选项的描述" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复了滚动页面后设置栏不会置于页面中心的问题&#10;优化了信号灯的运行逻辑，现在在关闭后不会再进行请求&#10;修改了部分菜单选项的描述" />
   </component>
 </project>
