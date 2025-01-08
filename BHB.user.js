@@ -4,7 +4,7 @@
 // @match       https://boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     2.4.23
+// @version     2.4.25
 // @author      M27IAR
 // @license     MPL
 // @description 2024/11/26 16:34:09
@@ -243,7 +243,7 @@
             let imgDataBase64 = this.result; //base64数据
             console.log(imgDataBase64);
             // 打开或创建一个数据库
-            let request = indexedDB.open('databaseName', 5);
+            let request = indexedDB.open('databaseName', 6);
             // 处理数据库升级
             request.onupgradeneeded = function(event) {
                 let db = event.target.result;
@@ -309,7 +309,7 @@
     }
 
     function backPrint(BBSmsgBack){//背景渲染设定
-        let openpic = indexedDB.open('databaseName', 5);//调用数据库读取本地存储的base64图片数据
+        let openpic = indexedDB.open('databaseName', 6);//调用数据库读取本地存储的base64图片数据
         openpic.onupgradeneeded = function(event) {//没有调用则创建|选择了新版本数据库而重建
             let db = event.target.result;
             // 创建对象存储（表）并设置主键
@@ -922,7 +922,7 @@
     }
     //通过读取本地存储数据进行选择值设定结束
     //数据库创建
-    let request = indexedDB.open('databaseName', 5);
+    let request = indexedDB.open('databaseName', 6);
     // 处理数据库升级
     request.onupgradeneeded = function(event) {
         let db = event.target.result;
