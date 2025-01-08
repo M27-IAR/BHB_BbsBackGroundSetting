@@ -4,7 +4,7 @@
 // @match       https://boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     2.4.19
+// @version     2.4.21
 // @author      M27IAR
 // @license     MPL
 // @description 2024/11/26 16:34:09
@@ -243,14 +243,16 @@
             let imgDataBase64 = this.result; //base64数据
             console.log(imgDataBase64);
             // 打开或创建一个数据库
-            let request = indexedDB.open('databaseName', 4);
+            let request = indexedDB.open('databaseName', 5);
             // 处理数据库升级
             request.onupgradeneeded = function(event) {
                 let db = event.target.result;
                 // 创建对象存储（表）并设置主键
-                let objectStore = db.createObjectStore('storeName', { keyPath: 'id' });
+                //let objectStore = db.createObjectStore('storeName', { keyPath: 'id' });
+                let objectStoreSec = db.createObjectStore('EmoDB', { keyPath: 'id' });
                 // 创建索引
-                objectStore.createIndex('fieldName', 'fieldName', { unique: false });
+                //objectStore.createIndex('fieldName', 'fieldName', { unique: false });
+                objectStoreSec.createIndex('fieldName', 'fieldName', { unique: false });
             };request.onsuccess = function(event) {// 数据库打开成功时的回调
                 let db = event.target.result;
                 // 进行事务操作
@@ -301,13 +303,13 @@
     }
 
     function backPrint(BBSmsgBack){//背景渲染设定
-        let openpic = indexedDB.open('databaseName', 4);//调用数据库读取本地存储的base64图片数据
+        let openpic = indexedDB.open('databaseName', 5);//调用数据库读取本地存储的base64图片数据
         openpic.onupgradeneeded = function(event) {//没有调用则创建|选择了新版本数据库而重建
             let db = event.target.result;
             // 创建对象存储（表）并设置主键
-            let objectStore = db.createObjectStore('storeName', { keyPath: 'id' });
+            let objectStoreSec = db.createObjectStore('EmoDB', { keyPath: 'id' });
             // 创建索引
-            objectStore.createIndex('fieldName', 'fieldName', { unique: false });
+            objectStoreSec.createIndex('fieldName', 'fieldName', { unique: false });
         };
         openpic.onsuccess = function(event) {
             let db = event.target.result;
@@ -779,7 +781,7 @@
         localStorage.setItem("printToBBS",0);
     }
     if(!localStorage.NameFontSize){//聊天室ID|其他页面部分字体的尺寸
-        localStorage.setItem("NameFontSize",18);
+        localStorage.setItem("NameFontSize",12);
     }
     if(!localStorage.LocalFontColor){//聊天室ID|其他页面部分字体的颜色
         localStorage.setItem("LocalFontColor","#ffffff")
@@ -905,16 +907,17 @@
         BackPrintSelectBox="WebFirst"
     }
     //通过读取本地存储数据进行选择值设定结束
-    let request = indexedDB.open('databaseName', 4);
-// 处理数据库升级
+    //数据库创建
+    let request = indexedDB.open('databaseName', 5);
+    // 处理数据库升级
     request.onupgradeneeded = function(event) {
         let db = event.target.result;
         // 创建对象存储（表）并设置主键
-        let objectStore = db.createObjectStore('storeName', { keyPath: 'id' });
+        let objectStoreSec = db.createObjectStore('EmoDB', { keyPath: 'id' });
         // 创建索引
-        objectStore.createIndex('fieldName', 'fieldName', { unique: false });
+        objectStoreSec.createIndex('fieldName', 'fieldName', { unique: false });
     };
-// 数据库打开成功时的回调
+    // 数据库打开成功时的回调
     request.onsuccess = function(event) {
         let db= event.target.result;
         // 进行事务操作
@@ -926,38 +929,36 @@
             console.log('空数据插入DBD成功');
         };
         transaction.onerror = function(event) {
-            console.error('Transaction failed:', event);
+            //console.error('Transaction failed:', event);
         };
     };
-// 错误处理
+    // 错误处理
     request.onerror = function(event) {
         console.error('Database error:', event.target.error);
     };
     //初始值部分结束
-
+    let TimeOutSet=3000
     function MesWebTestPlan(MsgLight,MsgPrint){//信号灯
-        let Msg=document.querySelectorAll("#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li")
-        let MsgId
-        if(Msg!==undefined&&Msg.length>0){MsgId=Msg[Msg.length-1].getAttribute("data-index");}
         let nowTime,Time
         $.ajax({
                 type:"GET",
-                url: `https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg${function(){if(MsgId!=null){return '&type=new&last_id='+MsgId;}else{return '&type=new';}}()} `,
+                url: `https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=signal `,
                 async:true,
-                timeout:3000,
+                timeout:TimeOutSet,
                 beforeSend:function(){nowTime=Date.now();},
                 complete:function(date,xhr){
                     Time=Date.now();
                     let ReportCode=date.status;
-                    if((Time-nowTime)>=3000){
-                        MsgLight.style.color="red";
+                    if((Time-nowTime)>=TimeOutSet){
+                        MsgLight.style.backgroundColor="red";
                         MsgLight.style.boxShadow= "0px 1px 10px #F60303,0px -1px 10px #F60303,1px 0px 10px #F60303,-1px 0px 10px #F60303";
                         MsgLight.style.border="1px solid #F60303";
                         MsgLight.className="linkBadWeb";
                         MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>收信延迟过高`
+                        TimeOutSet=TimeOutSet+1000;
                     }else if(xhr==='success'&&(Time-nowTime>1000)){
                         MsgLight.style.boxShadow= "0px 1px 10px #F6D603,1px 0px 10px #F6D603,-1px 0px 10px #F6D603,0px -1px 10px #F6D603";
-                        MsgLight.style.color="yellow";
+                        MsgLight.style.backgroundColor="yellow";
                         MsgLight.style.border="1px solid #F6D603";
                         MsgLight.className="linkOutTime";
                         MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>网络状态一般`
@@ -967,8 +968,9 @@
                         MsgLight.style.border="1px solid #77F602";
                         MsgLight.className="linkOpen";
                         MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>网络状态良好`
+                        TimeOutSet=3000;
                     }else if(ReportCode>=400||ReportCode>=500||xhr!=="success"){
-                        MsgLight.style.color="red";
+                        MsgLight.style.backgroundColor="red";
                         MsgLight.style.boxShadow= "0px 1px 10px #F60303,0px -1px 10px #F60303,1px 0px 10px #F60303,-1px 0px 10px #F60303";
                         MsgLight.style.border="1px solid #F60303";
                         MsgLight.className="linkBadWeb";
@@ -979,7 +981,7 @@
                     console.log(date);
                     console.log(xhr);
                     console.log(errorThrown);
-                    MsgLight.style.color="red";
+                    MsgLight.style.backgroundColor="red";
                     MsgLight.style.boxShadow= "0px 1px 10px #F60303,0px -1px 10px #F60303,1px 0px 10px #F60303,-1px 0px 10px #F60303";
                     MsgLight.style.border="1px solid red";
                     MsgLight.className="linkBadWeb";
@@ -1023,7 +1025,6 @@
         clearInterval(tiner);
         webWidth=window.innerWidth;
         webHeight=window.innerHeight;
-        console.log(webWidth+" "+webHeight);
         setTimeout(function () {
             rePrint(webWidth,webHeight);
         },100)
@@ -1045,12 +1046,12 @@
         addsett(printstr1,printstr2,printstr3,nowurl);
         //聊天室页面的独占设置内容
         let AddSetter=`
-<div id="MsgSet" style="width:100%;background-color: rgba(36,70,88,0.4);border:1px solid aqua;display: flex;">
-<div style="width:5%;${(()=>{if(localStorage.MsgSet!=="false"){return 'transform: rotate(90deg);'}else{return 'transform: rotate(0deg);'}})()};" id="UnderIcon6">></div><input style="display:none;" type="checkbox" class="SettiingInput" name="MsgSetCheck" id="MsgSetCheck" ${(function (){if (localStorage.MsgSet!=="false"){return "checked";}else{return "";}})()}><label style="user-select:none;-moz-user-select:none;width: 90%;margin:0;" for="MsgSetCheck">消息页面设置</label>
-</div>
-<div id="MsgSetSet" style="${(()=>{if (localStorage.MsgSet!=="false"){return "display:block;";}else{return "display:none;";}})()}">
-<span>消息气泡调整</span><input class="SettiingInput RangeSetting" type="range" min="0" max="1" step="0.01" value="${localStorage.MsgBoxTra}"onchange="localStorage.MsgBoxTra=value" id="MsgBoxTra" ><input class="SettiingInput ColorSettinr" type="color" id="MsgBoxColor" onchange="localStorage.MsgBoxColor=value" value="${localStorage.MsgBoxColor}"><br>
-</div>`
+    <div id="MsgSet" style="width:100%;background-color: rgba(36,70,88,0.4);border:1px solid aqua;display: flex;">
+    <div style="width:5%;${(()=>{if(localStorage.MsgSet!=="false"){return 'transform: rotate(90deg);'}else{return 'transform: rotate(0deg);'}})()};" id="UnderIcon6">></div><input style="display:none;" type="checkbox" class="SettiingInput" name="MsgSetCheck" id="MsgSetCheck" ${(function (){if (localStorage.MsgSet!=="false"){return "checked";}else{return "";}})()}><label style="user-select:none;-moz-user-select:none;width: 90%;margin:0;" for="MsgSetCheck">消息页面设置</label>
+    </div>
+    <div id="MsgSetSet" style="${(()=>{if (localStorage.MsgSet!=="false"){return "display:block;";}else{return "display:none;";}})()}">
+    <span>消息气泡调整</span><input class="SettiingInput RangeSetting" type="range" min="0" max="1" step="0.01" value="${localStorage.MsgBoxTra}"onchange="localStorage.MsgBoxTra=value" id="MsgBoxTra" ><input class="SettiingInput ColorSettinr" type="color" id="MsgBoxColor" onchange="localStorage.MsgBoxColor=value" value="${localStorage.MsgBoxColor}"><br>
+    </div>`
         document.querySelector("#MsgUrlAddLine").insertAdjacentHTML("afterend",AddSetter);
         document.querySelector("#MsgSetCheck").addEventListener("click",function(e) {
             if (e.target.checked){
@@ -1136,7 +1137,7 @@
         //指示灯计时器
         let IntTime=setInterval(()=> {
             MesWebTestPlan(MsgLight,MsgPrint);
-        },3000)
+        },TimeOutSet)
 
         document.querySelector("#MsgLightCheck").addEventListener("click",(e)=>{
             if(e.target.checked){
@@ -1175,6 +1176,34 @@
             }
             oldLen= Liloader.length;
         },1000)
+
+
+        //站长的全屏内容适配
+
+        let NeedFixStyleFive=document.querySelectorAll("body > style");
+        NeedFixStyleFive[NeedFixStyleFive.length-1].insertAdjacentHTML("afterend",'<style id="style4"></style>');
+        let FixStyleFive=document.querySelector("#style4")
+        let nedAddStyleFive=document.createTextNode(`.layout-navbar-fixed .layout-page:before {backdrop-filter:  blur(0px)}`)
+        //FixStyleFive.appendChild(nedAddStyleFive)
+        document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom > div > div > button").addEventListener("click",function (){
+            if(document.querySelector("#layout-navbar").style.display==="none"){
+                document.querySelector("#layout-navbar").style.display="flex"
+                FixStyleFive.innerHTML="";
+                document.querySelector("#top > div > div > main > section").style.zIndex='1075 !important';
+                if (localStorage.leaderhide==="0"){
+                    document.querySelector("#layout-menu").style.display="flex";
+                }
+            }else{
+                document.querySelector("#layout-navbar").style.display="none";
+                document.querySelector("#top > div").style.backdropFilter="none";
+                FixStyleFive.appendChild(nedAddStyleFive);
+                document.querySelector("#top > div > div > main > section").style.zIndex='1075 !important';
+                if (localStorage.leaderhide==="0"){
+                    document.querySelector("#layout-menu").style.display="none";
+                }
+            }
+            document.querySelector("#top > div > div > main > section").style.zIndex='1075 !important';
+        })
         //表情功能 暂时搁置
         let MojPack=`<button id="MojPack" class="toolbar-btn">😀</button>`
         let ToolBar= document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.chat-toolbar.GameBarFix > div");
@@ -1188,6 +1217,7 @@
         let MojPackAdd=`<div class="M27MojPackImg la la-plus-circle" title="点击添加图片" style="text-align: center;line-height: 100px; font-size: 80px;" id="MojPackAddImg" ></div>`
         adddiv4Out.insertAdjacentHTML("afterbegin",MojPackAdd);
         let MojPackAddGet=document.querySelector("#MojPackAddImg");
+
 
     }else if(nowurl.includes('https://boyshelpboys.com/plugin')){
         console.log(nowurl);
