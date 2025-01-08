@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name        BHB背景图片更换（已全局兼容）
+// @name        BHB聊天室背景图片更换（已全局兼容）
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     2.4.21
+// @version     2.4.23
 // @author      M27IAR
 // @license     MPL
 // @description 2024/11/26 16:34:09
@@ -248,11 +248,17 @@
             request.onupgradeneeded = function(event) {
                 let db = event.target.result;
                 // 创建对象存储（表）并设置主键
-                //let objectStore = db.createObjectStore('storeName', { keyPath: 'id' });
-                let objectStoreSec = db.createObjectStore('EmoDB', { keyPath: 'id' });
-                // 创建索引
-                //objectStore.createIndex('fieldName', 'fieldName', { unique: false });
-                objectStoreSec.createIndex('fieldName', 'fieldName', { unique: false });
+                if (!db.objectStoreNames.contains("storeName")) {
+                    // 数据库不存在，可以在此处创建对象存储空间
+                    var objectStore = db.createObjectStore("storeName", { keyPath: "id" });
+                    objectStore.createIndex('fieldName', 'fieldName', { unique: false });
+                }
+                if (!db.objectStoreNames.contains("EmoDB")) {
+                    // 数据库不存在，可以在此处创建对象存储空间
+                    let objectStoreSec = db.createObjectStore('EmoDB', { keyPath: 'id' });
+                    // 创建索引
+                    objectStoreSec.createIndex('fieldName', 'fieldName', { unique: false });
+                }
             };request.onsuccess = function(event) {// 数据库打开成功时的回调
                 let db = event.target.result;
                 // 进行事务操作
@@ -307,9 +313,17 @@
         openpic.onupgradeneeded = function(event) {//没有调用则创建|选择了新版本数据库而重建
             let db = event.target.result;
             // 创建对象存储（表）并设置主键
-            let objectStoreSec = db.createObjectStore('EmoDB', { keyPath: 'id' });
-            // 创建索引
-            objectStoreSec.createIndex('fieldName', 'fieldName', { unique: false });
+            if (!db.objectStoreNames.contains("storeName")) {
+                // 数据库不存在，可以在此处创建对象存储空间
+                var objectStore = db.createObjectStore("storeName", { keyPath: "id" });
+                objectStore.createIndex('fieldName', 'fieldName', { unique: false });
+            }
+            if (!db.objectStoreNames.contains("EmoDB")) {
+                // 数据库不存在，可以在此处创建对象存储空间
+                let objectStoreSec = db.createObjectStore('EmoDB', { keyPath: 'id' });
+                // 创建索引
+                objectStoreSec.createIndex('fieldName', 'fieldName', { unique: false });
+            }
         };
         openpic.onsuccess = function(event) {
             let db = event.target.result;
@@ -913,9 +927,18 @@
     request.onupgradeneeded = function(event) {
         let db = event.target.result;
         // 创建对象存储（表）并设置主键
-        let objectStoreSec = db.createObjectStore('EmoDB', { keyPath: 'id' });
-        // 创建索引
-        objectStoreSec.createIndex('fieldName', 'fieldName', { unique: false });
+        if (!db.objectStoreNames.contains("storeName")) {
+            // 数据库不存在，可以在此处创建对象存储空间
+            var objectStore = db.createObjectStore("storeName", { keyPath: "id" });
+            objectStore.createIndex('fieldName', 'fieldName', { unique: false });
+        }
+        if (!db.objectStoreNames.contains("EmoDB")) {
+            // 数据库不存在，可以在此处创建对象存储空间
+            let objectStoreSec = db.createObjectStore('EmoDB', { keyPath: 'id' });
+            // 创建索引
+            objectStoreSec.createIndex('fieldName', 'fieldName', { unique: false });
+        }
+
     };
     // 数据库打开成功时的回调
     request.onsuccess = function(event) {
@@ -929,7 +952,7 @@
             console.log('空数据插入DBD成功');
         };
         transaction.onerror = function(event) {
-            //console.error('Transaction failed:', event);
+            console.error('Transaction failed:', event);
         };
     };
     // 错误处理
