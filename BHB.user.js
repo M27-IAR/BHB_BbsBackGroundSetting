@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name        BHB聊天室背景图片更换（已全局兼容）
+// @name        BHB背景图片更换（已全局兼容）
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     2.4.25
+// @version     2.4.27
 // @author      M27IAR
 // @license     MPL
 // @description 2024/11/26 16:34:09
@@ -424,11 +424,13 @@
         let oldaddtarge=document.querySelector("#navbar-collapse")
         let addbott="<button class='fuckyou'>插件设置</button>"
         let addmain=`<div id="localsett" >
+        
 <div >
 <div style="position: sticky ;height:28px;width:100%;top: 0;left:0;background-color: rgba(36,70,88,0.4);backdrop-filter: blur(5px);">
     <button id="exit" class="fuckyou3">X</button><span>插件设置</span>
     </div>
 <div>
+<span>若出现无法正常使用的情况请清理浏览器缓存后重试</span>
 <form name='myform' method="POST" action='${nowurl}'>
 <input type="checkbox" style="user-select:none;-moz-user-select: none; " name="MsgLightCheck" id="MsgLightCheck" ${(()=>{if(localStorage.MsgLightCheckX==="true"){return "checked"}else{return ""}})()}><label for="MsgLightCheck">启用指示灯</label>
 <input style="user-select:none;-moz-user-select: none;" class="SettiingInput" type="checkbox" ${leadermanhide} value="leadermanhide" name="leadermanhide" id="leadermanhide"><label for="leadermanhide">${leange1[1]}</label>
