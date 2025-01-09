@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name        BHB背景图片更换（已全局兼容）
+// @name        BHB聊天室背景图片更换（已全局兼容）
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     2.4.27
+// @version     2.4.31
 // @author      M27IAR
 // @license     MPL
 // @description 2024/11/26 16:34:09
@@ -13,14 +13,13 @@
 // ==/UserScript==
 
 (function(){
-
     //window.alert = function() {};
     window.history.replaceState(null, null, window.location.href);
 
     function leftANDtop() {
         let NeedFixStyle=document.querySelector("head");//插入样式表修改左侧与顶栏样式
         NeedFixStyle.insertAdjacentHTML("afterbegin",'<style id="style1"></style>');
-        let nedAddStyle=document.createTextNode(` ::selection{color:#0000FF !important;} ::-moz-selection{color:#0000FF !important;} .RangeSetting{height:0.5rem;width:7.8125rem;} .ColorSettinr{width:2.75rem;} .SettiingInput{padding:2px 1px;border:0.125rem 0rem;} .GameBarFix{background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6} !important;border:0 !important;margin:0 !important; transition: 0.3s;} hr{margin: 0.125rem 0 !important;color:#f0f5f9;} small{text-shadow: 1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor} ;font-size:${localStorage.NameFontSize}px !important; color:${localStorage.LocalFontColorsec} } .fuckyou2{background-color:rgba(40,64,120,0.4); color: aqua; margin:0px;padding: 2px 7px;border: 1px aqua solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou2:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;} .fuckyou3{background-color: rgba(40,64,120,0.4); color: aqua; margin:0px;padding: 2px 7px;border: 1px aqua solid;cursor: pointer;transition: background-color 0.3s;border-radius: 0px;}.fuckyou3:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;}  .fuckyou{background-color: #2b2c4030; color: white; margin:0.3125rem;padding: 0.3125rem;border: 0.125rem gray solid;font-size:1rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;} .fuckyou:hover{background-color: #FFFFFF; color:#66ccff;} @media (max-width:426px){.fuckyou{background-color: #2b2c4030; color: white; padding: 0.3125rem 0.5rem;border: 0.125rem gray solid;font-size:1rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}} .send-btn-M27{padding:0.3125rem 0.625rem !important;width:4.5rem !important;height:2.5rem !important;border:0.125rem solid hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-radius:20px !important;margin-left:0.3125rem !important;} .send-btn-M27:hover{background-color:hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-color:while !important;}`)
+        let nedAddStyle=document.createTextNode(` ::selection{color:#0000FF !important;} ::-moz-selection{color:#0000FF !important;} .RangeSetting{height:0.5rem;width:7.8125rem;} .ColorSettinr{width:2.75rem;} .SettiingInput{padding:2px 1px;border:0.125rem 0rem;} .GameBarFix{background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6} !important;border:0 !important;margin:0 !important; transition: 0.3s;} hr{margin: 0.125rem 0 !important;color:#f0f5f9;} small{text-shadow: 1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor} ;font-size:${localStorage.NameFontSize}px !important; color:${localStorage.LocalFontColorsec} } .fuckyou2{background-color:rgba(40,64,120,0.4); color: aqua; margin:0px;padding: 2px 7px;border: 1px aqua solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou2:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;} .fuckyou3{background-color: rgba(40,64,120,0.4); color: aqua; margin:0px;padding: 2px 7px;border: 1px aqua solid;cursor: pointer;transition: background-color 0.3s;border-radius: 0px;}.fuckyou3:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;}  .fuckyou{background-color: #2b2c4030; color: white; margin:0.3125rem;padding: 0.3125rem;border: 0.125rem gray solid;font-size:1rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;} .fuckyou:hover{background-color: #FFFFFF; color:#66ccff;} @media (max-width:426px){.fuckyou{background-color: #2b2c4030; color: white; padding: 0.5rem 0.5rem;border: 0.125rem gray solid;font-size:0.625rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}} .send-btn-M27{padding:0.3125rem 0.625rem !important;width:4.5rem !important;height:2.5rem !important;border:0.125rem solid hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-radius:20px !important;margin-left:0.3125rem !important;} .send-btn-M27:hover{background-color:hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-color:while !important;}`)
         let FixStyle=document.querySelector("#style1");
         FixStyle.appendChild(nedAddStyle);
         //方片动态背景的相关css
@@ -201,9 +200,9 @@
 
         let printseenum={}
         for(let i=0;i<seenum.length;i++){
-            if (seenum[i].value=="100"){
-                localStorage.setItem(`CantSeeset${i+1}`,"*");
-                printseenum[i]=""
+            if (seenum[i].value=="100") {
+                localStorage.setItem(`CantSeeset${i + 1}`, "*");
+                printseenum[i] = ""
             }else if(Number(seenum[i].value)<10){
                 console.log("runok")
                 localStorage.setItem(`CantSeeset${i+1}`,"0"+seenum[i].value);
@@ -422,7 +421,84 @@
         let BoxPrintCheckOn;
         if(localStorage.BoxPrint!=="no"){BoxPrintCheckOn='checked'}else{BoxPrintCheckOn=''}
         let oldaddtarge=document.querySelector("#navbar-collapse")
-        let addbott="<button class='fuckyou'>插件设置</button>"
+        let addbott="<button class='fuckyou'>插件设置</button><button class='fuckyou' id='newmsg'>更新日志</button>"
+        let addNetMsg=`<div id="MegNew">
+        <div style="position: sticky ;height:28px;width:100%;top: 0;left:0;background-color: rgba(36,70,88,0.4);backdrop-filter: blur(5px);">
+    <button id="Msgexit" class="fuckyou3">X</button><span>更新日志</span>
+    </div>
+<div>
+<p>v2.4.31更新：</p>
+<p>修复站长全屏模式的bug</p>
+<p>v2.4.29更新：</p>
+<p>修复了聊天汽包被重置的问题</p>
+<p>v2.4.25更新：</p>
+<p>修复图片无法读取的bug</p>
+<p>v2.4.21更新：</p>
+<p>修复站长全屏模式的bug<br>修复了网络指示灯的问题,调整了获取网络状态的机制</p>
+<p>v2.4.19更新：</p>
+<p>添加修改消息气泡颜色的功能<br>修复了指示灯按钮设置重置的问题</p>
+<p>v2.4.17更新：</p>
+<p>修复消息时间无法隐藏的问题</p>
+<p>v2.4.15更新：</p>
+<p>修复了滚动页面后设置栏不会置于页面中心的问题<br>优化了信号灯的运行逻辑，现在在关闭后不会再进行请求<br>修改了部分菜单选项的描述</p>
+<p>v2.4.13更新：</p>
+<p>修复了描边效果不正常设定的问题<br>修复方块特效不能正常启用的问题</p>
+<p>v2.4.11更新：</p>
+<p>修改了默认绘制图片背景的设置</p>
+<p>v2.4.9更新：</p>
+<p>添加了关闭指示灯的按钮（在菜单）和延迟信息按钮（点击指示灯即可）<br>修复了延迟超过1000ms状态（黄灯）状态下阴影不正常显示的问题</p>
+<p>v2.4.1更新：</p>
+<p>调整了服务器状态指示灯策略（我的灯更好看）<br>重写了设置菜单</p>
+<p>v2.3.1更新：</p>
+<p>优化了务器状态指示灯（我的灯更好看）<br>修改了字体描边办法</p>
+<p>v2.3.0更新：</p>
+<p>在聊天室添加了站长服务器状态指示灯（测试中，还有我的灯更好看）</p>
+<p>v2.2.0更新：</p>
+<p>添加了一个新的背景特效（方块特效）<br>添加了 启用图像背景 选项，关闭会不渲染选择的图像背景<br>修改了站长聊天室发送按钮的样式<br>修改了左侧导航栏的交互效果</p>
+<p>v2.1.5更新：</p>
+<p>适配闪电炫芬批的外链头像<br>修了左侧导航栏背景修改导致不透明的问题</p>
+<p>v2.1.3更新：</p>
+<p>更新了对火狐浏览器的界面适配（火狐的UI和谷歌为什么完全不同？）</p>
+<p>v2.1.0更新：</p>
+<p>添加了新的背景渲染选择项：<br>  图像渲染方式{可以选择按照网页尺寸渲染还是以图片尺寸渲染}<br>  居中渲染{设定图像中心居中渲染}<br>适配了站长新工具栏的样式，调整了发送框和工具栏开启按钮的大小<br>修改了站点内选中字体的效果，现在选中字体会修改其为蓝色</p>
+<p>v2.0.3更新：</p>
+<p>修复了控制滚动条时会错误控制ID描边和设置按钮样式的问题</p>
+<p>v2.0.0更新：</p>
+<p>添加了对全站页面的背景适配（还没做完透明度适配，透明度目前只能在聊天室界面改）<br>添加侧栏透明度/颜色调整<br>修改了其他的代码</p>
+<p>v1.4.7更新：</p>
+<p>删除了伪装功能(都是BHB滴错) 给站长的新栏的背景删掉了</p>
+<p>v1.4.3更新：</p>
+<p>添加头像伪装功能，在对应的输入框输入图像链接并点击一次前面的单选按钮即可（若为外链图片则只有@闪电炫芬批的插件使用者和本脚本使用者可见）</p>
+<p>v1.4.0更新：</p>
+<p>添加聊天室ID字体颜色修改功能<br>添加顶栏透明度/颜色调整<br>添加发送栏边框颜色透明度调整<br>添加发送框颜色透明度调整<br>添加发送框描边<br>添加“聊天留言”区颜色/透明度修改</p>
+<p>v1.3.9更新：</p>
+<p>针对@闪电炫芬批插件的外链头像图片做适配</p>
+<p>v1.3.7更新：</p>
+<p>修bug</p>
+<p>v1.3.6更新：</p>
+<p>调整了聊天室id的描边修改方式，解决了聊天记录多的时候卡顿的问题</p>
+<p>v1.3.0更新：</p>
+<p>添加单独调整部分控件透明度和颜色的功能（还有重置功能）<br>添加聊天室名称描边大小功能<br>给进入设置的按钮进行了美化</p>
+<p>v1.2.5更新：</p>
+<p>添加了聊天室名称描边大小修改功能</p>
+<p>v1.2.4更新：</p>
+<p>调整了标签检索方式</p>
+<p>v1.2.3更新：</p>
+<p>修改开源协议为WTFPL（Do What The Fuck You Want To Public License），完全开源.JPG</p>
+<p>v1.2.2更新：</p>
+<p>修改了local数据的检测 现在检测到任何一条为不存在则会进行添加<br>隐藏了聊天界面的滚动条（可以在背景样式内点击复选框修改）<br>添加了聊天室内ID的描边效果（可以在背景文件区域进行调色）<br>section写入现在也支持透明度调整功能</p>
+<p>v1.2.1更新：</p>
+<p>调整了代码规范</p>
+<p>v1.2.0更新：</p>
+<p>修改本地图像的存储位置，现在可以使用更大的本地图片了<br>添加了背景渲染位置修改的功能（还在测试，，目前仅限body-background写入可用，后续有更新）<br>添加删除左侧导航栏的功能 添加透明度调整功能<br>调整了菜单ui</p>
+<p>v1.1.1更新：</p>
+<p>修改了本体图片的存储位置 现在存储于IndexedDB 可以导入的图片文件更大了<br>添加了左侧导航栏的隐藏功能<br>尝试删除了聊天室界面下部的黑色渐变条</p>
+</div>`
+
+
+
+
+
         let addmain=`<div id="localsett" >
         
 <div >
@@ -455,6 +531,7 @@
 <div id="IdPrintCheck" style="width:100%;background-color: rgba(36,70,88,0.4);border:1px solid aqua;display: flex;">
 <div style="width:5%;${(()=>{if(localStorage.IdPrintCheck!=="false"){return 'transform: rotate(90deg);'}else{return 'transform: rotate(0deg);'}})()};" id="UnderIcon2">></div><input style="display:none;" type="checkbox" class="SettiingInput" name="OpneIDPrint" id="OpenIdPrint" ${(function (){if (localStorage.IdPrintCheck!=="false"){return "checked";}else{return "";}})()}><label style="user-select:none;-moz-user-select:none;width: 90%;margin:0;" for="OpenIdPrint">Id名称渲染</label>
 </div>
+<hr>
 <div id="IdPrintBox" style="${(()=>{if (localStorage.IdPrintCheck!=="false"){return "display:block;";}else{return "display:none;";}})()}">
 <span>${leange1[2]}</span><input class="SettiingInput" type='text' onblur='if(!((/[(0-9)]/).test(value)))value=18' value='${localStorage.NameFontSize}' name='size' id='size' size="5"><br>
 <span>${leange1[3]}</span>
@@ -505,14 +582,17 @@
 
         oldaddtarge.insertAdjacentHTML("afterbegin",addbott);
         bac.insertAdjacentHTML("afterbegin",addmain);
+        bac.insertAdjacentHTML("afterbegin",addNetMsg)
 
         let addbutt=document.querySelector("#navbar-collapse > button");
         let adddiv=document.querySelector("#localsett");
+        let addaddNetMsg=document.querySelector("#MegNew");
         checkPrint();
         let printSelcetBox=document.querySelector("#selectBox");
 
         printSelcetBox.addEventListener("change",function(){checkPrint();})
         adddiv.setAttribute('style', 'position: fixed;left:50%;top:50%;overflow:auto; border-radius: 5px;transform: translate(-50%, -50%);width: 330px;height: 550px;border: 1px solid aqua;z-index:10000;display:none;background-color:rgba(40,64,120,0.4);color:#f0f5f9;text-shadow:0 1px 0.5px #32353E,0 -1px 0.5px #32353E,1px 0 0.5px #32353E,-1px 0 0.5px #32353E;')
+        addaddNetMsg.setAttribute('style', 'position: fixed;left:50%;top:50%;overflow:auto; border-radius: 5px;transform: translate(-50%, -50%);width: 330px;height: 550px;border: 1px solid aqua;z-index:10000;display:none;background-color:rgba(40,64,120,0.4);color:#f0f5f9;text-shadow:0 1px 0.5px #32353E,0 -1px 0.5px #32353E,1px 0 0.5px #32353E,-1px 0 0.5px #32353E;')
         addbutt.addEventListener("click",function(){//开关设置栏1
             let adddiv=document.querySelector("#localsett")
             if (adddiv.style.display==="block"){
@@ -521,6 +601,17 @@
                 adddiv.style.display="block";
             }
         });
+
+        document.querySelector("#newmsg").addEventListener("click",function(){
+            let addaddNetMsg=document.querySelector("#MegNew");
+            if (addaddNetMsg.style.display==="block"){
+                addaddNetMsg.style.display="none";
+            }else{
+                addaddNetMsg.style.display="block";
+            }
+        })
+        document.querySelector("#Msgexit").addEventListener("click",function(){{addaddNetMsg.style.display="none";}})
+
 
         document.querySelector("#OpenIdPrint").addEventListener("click",function(e){
             if (e.target.checked){
@@ -1124,7 +1215,7 @@
             }
             },1)
 
-        document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write > div > button > i").insertAdjacentHTML("beforebegin",`<span style="margin-right: 0.125rem">发送</span>`)
+        document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write > div > button > i").insertAdjacentHTML("beforebegin",`<span style="margin-right: 0.125rem;font-size: 12px">发送</span>`)
         //发送按钮
         let SendButton=document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write > div > button");
         SendButton.className='send-btn send-btn-M27'
@@ -1145,7 +1236,6 @@
             baca.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1};`)//聊天历史记录1
             backb.setAttribute('style', `background-color: ${localStorage.CantSeeColor2}${localStorage.CantSeeset2};`)//自顶栏往下部分
             ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor3}${localStorage.CantSeeset3};`)//聊天历史记录2（位置更靠里）
-            histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4};`)//聊天页面外层边框
             DIV2.setAttribute('style', `background-color:${localStorage.CantSeeColor5}${localStorage.CantSeeset5} !important;backdrop-filter:saturate(100%) !important;`);//顶栏
             fackone.setAttribute('style',`padding: .5rem .5rem; position: relative; border-radius: .375rem; margin: 0 1.5rem 1rem 1.5rem;background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6};`)//发送栏外层边框
             LiuYanTop.setAttribute("style",`background-color:${localStorage.CantSeeColor9}${localStorage.CantSeeset9};border:0px !important;`);
@@ -1206,15 +1296,16 @@
         //站长的全屏内容适配
 
         let NeedFixStyleFive=document.querySelectorAll("body > style");
-        NeedFixStyleFive[NeedFixStyleFive.length-1].insertAdjacentHTML("afterend",'<style id="style4"></style>');
-        let FixStyleFive=document.querySelector("#style4")
+        NeedFixStyleFive[NeedFixStyleFive.length-1].insertAdjacentHTML("afterend",'<style id="style5"></style>');
+        let FixStyleFive=document.querySelector("#style5")
         let nedAddStyleFive=document.createTextNode(`.layout-navbar-fixed .layout-page:before {backdrop-filter:  blur(0px)}`)
         //FixStyleFive.appendChild(nedAddStyleFive)
         document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom > div > div > button").addEventListener("click",function (){
             if(document.querySelector("#layout-navbar").style.display==="none"){
                 document.querySelector("#layout-navbar").style.display="flex"
                 FixStyleFive.innerHTML="";
-                document.querySelector("#top > div > div > main > section").style.zIndex='1075 !important';
+                histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4} !important;z-index:1075 !important;`)
+
                 if (localStorage.leaderhide==="0"){
                     document.querySelector("#layout-menu").style.display="flex";
                 }
@@ -1222,13 +1313,14 @@
                 document.querySelector("#layout-navbar").style.display="none";
                 document.querySelector("#top > div").style.backdropFilter="none";
                 FixStyleFive.appendChild(nedAddStyleFive);
-                document.querySelector("#top > div > div > main > section").style.zIndex='1075 !important';
+                histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4} !important;z-index:1075 !important;`)
                 if (localStorage.leaderhide==="0"){
                     document.querySelector("#layout-menu").style.display="none";
                 }
             }
-            document.querySelector("#top > div > div > main > section").style.zIndex='1075 !important';
         })
+        histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4} !important;z-index:1075 !important;`)
+
         //表情功能 暂时搁置
         let MojPack=`<button id="MojPack" class="toolbar-btn">😀</button>`
         let ToolBar= document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.chat-toolbar.GameBarFix > div");
