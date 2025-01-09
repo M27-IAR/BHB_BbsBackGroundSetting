@@ -4,7 +4,7 @@
 // @match       https://boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     2.4.31
+// @version     2.4.33
 // @author      M27IAR
 // @license     MPL
 // @description 2024/11/26 16:34:09
@@ -199,18 +199,25 @@
         let seecolor9=document.querySelector("#Msgcolor9");//发送框描边
 
         let printseenum={}
+        let seenunvalue
         for(let i=0;i<seenum.length;i++){
-            if (seenum[i].value=="100") {
-                localStorage.setItem(`CantSeeset${i + 1}`, "*");
-                printseenum[i] = ""
-            }else if(Number(seenum[i].value)<10){
-                console.log("runok")
-                localStorage.setItem(`CantSeeset${i+1}`,"0"+seenum[i].value);
-                printseenum[i]="0"+seenum[i].value
-            }else{
-                localStorage.setItem(`CantSeeset${i+1}`,seenum[i].value);
-                printseenum[i]=seenum[i].value
+            // if (seenum[i].value=="100") {
+            //     localStorage.setItem(`CantSeeset${i + 1}`, "100");
+            //     printseenum[i] = ""
+            // }else if(Number(seenum[i].value)<10){
+            //     console.log("runok")
+            //     localStorage.setItem(`CantSeeset${i+1}`,"0"+seenum[i].value);
+            //     printseenum[i]="0"+seenum[i].value
+            // }else{
+            //     localStorage.setItem(`CantSeeset${i+1}`,seenum[i].value);
+            //     printseenum[i]=seenum[i].value
+            // }
+            seenunvalue=(Math.round(Number(seenum[i].value)*255/100).toString(16))
+            if(seenunvalue.length<=1){
+                seenunvalue="0"+seenunvalue;
             }
+            localStorage.setItem(`CantSeeset${i+1}`,seenunvalue);
+            printseenum[i]=seenunvalue
         }
         localStorage.setItem("CantSeeColor1",seecolor1.value);
         localStorage.setItem("CantSeeColor2",seecolor2.value);
@@ -416,7 +423,7 @@
             document.querySelector("#heightsize").disabled=false;
         }
     }
-    function addsett(leange1,leange2,leange3,nowurl) {//添加设置项目
+    function addsett(leange1,leange2) {//添加设置项目
         console.log(localStorage.PrintPicOpen+"测试")
         let BoxPrintCheckOn;
         if(localStorage.BoxPrint!=="no"){BoxPrintCheckOn='checked'}else{BoxPrintCheckOn=''}
@@ -506,8 +513,7 @@
     <button id="exit" class="fuckyou3">X</button><span>插件设置</span>
     </div>
 <div>
-<span>若出现无法正常使用的情况请清理浏览器缓存后重试</span>
-<form name='myform' method="POST" action='${nowurl}'>
+<span>若出现无法正常使用的情况请清理浏览器缓存后重试</span><br>
 <input type="checkbox" style="user-select:none;-moz-user-select: none; " name="MsgLightCheck" id="MsgLightCheck" ${(()=>{if(localStorage.MsgLightCheckX==="true"){return "checked"}else{return ""}})()}><label for="MsgLightCheck">启用指示灯</label>
 <input style="user-select:none;-moz-user-select: none;" class="SettiingInput" type="checkbox" ${leadermanhide} value="leadermanhide" name="leadermanhide" id="leadermanhide"><label for="leadermanhide">${leange1[1]}</label>
 <input style="user-select:none;-moz-user-select: none;" class="SettiingInput" type="checkbox" ${Scrollstylex} name="ScrollSett" id="ScrollSett">${leange2[0]}</input><br>
@@ -578,7 +584,7 @@
 <br><button id="reall"  class="fuckyou2">重置颜色|透明度配置</button></div>
 <hr>
 <button class='fuckyou2' id='save' type="submit">提交</button>
-</form></div>`
+</div>`
 
         oldaddtarge.insertAdjacentHTML("afterbegin",addbott);
         bac.insertAdjacentHTML("afterbegin",addmain);
@@ -1154,12 +1160,11 @@
         WidthHeightSet();
         let printstr1=["线上地址","删除左侧导航栏","聊天室名称大小","聊天室名称字体/描边颜色","聊天室名称描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
         let printstr2=["滚动条不显示","历史记录1透明度","顶栏下部透明度","历史记录2透明度","外层边框透明度","顶栏透明度","发送边框透明度","发送框透明度","发送框描边","'聊天留言'透明度"]
-        let printstr3=[]
 
         leftANDtop();
         ScrollHidden();
         leftContentContent();
-        addsett(printstr1,printstr2,printstr3,nowurl);
+        addsett(printstr1,printstr2);
         //聊天室页面的独占设置内容
         let AddSetter=`
     <div id="MsgSet" style="width:100%;background-color: rgba(36,70,88,0.4);border:1px solid aqua;display: flex;">
@@ -1304,7 +1309,7 @@
             if(document.querySelector("#layout-navbar").style.display==="none"){
                 document.querySelector("#layout-navbar").style.display="flex"
                 FixStyleFive.innerHTML="";
-                histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4} !important;z-index:1075 !important;`)
+                histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4} !important;z-index:275 !important;`)
 
                 if (localStorage.leaderhide==="0"){
                     document.querySelector("#layout-menu").style.display="flex";
@@ -1313,13 +1318,13 @@
                 document.querySelector("#layout-navbar").style.display="none";
                 document.querySelector("#top > div").style.backdropFilter="none";
                 FixStyleFive.appendChild(nedAddStyleFive);
-                histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4} !important;z-index:1075 !important;`)
+                histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4} !important;z-index:275 !important;`)
                 if (localStorage.leaderhide==="0"){
                     document.querySelector("#layout-menu").style.display="none";
                 }
             }
         })
-        histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4} !important;z-index:1075 !important;`)
+        histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4} !important;z-index:275 !important;`)
 
         //表情功能 暂时搁置
         let MojPack=`<button id="MojPack" class="toolbar-btn">😀</button>`
@@ -1346,14 +1351,13 @@
         console.log("dohier");
         let printstr1=["线上地址","删除左侧导航栏","淡色字体大小","淡色字描边/字体颜色","淡色字描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
         let printstr2=["滚动条不显示","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","'*没做*'*没做*"]
-        let printstr3=[]
 
         leftANDtop();
         WidthHeightSet();
         backPrint();
         ScrollHidden();
         leftContentContent();
-        addsett(printstr1,printstr2,printstr3,nowurl);
+        addsett(printstr1,printstr2);
     }else if(nowurl ==="https://boyshelpboys.com/"||nowurl.includes("https://boyshelpboys.com/#")||nowurl.includes("https://boyshelpboys.com/index")){
         console.log(nowurl);
         bac.setAttribute("style","background-color:202040")
@@ -1378,8 +1382,7 @@
         Tiezi1.setAttribute('style', `background-color:${localStorage.CantSeeColor1}${localStorage.CantSeeset1};`);
         let printstr1=["线上地址","删除左侧导航栏","淡色字体大小","淡色字描边/字体颜色","淡色字描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
         let printstr2=["滚动条不显示","帖子栏1透明度","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","'*没做*'*没做*"]
-        let printstr3=[]
-        addsett(printstr1,printstr2,printstr3,nowurl);
+        addsett(printstr1,printstr2);
 
         let addlocalupdate=document.querySelector("#webimgsrc");
         let localget=document.querySelector("#save");
@@ -1390,7 +1393,6 @@
 
     }else{
         console.log(nowurl);
-        console.log("dohere");
         bac.setAttribute("style","background-color:202040")
         setInterval(function(){if (bac.style.backgroundColor===''){console.log("reprint"); bac.setAttribute('style',`background-color: #202040;`)}},1)
         leftANDtop();
@@ -1402,8 +1404,7 @@
 
         let printstr1=["线上地址","删除左侧导航栏","聊天室名称大小","聊天室名称描边/字体颜色","聊天室名称描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
         let printstr2=["滚动条不显示","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","'*没做*'*没做*"]
-        let printstr3=[]
-        addsett(printstr1,printstr2,printstr3,nowurl);
+        addsett(printstr1,printstr2);
         let addlocalupdate=document.querySelector("#webimgsrc");
         let localget=document.querySelector("#save");
         let localStyleGet=document.querySelector("#secsubint")
