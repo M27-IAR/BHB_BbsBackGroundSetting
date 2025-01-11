@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修复站长全屏模式的bug&#10;修复了透明度设置为“100”时没有正常实现的问题&#10;修复点歌界面被错误覆盖的问题">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
-    </list>
+    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修复站长全屏模式的bug&#10;修复了透明度设置为“100”时没有正常实现的问题&#10;修复点歌界面被错误覆盖的问题" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -154,15 +151,7 @@
       <workItem from="1736390248025" duration="8757000" />
       <workItem from="1736408994345" duration="5618000" />
       <workItem from="1736489268671" duration="4027000" />
-      <workItem from="1736565919131" duration="964000" />
-    </task>
-    <task id="LOCAL-00005" summary="修改了检索方式">
-      <option name="closed" value="true" />
-      <created>1733057892800</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1733057892800</updated>
+      <workItem from="1736565919131" duration="1871000" />
     </task>
     <task id="LOCAL-00006" summary="添加了描边大小修改功能">
       <option name="closed" value="true" />
@@ -548,7 +537,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736412532634</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="修复站长全屏模式的bug&#10;修复了透明度设置为“100”时没有正常实现的问题&#10;修复点歌界面被错误覆盖的问题">
+      <option name="closed" value="true" />
+      <created>1736569089307</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1736569089307</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
