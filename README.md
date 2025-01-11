@@ -14,12 +14,6 @@ BHB论坛页面：https://boyshelpboys.com/
 <p>下载链接：<a href="https://www.123684.com/s/fBA7Td-J0WHv">https://www.123684.com/s/fBA7Td-J0WHv</a></p>
 <p>火狐浏览器需要你现先在手机插件下载Tampermonkey,步骤如下：</p>
 <p><a href="https://t1-img.233213.xyz/2024/12/18/6762cd7051208.jpg" data-lightbox=""><img alt="展示图片1" class="img-thumbnail" src="https://t1-img.233213.xyz/2024/12/18/6762cd7051208.jpg"></a></p>
-<h2>展示图片：</h2>
-<p><a href="https://t1-img.233213.xyz/2024/12/17/67615f0bbf264.jpg" data-lightbox=""><img alt="展示图片2" class="img-thumbnail" src="https://t1-img.233213.xyz/2024/12/17/67615f0bbf264.jpg"></a></p>
-<p><a href="https://t1-img.233213.xyz/2024/12/28/676fcfe90899d.png" data-lightbox=""><img alt="展示图片3" class="img-thumbnail" src="https://t1-img.233213.xyz/2024/12/28/676fcfe90899d.png"></a></p>
-<p><a href="https://t1-img.233213.xyz/2024/12/22/676827290818a.png" data-lightbox=""><img alt="展示图片4" class="img-thumbnail" src="https://t1-img.233213.xyz/2024/12/22/676827290818a.png"></a></p>
-<p><a href="https://t1-img.233213.xyz/2024/12/09/6756719a90288.jpg" data-lightbox=""><img alt="展示图片5" class="img-thumbnail" src="https://t1-img.233213.xyz/2024/12/09/6756719a90288.jpg"></a></p>
-<p><a href="https://t1-img.233213.xyz/2024/12/09/675671b4ae439.jpg" data-lightbox=""><img alt="展示图片6" class="img-thumbnail" src="https://t1-img.233213.xyz/2024/12/09/675671b4ae439.jpg"></a></p>
 
 下载链接：https://greasyfork.org/zh-CN/scripts/519010-bhb%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2
 
