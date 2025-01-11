@@ -1,12 +1,12 @@
 // ==UserScript==
-// @name        BHB聊天室背景图片更换（已全局兼容）
+// @name        BHB背景图片更换（已全局兼容）
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     2.4.33
+// @version     2.4.35
 // @author      M27IAR
-// @license     MPL
+// @license     WTFPL
 // @description 2024/11/26 16:34:09
 // @downloadURL https://update.greasyfork.org/scripts/519010/BHB%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2.user.js
 // @updateURL https://update.greasyfork.org/scripts/519010/BHB%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2.meta.js
@@ -256,7 +256,7 @@
                 // 创建对象存储（表）并设置主键
                 if (!db.objectStoreNames.contains("storeName")) {
                     // 数据库不存在，可以在此处创建对象存储空间
-                    var objectStore = db.createObjectStore("storeName", { keyPath: "id" });
+                    let objectStore = db.createObjectStore("storeName", { keyPath: "id" });
                     objectStore.createIndex('fieldName', 'fieldName', { unique: false });
                 }
                 if (!db.objectStoreNames.contains("EmoDB")) {
@@ -321,7 +321,7 @@
             // 创建对象存储（表）并设置主键
             if (!db.objectStoreNames.contains("storeName")) {
                 // 数据库不存在，可以在此处创建对象存储空间
-                var objectStore = db.createObjectStore("storeName", { keyPath: "id" });
+                let objectStore = db.createObjectStore("storeName", { keyPath: "id" });
                 objectStore.createIndex('fieldName', 'fieldName', { unique: false });
             }
             if (!db.objectStoreNames.contains("EmoDB")) {
@@ -428,12 +428,16 @@
         let BoxPrintCheckOn;
         if(localStorage.BoxPrint!=="no"){BoxPrintCheckOn='checked'}else{BoxPrintCheckOn=''}
         let oldaddtarge=document.querySelector("#navbar-collapse")
-        let addbott="<button class='fuckyou'>插件设置</button><button class='fuckyou' id='newmsg'>更新日志</button>"
+        let addbott="<button class='fuckyou'>插件设置</button>"
         let addNetMsg=`<div id="MegNew">
-        <div style="position: sticky ;height:28px;width:100%;top: 0;left:0;background-color: rgba(36,70,88,0.4);backdrop-filter: blur(5px);">
+        <div style="z-index:10001; position: sticky ;height:28px;width:100%;top: 0;left:0;background-color: rgba(36,70,88,0.4);backdrop-filter: blur(5px);">
     <button id="Msgexit" class="fuckyou3">X</button><span>更新日志</span>
     </div>
 <div>
+<p>v2.4.35更新：</p>
+<p>添加了更新日志按钮，位于插件设置内</p>
+<p>v2.4.33更新：</p>
+<p>修复了透明度设置为“100”时没有正常实现的问题 <br> 修复点歌界面被错误覆盖的问题</p>
 <p>v2.4.31更新：</p>
 <p>修复站长全屏模式的bug</p>
 <p>v2.4.29更新：</p>
@@ -491,7 +495,7 @@
 <p>v1.2.4更新：</p>
 <p>调整了标签检索方式</p>
 <p>v1.2.3更新：</p>
-<p>修改开源协议为WTFPL（Do What The Fuck You Want To Public License），完全开源.JPG</p>
+<p>修改开源协议为WTFPL（Do What The Fuck You Want To Public License),完全开源.JPG</p>
 <p>v1.2.2更新：</p>
 <p>修改了local数据的检测 现在检测到任何一条为不存在则会进行添加<br>隐藏了聊天界面的滚动条（可以在背景样式内点击复选框修改）<br>添加了聊天室内ID的描边效果（可以在背景文件区域进行调色）<br>section写入现在也支持透明度调整功能</p>
 <p>v1.2.1更新：</p>
@@ -513,7 +517,7 @@
     <button id="exit" class="fuckyou3">X</button><span>插件设置</span>
     </div>
 <div>
-<span>若出现无法正常使用的情况请清理浏览器缓存后重试</span><br>
+<span>若出现无法正常使用的情况请清理浏览器缓存后重试</span><button class='fuckyou' style="padding: 0.125rem 0rem" id='newmsg'>更新日志</button><br>
 <input type="checkbox" style="user-select:none;-moz-user-select: none; " name="MsgLightCheck" id="MsgLightCheck" ${(()=>{if(localStorage.MsgLightCheckX==="true"){return "checked"}else{return ""}})()}><label for="MsgLightCheck">启用指示灯</label>
 <input style="user-select:none;-moz-user-select: none;" class="SettiingInput" type="checkbox" ${leadermanhide} value="leadermanhide" name="leadermanhide" id="leadermanhide"><label for="leadermanhide">${leange1[1]}</label>
 <input style="user-select:none;-moz-user-select: none;" class="SettiingInput" type="checkbox" ${Scrollstylex} name="ScrollSett" id="ScrollSett">${leange2[0]}</input><br>
@@ -612,11 +616,13 @@
             let addaddNetMsg=document.querySelector("#MegNew");
             if (addaddNetMsg.style.display==="block"){
                 addaddNetMsg.style.display="none";
+                adddiv.style.display="block";
             }else{
                 addaddNetMsg.style.display="block";
+                adddiv.style.display="none";
             }
         })
-        document.querySelector("#Msgexit").addEventListener("click",function(){{addaddNetMsg.style.display="none";}})
+        document.querySelector("#Msgexit").addEventListener("click",function(){{addaddNetMsg.style.display="none";adddiv.style.display="block";}})
 
 
         document.querySelector("#OpenIdPrint").addEventListener("click",function(e){
@@ -1028,7 +1034,7 @@
         // 创建对象存储（表）并设置主键
         if (!db.objectStoreNames.contains("storeName")) {
             // 数据库不存在，可以在此处创建对象存储空间
-            var objectStore = db.createObjectStore("storeName", { keyPath: "id" });
+            let objectStore = db.createObjectStore("storeName", { keyPath: "id" });
             objectStore.createIndex('fieldName', 'fieldName', { unique: false });
         }
         if (!db.objectStoreNames.contains("EmoDB")) {
@@ -1339,6 +1345,7 @@
         let MojPackAdd=`<div class="M27MojPackImg la la-plus-circle" title="点击添加图片" style="text-align: center;line-height: 100px; font-size: 80px;" id="MojPackAddImg" ></div>`
         adddiv4Out.insertAdjacentHTML("afterbegin",MojPackAdd);
         let MojPackAddGet=document.querySelector("#MojPackAddImg");
+
 
 
     }else if(nowurl.includes('https://boyshelpboys.com/plugin')){
