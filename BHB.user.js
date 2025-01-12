@@ -4,7 +4,7 @@
 // @match       https://boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     2.4.35
+// @version     2.4.37
 // @author      M27IAR
 // @license     WTFPL
 // @description 2024/11/26 16:34:09
@@ -33,7 +33,7 @@
         let NeedFixStyleThee=document.querySelectorAll("body > style");
         NeedFixStyleThee[NeedFixStyleThee.length-1].insertAdjacentHTML("afterend",'<style id="style4"></style>');
         let FixStyleThee=document.querySelector("#style4")
-        let nedAddStyleThee=document.createTextNode(`.chat-message-text{backdrop-filter: blur(5px);background-color: rgba(${MsgBoxRed},${MsgBoxGreen},${MsgBoxBlue},${localStorage.MsgBoxTra}) !important;box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .25) !important;} .dropdown-item {line-height: 1.54;backdrop-filter: blur(5px);}.offcanvas {background-color: rgba(43,44,64,0.5); }@keyframes M27shineGreen{0%{opacity:0.5;background-color:green;}100%{opacity:1;background-color:#77F602;}} @keyframes M27shineYellow{0%{opacity:0.5;background-color:yellow;}100%{opacity:1;background-color:#F6D603;}} @keyframes M27shineRed{0%{opacity:0.5;background-color:red;}100%{opacity:1;background-color:#F60303;}} .linkOpen{animation:M27shineGreen 5s ease-in infinite alternate} .linkBadWeb{animation:M27shineRed 2s ease-in infinite alternate} .linkOutTime{animation:M27shineYellow 4s ease-in infinite alternate} .loading-more {text-align: center;padding: 10px;color: #666;font-size: 12px;background-color: #66CCFF00; }`)
+        let nedAddStyleThee=document.createTextNode(`.text-muted {--bs-text-opacity: 1;text-shadow: 0 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec} !important;}.chat-message-text{backdrop-filter: blur(5px);background-color: rgba(${MsgBoxRed},${MsgBoxGreen},${MsgBoxBlue},${localStorage.MsgBoxTra}) !important;box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .25) !important;} .dropdown-item {line-height: 1.54;backdrop-filter: blur(5px);}.offcanvas {background-color: rgba(43,44,64,0.5); }@keyframes M27shineGreen{0%{opacity:0.5;background-color:green;}100%{opacity:1;background-color:#77F602;}} @keyframes M27shineYellow{0%{opacity:0.5;background-color:yellow;}100%{opacity:1;background-color:#F6D603;}} @keyframes M27shineRed{0%{opacity:0.5;background-color:red;}100%{opacity:1;background-color:#F60303;}} .linkOpen{animation:M27shineGreen 5s ease-in infinite alternate} .linkBadWeb{animation:M27shineRed 2s ease-in infinite alternate} .linkOutTime{animation:M27shineYellow 4s ease-in infinite alternate} .loading-more {text-align: center;padding: 10px;color: #666;font-size: 12px;background-color: #66CCFF00; }`)
         FixStyleThee.appendChild(nedAddStyleThee);
 
         document.querySelector("#statelyMyInfoModal > ul > div").setAttribute("style","backdrop-filter: blur(5px);")
@@ -434,6 +434,8 @@
     <button id="Msgexit" class="fuckyou3">X</button><span>更新日志</span>
     </div>
 <div>
+<p>v2.4.37更新：</p>
+<p>重写了对主页小字体颜色描边渲染的修改方式</p>
 <p>v2.4.35更新：</p>
 <p>添加了更新日志按钮，位于插件设置内</p>
 <p>v2.4.33更新：</p>
@@ -976,6 +978,7 @@
     }
     /*
     这里是历史使用过的默认在线URL，需要自取：
+    https://t1-img.233213.xyz/2024/11/25/67447535ec930.jpg
     https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png
     https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg
     */
@@ -1369,12 +1372,6 @@
         console.log("workfoit");
         document.querySelector("#top > div > div > main > div > div.col-lg-9.main > div.card").setAttribute('style', 'display:none');
         document.querySelector("#top > div > div > main > div > div.col-lg-3.aside > div:nth-child(3)").setAttribute('style', 'display:none');
-        let spanprint=document.querySelector("#top > div > div > main > div > div.col-lg-9.main > div.card-threadlist").querySelectorAll("span,time,div");
-        for (let i = 0; i < spanprint.length; i++){
-            if(spanprint[i].className==="username "||spanprint[i].className==="date text-muted hidden-sm"||spanprint[i].className==="last-post username mx-1 text-muted d-inline-block"||spanprint[i].className==="date text-muted "||spanprint[i].className==="text-muted small"){
-            spanprint[i].setAttribute('style', `text-shadow: 0 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec}`);
-            }
-        }
         ScrollHidden()
         leftANDtop();
         WidthHeightSet();
