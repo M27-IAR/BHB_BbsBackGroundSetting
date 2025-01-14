@@ -4,7 +4,7 @@
 // @match       https://boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     2.4.37
+// @version     2.4.39
 // @author      M27IAR
 // @license     WTFPL
 // @description 2024/11/26 16:34:09
@@ -12,6 +12,8 @@
 // @updateURL https://update.greasyfork.org/scripts/519010/BHB%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2.meta.js
 // ==/UserScript==
 
+
+//https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=all&page=3
 (function(){
     //window.alert = function() {};
     window.history.replaceState(null, null, window.location.href);
@@ -33,7 +35,7 @@
         let NeedFixStyleThee=document.querySelectorAll("body > style");
         NeedFixStyleThee[NeedFixStyleThee.length-1].insertAdjacentHTML("afterend",'<style id="style4"></style>');
         let FixStyleThee=document.querySelector("#style4")
-        let nedAddStyleThee=document.createTextNode(`.text-muted {--bs-text-opacity: 1;text-shadow: 0 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec} !important;}.chat-message-text{backdrop-filter: blur(5px);background-color: rgba(${MsgBoxRed},${MsgBoxGreen},${MsgBoxBlue},${localStorage.MsgBoxTra}) !important;box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .25) !important;} .dropdown-item {line-height: 1.54;backdrop-filter: blur(5px);}.offcanvas {background-color: rgba(43,44,64,0.5); }@keyframes M27shineGreen{0%{opacity:0.5;background-color:green;}100%{opacity:1;background-color:#77F602;}} @keyframes M27shineYellow{0%{opacity:0.5;background-color:yellow;}100%{opacity:1;background-color:#F6D603;}} @keyframes M27shineRed{0%{opacity:0.5;background-color:red;}100%{opacity:1;background-color:#F60303;}} .linkOpen{animation:M27shineGreen 5s ease-in infinite alternate} .linkBadWeb{animation:M27shineRed 2s ease-in infinite alternate} .linkOutTime{animation:M27shineYellow 4s ease-in infinite alternate} .loading-more {text-align: center;padding: 10px;color: #666;font-size: 12px;background-color: #66CCFF00; }`)
+        let nedAddStyleThee=document.createTextNode(`.M27-online-users-btn {border: none;background: none;padding: 8px;display: flex;align-items: center;cursor: pointer;color: var(--bs-body-color);transition: all 0.2s;position: relative;width:36px;height:36px;}.M27-online-users-btn:hover {color: var(--bs-primary);}.text-muted {--bs-text-opacity: 1;text-shadow: 0 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec} !important;}.chat-message-text{backdrop-filter: blur(5px);background-color: rgba(${MsgBoxRed},${MsgBoxGreen},${MsgBoxBlue},${localStorage.MsgBoxTra}) !important;box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .25) !important;} .dropdown-item {line-height: 1.54;backdrop-filter: blur(5px);}.offcanvas {background-color: rgba(43,44,64,0.5); }@keyframes M27shineGreen{0%{opacity:0.5;background-color:green;}100%{opacity:1;background-color:#77F602;}} @keyframes M27shineYellow{0%{opacity:0.5;background-color:yellow;}100%{opacity:1;background-color:#F6D603;}} @keyframes M27shineRed{0%{opacity:0.5;background-color:red;}100%{opacity:1;background-color:#F60303;}} .linkOpen{animation:M27shineGreen 5s ease-in infinite alternate} .linkBadWeb{animation:M27shineRed 2s ease-in infinite alternate} .linkOutTime{animation:M27shineYellow 4s ease-in infinite alternate} .loading-more {text-align: center;padding: 10px;color: #666;font-size: 12px;background-color: #66CCFF00; }`)
         FixStyleThee.appendChild(nedAddStyleThee);
 
         document.querySelector("#statelyMyInfoModal > ul > div").setAttribute("style","backdrop-filter: blur(5px);")
@@ -88,7 +90,7 @@
 
         //localStorage.setItem("userset",true);//写入判定用户是否修改;
         //开始写入数据
-
+        localStorage.setItem("BackGroundColor",document.querySelector("#BackGroundColor").value)
         if(TranSet.checked){
             localStorage.setItem("TransparencySet","true");
         }else{
@@ -172,13 +174,10 @@
         }
         if(printSelcetBox.value==="default"){//判断用户选择的渲染状态
             localStorage.setItem("BackgroundPrint","");
-            console.log("1")
         }else if(printSelcetBox.value==="PicFirst"){
             localStorage.setItem("BackgroundPrint","cover");
-            console.log("2")
         }else if(printSelcetBox.value==="WebFirst"){
             localStorage.setItem("BackgroundPrint","contain");
-            console.log("3")
         }
         let adddiv=document.querySelector("#localsett");
         adddiv.style.display="none";
@@ -205,7 +204,6 @@
             //     localStorage.setItem(`CantSeeset${i + 1}`, "100");
             //     printseenum[i] = ""
             // }else if(Number(seenum[i].value)<10){
-            //     console.log("runok")
             //     localStorage.setItem(`CantSeeset${i+1}`,"0"+seenum[i].value);
             //     printseenum[i]="0"+seenum[i].value
             // }else{
@@ -213,7 +211,7 @@
             //     printseenum[i]=seenum[i].value
             // }
             seenunvalue=(Math.round(Number(seenum[i].value)*255/100).toString(16))
-            if(seenunvalue.length<=1){
+            if(seenunvalue.length<=1){//转化为16进制来保存
                 seenunvalue="0"+seenunvalue;
             }
             localStorage.setItem(`CantSeeset${i+1}`,seenunvalue);
@@ -247,7 +245,6 @@
         imgFile.readAsDataURL(addlocalupdate.files[0]);
         imgFile.onload = function () {
             let imgDataBase64 = this.result; //base64数据
-            console.log(imgDataBase64);
             // 打开或创建一个数据库
             let request = indexedDB.open('databaseName', 6);
             // 处理数据库升级
@@ -341,9 +338,8 @@
                 //转换透明度的数值
                 let BackimagePrintPlanNum=(localStorage.canseenunber*100)%100
                 if(BackimagePrintPlanNum===0&&localStorage.canseenunber==="0"){BackimagePrintPlanNum=""}
-                console.log(BackimagePrintPlanNum)
                 if (localStorage.PrintPicOpen==="false"){//如果用户选择不渲染图片背景
-                    bac.setAttribute("style","bakcground:#202040;")
+                    bac.setAttribute("style","background-color:${localStorage.BackGroundColor};")
                 }else{
                     if(event.target.result.name==="空"){//如果数据库没有本地图片数据
                         console.log('图片对象', event.target.result.name);
@@ -361,7 +357,7 @@
                             if (localStorage.webpiclod === "1") {
                                 if(localStorage.printToBack==="1"){
                                     //通过section写入项目留下的标签实现颜色覆盖
-                                    bac.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-attachment:fixed;`);
+                                    bac.setAttribute('style', `background-color:${localStorage.BackGroundColor};background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-attachment:fixed;`);
                                     addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-color: #202040${BackimagePrintPlanNum};background-repeat: no-repeat;background-size:cover;display: flex;align-items: center;justify-content: center;position: fixed;pointer-events: none;z-index:0;height:100%;width:100%;`);
                                 }else if(localStorage.printToBBS==="1"){
                                     BBSmsgBack.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; b background-attachment:fixed;`);
@@ -369,7 +365,7 @@
                             } else if (localStorage.localpiclod === "1") {
                                 if(localStorage.printToBack==="1"){
                                     alert('数据库无图片相关内容存储，将加载在线图片，请在设置添加本地图片')//如果数据库没有本地图片数据且选择渲染本地图片
-                                    bac.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};  background-attachment:fixed;`);
+                                    bac.setAttribute('style', `background-color:${localStorage.BackGroundColor};background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};  background-attachment:fixed;`);
                                 }else if(localStorage.printToBBS==="1"){
                                     alert('数据库无图片相关内容存储，将加载在线图片，请在设置添加本地图片')//如果数据库没有本地图片数据且选择渲染本地图片
                                     BBSmsgBack.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-attachment:fixed;`);
@@ -388,7 +384,7 @@
                             if (localStorage.webpiclod === "1") {
                                 if(localStorage.printToBack==="1"){
                                     //通过section写入项目留下的标签实现颜色覆盖
-                                    bac.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-attachment:fixed;`);
+                                    bac.setAttribute('style', `background-color:${localStorage.BackGroundColor};background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-attachment:fixed;`);
                                     addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-color: #202040${BackimagePrintPlanNum};background-repeat: no-repeat;background-size:cover;display: flex;align-items: center;justify-content: center;position: fixed;pointer-events: none;z-index:0;height:100%;width:100%;`);
                                 }else if(localStorage.printToBBS==="1"){
                                     BBSmsgBack.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};background-attachment:fixed;`);
@@ -396,7 +392,7 @@
                             } else if (localStorage.localpiclod === "1") {
                                 if(localStorage.printToBack==="1"){
                                     //通过section写入项目留下的标签实现颜色覆盖
-                                    bac.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${event.target.result.name});background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};  background-attachment:fixed;`)
+                                    bac.setAttribute('style', `background-color:${localStorage.BackGroundColor};background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${event.target.result.name});background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};  background-attachment:fixed;`)
                                     addtarge.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-color: #202040${BackimagePrintPlanNum};background-repeat: no-repeat;background-size:cover;display: flex;align-items: center;justify-content: center;position: fixed;pointer-events: none;z-index:0;height:100%;width:100%; `);
                                 }else if(localStorage.printToBBS==="1"){
                                     BBSmsgBack.setAttribute('style', `background-position:${localStorage.centerPosition}${BackTop} ${Backleft};  background-attachment:fixed; background-image: url(${event.target.result.name});background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};background-attachment:fixed;`)
@@ -424,7 +420,6 @@
         }
     }
     function addsett(leange1,leange2) {//添加设置项目
-        console.log(localStorage.PrintPicOpen+"测试")
         let BoxPrintCheckOn;
         if(localStorage.BoxPrint!=="no"){BoxPrintCheckOn='checked'}else{BoxPrintCheckOn=''}
         let oldaddtarge=document.querySelector("#navbar-collapse")
@@ -434,6 +429,11 @@
     <button id="Msgexit" class="fuckyou3">X</button><span>更新日志</span>
     </div>
 <div>
+<p>v2.4.39更新：</p>
+<p>添加了焦点检测，现在页面不在焦点将不在进行服务器链接延迟检测</p>
+<p>重写了站长的在线人数部分内容,加快了更新速度</p>
+<p>修复了指示灯在刚启动页面时没有更新的BUG</p>
+<p>添加了背景色调节功能</p>
 <p>v2.4.37更新：</p>
 <p>重写了对主页小字体颜色描边渲染的修改方式</p>
 <p>v2.4.35更新：</p>
@@ -527,7 +527,7 @@
 <div style="width:5%;${(()=>{if(localStorage.PrintPicplanChk!=="false"){return 'transform: rotate(90deg);'}else{return 'transform: rotate(0deg);'}})()};" id="UnderIcon1">></div><input style="display:none;" ${(function (){if (localStorage.PrintPicplanChk!=="false"){return "checked";}else{return "";}})()} type="checkbox" class="SettiingInput" name="PrintPicplan" id="PrintPicplan" value="PrintPicplan"><label id="PrintPicplanLabel" for="PrintPicplan" style="margin:0;user-select:none;-moz-user-select:none;width: 90%;">图像背景</label>
 </div>
 <div id="PrintPicBox" style="${(()=>{if (localStorage.PrintPicplanChk!=="false"){return "display:block;";}else{return "display:none;";}})()}">
-<input  ${(()=>{if (localStorage.PrintPicOpen!=="false"){return "checked";}else{return "";}})()} type="checkbox" class="SettiingInput" name="PrintPic" id="PrintPic" value="PrintPicplan"><label id="PrintPicplanLabel" for="PrintPic" style="margin:0;user-select:none;-moz-user-select:none;width: 90%;">启用图像背景</label><br>
+<input  ${(()=>{if (localStorage.PrintPicOpen!=="false"){return "checked";}else{return "";}})()} type="checkbox" class="SettiingInput" name="PrintPic" id="PrintPic" value="PrintPicplan"><label id="PrintPicplanLabel" for="PrintPic" style="margin:0;user-select:none;-moz-user-select:none;width: auto;">启用图像背景</label><span>&nbsp;背景色</span><input class="SettiingInput ColorSettinr" type="color" id="BackGroundColor" value="${localStorage.BackGroundColor}"><br>
 <input class="SettiingInput" type='radio'  name='picloadsele' ${localpiclod} id='localpicon' value="localpicon"  width='100px'><label style="user-select:none;-moz-user-select:none;" for="localpicon">${leange1[10]}</label>
 <input class="SettiingInput" type='file' id='webimgsrc' accept='image/*' style='width:50%;'><br> 
 <input class="SettiingInput" type='radio' ${webpiclod} name='picloadsele' id='webpicon'  width='100px' value="webpicon"> <label style="user-select:none;-moz-user-select:none;" for="webpicon">${leange1[9]}</label>
@@ -720,7 +720,6 @@
             FixStyle.appendChild(nedAddStyle);
         }else{
             FixStyle.appendChild(AddStylesec);
-            console.log("check1");
         }
     }
     function SetScroll() {//滚动条样式调整
@@ -756,7 +755,6 @@
     function rePrint(webWidth,webHeight) {//绘制启用方格特效时所需方格
         if(localStorage.BoxPrint==="yes"){
             let RGBRed=Number("0x"+localStorage.BoxColor.substring(1,3)),RGBGreen=Number("0x"+localStorage.BoxColor.substring(3,5)),RGBBlue=Number("0x"+localStorage.BoxColor.substring(5))
-
             printNunber=(Math.ceil((webHeight*1.2)/DIVboxsize))*(Math.ceil(webWidth/DIVboxsize));
             DIVmax.innerHTML="";
             for(let i=0;i<=printNunber;i++){
@@ -808,6 +806,9 @@
 
     }
     //本地存储检测
+    if(!localStorage.BackGroundColor){//背景颜色
+        localStorage.setItem("BackGroundColor","#000000")
+    }
     if(!localStorage.MsgLightCheckX){
         localStorage.setItem("MsgLightCheckX",'true')
     }
@@ -835,25 +836,25 @@
     if(!localStorage.PrintPicplanChk){
         localStorage.setItem("PrintPicplanChk","true")
     }
-    if(!localStorage.BoxColor){
+    if(!localStorage.BoxColor){//特效方格颜色
         localStorage.setItem("BoxColor","#000000");
     }
-    if(!localStorage.BoxBorderColor){
+    if(!localStorage.BoxBorderColor){//特效方格描边色
         localStorage.setItem("BoxBorderColor","#000000");
     }
     if(!localStorage.MsgBoxTra){
         localStorage.setItem("MsgBoxTra",'0.2');
     }
-    if(!localStorage.MsgBoxColor){
+    if(!localStorage.MsgBoxColor){//消息框背景色
         localStorage.setItem("MsgBoxColor","#000000");
     }
     if(!localStorage.BoxBorderCansee){
         localStorage.setItem("BoxBorderCansee","99");
     }
-    if(!localStorage.BoxPrint){
+    if(!localStorage.BoxPrint){//是否启动特效方格渲染
         localStorage.setItem("BoxPrint","no");
     }
-    if(!localStorage.BoxSize){
+    if(!localStorage.BoxSize){//特效方格大小
         localStorage.setItem("BoxSize","50");
     }
     if(!localStorage.BackgroundPrint){//图像背景尺寸设置
@@ -889,7 +890,7 @@
     if(!localStorage.backgroundplan){
         localStorage.setItem("backgroundplan",0);
     }
-    if(!localStorage.leaderhide){
+    if(!localStorage.leaderhide){//隐藏左侧条目
         localStorage.setItem("leaderhide",0);
     }
     if(!localStorage.canseenunber){//透明度数字
@@ -1069,9 +1070,66 @@
     };
     //初始值部分结束
     let TimeOutSet=3000
-    function MesWebTestPlan(MsgLight,MsgPrint){//信号灯
+    let OnlineUserListJSON
+    let OldOnlineUserListJSON
+    let OldListJsonUserName
+    let UpdateCheck=false
+    function GetOnliceAndPrint() {//在线用户相关修改
+        let ListJsonUserName
+        let ListJson
+        UpdateCheck=false
+        if(!OldOnlineUserListJSON){//验证数据是否更新
+            OldOnlineUserListJSON=OnlineUserListJSON
+            UpdateCheck=true
+        }else if(OldOnlineUserListJSON.length!==OnlineUserListJSON.length){
+            UpdateCheck=true
+        }else{
+        for (let i=0;i<OnlineUserListJSON.length;i++){
+            ListJsonUserName=Object.keys(OnlineUserListJSON[i])
+            OldListJsonUserName=Object.keys(OldOnlineUserListJSON[i])
+            if (ListJsonUserName[0]!==OldListJsonUserName[0]){
+                UpdateCheck=true
+                break;
+            }
+        }
+        }
+        if(UpdateCheck){//更新则写入
+        let OnliceUserList=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom").nextElementSibling;
+        OnliceUserList.innerHTML=""
+        document.querySelector('#M27UserNun').innerText=OnlineUserListJSON.length
+        if(OnlineUserListJSON.length>0){//验证是否为空
+            OnliceUserList.innerHTML=`<div class="panel-body"><div class="online-users-list" id="M27CHANGE"> </div></div>`
+            let AddOnLice=document.querySelector("#M27CHANGE");
+            for (let i=0;i<OnlineUserListJSON.length;i++){//插入用户数据
+                ListJsonUserName=Object.keys(OnlineUserListJSON[i])
+                ListJson=OnlineUserListJSON[i]
+                AddOnLice.insertAdjacentHTML("beforeend",`<div class="online-user-item" id="${ListJsonUserName}">
+                    <div class="avatar">
+                        <img src="${ListJson[ListJsonUserName].avatar}" alt="${ListJsonUserName}" onerror="this.src='./plugin/msto_chat/assets/default-avatar.png'">
+                    </div>
+                    <div class="user-info">
+                        <h6 class="username">${ListJsonUserName}</h6>
+                        <span class="user-status">在线</span>
+                    </div>
+                    </div>
+                `)
+                //点击跳转效果
+                let UID=ListJson[ListJsonUserName].avatar.substring(ListJson[ListJsonUserName].avatar.lastIndexOf("/")+1,ListJson[ListJsonUserName].avatar.lastIndexOf("."))
+                document.querySelector(`#${ListJsonUserName}`).addEventListener('click', ()=>{
+                    if (UID.includes('avatar')){
+                        window.open("https://boyshelpboys.com/chat.htm")
+                    }else{
+                        window.open(`https://boyshelpboys.com/user-${UID}.htm`)
+                    }
+                })
+            }
+        }
+            OldOnlineUserListJSON=OnlineUserListJSON//更新旧数组
+        }else{console.log("都jb哥们");OldOnlineUserListJSON=OnlineUserListJSON;}
+    }
+    function GetServerStation(MsgLight,MsgPrint) {
         let nowTime,Time
-        $.ajax({
+        $.ajax({//获取服务器状态
                 type:"GET",
                 url: `https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=signal `,
                 async:true,
@@ -1107,6 +1165,8 @@
                         MsgLight.className="linkBadWeb";
                         MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>但无法正确链接到服务器`
                     }
+                    OnlineUserListJSON=JSON.parse(date.responseText).active_users;
+                    GetOnliceAndPrint()
                 },
                 error: function (date,xhr,errorThrown){
                     console.log(date);
@@ -1122,6 +1182,12 @@
 
         )
     }
+    function MesWebTestPlan(MsgLight,MsgPrint){//信号灯
+        GetServerStation(MsgLight,MsgPrint)
+        if(document.hasFocus()){
+            GetServerStation(MsgLight,MsgPrint)
+    }
+    }
 
     //背景图片需要的div插入
     let localHightSize="";
@@ -1133,7 +1199,6 @@
     document.querySelector("#navbar-collapse > div").innerHTML=""//删除手机模式下顶部的图标
 
     let nowurl = window.location.href;//读取当前所在网页
-    console.log(nowurl);
 
     //方片特效准备
     let webWidth = window.innerWidth;
@@ -1164,12 +1229,10 @@
             clearInterval(tiner)
         }
     })
-
     if (nowurl.includes('https://boyshelpboys.com/chat.htm')) {//如果当前网页为聊天室页面
         WidthHeightSet();
         let printstr1=["线上地址","删除左侧导航栏","聊天室名称大小","聊天室名称字体/描边颜色","聊天室名称描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
         let printstr2=["滚动条不显示","历史记录1透明度","顶栏下部透明度","历史记录2透明度","外层边框透明度","顶栏透明度","发送边框透明度","发送框透明度","发送框描边","'聊天留言'透明度"]
-
         leftANDtop();
         ScrollHidden();
         leftContentContent();
@@ -1193,6 +1256,41 @@
             }
         })
 
+        //聊天室消息状态指示灯
+        let MsgServerTime=` <span id="MsgServer" class="" style="display: ${(()=>{if(localStorage.MsgLightCheckX==='true'){return 'block';}else{return 'none';}})()};border-radius: 50%;border:1px solid gray;height:16px;width:16px;text-align: center;background-color: gray;"></span>`
+        document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom > div").insertAdjacentHTML("afterend",MsgServerTime)
+        let MsgLight=document.querySelector("#MsgServer");
+        let MsgServerReport=`<div id="MsgBox" style="z-index:1000001;display:none; top: 10px;right:50px;position: absolute;width: 180px;height: 50px;background-color: rgba(40, 64, 120, 0.4);border: 1px solid aqua;"><span id="Msg"></span> </div>`
+        document.querySelector("#top > div > div > main > section > div > div > div > div.online-users-panel").insertAdjacentHTML("afterend",MsgServerReport)
+        let MsgPrint= document.querySelector("#Msg");
+
+        //指示灯计时器
+        MesWebTestPlan(MsgLight,MsgPrint);
+        let IntTime=setInterval(()=> {
+            MesWebTestPlan(MsgLight,MsgPrint);
+        },TimeOutSet)
+
+        document.querySelector("#MsgLightCheck").addEventListener("click",(e)=>{//调整指示灯的开关
+            if(e.target.checked){
+                localStorage.setItem("MsgLightCheckX","true");
+                MsgLight.style.display="block";
+                IntTime=setInterval(()=> {
+                    MesWebTestPlan(MsgLight,MsgPrint)
+                },3000);
+            }else{
+                localStorage.setItem("MsgLightCheckX","false");
+                MsgLight.style.display="none";
+                clearInterval(IntTime);
+            }
+        })
+        MsgLight.addEventListener("click",()=>{
+            if(document.querySelector("#MsgBox").style.display==="none"){
+                document.querySelector("#MsgBox").style.display="block";
+            }else{
+                document.querySelector("#MsgBox").style.display="none";
+            }
+        })
+
         let backb=document.querySelector("#top > div > div")//自顶栏往下部分
         let baca=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body")//聊天历史记录1
         let ul=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body > ul")//聊天历史记录2（位置更靠里）
@@ -1211,7 +1309,7 @@
         let addlocalupdate=document.querySelector("#webimgsrc");
 
         backPrint(BBSmsgBack);
-        bac.setAttribute('style',`background-color: #202040;`)//网页背景部分
+        bac.setAttribute('style',`background-color:${localStorage.BackGroundColor};`)//网页背景部分
         LiuYanTop.setAttribute("style",`background-color:${localStorage.CantSeeColor9}${localStorage.CantSeeset9};border:0px !important;`);
         baca.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1} !important;`)//聊天历史记录1
         backb.setAttribute('style', `background-color: ${localStorage.CantSeeColor2}${localStorage.CantSeeset2} !important;`)//自顶栏往下部分
@@ -1238,8 +1336,6 @@
         localStyleGet.addEventListener("click",function x(){addStyleToLocal(backb,baca,ul,histor,DIV2,fackone,msginputbox,LiuYanTop)},false);//点击向localst保存控件透明度数据
         addlocalupdate.addEventListener("change",handleFileSelect,false)//本体提交图片时向DBD保存base64
 
-
-
         let Recolor=document.querySelector("#reall")//重置颜色和透明度配置
         Recolor.addEventListener("click",function(){
             ResetSeenum();
@@ -1254,40 +1350,7 @@
             fackone.setAttribute('style',`padding: .5rem .5rem; position: relative; border-radius: .375rem; margin: 0 1.5rem 1rem 1.5rem;background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6};`)//发送栏外层边框
             LiuYanTop.setAttribute("style",`background-color:${localStorage.CantSeeColor9}${localStorage.CantSeeset9};border:0px !important;`);
         })
-        console.log(localStorage.MsgLightCheckX)
-        //聊天室消息状态指示灯
-        let MsgServerTime=` <span id="MsgServer" class="" style="display: ${(()=>{if(localStorage.MsgLightCheckX==='true'){return 'block';}else{return 'none';}})()};border-radius: 50%;border:1px solid gray;height:16px;width:16px;text-align: center;background-color: gray;"></span>`
-        document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom > div").insertAdjacentHTML("afterend",MsgServerTime)
-        let MsgLight=document.querySelector("#MsgServer");
-        let MsgServerReport=`<div id="MsgBox" style="z-index:1000001;display:none; top: 10px;right:50px;position: absolute;width: 180px;height: 50px;background-color: rgba(40, 64, 120, 0.4);border: 1px solid aqua;"><span id="Msg"></span> </div>`
-        document.querySelector("#top > div > div > main > section > div > div > div > div.online-users-panel").insertAdjacentHTML("afterend",MsgServerReport)
-        let MsgPrint= document.querySelector("#Msg");
 
-        //指示灯计时器
-        let IntTime=setInterval(()=> {
-            MesWebTestPlan(MsgLight,MsgPrint);
-        },TimeOutSet)
-
-        document.querySelector("#MsgLightCheck").addEventListener("click",(e)=>{
-            if(e.target.checked){
-                localStorage.setItem("MsgLightCheckX","true");
-                MsgLight.style.display="block";
-                IntTime=setInterval(()=> {
-                    MesWebTestPlan(MsgLight,MsgPrint)
-                },3000);
-            }else{
-                localStorage.setItem("MsgLightCheckX","false");
-                MsgLight.style.display="none";
-                clearInterval(IntTime);
-            }
-        })
-        MsgLight.addEventListener("click",()=>{
-            if(document.querySelector("#MsgBox").style.display==="none"){
-                document.querySelector("#MsgBox").style.display="block";
-            }else{
-                document.querySelector("#MsgBox").style.display="none";
-            }
-        })
         //针对@闪电炫芬批插件的外链头像图片做适配
         document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li:nth-child(1048)  ")
         let oldLen=0
@@ -1306,9 +1369,7 @@
             oldLen= Liloader.length;
         },1000)
 
-
         //站长的全屏内容适配
-
         let NeedFixStyleFive=document.querySelectorAll("body > style");
         NeedFixStyleFive[NeedFixStyleFive.length-1].insertAdjacentHTML("afterend",'<style id="style5"></style>');
         let FixStyleFive=document.querySelector("#style5")
@@ -1348,15 +1409,40 @@
         let MojPackAdd=`<div class="M27MojPackImg la la-plus-circle" title="点击添加图片" style="text-align: center;line-height: 100px; font-size: 80px;" id="MojPackAddImg" ></div>`
         adddiv4Out.insertAdjacentHTML("afterbegin",MojPackAdd);
         let MojPackAddGet=document.querySelector("#MojPackAddImg");
+        //在线人数重写
+        document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom > div > div").nextElementSibling.remove();
+        document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom > div > div").insertAdjacentHTML('afterend',`<button id="M27ChangeUserList" class="M27-online-users-btn" title="在线用户"><i class="la la-users" style="font-size: 20px;"></i><span class="online-count" id="M27UserNun">0</span></button>`)
+        document.querySelector("#M27ChangeUserList").addEventListener("click",()=>{
+            if (document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom").nextElementSibling.style.display===""){
+                document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom").nextElementSibling.setAttribute("style","display: block;")
+            }else{
+                document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom").nextElementSibling.setAttribute("style","")
+            }
+            GetOnliceAndPrint()
+        })
 
+        //自定义消息页面
+        // clearInterval(c);setInterval(()=>{if(c){clearInterval(c)}document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body").innerHTML=''},1);//删除站长原本的消息获取
+        // let msgget=setInterval(()=>{
+        //
+        // })
+        // let MsgPageNum=0;
+        // document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body").innerHTML=`<ul class="list-unstyled chat-history talk mk-chat-box" data-base-href="../plugin/msto_chat/route/" ></ul>`;
+        // ul=document.querySelector('.chat-history-body > ul:nth-child(1)')
+        // ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor3}${localStorage.CantSeeset3};`)
+        // $.ajax({
+        //     url:'https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=histary&page=1',
+        //     type:"GET",
+        //     dataType:"json",
+        //     success:function(data){
+        //         MsgPageNum=Math.ceil(data.total/10)
+        //     },
+        //     error:function(data){console.log(data)}
+        // })
     }else if(nowurl.includes('https://boyshelpboys.com/plugin')){
-        console.log(nowurl);
-        console.log("damn");
-
+            return "";
     }else if(nowurl.includes('https://boyshelpboys.com/my')){
-        console.log(nowurl);
-        bac.setAttribute("style","background-color:202040")
-        console.log("dohier");
+        bac.setAttribute("style",`background-color:${localStorage.BackGroundColor};`)
         let printstr1=["线上地址","删除左侧导航栏","淡色字体大小","淡色字描边/字体颜色","淡色字描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
         let printstr2=["滚动条不显示","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","'*没做*'*没做*"]
 
@@ -1367,9 +1453,7 @@
         leftContentContent();
         addsett(printstr1,printstr2);
     }else if(nowurl ==="https://boyshelpboys.com/"||nowurl.includes("https://boyshelpboys.com/#")||nowurl.includes("https://boyshelpboys.com/index")){
-        console.log(nowurl);
-        bac.setAttribute("style","background-color:202040")
-        console.log("workfoit");
+        bac.setAttribute("style",`background-color:${localStorage.BackGroundColor};`)
         document.querySelector("#top > div > div > main > div > div.col-lg-9.main > div.card").setAttribute('style', 'display:none');
         document.querySelector("#top > div > div > main > div > div.col-lg-3.aside > div:nth-child(3)").setAttribute('style', 'display:none');
         ScrollHidden()
@@ -1380,7 +1464,6 @@
 
         let Tiezi1=document.querySelector("#top > div > div > main > div > div.col-lg-9.main > div.card-threadlist > div.card.card-body.py-2");
         let Tiezi2
-        console.log(localStorage.CantSeeset1)
         Tiezi1.setAttribute('style', `background-color:${localStorage.CantSeeColor1}${localStorage.CantSeeset1};`);
         let printstr1=["线上地址","删除左侧导航栏","淡色字体大小","淡色字描边/字体颜色","淡色字描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
         let printstr2=["滚动条不显示","帖子栏1透明度","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","'*没做*'*没做*"]
@@ -1394,8 +1477,7 @@
         addlocalupdate.addEventListener("change",handleFileSelect,false)//本体提交图片时向DBD保存base64
 
     }else{
-        console.log(nowurl);
-        bac.setAttribute("style","background-color:202040")
+        bac.setAttribute("style",`background-color:${localStorage.BackGroundColor};`)
         setInterval(function(){if (bac.style.backgroundColor===''){console.log("reprint"); bac.setAttribute('style',`background-color: #202040;`)}},1)
         leftANDtop();
         WidthHeightSet();
