@@ -4,7 +4,7 @@
 // @match       https://boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     2.4.39
+// @version     2.4.40
 // @author      M27IAR
 // @license     WTFPL
 // @description 2024/11/26 16:34:09
@@ -971,10 +971,11 @@
     if(!localStorage.CantSeeColor9){//聊天页面外层边框
         localStorage.setItem("CantSeeColor9","#2b2c40");
     }
-    if(!localStorage.Version||localStorage.Version!=="2.4.12"){//更新后修改部分选项，理论上不会影响用户
-        localStorage.setItem("version","2.4.12");
-        if(localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png") {
-            localStorage.setItem("webimgsrc", 'https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg');
+    if(!localStorage.Version||localStorage.Version!=="2.4.40"){//更新后修改部分选项，理论上不会影响用户
+        localStorage.setItem("version","2.4.40");
+        if(localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png"||localStorage.webimgsrc==="https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg") {
+            localStorage.setItem("webimgsrc", 'https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png');
+
         }
     }
     /*
@@ -982,6 +983,7 @@
     https://t1-img.233213.xyz/2024/11/25/67447535ec930.jpg
     https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png
     https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg
+    https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png
     */
     //本地数值设定结束
     //通过读取本地存储数据进行选择值设定

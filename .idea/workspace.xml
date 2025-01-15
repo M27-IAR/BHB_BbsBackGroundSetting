@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="gx">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="添加了焦点检测，现在页面不在焦点将不在进行服务器链接延迟检测&#10;重写了站长的在线人数部分内容,加快了更新速度&#10;修复了指示灯在刚启动页面时没有更新的BUG&#10;添加了背景色调节功能">
       <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -158,15 +157,7 @@
       <workItem from="1736565919131" duration="6844000" />
       <workItem from="1736680430697" duration="7120000" />
       <workItem from="1736733650516" duration="7411000" />
-      <workItem from="1736825278654" duration="25893000" />
-    </task>
-    <task id="LOCAL-00014" summary="修BUG">
-      <option name="closed" value="true" />
-      <created>1733310437514</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1733310437514</updated>
+      <workItem from="1736825278654" duration="26060000" />
     </task>
     <task id="LOCAL-00015" summary="针对@闪电炫芬批插件的外链头像图片做适配">
       <option name="closed" value="true" />
@@ -552,7 +543,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736682089974</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="添加了焦点检测，现在页面不在焦点将不在进行服务器链接延迟检测&#10;重写了站长的在线人数部分内容,加快了更新速度&#10;修复了指示灯在刚启动页面时没有更新的BUG&#10;添加了背景色调节功能">
+      <option name="closed" value="true" />
+      <created>1736873387991</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1736873387992</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -570,7 +569,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加了对全站页面的背景适配（还没做完透明度适配，透明度目前只能在聊天室界面改）&#10;添加侧栏透明度/颜色调整&#10;修改了其他的代码" />
     <MESSAGE value="修bug" />
     <MESSAGE value="添加了新的背景渲染选择项：图像渲染方式{可以选择按照网页尺寸渲染还是以图片尺寸渲染}居中渲染{设定图像中心居中渲染}&#10;适配了站长新工具栏的样式，调整了发送框和工具栏开启按钮的大小&#10;修改了站点内选中字体的效果，现在选中字体会修改其为蓝色" />
     <MESSAGE value="更新了对火狐浏览器的界面适配" />
@@ -595,6 +593,7 @@
     <MESSAGE value="删除" />
     <MESSAGE value="重写了对主页小字体颜色描边渲染的修改方式" />
     <MESSAGE value="gx" />
-    <option name="LAST_COMMIT_MESSAGE" value="gx" />
+    <MESSAGE value="添加了焦点检测，现在页面不在焦点将不在进行服务器链接延迟检测&#10;重写了站长的在线人数部分内容,加快了更新速度&#10;修复了指示灯在刚启动页面时没有更新的BUG&#10;添加了背景色调节功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了焦点检测，现在页面不在焦点将不在进行服务器链接延迟检测&#10;重写了站长的在线人数部分内容,加快了更新速度&#10;修复了指示灯在刚启动页面时没有更新的BUG&#10;添加了背景色调节功能" />
   </component>
 </project>
