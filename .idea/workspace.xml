@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="添加了焦点检测，现在页面不在焦点将不在进行服务器链接延迟检测&#10;重写了站长的在线人数部分内容,加快了更新速度&#10;修复了指示灯在刚启动页面时没有更新的BUG&#10;添加了背景色调节功能">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -158,14 +159,7 @@
       <workItem from="1736680430697" duration="7120000" />
       <workItem from="1736733650516" duration="7411000" />
       <workItem from="1736825278654" duration="26060000" />
-    </task>
-    <task id="LOCAL-00015" summary="针对@闪电炫芬批插件的外链头像图片做适配">
-      <option name="closed" value="true" />
-      <created>1733385313518</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1733385313518</updated>
+      <workItem from="1736911195603" duration="20755000" />
     </task>
     <task id="LOCAL-00016" summary="针对@闪电炫芬批插件的外链头像图片做适配">
       <option name="closed" value="true" />
@@ -551,7 +545,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736873387992</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="添加了焦点检测，现在页面不在焦点将不在进行服务器链接延迟检测&#10;重写了站长的在线人数部分内容,加快了更新速度&#10;修复了指示灯在刚启动页面时没有更新的BUG&#10;添加了背景色调节功能">
+      <option name="closed" value="true" />
+      <created>1736911337443</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1736911337444</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
