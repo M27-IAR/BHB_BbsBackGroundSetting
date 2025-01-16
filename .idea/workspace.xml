@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="添加了焦点检测，现在页面不在焦点将不在进行服务器链接延迟检测&#10;重写了站长的在线人数部分内容,加快了更新速度&#10;修复了指示灯在刚启动页面时没有更新的BUG&#10;添加了背景色调节功能">
+    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修复了在线列表点击时无法跳转的问题&#10;修复了在部分页面背景色没有被正确设置的问题&#10;添加了主页部分的颜色|透明度调整内容&#10;修复了颜色|透明度调整内容中滑动条没有正常显示的BUG&#10;修复了点击其他位置时在线用户页面|服务器延迟信息页面不会自动隐藏的问题&#10;重写了渲染方案,现在不再区分section模式和background模式,同时’渲染到聊天室页面‘已支持透明度修改">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
     </list>
@@ -159,15 +159,8 @@
       <workItem from="1736680430697" duration="7120000" />
       <workItem from="1736733650516" duration="7411000" />
       <workItem from="1736825278654" duration="26060000" />
-      <workItem from="1736911195603" duration="20755000" />
-    </task>
-    <task id="LOCAL-00016" summary="针对@闪电炫芬批插件的外链头像图片做适配">
-      <option name="closed" value="true" />
-      <created>1733385687985</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1733385687985</updated>
+      <workItem from="1736911195603" duration="28545000" />
+      <workItem from="1736994392462" duration="2234000" />
     </task>
     <task id="LOCAL-00017" summary="empty">
       <option name="closed" value="true" />
@@ -553,7 +546,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736911337444</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="修复了在线列表点击时无法跳转的问题&#10;修复了在部分页面背景色没有被正确设置的问题&#10;添加了主页部分的颜色|透明度调整内容&#10;修复了颜色|透明度调整内容中滑动条没有正常显示的BUG&#10;修复了点击其他位置时在线用户页面|服务器延迟信息页面不会自动隐藏的问题&#10;重写了渲染方案,现在不再区分section模式和background模式,同时’渲染到聊天室页面‘已支持透明度修改">
+      <option name="closed" value="true" />
+      <created>1736947660707</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1736947660707</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -571,7 +572,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修bug" />
     <MESSAGE value="添加了新的背景渲染选择项：图像渲染方式{可以选择按照网页尺寸渲染还是以图片尺寸渲染}居中渲染{设定图像中心居中渲染}&#10;适配了站长新工具栏的样式，调整了发送框和工具栏开启按钮的大小&#10;修改了站点内选中字体的效果，现在选中字体会修改其为蓝色" />
     <MESSAGE value="更新了对火狐浏览器的界面适配" />
     <MESSAGE value="适配闪电炫芬批的外链头像（暂时不推送）" />
@@ -596,6 +596,7 @@
     <MESSAGE value="重写了对主页小字体颜色描边渲染的修改方式" />
     <MESSAGE value="gx" />
     <MESSAGE value="添加了焦点检测，现在页面不在焦点将不在进行服务器链接延迟检测&#10;重写了站长的在线人数部分内容,加快了更新速度&#10;修复了指示灯在刚启动页面时没有更新的BUG&#10;添加了背景色调节功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了焦点检测，现在页面不在焦点将不在进行服务器链接延迟检测&#10;重写了站长的在线人数部分内容,加快了更新速度&#10;修复了指示灯在刚启动页面时没有更新的BUG&#10;添加了背景色调节功能" />
+    <MESSAGE value="修复了在线列表点击时无法跳转的问题&#10;修复了在部分页面背景色没有被正确设置的问题&#10;添加了主页部分的颜色|透明度调整内容&#10;修复了颜色|透明度调整内容中滑动条没有正常显示的BUG&#10;修复了点击其他位置时在线用户页面|服务器延迟信息页面不会自动隐藏的问题&#10;重写了渲染方案,现在不再区分section模式和background模式,同时’渲染到聊天室页面‘已支持透明度修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复了在线列表点击时无法跳转的问题&#10;修复了在部分页面背景色没有被正确设置的问题&#10;添加了主页部分的颜色|透明度调整内容&#10;修复了颜色|透明度调整内容中滑动条没有正常显示的BUG&#10;修复了点击其他位置时在线用户页面|服务器延迟信息页面不会自动隐藏的问题&#10;重写了渲染方案,现在不再区分section模式和background模式,同时’渲染到聊天室页面‘已支持透明度修改" />
   </component>
 </project>

@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name        BHB聊天室背景图片更换（已全局兼容）
+// @name        BHB背景图片更换（已全局兼容）
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     2.4.42
+// @version     2.4.44
 // @author      M27IAR
 // @license     WTFPL
 // @description 2024/11/26 16:34:09
@@ -221,15 +221,9 @@
         localStorage.setItem("CantSeeColor8",seecolor8.value);
         localStorage.setItem("CantSeeColor9",seecolor9.value);
 
-        backb.setAttribute('style', `background-color: ${seecolor2.value}${printseenum[1]} !important;`)//自顶栏往下部分
-        baca.setAttribute('style', `background-color: ${seecolor1.value}${printseenum[0]} !important;`)//聊天历史记录1
-        ul.setAttribute('style', `background-color: ${seecolor3.value}${printseenum[2]} !important;`)//聊天历史记录2（位置更靠里）
-        histor.setAttribute('style', `background-color: ${seecolor4.value}${printseenum[3]} !important;`)//聊天页面外层边框
-        DIV2.setAttribute('style', `width:100%;left:0rem;background-color:${localStorage.CantSeeColor5}${printseenum[4]} !important;backdrop-filter:saturate(100%) !important;`);
-        FackOne.setAttribute('style', `padding: .5rem .5rem; position: relative; border-radius: .375rem; margin: 0 1.5rem 1rem 1.5rem;background-color: ${seecolor6.value}${printseenum[5]} !important;`)
-        MsgInputBox.setAttribute('style',`background-color: ${seecolor7.value}${printseenum[6]} !important;border:1px solid ${seecolor8.value}${printseenum[7]} !important;height:40px !important`)
-        LiuYanTop.setAttribute("style",`background-color:${seecolor9.value}${printseenum[8]};border:0px !important;`);
-        leftANDtop()
+        leftANDtop();
+        location.reload();
+
         }
     }
 
@@ -394,6 +388,8 @@
     <button id="Msgexit" class="fuckyou3">X</button><span>更新日志</span>
     </div>
 <div>
+<p>v2.4.44更新：</p>
+<p>修复了在线用户中有特殊类型ID会导致报错的问题</p>
 <p>v2.4.42更新：</p>
 <p>修复了在线列表点击时无法跳转的问题</p>
 <p>修复了在部分页面背景色没有被正确设置的问题</p>
@@ -1061,7 +1057,7 @@
             for (let i=0;i<OnlineUserListJSON.length;i++){//插入用户数据
                 ListJsonUserName=Object.keys(OnlineUserListJSON[i])
                 ListJson=OnlineUserListJSON[i]
-                AddOnLice.insertAdjacentHTML("beforeend",`<div class="online-user-item" id="${ListJsonUserName}">
+                AddOnLice.insertAdjacentHTML("beforeend",`<div class="online-user-item" id="M27-${ListJsonUserName}">
                     <div class="avatar">
                         <img src="${ListJson[ListJsonUserName].avatar}" alt="${ListJsonUserName}" onerror="this.src='./plugin/msto_chat/assets/default-avatar.png'">
                     </div>
@@ -1073,7 +1069,7 @@
                 `)
                 //点击跳转效果
                 let UID=ListJson[ListJsonUserName].avatar.substring(ListJson[ListJsonUserName].avatar.lastIndexOf("/")+1,ListJson[ListJsonUserName].avatar.lastIndexOf("."))
-                document.querySelector(`#${ListJsonUserName}`).addEventListener('click', ()=>{
+                document.querySelector(`#M27-${ListJsonUserName}`).addEventListener('click', ()=>{
                     if (UID.includes('avatar')){
                         window.open("https://boyshelpboys.com/chat.htm")
                     }else{
@@ -1387,23 +1383,51 @@
         })
 
         //自定义消息页面
+
         // clearInterval(c);setInterval(()=>{if(c){clearInterval(c)}document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body").innerHTML=''},1);//删除站长原本的消息获取
         // let msgget=setInterval(()=>{
         //
         // })
         // let MsgPageNum=0;
-        // document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body").innerHTML=`<ul class="list-unstyled chat-history talk mk-chat-box" data-base-href="../plugin/msto_chat/route/" ></ul>`;
-        // ul=document.querySelector('.chat-history-body > ul:nth-child(1)')
+        // document.querySelector(".chat-history-body").innerHTML=`<ul class="list-unstyled chat-history talk mk-chat-box" data-base-href="../plugin/msto_chat/route/" id="M27-MsgList"></ul>`;
+        // ul=document.querySelector('#M27-MsgList')
         // ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor3}${localStorage.CantSeeset3};`)
-        // $.ajax({
-        //     url:'https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=histary&page=1',
-        //     type:"GET",
-        //     dataType:"json",
-        //     success:function(data){
-        //         MsgPageNum=Math.ceil(data.total/10)
-        //     },
-        //     error:function(data){console.log(data)}
-        // })
+        // let MgsList=[]
+        // let MsgGet=setTimeout(()=>{
+        //     $.ajax({
+        //         url:'https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=histary',
+        //         type:"GET",
+        //         dataType:"json",
+        //         async:false,
+        //         success:function(data){
+        //             MsgPageNum=Math.ceil(data.total/10)
+        //         },
+        //         error:function(data){console.log(data)}
+        //     })
+        //     for(let i=1;i<=MsgPageNum;i++){
+        //         $.ajax({
+        //             url:`https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=histary&page=${i}`,
+        //             type:"GET",
+        //             dataType:"json",
+        //             async:false,
+        //             success:function(data){
+        //                 let MsgLenght=data.list.length
+        //                 for (let i=0;i<MsgLenght;i++){
+        //                     MgsList.splice(0,0,data.list[i])
+        //                 }
+        //                 },
+        //             error:function(data){console.log(data)}
+        //         });
+        //     }
+        //     console.log(MgsList)
+        //     for (let x=0;x<=MgsList.length;x++){
+        //
+        //     }
+        // },1000)
+        // let MsgGtrAJAX=setInterval(()=>{
+        //
+        // },1000)
+
     }else if(nowurl.includes('https://boyshelpboys.com/plugin')){
             return "";
     }else if(nowurl.includes('https://boyshelpboys.com/my')){
