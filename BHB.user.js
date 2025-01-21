@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name        BHB背景图片更换（已全局兼容）
+// @name        BHB聊天室背景图片更换（已全局兼容）
 // @namespace   Violentmonkey Scripts
 // @match       https://boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     2.4.44
+// @version     3.0.0
 // @author      M27IAR
 // @license     WTFPL
 // @description 2024/11/26 16:34:09
@@ -17,6 +17,8 @@
 (function(){
     //window.alert = function() {};
     window.history.replaceState(null, null, window.location.href);
+    let CheckUpdate=false
+    function createMessageMenu() {}//覆盖站长的方法
 
     function leftANDtop() {
         let NeedFixStyle=document.querySelector("head");//插入样式表修改左侧与顶栏样式
@@ -35,10 +37,9 @@
         let NeedFixStyleThee=document.querySelectorAll("body > style");
         NeedFixStyleThee[NeedFixStyleThee.length-1].insertAdjacentHTML("afterend",'<style id="style4"></style>');
         let FixStyleThee=document.querySelector("#style4")
-        let nedAddStyleThee=document.createTextNode(`.M27-online-users-list {padding: 5px;}.M27-online-users-btn {border: none;background: none;padding: 8px;display: flex;align-items: center;cursor: pointer;color: var(--bs-body-color);transition: all 0.2s;position: relative;width:36px;height:36px;}.M27-online-users-btn:hover {color: var(--bs-primary);}.text-muted {--bs-text-opacity: 1;text-shadow: 0 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec} !important;}.chat-message-text{backdrop-filter: blur(5px);background-color: rgba(${MsgBoxRed},${MsgBoxGreen},${MsgBoxBlue},${localStorage.MsgBoxTra}) !important;box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .25) !important;} .dropdown-item {line-height: 1.54;backdrop-filter: blur(5px);}.offcanvas {background-color: rgba(43,44,64,0.5); }@keyframes M27shineGreen{0%{opacity:0.5;background-color:green;}100%{opacity:1;background-color:#77F602;}} @keyframes M27shineYellow{0%{opacity:0.5;background-color:yellow;}100%{opacity:1;background-color:#F6D603;}} @keyframes M27shineRed{0%{opacity:0.5;background-color:red;}100%{opacity:1;background-color:#F60303;}} .linkOpen{animation:M27shineGreen 5s ease-in infinite alternate} .linkBadWeb{animation:M27shineRed 2s ease-in infinite alternate} .linkOutTime{animation:M27shineYellow 4s ease-in infinite alternate} .loading-more {text-align: center;padding: 10px;color: #666;font-size: 12px;background-color: #66CCFF00; }`)
+        let nedAddStyleThee=document.createTextNode(`.M27-chat-history-body {flex: 0 1 auto;height: calc(100vh - 19.5rem);padding: 1.25rem 1.25rem;overflow-x: hidden;overflow-y: auto;}.M27-list-unstyled {list-style: none;padding-left: 0;}.M27-online-users-list {overflow:auto;padding: 5px;max-height:200px;scrollbar-width:thin !important;}.M27-online-users-btn {border: none;background: none;padding: 8px;display: flex;align-items: center;cursor: pointer;color: var(--bs-body-color);transition: all 0.2s;position: relative;width:36px;height:36px;}.M27-online-users-btn:hover {color: var(--bs-primary);}.text-muted {--bs-text-opacity: 1;text-shadow: 0 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec} !important;}.chat-message-text{backdrop-filter: blur(5px);background-color: rgba(${MsgBoxRed},${MsgBoxGreen},${MsgBoxBlue},${localStorage.MsgBoxTra}) !important;box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .25) !important;} .dropdown-item {line-height: 1.54;backdrop-filter: blur(5px);}.offcanvas {background-color: rgba(43,44,64,0.5); }@keyframes M27shineGreen{0%{opacity:0.5;background-color:green;}100%{opacity:1;background-color:#77F602;}} @keyframes M27shineYellow{0%{opacity:0.5;background-color:yellow;}100%{opacity:1;background-color:#F6D603;}} @keyframes M27shineRed{0%{opacity:0.5;background-color:red;}100%{opacity:1;background-color:#F60303;}} .linkOpen{animation:M27shineGreen 5s ease-in infinite alternate} .linkBadWeb{animation:M27shineRed 2s ease-in infinite alternate} .linkOutTime{animation:M27shineYellow 4s ease-in infinite alternate} .loading-more {text-align: center;padding: 10px;color: #666;font-size: 12px;background-color: #66CCFF00; }`)
         FixStyleThee.appendChild(nedAddStyleThee);
-
-        document.querySelector("#statelyMyInfoModal > ul > div").setAttribute("style","backdrop-filter: blur(5px);")
+        if(!document.querySelector("#statelyMyInfoModal > ul > div")){}else{document.querySelector("#statelyMyInfoModal > ul > div").setAttribute("style","backdrop-filter: blur(5px);")}
         document.querySelector("body").setAttribute("style",`background-color:${localStorage.BackGroundColor}`);
 
         if (localStorage.leaderhide==="1"){//左侧导航栏的隐藏与显示
@@ -261,15 +262,11 @@
                     console.log('数据插入DBD成功');
                 };
                 transaction.onerror = function(event) {
-                    console.error('Transaction failed:', event);
                 };//准备写入图片的BASE64数据
                 let queryTransaction = db.transaction(['storeName']);
                 let queryObjectStore = queryTransaction.objectStore('storeName');
                 let query = queryObjectStore.get(1);
                 query.onsuccess = function(event) {
-                    console.log('Customer:', event.target.result);
-                    let imgdatabase64DBD=event.target.result.name;
-                    console.log(imgdatabase64DBD);
                 };
                 db.close();
             };// 错误处理
@@ -378,7 +375,7 @@
             document.querySelector("#heightsize").disabled=false;
         }
     }
-    function addsett(leange1,leange2) {//添加设置项目
+    function addsett(leange1,leange2,CheckUpdate) {//添加设置项目
         let BoxPrintCheckOn;
         if(localStorage.BoxPrint!=="no"){BoxPrintCheckOn='checked'}else{BoxPrintCheckOn=''}
         let oldaddtarge=document.querySelector("#navbar-collapse")
@@ -388,6 +385,7 @@
     <button id="Msgexit" class="fuckyou3">X</button><span>更新日志</span>
     </div>
 <div>
+<p>v3.0.0更新：<br>修复了在主页时背景图片不显示的BUG<br>重写了在线栏，只会显示在线人数和最后在线时间<br>新的聊天室界面现已上线（Beta），在聊天室界面的插件设置=》聊天室界面设置=》启用新的聊天室界面 点击勾选后刷新即可开始使用</p>
 <p>v2.4.44更新：</p>
 <p>修复了在线用户中有特殊类型ID会导致报错的问题</p>
 <p>v2.4.42更新：</p>
@@ -475,13 +473,7 @@
 <p>v1.1.1更新：</p>
 <p>修改了本体图片的存储位置 现在存储于IndexedDB 可以导入的图片文件更大了<br>添加了左侧导航栏的隐藏功能<br>尝试删除了聊天室界面下部的黑色渐变条</p>
 </div>`
-
-
-
-
-
         let addmain=`<div id="localsett" >
-        
 <div >
 <div style="position: sticky ;height:28px;width:100%;top: 0;left:0;background-color: rgba(36,70,88,0.4);backdrop-filter: blur(5px);">
     <button id="exit" class="fuckyou3">X</button><span>插件设置</span>
@@ -568,8 +560,9 @@
         let printSelcetBox=document.querySelector("#selectBox");
 
         printSelcetBox.addEventListener("change",function(){checkPrint();})
+        console.log(CheckUpdate)
         adddiv.setAttribute('style', 'position: fixed;left:50%;top:50%;overflow:auto; border-radius: 5px;transform: translate(-50%, -50%);width: 330px;height: 550px;border: 1px solid aqua;z-index:10000;display:none;background-color:rgba(40,64,120,0.4);color:#f0f5f9;text-shadow:0 1px 0.5px #32353E,0 -1px 0.5px #32353E,1px 0 0.5px #32353E,-1px 0 0.5px #32353E;')
-        addaddNetMsg.setAttribute('style', 'position: fixed;left:50%;top:50%;overflow:auto; border-radius: 5px;transform: translate(-50%, -50%);width: 330px;height: 550px;border: 1px solid aqua;z-index:10000;display:none;background-color:rgba(40,64,120,0.4);color:#f0f5f9;text-shadow:0 1px 0.5px #32353E,0 -1px 0.5px #32353E,1px 0 0.5px #32353E,-1px 0 0.5px #32353E;')
+        addaddNetMsg.setAttribute('style', `position: fixed;left:50%;top:50%;overflow:auto; border-radius: 5px;transform: translate(-50%, -50%);width: 330px;height: 550px;border: 1px solid aqua;z-index:10000;display:${(()=>{if(CheckUpdate){return "block"}else{return "none"}})()};background-color:rgba(40,64,120,0.4);color:#f0f5f9;text-shadow:0 1px 0.5px #32353E,0 -1px 0.5px #32353E,1px 0 0.5px #32353E,-1px 0 0.5px #32353E;`)
         addbutt.addEventListener("click",function(){//开关设置栏1
             let adddiv=document.querySelector("#localsett")
             if (adddiv.style.display==="block"){
@@ -732,7 +725,6 @@
 
             }
         }else{
-            console.log("开摆！");
         }
     }
     function changeBackground(){//设置方格定时刷新效果
@@ -771,6 +763,9 @@
 
     }
     //本地存储检测
+    if(!localStorage.M27NewBBGPrint){//是否启用自定义聊天室
+        localStorage.setItem("M27NewBBGPrint","false")
+    }
     if(!localStorage.BackGroundColor){//背景颜色
         localStorage.setItem("BackGroundColor","#000000")
     }
@@ -930,13 +925,13 @@
     if(!localStorage.CantSeeColor9){//聊天页面外层边框
         localStorage.setItem("CantSeeColor9","#2b2c40");
     }
-    if(!localStorage.Version||localStorage.Version!=="2.4.42"){//更新后修改部分选项，理论上不会影响用户
-        localStorage.setItem("version","2.4.42");
+    if(!localStorage.version||localStorage.version!=="3.0.0"){//更新后修改部分选项，理论上不会影响用户
+        localStorage.setItem("version","3.0.0");CheckUpdate=true;
         if(localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png"||localStorage.webimgsrc==="https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg") {
             localStorage.setItem("webimgsrc", 'https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png');
-
         }
-    }
+
+    }else{CheckUpdate=false}
     /*
     这里是历史使用过的默认在线URL，需要自取：
     https://t1-img.233213.xyz/2024/11/25/67447535ec930.jpg
@@ -1026,28 +1021,10 @@
     let TimeOutSet=3000
     let OnlineUserListJSON
     let OldOnlineUserListJSON
-    let OldListJsonUserName
-    let UpdateCheck=true
     function GetOnliceAndPrint() {//在线用户相关修改
         let ListJsonUserName
         let ListJson
-        UpdateCheck=false
-        if(!OldOnlineUserListJSON){//验证数据是否更新
-            OldOnlineUserListJSON=OnlineUserListJSON
-            UpdateCheck=true
-        }else if(OldOnlineUserListJSON.length!==OnlineUserListJSON.length){
-            UpdateCheck=true
-        }else{
-        for (let i=0;i<OnlineUserListJSON.length;i++){
-            ListJsonUserName=Object.keys(OnlineUserListJSON[i])
-            OldListJsonUserName=Object.keys(OldOnlineUserListJSON[i])
-            if (ListJsonUserName[0]!==OldListJsonUserName[0]){
-                UpdateCheck=true
-                break;
-            }
-        }
-        }
-        if(UpdateCheck){//更新则写入
+        //更新则写入
         let OnliceUserList=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom").nextElementSibling;
         OnliceUserList.innerHTML=""
         document.querySelector('#M27UserNun').innerText=OnlineUserListJSON.length
@@ -1055,6 +1032,7 @@
             OnliceUserList.innerHTML=`<div class="panel-body"><div class="M27-online-users-list" id="M27CHANGE"> </div></div>`
             let AddOnLice=document.querySelector("#M27CHANGE");
             for (let i=0;i<OnlineUserListJSON.length;i++){//插入用户数据
+                if(OnlineUserListJSON[i][Object.keys(OnlineUserListJSON[i])[0]].isOnline===true){
                 ListJsonUserName=Object.keys(OnlineUserListJSON[i])
                 ListJson=OnlineUserListJSON[i]
                 AddOnLice.insertAdjacentHTML("beforeend",`<div class="online-user-item" id="M27-${ListJsonUserName}">
@@ -1063,7 +1041,7 @@
                     </div>
                     <div class="user-info">
                         <h6 class="username">${ListJsonUserName}</h6>
-                        <span class="user-status">在线</span>
+                        <span style="font-size: 10px">最后在线时间：${(new Date((OnlineUserListJSON[i][Object.keys(OnlineUserListJSON[i])[0]].lastActive)*1000)).toString().slice(16,25)}</span>
                     </div>
                     </div>
                 `)
@@ -1077,16 +1055,17 @@
                     }
                 })
             }
+            }
         }
             OldOnlineUserListJSON=OnlineUserListJSON//更新旧数组
-        }else{OldOnlineUserListJSON=OnlineUserListJSON;}
     }
+
     //function updateUsersList(){return null;}
     function GetServerStation(MsgLight,MsgPrint) {//信号灯|在线用户部分数据修改
         let nowTime,Time
         $.ajax({//获取服务器状态
                 type:"GET",
-                url: `https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=signal `,
+                url: `https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=signal`,
                 async:true,
                 timeout:TimeOutSet,
                 beforeSend:function(){nowTime=Date.now();},
@@ -1120,13 +1099,11 @@
                         MsgLight.className="linkBadWeb";
                         MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>但无法正确链接到服务器`
                     }
+                    console.log(JSON.parse(date.responseText))
                     OnlineUserListJSON=JSON.parse(date.responseText).active_users;
                     GetOnliceAndPrint()
                 },
-                error: function (date,xhr,errorThrown){
-                    console.log(date);
-                    console.log(xhr);
-                    console.log(errorThrown);
+                error: function (){
                     MsgLight.style.backgroundColor="red";
                     MsgLight.style.boxShadow= "0px 1px 10px #F60303,0px -1px 10px #F60303,1px 0px 10px #F60303,-1px 0px 10px #F60303";
                     MsgLight.style.border="1px solid red";
@@ -1140,9 +1117,50 @@
     function MesWebTestPlan(MsgLight,MsgPrint){//信号灯数据获取
         if(document.hasFocus()){
             GetServerStation(MsgLight,MsgPrint)
-        }else{console.log("")}
+        }else{}
     }
 
+    let message;//站长的特殊链接处理
+    function renderImage(url, alt = '') {
+        return `<img src="${url}" alt="${alt}" referrerpolicy="no-referrer" class="chat-image" style="width: 7.5rem;object-fit: contain;">`;
+    }
+    const mediaPatterns = [
+        // 图片
+        {
+            regex: /https?:\/\/[^\s<>"']+?\.(?:jpg|jpeg|gif|png|webp|avif)(?:@[^@\s<>"']*)?/gi,
+            handler: url => {
+                if (!message.includes(`[img]${url}[/img]`)) {
+                    // 清理B站图片链接中的参数
+                    url = url.replace(/@.*$/, '');
+                    return renderImage(url);
+                }
+                return url;
+            }
+        },
+        // 视频
+        {
+            regex: /https?:\/\/[^\s<>"']+?\.(?:mp4|webm|ogg)(?:\?[^\s<>"']*)?/gi,
+            handler: url => {return `<video controls src="${url}" preload="none" style="max-width:18.75rem; border-radius:5px; margin:5px 0;"></video>`;
+            }
+        },
+        // 音频
+        {
+            regex: /https?:\/\/[^\s<>"']+?\.(?:mp3|wav|m4a)(?:\?[^\s<>"']*)?/gi,
+            handler: url => {return `<audio controls src="${url}" preload="none" style="width:15.625rem; margin:5px 0;"></audio>`}
+
+        },
+        // B站视频
+        {
+            regex: /https?:\/\/(?:www\.)?bilibili\.com\/video\/(BV[\w]+)[^\s<>"']*/g,
+            handler: (match, bvid) => {return `<iframe src="//player.bilibili.com/player.html?&bvid=${bvid}&high_quality=1&autoplay=0" allowfullscreen="allowfullscreen" style="width:18.75rem; height:12.5rem; border-radius:5px; margin:5px 0;"></iframe>`}
+        },
+        // 网易云音乐
+        {
+            regex: /https?:\/\/music\.163\.com\/song\?id=(\d+)(?:&[^&\s<>"']*)?/g,
+            handler: (match, songId)=>{return `<iframe src="//music.163.com/outchain/player?type=2&id=${songId}&auto=0&height=66" style="width:22.5rem; height:5.375rem; margin: 0;"></iframe>`}
+
+        }
+    ];
 
     let localHightSize="";
     let localWidthSize="";
@@ -1191,16 +1209,24 @@
         leftANDtop();
         ScrollHidden();
         leftContentContent();
-        addsett(printstr1,printstr2);
+        addsett(printstr1,printstr2,CheckUpdate);
         //聊天室页面的独占设置内容
         let AddSetter=`
     <div id="MsgSet" style="width:100%;background-color: rgba(36,70,88,0.4);border:1px solid aqua;display: flex;">
     <div style="width:5%;${(()=>{if(localStorage.MsgSet!=="false"){return 'transform: rotate(90deg);'}else{return 'transform: rotate(0deg);'}})()};" id="UnderIcon6">></div><input style="display:none;" type="checkbox" class="SettiingInput" name="MsgSetCheck" id="MsgSetCheck" ${(function (){if (localStorage.MsgSet!=="false"){return "checked";}else{return "";}})()}><label style="user-select:none;-moz-user-select:none;width: 90%;margin:0;" for="MsgSetCheck">聊天室页面设置</label>
     </div>
     <div id="MsgSetSet" style="${(()=>{if (localStorage.MsgSet!=="false"){return "display:block;";}else{return "display:none;";}})()}">
+    <input  ${(()=>{if (localStorage.M27NewBBGPrint!=="false"){return "checked";}else{return "";}})()} type="checkbox" class="SettiingInput" name="BBSprintCheck" id="BBSprintCheck" value="PrintPicplan"><label for="BBSprintCheck" style="margin:0;user-select:none;-moz-user-select:none;width: auto;">启用新的聊天室界面</label><br>
     <span>消息气泡调整</span><input class="SettiingInput RangeSetting" type="range" min="0" max="1" step="0.01" value="${localStorage.MsgBoxTra}"onchange="localStorage.MsgBoxTra=value" id="MsgBoxTra" ><input class="SettiingInput ColorSettinr" type="color" id="MsgBoxColor" onchange="localStorage.MsgBoxColor=value" value="${localStorage.MsgBoxColor}"><br>
     </div><hr>`
         document.querySelector("#MsgUrlAddLine").insertAdjacentHTML("afterend",AddSetter);
+        document.querySelector("#BBSprintCheck").addEventListener("click",(e)=>{
+            if(e.target.checked){
+                localStorage.setItem("M27NewBBGPrint","true");
+            }else{
+                localStorage.setItem("M27NewBBGPrint","false");
+            }
+        })
         document.querySelector("#MsgSetCheck").addEventListener("click",function(e) {
             if (e.target.checked){
                 document.querySelector("#MsgSetSet").style.display="block";
@@ -1250,7 +1276,7 @@
 
         let backb=document.querySelector("#top > div > div")//自顶栏往下部分
         let baca=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body")//聊天历史记录1
-        let ul=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body > ul")//聊天历史记录2（位置更靠里）
+        let ul=document.querySelector(".chat-history-body > ul")//聊天历史记录2（位置更靠里）
         let histor=document.querySelector("#top > div > div > main > section")//聊天页面外层边框
         let fackone=document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs")//输入框部分
         let msginputbox=document.querySelector("#msg")//输入框自己
@@ -1276,6 +1302,8 @@
         ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor3}${localStorage.CantSeeset3} !important;`)//聊天历史记录2（位置更靠里）
         histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4} !important;`)//聊天页面外层边框
         msginputbox.setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;border:1px solid ${localStorage.CantSeeColor8}${localStorage.CantSeeset8} !important;height:2.5rem !important;`)//输入框部分
+
+        document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write > div > div").setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;height:2.5rem;`)
         msgInputBoxOutsite.setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;height:48px;`)//输入框外框调整
 
                 //站长工具栏启动按钮
@@ -1312,10 +1340,10 @@
         })
 
         //针对@闪电炫芬批插件的外链头像图片做适配
-        document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li:nth-child(1048)  ")
+        document.querySelector(".chat-history-body > ul > li:nth-child(1048)  ")
         let oldLen=0
         setInterval(()=> {
-            let Liloader= document.querySelectorAll("#top > div > div > main > section > div > div > div > div.chat-history-body > ul > li")
+            let Liloader= document.querySelectorAll(".chat-history-body > ul > li")
             if (oldLen ===Liloader.length){
             }else{
                 for (let i = 0; i < Liloader.length; i++) {
@@ -1383,50 +1411,146 @@
         })
 
         //自定义消息页面
-
-        // clearInterval(c);setInterval(()=>{if(c){clearInterval(c)}document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body").innerHTML=''},1);//删除站长原本的消息获取
-        // let msgget=setInterval(()=>{
-        //
-        // })
-        // let MsgPageNum=0;
-        // document.querySelector(".chat-history-body").innerHTML=`<ul class="list-unstyled chat-history talk mk-chat-box" data-base-href="../plugin/msto_chat/route/" id="M27-MsgList"></ul>`;
-        // ul=document.querySelector('#M27-MsgList')
-        // ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor3}${localStorage.CantSeeset3};`)
-        // let MgsList=[]
-        // let MsgGet=setTimeout(()=>{
-        //     $.ajax({
-        //         url:'https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=histary',
-        //         type:"GET",
-        //         dataType:"json",
-        //         async:false,
-        //         success:function(data){
-        //             MsgPageNum=Math.ceil(data.total/10)
-        //         },
-        //         error:function(data){console.log(data)}
-        //     })
-        //     for(let i=1;i<=MsgPageNum;i++){
-        //         $.ajax({
-        //             url:`https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=histary&page=${i}`,
-        //             type:"GET",
-        //             dataType:"json",
-        //             async:false,
-        //             success:function(data){
-        //                 let MsgLenght=data.list.length
-        //                 for (let i=0;i<MsgLenght;i++){
-        //                     MgsList.splice(0,0,data.list[i])
-        //                 }
-        //                 },
-        //             error:function(data){console.log(data)}
-        //         });
-        //     }
-        //     console.log(MgsList)
-        //     for (let x=0;x<=MgsList.length;x++){
-        //
-        //     }
-        // },1000)
-        // let MsgGtrAJAX=setInterval(()=>{
-        //
-        // },1000)
+        if(localStorage.M27NewBBGPrint==="true"){
+        clearInterval(c);setInterval(()=>{if(c){clearInterval(c)}},1);//删除站长原本的消息获取
+        let MsgPageNum=0;//消息页数
+        let MsgId;//最新消息id
+        let MsgIdcheck=true;
+        let MgsList=[]//消息历史记录
+        let PrintNumCunt=0;//累计渲染消息计数
+        //let MsgGet=
+            setTimeout(()=>{//获取目前消息数量
+            $.ajax({
+                url:'https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=histary',
+                type:"GET",
+                dataType:"json",
+                async:false,
+                success:function(data){
+                    MsgPageNum=Math.ceil(data.total/10)
+                },
+                error:function(data){}
+            })
+            for(let i=1;i<=MsgPageNum;i++){//读取全部消息
+                $.ajax({
+                    url:`https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=histary&page=${i}`,
+                    type:"GET",
+                    dataType:"json",
+                    async:false,
+                    success:function(data){
+                        let MsgLenght=data.list.length
+                        for (let i=MsgLenght-1;i>=0;i--){
+                            MgsList.splice(0,0,data.list[i])
+                        }
+                        },
+                    error:function(data){}
+                });
+            }
+            document.querySelector(".chat-history-body > ul").style.display="none"
+            document.querySelector(".chat-history-body").insertAdjacentHTML("beforeend",`<ul class="M27-list-unstyled chat-history talk" data-base-href="../plugin/msto_chat/route/" id="M27-MsgList"></ul>`);
+            ul=document.querySelector('#M27-MsgList')
+            ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor3}${localStorage.CantSeeset3};`)
+            ul.innerHTML=""
+            let UserId=document.querySelector("#statelyMyInfoModal > ul > div > div:nth-child(1) > div.flex-grow-1 > a").innerHTML
+                for (let x=MgsList.length-1;x>=0;x--){//渲染全部消息
+                if(JSON.parse(MgsList[x]).name){
+                    message=JSON.parse(MgsList[x]).msg//修正特殊消息内容
+                    message = message.replace(/\[img](.*?)\[\/img]/g, (match, url) => {
+                        // 清理B站图片链接中的参数
+                        url = url.replace(/@.*$/, '');
+                        return renderImage(url);
+                    });
+                    mediaPatterns.forEach(pattern => {
+                        message = message.replace(pattern.regex, pattern.handler);
+                    });
+                    let UID=JSON.parse(MgsList[x]).pic.substring(JSON.parse(MgsList[x]).pic.lastIndexOf("/")+1,JSON.parse(MgsList[x]).pic.lastIndexOf("."))
+                    if (UID.includes('avatar')||UID===""){
+                        UID="https://boyshelpboys.com/chat.htm"
+                    }else{
+                        UID=`https://boyshelpboys.com/user-${UID}.htm`
+                    }
+                    ul.insertAdjacentHTML("beforeend",`<li data-index="${JSON.parse(MgsList[x]).id}" id="M27-${JSON.parse(MgsList[x]).id}" style="list-style:none;padding: 0;margin: 0;display: flex;width: 99%;height: auto;font-size: 1rem;justify-content: space-around;">
+                                        <div style="margin: 0.375rem;box-shadow: 0 1px 5px ${(()=>{if (JSON.parse(MgsList[x]).name===UserId){return "red";}else{return "blue";}})()},0 -1px 5px ${(()=>{if (JSON.parse(MgsList[x]).name===UserId){return "red";}else{return "blue";}})()},1px 0 5px ${(()=>{if (JSON.parse(MgsList[x]).name===UserId){return "red";}else{return "blue";}})()},-1px 0 5px ${(()=>{if (JSON.parse(MgsList[x]).name===UserId){return "red";}else{return "blue";}})()};width: 2.25rem;height: 2.25rem; align-items: center;justify-items: center;display: flex;top: 0.125rem;left: 0.125rem;">
+                                            <a href="${UID}" target="_blank"><img src='${JSON.parse(MgsList[x]).pic}' alt="${JSON.parse(MgsList[x]).name}" style="font-size: 6px;overflow: hidden;width: 2.25rem;height: 2.25rem;"></a>
+                                        </div>
+                                        <div style="width: 95%;align-items: flex-start;justify-items: center;display: flex;flex-direction: column;">
+                                            <div style="width: 100%;height: auto;"><small style="font-size: 12px;" class="userName" data-username="${JSON.parse(MgsList[x]).name}" id="M27-${JSON.parse(MgsList[x]).name}-${JSON.parse(MgsList[x]).id}">${JSON.parse(MgsList[x]).name}</small>&emsp;<small style="font-size: small">${new Date(JSON.parse(MgsList[x]).time*1000).toLocaleString()}</small></div>
+                                            <div class="chat-message-text" style="background-color: orange;padding: 0.375rem;margin:0.375rem 0 0 0.375rem;max-width:80% ;height: auto; white-space: normal;"><span style="word-break: break-all">${message}</span></div>
+                                        </div></li>`)
+                //添加点击id@对方的效果
+                document.querySelector(`#M27-${JSON.parse(MgsList[x]).name}-${JSON.parse(MgsList[x]).id}`).addEventListener('click', ()=>{
+                    document.querySelector("#msg").value+="@"+document.querySelector(`#M27-${JSON.parse(MgsList[x]).name}-${JSON.parse(MgsList[x]).id}`).getAttribute('data-username')+" ";
+                })
+                    PrintNumCunt+=1;
+                }
+                MsgId=JSON.parse(MgsList[x]).id//设定最新消息的id
+                document.querySelector(".chat-history-body").scrollTop = document.querySelector(".chat-history-body").scrollHeight;
+            }
+            //定时询问新消息
+            //let MsgGtrAJAX=
+                setInterval(()=>{
+                let CheckScroll;
+                MsgIdcheck=true
+                $.ajax({
+                    url:`https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=new&last_id=${MsgId}`,
+                    type:"GET",
+                    dataType:"json",
+                    async:true,
+                    success:function(data){
+                        CheckScroll=data.list.length
+                        for (let x=0;x<data.list.length;x++){
+                            MsgIdcheck=true
+                            for (let y=MgsList.length-1;y>=0;y--){//去重
+                                if (JSON.parse(data.list[x]).id===JSON.parse(MgsList[y]).id){
+                                    console.log(JSON.parse(data.list[x]).id+" x "+JSON.parse(MgsList[y]).id+" x "+MsgIdcheck);
+                                    MsgIdcheck=false
+                                    break;
+                                }
+                            }
+                            console.log(MsgIdcheck)
+                            if(JSON.parse(data.list[x]).name&&MsgIdcheck){
+                                message=JSON.parse(data.list[x]).msg
+                                message = message.replace(/\[img](.*?)\[\/img]/g, (match, url) => {
+                                    // 清理B站图片链接中的参数
+                                    url = url.replace(/@.*$/, '');
+                                    return renderImage(url);
+                                });
+                                mediaPatterns.forEach(pattern => {
+                                    message = message.replace(pattern.regex, pattern.handler);
+                                });
+                                let UID=JSON.parse(data.list[x]).pic.substring(JSON.parse(data.list[x]).pic.lastIndexOf("/")+1,JSON.parse(data.list[x]).pic.lastIndexOf("."))
+                                if (UID.includes('avatar')||UID===""){
+                                    UID="https://boyshelpboys.com/chat.htm"
+                                }else{
+                                    UID=`https://boyshelpboys.com/user-${UID}.htm`
+                                }
+                                ul.insertAdjacentHTML("beforeend",`<li data-index="${JSON.parse(data.list[x]).id}" id="${JSON.parse(data.list[x]).id}" style="list-style:none;padding: 0;margin: 0;display: flex;width: 99%;height: auto;font-size: 1rem;justify-content: space-around;">
+                                <div style="margin: 0.375rem;box-shadow: 0 1px 5px ${(()=>{if (JSON.parse(data.list[x]).name===UserId){return "red";}else{return "blue";}})()},0 -1px 5px ${(()=>{if (JSON.parse(data.list[x]).name===UserId){return "red";}else{return "blue";}})()},1px 0 5px ${(()=>{if (JSON.parse(data.list[x]).name===UserId){return "red";}else{return "blue";}})()},-1px 0 5px ${(()=>{if (JSON.parse(data.list[x]).name===UserId){return "red";}else{return "blue";}})()};width: 2.25rem;height: 2.25rem; align-items: center;justify-items: center;display: flex;top: 0.125rem;left: 0.125rem;">
+                                    <a href="${UID}" target="_blank"><img src='${JSON.parse(data.list[x]).pic}' alt="${JSON.parse(data.list[x]).name}" style="overflow: hidden;font-size: 8px;width: 2.25rem;height: 2.25rem;"></a>
+                                </div>
+                                <div style="width: 95%;align-items: flex-start;justify-items: center;display: flex;flex-direction: column;">
+                                    <div style="width: 100%;height: auto;"><small style="font-size: 12px;" class="userName" data-username="${JSON.parse(data.list[x]).name}" id="M27-${JSON.parse(data.list[x]).name}-${JSON.parse(data.list[x]).id}">${JSON.parse(data.list[x]).name}</small>&emsp;<small style="font-size: small">${new Date(JSON.parse(data.list[x]).time*1000).toLocaleString()}</small></div>
+                                    <div class="chat-message-text" style="background-color: orange;padding: 0.375rem;margin:0.375rem 0 0 0.375rem;max-width:80% ;height: auto; white-space: normal;"><span style="word-break: break-all">${message}</span></div>
+                                </div></li>`)
+                                //添加点击id@对方的效果
+                                document.querySelector(`#M27-${JSON.parse(data.list[x]).name}-${JSON.parse(data.list[x]).id}`).addEventListener('click', ()=>{
+                                    document.querySelector("#msg").value+="@"+document.querySelector(`#M27-${JSON.parse(data.list[x]).name}-${JSON.parse(data.list[x]).id}`).getAttribute('data-username')+" ";
+                                })
+                                PrintNumCunt+=1;
+                                console.log(PrintNumCunt)
+                                MgsList.push(data.list[x])
+                                MsgId=JSON.parse(data.list[x]).id
+                            }else{MsgId=ul.querySelector('li:last-child').id}
+                        }
+                        if(CheckScroll>0){
+                            document.querySelector(".chat-history-body").scrollTop =document.querySelector(".chat-history-body").clientHeight+ document.querySelector(".chat-history-body").scrollHeight;
+                        }
+                    }
+                })
+                    $(document).off('contextmenu');
+                },1000)
+                document.querySelector(".message-menu").innerHTML=""
+            document.querySelector(".chat-history-body").scrollTop =document.querySelector(".chat-history-body").scrollHeight;
+        },1000)}
 
     }else if(nowurl.includes('https://boyshelpboys.com/plugin')){
             return "";
@@ -1440,11 +1564,11 @@
         backPrint(bac,addtarge,nowurl);
         ScrollHidden();
         leftContentContent();
-        addsett(printstr1,printstr2);
+        addsett(printstr1,printstr2,CheckUpdate);
     }else if(nowurl ==="https://boyshelpboys.com/"||nowurl.includes("https://boyshelpboys.com/#")||nowurl.includes("https://boyshelpboys.com/index")){
         bac.setAttribute("style",`background-color:${localStorage.BackGroundColor};`)
-        document.querySelector("#top > div > div > main > div > div.col-lg-9.main > div.card").setAttribute('style', 'display:none');
-        document.querySelector("#top > div > div > main > div > div.col-lg-3.aside > div:nth-child(3)").setAttribute('style', 'display:none');
+        // document.querySelector("#top > div > div > main > div > div.col-lg-9.main > div.card").setAttribute('style', 'display:none');
+        // document.querySelector("div.card:nth-child(4)").setAttribute('style', 'display:none');
         ScrollHidden()
         leftANDtop();
         WidthHeightSet();
@@ -1463,7 +1587,7 @@
 
         let printstr1=["线上地址","删除左侧导航栏","淡色字体大小","淡色字描边/字体颜色","淡色字描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
         let printstr2=["滚动条不显示","帖子栏1透明度","顶栏而下透明度","*没做*","*没做*","*没做*","搜索框颜色透明度","搜索输入框颜色",'搜索框描边',"*没做*"]
-        addsett(printstr1,printstr2);
+        addsett(printstr1,printstr2,CheckUpdate);
 
         let addlocalupdate=document.querySelector("#webimgsrc");
         let localget=document.querySelector("#save");
@@ -1486,7 +1610,7 @@
 
         let printstr1=["线上地址","删除左侧导航栏","聊天室名称大小","聊天室名称描边/字体颜色","聊天室名称描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
         let printstr2=["滚动条不显示","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","'*没做*'*没做*"]
-        addsett(printstr1,printstr2);
+        addsett(printstr1,printstr2,CheckUpdate);
         let addlocalupdate=document.querySelector("#webimgsrc");
         let localget=document.querySelector("#save");
         let localStyleGet=document.querySelector("#secsubint")
