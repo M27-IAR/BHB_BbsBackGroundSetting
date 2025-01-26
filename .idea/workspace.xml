@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修复了在线用户中有特殊类型ID会导致报错的问题">
+    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修复了在主页时背景图片不显示的BUG&#10;重写了在线栏，只会显示在线人数和最后在线时间&#10;新的聊天室界面现已上线（Beta），在聊天室界面的插件设置=》聊天室界面设置=》启用新的聊天室界面 点击勾选后刷新即可开始使用">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
     </list>
@@ -16,9 +16,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="tsconfig.json" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -165,15 +165,15 @@
       <workItem from="1737169313068" duration="6150000" />
       <workItem from="1737376772155" duration="8355000" />
       <workItem from="1737421985257" duration="1698000" />
-      <workItem from="1737439782857" duration="1920000" />
-    </task>
-    <task id="LOCAL-00018" summary="添加聊天室ID字体颜色修改功能&#10;添加顶栏透明度/颜色调整&#10;添加发送栏边框颜色透明度调整&#10;添加发送框颜色透明度调整&#10;添加发送框描边&#10;添加“聊天留言”区颜色/透明度修改">
-      <option name="closed" value="true" />
-      <created>1733470137804</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1733470137807</updated>
+      <workItem from="1737439782857" duration="2400000" />
+      <workItem from="1737556377208" duration="3550000" />
+      <workItem from="1737599586712" duration="602000" />
+      <workItem from="1737611839269" duration="3792000" />
+      <workItem from="1737707746812" duration="9550000" />
+      <workItem from="1737768605005" duration="1851000" />
+      <workItem from="1737784471069" duration="5590000" />
+      <workItem from="1737850299087" duration="2114000" />
+      <workItem from="1737869793599" duration="7224000" />
     </task>
     <task id="LOCAL-00019" summary="修bug">
       <option name="closed" value="true" />
@@ -559,7 +559,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737006953342</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="修复了在主页时背景图片不显示的BUG&#10;重写了在线栏，只会显示在线人数和最后在线时间&#10;新的聊天室界面现已上线（Beta），在聊天室界面的插件设置=》聊天室界面设置=》启用新的聊天室界面 点击勾选后刷新即可开始使用">
+      <option name="closed" value="true" />
+      <created>1737441920344</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1737441920345</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -577,7 +585,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="更新了对火狐浏览器的界面适配" />
     <MESSAGE value="适配闪电炫芬批的外链头像（暂时不推送）" />
     <MESSAGE value="适配闪电炫芬批的外链头像&#10;修了左侧导航栏背景修改导致不透明的问题" />
     <MESSAGE value="添加了一个新的背景特效（方块特效）&#10;添加了 启用图像背景 选项，关闭会不渲染选择的图像背景&#10;修改了站长聊天室发送按钮的样式&#10;修改了左侧导航栏的交互效果" />
@@ -602,6 +609,7 @@
     <MESSAGE value="添加了焦点检测，现在页面不在焦点将不在进行服务器链接延迟检测&#10;重写了站长的在线人数部分内容,加快了更新速度&#10;修复了指示灯在刚启动页面时没有更新的BUG&#10;添加了背景色调节功能" />
     <MESSAGE value="修复了在线列表点击时无法跳转的问题&#10;修复了在部分页面背景色没有被正确设置的问题&#10;添加了主页部分的颜色|透明度调整内容&#10;修复了颜色|透明度调整内容中滑动条没有正常显示的BUG&#10;修复了点击其他位置时在线用户页面|服务器延迟信息页面不会自动隐藏的问题&#10;重写了渲染方案,现在不再区分section模式和background模式,同时’渲染到聊天室页面‘已支持透明度修改" />
     <MESSAGE value="修复了在线用户中有特殊类型ID会导致报错的问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复了在线用户中有特殊类型ID会导致报错的问题" />
+    <MESSAGE value="修复了在主页时背景图片不显示的BUG&#10;重写了在线栏，只会显示在线人数和最后在线时间&#10;新的聊天室界面现已上线（Beta），在聊天室界面的插件设置=》聊天室界面设置=》启用新的聊天室界面 点击勾选后刷新即可开始使用" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复了在主页时背景图片不显示的BUG&#10;重写了在线栏，只会显示在线人数和最后在线时间&#10;新的聊天室界面现已上线（Beta），在聊天室界面的插件设置=》聊天室界面设置=》启用新的聊天室界面 点击勾选后刷新即可开始使用" />
   </component>
 </project>
