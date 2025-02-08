@@ -6,7 +6,7 @@
 // @grant       none
 // @version     3.0.7
 // @author      M27IAR
-// @license     GPL-3.0
+// @license     GPL-3.0-only
 // @description 2024/11/26 16:34:09
 // ==/UserScript==
 
