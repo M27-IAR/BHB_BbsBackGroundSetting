@@ -6,7 +6,8 @@
 // @grant       none
 // @version     3.0.8
 // @author      M27IAR
-// @license     GPL
+// @license     GPL-3.0-or-later
+// @license     GPL-3.0-or-later; https://www.gnu.org/licenses/gpl-3.0.txt
 // @description 2024/11/26 16:34:09
 // ==/UserScript==
 

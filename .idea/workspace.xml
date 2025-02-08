@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="更改开源协议">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
-    </list>
+    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="更改开源协议" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -184,15 +181,7 @@
       <workItem from="1738898488319" duration="1586000" />
       <workItem from="1738917577817" duration="4879000" />
       <workItem from="1738991335665" duration="1167000" />
-      <workItem from="1739015869778" duration="4361000" />
-    </task>
-    <task id="LOCAL-00023" summary="添加了“伪装”功能">
-      <option name="closed" value="true" />
-      <created>1733535108450</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1733535108450</updated>
+      <workItem from="1739015869778" duration="4558000" />
     </task>
     <task id="LOCAL-00024" summary="删除了伪装功能 给站长的新栏的背景删掉了">
       <option name="closed" value="true" />
@@ -578,7 +567,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739022416717</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="更改开源协议">
+      <option name="closed" value="true" />
+      <created>1739022538070</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1739022538070</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
