@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="测试" />
+    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="更改开源协议">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -181,15 +184,7 @@
       <workItem from="1738898488319" duration="1586000" />
       <workItem from="1738917577817" duration="4879000" />
       <workItem from="1738991335665" duration="1167000" />
-      <workItem from="1739015869778" duration="4224000" />
-    </task>
-    <task id="LOCAL-00022" summary="添加了“伪装”功能">
-      <option name="closed" value="true" />
-      <created>1733500430358</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1733500430358</updated>
+      <workItem from="1739015869778" duration="4361000" />
     </task>
     <task id="LOCAL-00023" summary="添加了“伪装”功能">
       <option name="closed" value="true" />
@@ -575,7 +570,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739020517952</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="更改开源协议">
+      <option name="closed" value="true" />
+      <created>1739022416717</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1739022416717</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,7 +596,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加了一个新的背景特效（方块特效）&#10;添加了 启用图像背景 选项，关闭会不渲染选择的图像背景&#10;修改了站长聊天室发送按钮的样式&#10;修改了左侧导航栏的交互效果" />
     <MESSAGE value="在聊天室添加了站长服务器状态指示灯（测试中，还有我的灯更好看）" />
     <MESSAGE value="优化了务器状态指示灯（我的灯更好看）&#10;修改了字体描边办法" />
     <MESSAGE value="调整了服务器状态指示灯策略（我的灯更好看）&#10;重写了设置菜单" />
@@ -618,6 +620,7 @@
     <MESSAGE value="修复了在主页时背景图片不显示的BUG&#10;重写了在线栏，只会显示在线人数和最后在线时间&#10;新的聊天室界面现已上线（Beta），在聊天室界面的插件设置=》聊天室界面设置=》启用新的聊天室界面 点击勾选后刷新即可开始使用" />
     <MESSAGE value="修复了在主页时背景图片不显示的BUG&#10;重写了在线栏，只会显示在线人数和最后在线时间&#10;新的聊天室界面现已上线（Beta），在聊天室界面的插件设置=》聊天室界面设置=》启用新的聊天室界面 点击勾选后刷新即可开始使用&#10;删除了“顶栏下部透明度”选项，因为可以被背景色透明度替代并且有BUG" />
     <MESSAGE value="测试" />
-    <option name="LAST_COMMIT_MESSAGE" value="测试" />
+    <MESSAGE value="更改开源协议" />
+    <option name="LAST_COMMIT_MESSAGE" value="更改开源协议" />
   </component>
 </project>

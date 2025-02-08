@@ -4,9 +4,9 @@
 // @match       https://*.boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     3.0.7
+// @version     3.0.8
 // @author      M27IAR
-// @license     GPL-3.0-only
+// @license     GPL
 // @description 2024/11/26 16:34:09
 // ==/UserScript==
 
