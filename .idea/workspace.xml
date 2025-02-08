@@ -29,6 +29,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -183,15 +184,7 @@
       <workItem from="1738898488319" duration="1586000" />
       <workItem from="1738917577817" duration="4879000" />
       <workItem from="1738991335665" duration="1167000" />
-      <workItem from="1739015869778" duration="2563000" />
-    </task>
-    <task id="LOCAL-00020" summary="修bug">
-      <option name="closed" value="true" />
-      <created>1733472341117</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1733472341117</updated>
+      <workItem from="1739015869778" duration="3609000" />
     </task>
     <task id="LOCAL-00021" summary="添加了“伪装”功能">
       <option name="closed" value="true" />
@@ -577,7 +570,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737887878823</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="测试">
+      <option name="closed" value="true" />
+      <created>1739019482258</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1739019482258</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
