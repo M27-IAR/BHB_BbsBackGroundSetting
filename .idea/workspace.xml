@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="更改开源协议">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="TEst1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,7 +40,18 @@
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;git@github.com:M27-IAR/BHB_BbsBackGroundSetting.git&quot;,
     &quot;accountId&quot;: &quot;8a0f61fe-5fb4-4c3c-9dcf-80eeab424cee&quot;
-  }
+  },
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
+    },
+    &quot;owner&quot;: &quot;M27-IAR&quot;,
+    &quot;repository&quot;: &quot;BHB_BbsBackGroundSetting&quot;
+  },
+  &quot;editorReviewEnabled&quot;: false
 }</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -62,7 +71,7 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "TestWork",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "D:/0/BHB/BHB后端",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -187,6 +196,7 @@
       <workItem from="1738991335665" duration="1167000" />
       <workItem from="1739015869778" duration="4558000" />
       <workItem from="1739023200609" duration="1471000" />
+      <workItem from="1739076427522" duration="586000" />
     </task>
     <task id="LOCAL-00025" summary="添加了对全站页面的背景适配（还没做完透明度适配，透明度目前只能在聊天室界面改）&#10;添加侧栏透明度/颜色调整&#10;修改了其他的代码">
       <option name="closed" value="true" />
@@ -598,7 +608,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="在聊天室添加了站长服务器状态指示灯（测试中，还有我的灯更好看）" />
     <MESSAGE value="优化了务器状态指示灯（我的灯更好看）&#10;修改了字体描边办法" />
     <MESSAGE value="调整了服务器状态指示灯策略（我的灯更好看）&#10;重写了设置菜单" />
     <MESSAGE value="添加了关闭指示灯的按钮和延迟信息按钮（点击指示灯即可）" />
@@ -623,6 +632,7 @@
     <MESSAGE value="修复了在主页时背景图片不显示的BUG&#10;重写了在线栏，只会显示在线人数和最后在线时间&#10;新的聊天室界面现已上线（Beta），在聊天室界面的插件设置=》聊天室界面设置=》启用新的聊天室界面 点击勾选后刷新即可开始使用&#10;删除了“顶栏下部透明度”选项，因为可以被背景色透明度替代并且有BUG" />
     <MESSAGE value="测试" />
     <MESSAGE value="更改开源协议" />
-    <option name="LAST_COMMIT_MESSAGE" value="更改开源协议" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
 </project>
