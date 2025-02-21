@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="change">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
-    </list>
+    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修复了在部分情况下点击“在线人数”按钮会无法正常显示在线列表的BUG&#10;重新添加了广告区域删除的功能&#10;修改了在线列表交互逻辑；现在可以通过点击名字进行@操作，通过点击头像进行跳转主页的操作" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -207,15 +204,7 @@
       <workItem from="1739628123612" duration="2408000" />
       <workItem from="1739762088011" duration="603000" />
       <workItem from="1740057125629" duration="3032000" />
-      <workItem from="1740140832765" duration="6005000" />
-    </task>
-    <task id="LOCAL-00026" summary="修bug">
-      <option name="closed" value="true" />
-      <created>1734019314226</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1734019314226</updated>
+      <workItem from="1740140832765" duration="6349000" />
     </task>
     <task id="LOCAL-00027" summary="添加了新的背景渲染选择项：图像渲染方式{可以选择按照网页尺寸渲染还是以图片尺寸渲染}居中渲染{设定图像中心居中渲染}&#10;适配了站长新工具栏的样式，调整了发送框和工具栏开启按钮的大小&#10;修改了站点内选中字体的效果，现在选中字体会修改其为蓝色">
       <option name="closed" value="true" />
@@ -601,7 +590,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739202226992</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="修复了在部分情况下点击“在线人数”按钮会无法正常显示在线列表的BUG&#10;重新添加了广告区域删除的功能&#10;修改了在线列表交互逻辑；现在可以通过点击名字进行@操作，通过点击头像进行跳转主页的操作">
+      <option name="closed" value="true" />
+      <created>1740153467413</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1740153467413</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -619,7 +616,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="调整了服务器状态指示灯策略（我的灯更好看）&#10;重写了设置菜单" />
     <MESSAGE value="添加了关闭指示灯的按钮和延迟信息按钮（点击指示灯即可）" />
     <MESSAGE value="添加了关闭指示灯的按钮和延迟信息按钮（点击指示灯即可）&#10;修复了延迟超过1000ms状态（黄灯）状态下阴影不正常显示的问题" />
     <MESSAGE value="看着不爽提交一下" />
@@ -644,6 +640,7 @@
     <MESSAGE value="更改开源协议" />
     <MESSAGE value="test" />
     <MESSAGE value="change" />
-    <option name="LAST_COMMIT_MESSAGE" value="change" />
+    <MESSAGE value="修复了在部分情况下点击“在线人数”按钮会无法正常显示在线列表的BUG&#10;重新添加了广告区域删除的功能&#10;修改了在线列表交互逻辑；现在可以通过点击名字进行@操作，通过点击头像进行跳转主页的操作" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复了在部分情况下点击“在线人数”按钮会无法正常显示在线列表的BUG&#10;重新添加了广告区域删除的功能&#10;修改了在线列表交互逻辑；现在可以通过点击名字进行@操作，通过点击头像进行跳转主页的操作" />
   </component>
 </project>
