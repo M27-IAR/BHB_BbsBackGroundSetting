@@ -4,14 +4,192 @@
 // @match       https://*.boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     3.0.9
+// @version     3.0.10
 // @author      M27IAR
 // @license     GPL-3.0-or-later
 // @license     GPL-3.0-or-later; https://www.gnu.org/licenses/gpl-3.0.txt
-// @description 2024/11/26 16:34:09
 // ==/UserScript==
 
 (function(){
+    let CheckUpdate=false//验证脚本是否更新
+    //本地存储检测
+    if(!localStorage.M27NewBBGPrint){//是否启用自定义聊天室
+        localStorage.setItem("M27NewBBGPrint","false")
+    }
+    if(!localStorage.BackGroundColor){//背景颜色
+        localStorage.setItem("BackGroundColor","#000000")
+    }
+    if(!localStorage.MsgLightCheckX){
+        localStorage.setItem("MsgLightCheckX",'true')
+    }
+    if(!localStorage.MsgSet){
+        localStorage.setItem("MsgSet","false");
+    }
+    if(!localStorage.MsgSetVisable){
+        localStorage.setItem("MsgSetVisable","false");
+    }
+    if(!localStorage.TransparencySet){//透明度模块是否显示
+        localStorage.setItem("TransparencySet","false");
+    }
+    if(!localStorage.PrintVisabel){
+        localStorage.setItem("PrintVisabe","false")
+    }
+    if(!localStorage.PrintPicOpen){
+        localStorage.setItem("PrintPicOpen","true")
+    }
+    if(!localStorage.PrintPlanCheck){
+        localStorage.setItem("PrintPlanCheck","false")
+    }
+    if(!localStorage.IdPrintCheck){
+        localStorage.setItem("IdPrintCheck","false");
+    }
+    if(!localStorage.PrintPicplanChk){
+        localStorage.setItem("PrintPicplanChk","true")
+    }
+    if(!localStorage.BoxColor){//特效方格颜色
+        localStorage.setItem("BoxColor","#000000");
+    }
+    if(!localStorage.BoxBorderColor){//特效方格描边色
+        localStorage.setItem("BoxBorderColor","#000000");
+    }
+    if(!localStorage.MsgBoxTra){
+        localStorage.setItem("MsgBoxTra",'0.2');
+    }
+    if(!localStorage.MsgBoxColor){//消息框背景色
+        localStorage.setItem("MsgBoxColor","#000000");
+    }
+    if(!localStorage.BoxBorderCansee){
+        localStorage.setItem("BoxBorderCansee","99");
+    }
+    if(!localStorage.BoxPrint){//是否启动特效方格渲染
+        localStorage.setItem("BoxPrint","no");
+    }
+    if(!localStorage.BoxSize){//特效方格大小
+        localStorage.setItem("BoxSize","50");
+    }
+    if(!localStorage.BackgroundPrint){//图像背景尺寸设置
+        localStorage.setItem("BackgroundPrint","cover");
+    }
+    if(!localStorage.centerPosition){//居中渲染设定
+        localStorage.setItem("centerPosition","center");
+    }
+    if(!localStorage.heightsize){//宽度默认值
+        localStorage.setItem("heightsize",'100');
+    }
+    if(!localStorage.widthsize){//高度默认值
+        localStorage.setItem("widthsize",'100');
+    }
+    if(!localStorage.left){//左侧偏转角度
+        localStorage.setItem("left",'0');
+    }
+    if(!localStorage.top){//顶部偏转角度
+        localStorage.setItem("top",'0');
+    }
+    if(!localStorage.webpiclod){//加载线上图片
+        localStorage.setItem("webpiclod",1);
+    }
+    if(!localStorage.localpiclod){//加载本地图片
+        localStorage.setItem("localpiclod",0);
+    }
+    if(!localStorage.leaderhide){//隐藏左侧条目
+        localStorage.setItem("leaderhide",0);
+    }
+    if(!localStorage.canseenunber){//透明度数字
+        localStorage.setItem("canseenunber",0.50);
+    }
+    if(!localStorage.printToBack){//渲染到背景
+        localStorage.setItem("printToBack",1);
+    }
+    if(!localStorage.printToBBS){//渲染到聊天界面
+        localStorage.setItem("printToBBS",0);
+    }
+    if(!localStorage.NameFontSize){//聊天室ID|其他页面部分字体的尺寸
+        localStorage.setItem("NameFontSize",12);
+    }
+    if(!localStorage.LocalFontColor){//聊天室ID|其他页面部分字体的颜色
+        localStorage.setItem("LocalFontColor","#ffffff")
+    }
+    if(!localStorage.LocalFontColorsec){//聊天室ID|其他页面部分字体的描边
+        localStorage.setItem("LocalFontColorsec","#7071a4")
+    }
+    if(!localStorage.BorderTextSize){//聊天室ID|其他页面部分字体的描边粗细
+        localStorage.setItem("BorderTextSize",1);
+    }
+    if(!localStorage.scrollstyle){//滚动条状态
+        localStorage.setItem("scrollstyle","1")
+    }
+    if(!localStorage.CantSeeset1){//聊天历史记录1
+        localStorage.setItem("CantSeeset1","00");
+    }
+    if(!localStorage.CantSeeset3){//聊天历史记录2（位置更靠里
+        localStorage.setItem("CantSeeset3","00");
+    }
+    if(!localStorage.CantSeeset4){//聊天页面外层边框
+        localStorage.setItem("CantSeeset4","20");
+    }
+    if(!localStorage.CantSeeset5){//聊天页面外层边框
+        localStorage.setItem("CantSeeset5","20");
+    }
+    if(!localStorage.CantSeeset6){//聊天页面外层边框
+        localStorage.setItem("CantSeeset6","20");
+    }
+    if(!localStorage.CantSeeset7){//聊天页面外层边框
+        localStorage.setItem("CantSeeset7","20");
+    }
+    if(!localStorage.CantSeeset8){//聊天页面外层边框
+        localStorage.setItem("CantSeeset8","50");
+    }
+    if(!localStorage.CantSeeset9){//聊天页面外层边框
+        localStorage.setItem("CantSeeset9","20");
+    }
+    if(!localStorage.CantSeeColor1){//聊天历史记录1
+        localStorage.setItem("CantSeeColor1","#2b2c40");
+    }
+    if(!localStorage.CantSeeColor3){//自顶栏往下部分
+        localStorage.setItem("CantSeeColor3","#2b2c40");
+    }
+    if(!localStorage.CantSeeColor4){//聊天页面外层边框
+        localStorage.setItem("CantSeeColor4","#2b2c40");
+    }
+    if(!localStorage.CantSeeColor5){//聊天页面外层边框
+        localStorage.setItem("CantSeeColor5","#2b2c40");
+    }
+    if(!localStorage.CantSeeColor6){//聊天页面外层边框
+        localStorage.setItem("CantSeeColor6","#2b2c40");
+    }
+    if(!localStorage.CantSeeColor7){//聊天页面外层边框
+        localStorage.setItem("CantSeeColor7","#2b2c40");
+    }
+    if(!localStorage.CantSeeColor8){//聊天页面外层边框
+        localStorage.setItem("CantSeeColor8","#66ccff");
+    }
+    if(!localStorage.CantSeeColor9){//聊天页面外层边框
+        localStorage.setItem("CantSeeColor9","#2b2c40");
+    }
+    if(!localStorage.webimgsrc){//线上图片链接
+        localStorage.setItem("webimgsrc",'https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png');
+    }
+    if(!localStorage.version||localStorage.version!=="3.0.10"){//更新后修改部分选项，理论上不会影响用户
+        localStorage.setItem("version","3.0.10");CheckUpdate=true;localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
+        if(localStorage.webimgsrc==="https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png"||localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png"||localStorage.webimgsrc==="https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg") {
+            if(webWidth<webHeight){
+                localStorage.setItem("webimgsrc", 'https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg');
+            }else{
+                localStorage.setItem("webimgsrc", 'https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg');
+            }
+        }
+    }else{CheckUpdate=false}
+    /*
+    这里是历史使用过的默认在线URL，需要自取：
+    https://t1-img.233213.xyz/2024/11/25/67447535ec930.jpg
+    https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png
+    https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg
+    https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png
+    https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg
+    https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg
+    */
+    //本地数值设定结束
+
     //移除顶栏的磨砂效果
     let NeedFixStyleFive=document.querySelectorAll("body > style");
     NeedFixStyleFive[NeedFixStyleFive.length-1].insertAdjacentHTML("afterend",'<style id="style5"></style>');
@@ -58,7 +236,6 @@
     })
     //window.alert = function() {};
     window.history.replaceState(null, null, window.location.href);
-    let CheckUpdate=false//验证脚本是否更新
     //覆盖站长的方法
     const OnlineUsers = {users: new Map(),init() {},bindEvents() {},addUser(username, avatar) {},updateOnlineStatus() {},updateUsersList() {}};
     window.OnlineUsers = {users: new Map(),lastActivity: new Map(),pageSize: 10,  currentPage: 1, init() {},bindEvents() {},updateUserActivity(username) {},addUser(username, avatar) {},updateOnlineStatus() {},updateUsersList() {},updateBottomButtons(hasMore) {},resetPagination() {},updateActiveUsers() {}};
@@ -421,97 +598,16 @@
         let addbott="<button class='fuckyou'>插件设置</button>"
         let addNetMsg=`<div id="MegNew">
         <div style="z-index:10001; position: sticky ;height:28px;width:100%;top: 0;left:0;background-color: rgba(36,70,88,0.4);backdrop-filter: blur(5px);">
-    <button id="Msgexit" class="fuckyou3">X</button><span>更新日志</span>
+    <button id="Msgexit" class="fuckyou3">X</button><span>反馈方式&更新日志</span>
     </div>
+    <div style="z-index:10001; position: sticky ;height:auto;width:100%;right: 0;left:0;top: 30px">
+    <p>可以通过以下方式向我反馈：<br> 在此链接下面回复BUG（推荐）：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a><br>前往GitHub仓库提交issue：<a href="https://github.com/M27-IAR/BHB_BbsBackGroundSetting/issues">GitHub仓库</a><br>私信我修改（不推荐）<a href="https://boyshelpboys.com/user-139020.htm">点击我进入后点击“发私信按钮”</a></p>
+</div>
 <div>
-<p>v3.0.1更新：<br>修复了聊天室界面显示不正常的BUG<br>【请注意更新后有部分内容是没有开发完全的状态，请等待后续更新】</p>
-<p>v3.0.0更新：<br>修复了在主页时背景图片不显示的BUG<br>重写了在线栏，只会显示在线人数和最后在线时间<br>新的聊天室界面现已上线（Beta），在聊天室界面的插件设置=》聊天室界面设置=》启用新的聊天室界面 点击勾选后刷新即可开始使用</p>
-<p>v2.4.44更新：</p>
-<p>修复了在线用户中有特殊类型ID会导致报错的问题</p>
-<p>v2.4.42更新：</p>
-<p>修复了在线列表点击时无法跳转的问题</p>
-<p>修复了在部分页面背景色没有被正确设置的问题</p>
-<p>添加了主页部分的颜色|透明度调整内容</p>
-<p>修复了颜色|透明度调整内容中滑动条没有正常显示的BUG</p>
-<p>修复了点击其他位置时在线用户页面|服务器延迟信息页面不会自动隐藏的问题</p>
-<p>重写了渲染方案,现在不再区分section模式和background模式,同时’渲染到聊天室页面‘已支持透明度修改</p>
-<p>v2.4.39更新：</p>
-<p>添加了焦点检测，现在页面不在焦点将不在进行服务器链接延迟检测</p>
-<p>重写了站长的在线人数部分内容,加快了更新速度</p>
-<p>修复了指示灯在刚启动页面时没有更新的BUG</p>
-<p>添加了背景色调节功能</p>
-<p>v2.4.37更新：</p>
-<p>重写了对主页小字体颜色描边渲染的修改方式</p>
-<p>v2.4.35更新：</p>
-<p>添加了更新日志按钮，位于插件设置内</p>
-<p>v2.4.33更新：</p>
-<p>修复了透明度设置为“100”时没有正常实现的问题 <br> 修复点歌界面被错误覆盖的问题</p>
-<p>v2.4.31更新：</p>
-<p>修复站长全屏模式的bug</p>
-<p>v2.4.29更新：</p>
-<p>修复了聊天汽包被重置的问题</p>
-<p>v2.4.25更新：</p>
-<p>修复图片无法读取的bug</p>
-<p>v2.4.21更新：</p>
-<p>修复站长全屏模式的bug<br>修复了网络指示灯的问题,调整了获取网络状态的机制</p>
-<p>v2.4.19更新：</p>
-<p>添加修改消息气泡颜色的功能<br>修复了指示灯按钮设置重置的问题</p>
-<p>v2.4.17更新：</p>
-<p>修复消息时间无法隐藏的问题</p>
-<p>v2.4.15更新：</p>
-<p>修复了滚动页面后设置栏不会置于页面中心的问题<br>优化了信号灯的运行逻辑，现在在关闭后不会再进行请求<br>修改了部分菜单选项的描述</p>
-<p>v2.4.13更新：</p>
-<p>修复了描边效果不正常设定的问题<br>修复方块特效不能正常启用的问题</p>
-<p>v2.4.11更新：</p>
-<p>修改了默认绘制图片背景的设置</p>
-<p>v2.4.9更新：</p>
-<p>添加了关闭指示灯的按钮（在菜单）和延迟信息按钮（点击指示灯即可）<br>修复了延迟超过1000ms状态（黄灯）状态下阴影不正常显示的问题</p>
-<p>v2.4.1更新：</p>
-<p>调整了服务器状态指示灯策略（我的灯更好看）<br>重写了设置菜单</p>
-<p>v2.3.1更新：</p>
-<p>优化了务器状态指示灯（我的灯更好看）<br>修改了字体描边办法</p>
-<p>v2.3.0更新：</p>
-<p>在聊天室添加了站长服务器状态指示灯（测试中，还有我的灯更好看）</p>
-<p>v2.2.0更新：</p>
-<p>添加了一个新的背景特效（方块特效）<br>添加了 启用图像背景 选项，关闭会不渲染选择的图像背景<br>修改了站长聊天室发送按钮的样式<br>修改了左侧导航栏的交互效果</p>
-<p>v2.1.5更新：</p>
-<p>适配闪电炫芬批的外链头像<br>修了左侧导航栏背景修改导致不透明的问题</p>
-<p>v2.1.3更新：</p>
-<p>更新了对火狐浏览器的界面适配（火狐的UI和谷歌为什么完全不同？）</p>
-<p>v2.1.0更新：</p>
-<p>添加了新的背景渲染选择项：<br>  图像渲染方式{可以选择按照网页尺寸渲染还是以图片尺寸渲染}<br>  居中渲染{设定图像中心居中渲染}<br>适配了站长新工具栏的样式，调整了发送框和工具栏开启按钮的大小<br>修改了站点内选中字体的效果，现在选中字体会修改其为蓝色</p>
-<p>v2.0.3更新：</p>
-<p>修复了控制滚动条时会错误控制ID描边和设置按钮样式的问题</p>
-<p>v2.0.0更新：</p>
-<p>添加了对全站页面的背景适配（还没做完透明度适配，透明度目前只能在聊天室界面改）<br>添加侧栏透明度/颜色调整<br>修改了其他的代码</p>
-<p>v1.4.7更新：</p>
-<p>删除了伪装功能(都是BHB滴错) 给站长的新栏的背景删掉了</p>
-<p>v1.4.3更新：</p>
-<p>添加头像伪装功能，在对应的输入框输入图像链接并点击一次前面的单选按钮即可（若为外链图片则只有@闪电炫芬批的插件使用者和本脚本使用者可见）</p>
-<p>v1.4.0更新：</p>
-<p>添加聊天室ID字体颜色修改功能<br>添加顶栏透明度/颜色调整<br>添加发送栏边框颜色透明度调整<br>添加发送框颜色透明度调整<br>添加发送框描边<br>添加“聊天留言”区颜色/透明度修改</p>
-<p>v1.3.9更新：</p>
-<p>针对@闪电炫芬批插件的外链头像图片做适配</p>
-<p>v1.3.7更新：</p>
-<p>修bug</p>
-<p>v1.3.6更新：</p>
-<p>调整了聊天室id的描边修改方式，解决了聊天记录多的时候卡顿的问题</p>
-<p>v1.3.0更新：</p>
-<p>添加单独调整部分控件透明度和颜色的功能（还有重置功能）<br>添加聊天室名称描边大小功能<br>给进入设置的按钮进行了美化</p>
-<p>v1.2.5更新：</p>
-<p>添加了聊天室名称描边大小修改功能</p>
-<p>v1.2.4更新：</p>
-<p>调整了标签检索方式</p>
-<p>v1.2.3更新：</p>
-<p>修改开源协议为WTFPL（Do What The Fuck You Want To Public License),完全开源.JPG</p>
-<p>v1.2.2更新：</p>
-<p>修改了local数据的检测 现在检测到任何一条为不存在则会进行添加<br>隐藏了聊天界面的滚动条（可以在背景样式内点击复选框修改）<br>添加了聊天室内ID的描边效果（可以在背景文件区域进行调色）<br>section写入现在也支持透明度调整功能</p>
-<p>v1.2.1更新：</p>
-<p>调整了代码规范</p>
-<p>v1.2.0更新：</p>
-<p>修改本地图像的存储位置，现在可以使用更大的本地图片了<br>添加了背景渲染位置修改的功能（还在测试，，目前仅限body-background写入可用，后续有更新）<br>添加删除左侧导航栏的功能 添加透明度调整功能<br>调整了菜单ui</p>
-<p>v1.1.1更新：</p>
-<p>修改了本体图片的存储位置 现在存储于IndexedDB 可以导入的图片文件更大了<br>添加了左侧导航栏的隐藏功能<br>尝试删除了聊天室界面下部的黑色渐变条</p>
+<strong>当前版本为v3.0.10：</strong> <div style="border-bottom: white 3px solid;height: 0;width: 100%"></div>
+<p>v3.0.10更新：<br>修复了在部分情况下点击“在线人数”按钮会无法正常显示在线列表的BUG<br>重新添加了广告区域删除的功能<br>修改了在线列表交互逻辑<br><strong>现在可以通过点击名字进行@操作，通过点击头像进行跳转主页的操作</strong><br>【新聊天室暂时搁置】</p>
+<p>完整更新日志请前往以下帖子查看：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a></p>
+<p>脚本作者：M27IAR</p>
 </div>`
         let addmain=`<div id="localsett" >
 <div >
@@ -799,183 +895,6 @@
         }
 
     }
-    //本地存储检测
-    if(!localStorage.M27NewBBGPrint){//是否启用自定义聊天室
-        localStorage.setItem("M27NewBBGPrint","false")
-    }
-    if(!localStorage.BackGroundColor){//背景颜色
-        localStorage.setItem("BackGroundColor","#000000")
-    }
-    if(!localStorage.MsgLightCheckX){
-        localStorage.setItem("MsgLightCheckX",'true')
-    }
-    if(!localStorage.MsgSet){
-        localStorage.setItem("MsgSet","false");
-    }
-    if(!localStorage.MsgSetVisable){
-        localStorage.setItem("MsgSetVisable","false");
-    }
-    if(!localStorage.TransparencySet){//透明度模块是否显示
-        localStorage.setItem("TransparencySet","false");
-    }
-    if(!localStorage.PrintVisabel){
-        localStorage.setItem("PrintVisabe","false")
-    }
-    if(!localStorage.PrintPicOpen){
-        localStorage.setItem("PrintPicOpen","true")
-    }
-    if(!localStorage.PrintPlanCheck){
-        localStorage.setItem("PrintPlanCheck","false")
-    }
-    if(!localStorage.IdPrintCheck){
-        localStorage.setItem("IdPrintCheck","false");
-    }
-    if(!localStorage.PrintPicplanChk){
-        localStorage.setItem("PrintPicplanChk","true")
-    }
-    if(!localStorage.BoxColor){//特效方格颜色
-        localStorage.setItem("BoxColor","#000000");
-    }
-    if(!localStorage.BoxBorderColor){//特效方格描边色
-        localStorage.setItem("BoxBorderColor","#000000");
-    }
-    if(!localStorage.MsgBoxTra){
-        localStorage.setItem("MsgBoxTra",'0.2');
-    }
-    if(!localStorage.MsgBoxColor){//消息框背景色
-        localStorage.setItem("MsgBoxColor","#000000");
-    }
-    if(!localStorage.BoxBorderCansee){
-        localStorage.setItem("BoxBorderCansee","99");
-    }
-    if(!localStorage.BoxPrint){//是否启动特效方格渲染
-        localStorage.setItem("BoxPrint","no");
-    }
-    if(!localStorage.BoxSize){//特效方格大小
-        localStorage.setItem("BoxSize","50");
-    }
-    if(!localStorage.BackgroundPrint){//图像背景尺寸设置
-        localStorage.setItem("BackgroundPrint","cover");
-    }
-    if(!localStorage.centerPosition){//居中渲染设定
-        localStorage.setItem("centerPosition","center");
-    }
-    if(!localStorage.heightsize){//宽度默认值
-        localStorage.setItem("heightsize",'100');
-    }
-    if(!localStorage.widthsize){//高度默认值
-        localStorage.setItem("widthsize",'100');
-    }
-    if(!localStorage.left){//左侧偏转角度
-        localStorage.setItem("left",'0');
-    }
-    if(!localStorage.top){//顶部偏转角度
-        localStorage.setItem("top",'0');
-    }
-    if(!localStorage.webimgsrc){//线上图片链接
-        localStorage.setItem("webimgsrc",'https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png');
-    }
-    if(!localStorage.webpiclod){//加载线上图片
-        localStorage.setItem("webpiclod",1);
-    }
-    if(!localStorage.localpiclod){//加载本地图片
-        localStorage.setItem("localpiclod",0);
-    }
-    if(!localStorage.leaderhide){//隐藏左侧条目
-        localStorage.setItem("leaderhide",0);
-    }
-    if(!localStorage.canseenunber){//透明度数字
-        localStorage.setItem("canseenunber",0.50);
-    }
-    if(!localStorage.printToBack){//渲染到背景
-        localStorage.setItem("printToBack",1);
-    }
-    if(!localStorage.printToBBS){//渲染到聊天界面
-        localStorage.setItem("printToBBS",0);
-    }
-    if(!localStorage.NameFontSize){//聊天室ID|其他页面部分字体的尺寸
-        localStorage.setItem("NameFontSize",12);
-    }
-    if(!localStorage.LocalFontColor){//聊天室ID|其他页面部分字体的颜色
-        localStorage.setItem("LocalFontColor","#ffffff")
-    }
-    if(!localStorage.LocalFontColorsec){//聊天室ID|其他页面部分字体的描边
-        localStorage.setItem("LocalFontColorsec","#7071a4")
-    }
-    if(!localStorage.BorderTextSize){//聊天室ID|其他页面部分字体的描边粗细
-        localStorage.setItem("BorderTextSize",1);
-    }
-    if(!localStorage.scrollstyle){//滚动条状态
-        localStorage.setItem("scrollstyle","1")
-    }
-    if(!localStorage.CantSeeset1){//聊天历史记录1
-        localStorage.setItem("CantSeeset1","00");
-    }
-    if(!localStorage.CantSeeset3){//聊天历史记录2（位置更靠里
-        localStorage.setItem("CantSeeset3","00");
-    }
-    if(!localStorage.CantSeeset4){//聊天页面外层边框
-        localStorage.setItem("CantSeeset4","20");
-    }
-    if(!localStorage.CantSeeset5){//聊天页面外层边框
-        localStorage.setItem("CantSeeset5","20");
-    }
-    if(!localStorage.CantSeeset6){//聊天页面外层边框
-        localStorage.setItem("CantSeeset6","20");
-    }
-    if(!localStorage.CantSeeset7){//聊天页面外层边框
-        localStorage.setItem("CantSeeset7","20");
-    }
-    if(!localStorage.CantSeeset8){//聊天页面外层边框
-        localStorage.setItem("CantSeeset8","50");
-    }
-    if(!localStorage.CantSeeset9){//聊天页面外层边框
-        localStorage.setItem("CantSeeset9","20");
-    }
-    if(!localStorage.CantSeeColor1){//聊天历史记录1
-        localStorage.setItem("CantSeeColor1","#2b2c40");
-    }
-    if(!localStorage.CantSeeColor3){//自顶栏往下部分
-        localStorage.setItem("CantSeeColor3","#2b2c40");
-    }
-    if(!localStorage.CantSeeColor4){//聊天页面外层边框
-        localStorage.setItem("CantSeeColor4","#2b2c40");
-    }
-    if(!localStorage.CantSeeColor5){//聊天页面外层边框
-        localStorage.setItem("CantSeeColor5","#2b2c40");
-    }
-    if(!localStorage.CantSeeColor6){//聊天页面外层边框
-        localStorage.setItem("CantSeeColor6","#2b2c40");
-    }
-    if(!localStorage.CantSeeColor7){//聊天页面外层边框
-        localStorage.setItem("CantSeeColor7","#2b2c40");
-    }
-    if(!localStorage.CantSeeColor8){//聊天页面外层边框
-        localStorage.setItem("CantSeeColor8","#66ccff");
-    }
-    if(!localStorage.CantSeeColor9){//聊天页面外层边框
-        localStorage.setItem("CantSeeColor9","#2b2c40");
-    }
-    if(!localStorage.version||localStorage.version!=="3.0.3"){//更新后修改部分选项，理论上不会影响用户
-        localStorage.setItem("version","3.0.3");CheckUpdate=true;localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
-        if(localStorage.webimgsrc==="https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png"||localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png"||localStorage.webimgsrc==="https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg") {
-            if(webWidth<webHeight){
-                localStorage.setItem("webimgsrc", 'https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg');
-            }else{
-                localStorage.setItem("webimgsrc", 'https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg');
-            }
-        }
-    }else{CheckUpdate=false}
-    /*
-    这里是历史使用过的默认在线URL，需要自取：
-    https://t1-img.233213.xyz/2024/11/25/67447535ec930.jpg
-    https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png
-    https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg
-    https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png
-    https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg
-    https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg
-    */
-    //本地数值设定结束
     //通过读取本地存储数据进行选择值设定
     let webpiclod="";
     let localpiclod="";
@@ -1089,10 +1008,11 @@
                 OnliceUserNum+=1//在线人数计数器
                 ListJsonUserName=Object.keys(OnlineUserListJSON[i])//人员ID
                 ListJson=OnlineUserListJSON[i]//人员信息
+                let UID=ListJson[ListJsonUserName].avatar.substring(ListJson[ListJsonUserName].avatar.lastIndexOf("/")+1,ListJson[ListJsonUserName].avatar.lastIndexOf("."))
                 //添加显示信息
                 AddOnLice.insertAdjacentHTML("beforeend",`<div class="online-user-item" id="M27-${ListJsonUserName}">
                     <div class="avatar">
-                        <img src="${ListJson[ListJsonUserName].avatar}" alt="${ListJsonUserName}" onerror="this.src='./plugin/msto_chat/assets/default-avatar.png'">
+                        <img data-UID="${UID}" src="${ListJson[ListJsonUserName].avatar}" alt="${ListJsonUserName}" onerror="this.src='./plugin/msto_chat/assets/default-avatar.png'">
                     </div>
                     <div class="user-info">
                         <h6 class="username">${ListJsonUserName}</h6>
@@ -1101,14 +1021,14 @@
                     </div>
                 `)
                 //点击跳转效果
-                let UID=ListJson[ListJsonUserName].avatar.substring(ListJson[ListJsonUserName].avatar.lastIndexOf("/")+1,ListJson[ListJsonUserName].avatar.lastIndexOf("."))
-                document.querySelector(`#M27-${ListJsonUserName}`).addEventListener('click', ()=>{
-                    if (UID.includes('avatar')){
-                        window.open("https://boyshelpboys.com/chat.htm")
-                    }else{
-                        window.open(`https://boyshelpboys.com/user-${UID}.htm`)
-                    }
-                })
+                // let UID=ListJson[ListJsonUserName].avatar.substring(ListJson[ListJsonUserName].avatar.lastIndexOf("/")+1,ListJson[ListJsonUserName].avatar.lastIndexOf("."))
+                // document.querySelector(`#M27-${ListJsonUserName}`).addEventListener('click', ()=>{
+                //     if (UID.includes('avatar')){
+                //         window.open("https://boyshelpboys.com/chat.htm")
+                //     }else{
+                //         window.open(`https://boyshelpboys.com/user-${UID}.htm`)
+                //     }
+                // })
             }
         }else{
             for(let i=0;i<OldOnlineUserListJSON.length;i++){//写入时间
@@ -1290,8 +1210,8 @@
         document.querySelector("#top > div > div > main > section > div > div > div > div.online-users-panel").insertAdjacentHTML("afterend",MsgServerReport)
         let MsgPrint= document.querySelector("#Msg");
         let OnliceUserList=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom").nextElementSibling;
-        OnliceUserList.innerHTML=""
-        OnliceUserList.innerHTML=`<div class="panel-body"><div class="M27-online-users-list" id="M27CHANGE"> </div></div>`
+        OnliceUserList.innerHTML="";
+        OnliceUserList.innerHTML=`<div class="panel-body"><div class="M27-online-users-list" id="M27CHANGE"></div></div>`;
         //指示灯计时器
         GetServerStation(MsgLight,MsgPrint)
         let IntTime=setInterval(()=> {
@@ -1319,7 +1239,7 @@
             }
         })
         //点击页面其他部分则隐藏相关菜单
-        document.addEventListener('click',function(){document.querySelector("#MsgBox").style.display="none";document.querySelector("#top > div > div > main > section > div > div > div > div.online-users-panel").style.display="none";})
+        document.addEventListener('click',function(){document.querySelector("#MsgBox").style.display="none";document.querySelector(".online-users-panel").style.display="none";})
 
         let baca=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body")//聊天历史记录1
         let ul=document.querySelector(".chat-history-body > ul")//聊天历史记录2（位置更靠里）
@@ -1438,10 +1358,18 @@
         document.querySelector("div.chat-history-header.border-bottom > div > div").nextElementSibling.remove();
         document.querySelector("div.chat-history-header.border-bottom > div > div").insertAdjacentHTML('afterend',`<button id="M27ChangeUserList" class="M27-online-users-btn" title="在线用户"><i class="la la-users" style="font-size: 20px;"></i><span style="font-size: 12px;color: hotpink;min-width: 20px;text-align: center;position: absolute;top: 2px;right: 2px;padding: 0 2px;"  id="M27UserNun">0</span></button>`)
         document.querySelector("#M27ChangeUserList").addEventListener("click",()=>{
-            if (document.querySelector("div.chat-history-header.border-bottom").nextElementSibling.style.display===""){
+            if (document.querySelector("div.chat-history-header.border-bottom").nextElementSibling.style.display==="none"||document.querySelector("div.chat-history-header.border-bottom").nextElementSibling.style===""){
                 document.querySelector("div.chat-history-header.border-bottom").nextElementSibling.setAttribute("style","display: block;")
             }else{
-                document.querySelector("div.chat-history-header.border-bottom").nextElementSibling.setAttribute("style","")
+                document.querySelector("div.chat-history-header.border-bottom").nextElementSibling.setAttribute("style","display: none;")
+            }
+        })
+        document.querySelector("#M27CHANGE").addEventListener("click",(e)=>{
+            console.log(e.target)
+            if (e.target.className==="username"){
+                document.querySelector("#msg").value+="@"+e.target.innerHTML+" ";
+            }else if(e.target.src!==undefined){
+                window.open(`https://boyshelpboys.com/user-${e.target.getAttribute("data-UID")}.htm`)
             }
         })
 
@@ -1656,6 +1584,12 @@
         addsett(printstr1,printstr2,CheckUpdate);
     }else if(nowurl ==="https://www.boyshelpboys.com/"||nowurl ==="https://boyshelpboys.com/"||nowurl.includes("boyshelpboys.com/#")||nowurl.includes("boyshelpboys.com/index")){
         bac.setAttribute("style",`background-color:${localStorage.BackGroundColor};`)
+        if (document.querySelector("#top > div > div > main > div > div.col-lg-9.main > div.card")!==undefined){
+            document.querySelector("#top > div > div > main > div > div.col-lg-9.main > div.card").innerHTML=""
+        }
+        if (document.querySelector("#top > div > div > main > div > div.col-lg-3.aside > div:nth-child(3)")!==undefined){
+            document.querySelector("#top > div > div > main > div > div.col-lg-3.aside > div:nth-child(3)").innerHTML=""
+        }
         // document.querySelector("#top > div > div > main > div > div.col-lg-9.main > div.card").setAttribute('style', 'display:none');
         // document.querySelector("div.card:nth-child(4)").setAttribute('style', 'display:none');
         ScrollHidden()
