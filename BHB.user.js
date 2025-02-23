@@ -9,7 +9,6 @@
 // @license     GPL-3.0-or-later
 // @license     GPL-3.0-or-later; https://www.gnu.org/licenses/gpl-3.0.txt
 // ==/UserScript==
-
 (function(){
     let CheckUpdate=false//验证脚本是否更新
     //本地存储检测
