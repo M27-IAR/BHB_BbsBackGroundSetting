@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name        BHB聊天室背景图片更换（已全局兼容）
+// @name        BHB背景图片更换（已全局兼容）
 // @namespace   Violentmonkey Scripts
 // @match       https://*.boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     3.0.10
+// @version     3.0.11
 // @author      M27IAR
 // @license     GPL-3.0-or-later
 // @license     GPL-3.0-or-later; https://www.gnu.org/licenses/gpl-3.0.txt
@@ -169,8 +169,8 @@
     if(!localStorage.webimgsrc){//线上图片链接
         localStorage.setItem("webimgsrc",'https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png');
     }
-    if(!localStorage.version||localStorage.version!=="3.0.10"){//更新后修改部分选项，理论上不会影响用户
-        localStorage.setItem("version","3.0.10");CheckUpdate=true;localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
+    if(!localStorage.version||localStorage.version!=="3.0.11"){//更新后修改部分选项，理论上不会影响用户
+        localStorage.setItem("version","3.0.11");CheckUpdate=true;localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
         if(localStorage.webimgsrc==="https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png"||localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png"||localStorage.webimgsrc==="https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg") {
             if(webWidth<webHeight){
                 localStorage.setItem("webimgsrc", 'https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg');
@@ -197,6 +197,8 @@
     let nedAddStyleFive=document.createTextNode(`.layout-navbar-fixed .layout-page:before {backdrop-filter:  blur(0px);}`)//添加处理上部控件的背景模糊的样式表
     FixStyleFive.appendChild(nedAddStyleFive)
 
+    let ContentColor//自定义颜色储存
+
     let localHightSize="";
     let localWidthSize="";
     //背景图片需要的div插入
@@ -205,6 +207,7 @@
     let addtarge=document.querySelector("#backread");
     let bac=document.querySelector("body")//网页本体
     document.querySelector("#navbar-collapse > div").innerHTML=""//删除手机模式下顶部的图标
+
     //方片特效准备
     let webWidth = window.innerWidth;
     let webHeight = window.innerHeight;
@@ -236,6 +239,14 @@
     })
     //window.alert = function() {};
     window.history.replaceState(null, null, window.location.href);
+
+    function getColorSet(){//获取用户的个性化颜色设置
+        ContentColor=localStorage.getItem("statelyThemeColor")
+        if(ContentColor==="default"){
+            ContentColor="#FF8FA2"
+        }
+    }
+    getColorSet()
     //覆盖站长的方法
     const OnlineUsers = {users: new Map(),init() {},bindEvents() {},addUser(username, avatar) {},updateOnlineStatus() {},updateUsersList() {}};
     window.OnlineUsers = {users: new Map(),lastActivity: new Map(),pageSize: 10,  currentPage: 1, init() {},bindEvents() {},updateUserActivity(username) {},addUser(username, avatar) {},updateOnlineStatus() {},updateUsersList() {},updateBottomButtons(hasMore) {},resetPagination() {},updateActiveUsers() {}};
@@ -244,13 +255,85 @@
     function leftANDtop() {
         let NeedFixStyle=document.querySelector("head");//插入样式表修改左侧与顶栏样式
         NeedFixStyle.insertAdjacentHTML("afterbegin",'<style id="style1"></style>');
-        let nedAddStyle=document.createTextNode(` ::selection{color:#0000FF !important;} ::-moz-selection{color:#0000FF !important;} .RangeSetting{height:0.5rem;width:7.8125rem;} .ColorSettinr{width:2.75rem;} .SettiingInput{padding:2px 1px;border:0.125rem 0rem;} .GameBarFix{background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6} !important;border:0 !important;margin:0 !important; transition: 0.3s;} hr{margin: 0.125rem 0 !important;color:#f0f5f9;} small{text-shadow: 1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor} ;font-size:${localStorage.NameFontSize}px !important; color:${localStorage.LocalFontColorsec} } .fuckyou2{background-color:rgba(40,64,120,0.4); color: aqua; margin:0px;padding: 2px 7px;border: 1px aqua solid;cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}.fuckyou2:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;} .fuckyou3{background-color: rgba(40,64,120,0.4); color: aqua; margin:0px;padding: 2px 7px;border: 1px aqua solid;cursor: pointer;transition: background-color 0.3s;border-radius: 0px;}.fuckyou3:hover{background-color: #FFFFFF; color:#66ccff; -webkit-text-stroke:0px;}  .fuckyou{background-color: #2b2c4030; color: white; margin:0.3125rem;padding: 0.3125rem;border: 0.125rem gray solid;font-size:1rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;} .fuckyou:hover{background-color: #FFFFFF; color:#66ccff;} @media (max-width:426px){.fuckyou{background-color: #2b2c4030; color: white; padding: 0.5rem 0.5rem;border: 0.125rem gray solid;font-size:0.625rem; cursor: pointer;transition: background-color 0.3s;border-radius: 10px;}} .send-btn-M27{padding:0.3125rem 0.625rem !important;width:4.5rem !important;height:2.5rem !important;border:0.125rem solid hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-radius:20px !important;margin-left:0.3125rem !important;} .send-btn-M27:hover{background-color:hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;border-color:while !important;}`)
+        let nedAddStyle=document.createTextNode(` 
+        ::selection{
+        color:#0000FF !important;} 
+        ::-moz-selection{color:#0000FF !important;} 
+        .RangeSetting{height:0.5rem;width:7.8125rem;} 
+        .ColorSettinr{width:2.75rem;} 
+        .SettiingInput{padding:2px 1px;border:0.125rem 0rem;} 
+        .GameBarFix{background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6} !important;
+        border:0 !important;margin:0 !important; transition: 0.3s;} 
+        hr{margin: 0.125rem 0 !important;color:#f0f5f9;} 
+        small{text-shadow: 1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor} ;font-size:${localStorage.NameFontSize}px !important; color:${localStorage.LocalFontColorsec} } 
+        .fuckyou2{
+        background-color:rgba(40,64,120,0.4); 
+        color: aqua; 
+        margin:0px;
+        padding: 2px 7px;
+        border: 1px aqua solid;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border-radius: 10px;}
+        .fuckyou2:hover{
+        background-color: #FFFFFF; 
+        color:#66ccff; 
+        -webkit-text-stroke:0px;} 
+        .fuckyou3{background-color: rgba(40,64,120,0.4); 
+        color: aqua; 
+        margin:0px;
+        padding: 2px 7px;
+        border: 1px aqua solid;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border-radius: 0px;}
+        .fuckyou3:hover{background-color: #FFFFFF;
+        color:#66ccff;
+        -webkit-text-stroke:0px;}  
+        .fuckyou{background-color: #2b2c4030; 
+        color: white; 
+        margin:0.3125rem;
+        padding: 0.3125rem;
+        border: 0.125rem gray solid;
+        font-size:1rem; 
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border-radius: 10px;} 
+        .fuckyou:hover{background-color: #FFFFFF; 
+        color:#66ccff;} 
+        @media (max-width:426px){
+        .fuckyou{background-color: #2b2c4030; 
+        color: white; 
+        padding: 0.5rem 0.5rem;
+        border: 0.125rem gray solid;
+        font-size:0.625rem;
+        cursor: pointer;
+        transition: background-color 0.3s;border-radius: 10px;}} 
+        .send-btn-M27{
+        padding:0.3125rem 0.625rem !important;
+        width:4.5rem !important;
+        height:2.5rem !important;
+        border:0.125rem solid hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;
+        border-radius:20px !important;
+        margin-left:0.3125rem !important;} 
+        .send-btn-M27:hover{
+        background-color:hsl(var(--bs-primary-h), calc(var(--bs-primary-s) * 1%), calc(var(--bs-primary-l) * 1%)) !important;
+        border-color:while !important;}`)
         let FixStyle=document.querySelector("#style1");
         FixStyle.appendChild(nedAddStyle);
         //方片动态背景的相关css
         let BorderRGBRed=Number("0x"+localStorage.BoxBorderColor.substring(1,3)),BorderRGBGreen=Number("0x"+localStorage.BoxBorderColor.substring(3,5)),BorderRGBBlue=Number("0x"+localStorage.BoxBorderColor.substring(5))
         NeedFixStyle.insertAdjacentHTML("afterbegin",'<style id="style3"></style>');
-        let nedAddStyleSec=document.createTextNode(`.M27MojPackImg{width:100px; height:100px;background-size:cover;background-color:#000000;} .M27flexDivSet{pointer-events: none; transition: background-color 2s;width:${localStorage.BoxSize}px;height:${localStorage.BoxSize}px;flex-basis:${localStorage.BoxSize}px;border:1px solid rgba(${BorderRGBRed},${BorderRGBGreen},${BorderRGBBlue},0.${localStorage.BoxBorderCansee});margin;0px;}`)
+        let nedAddStyleSec=document.createTextNode(`
+    .M27MojPackImg{
+    width:100px; height:100px;background-size:cover;background-color:#000000;} 
+    .M27flexDivSet{
+    pointer-events: none; 
+    transition: background-color 2s;
+    width:${localStorage.BoxSize}px;height:${localStorage.BoxSize}px;
+    flex-basis:${localStorage.BoxSize}px;
+    border:1px solid rgba(${BorderRGBRed},${BorderRGBGreen},${BorderRGBBlue},0.${localStorage.BoxBorderCansee});margin;0px;
+    }`)
         let FixStyleSec=document.querySelector("#style3");
         FixStyleSec.appendChild(nedAddStyleSec);
         //修改站长加的消息时间|添加指示灯的相关css动画样式
@@ -258,7 +341,36 @@
         let NeedFixStyleThee=document.querySelectorAll("body > style");
         NeedFixStyleThee[NeedFixStyleThee.length-1].insertAdjacentHTML("afterend",'<style id="style4"></style>');
         let FixStyleThee=document.querySelector("#style4")
-        let nedAddStyleThee=document.createTextNode(`.M27-chat-history-body {flex: 0 1 auto;height: calc(100vh - 19.5rem);padding: 1.25rem 1.25rem;overflow-x: hidden;overflow-y: auto;}.M27-list-unstyled {list-style: none;padding-left: 0;}.M27-online-users-list {overflow:auto;padding: 5px;max-height:200px;scrollbar-width:thin !important;}.M27-online-users-btn {border: none;background: none;padding: 8px;display: flex;align-items: center;cursor: pointer;color: var(--bs-body-color);transition: all 0.2s;position: relative;width:36px;height:36px;}.M27-online-users-btn:hover {color: var(--bs-primary);}.text-muted {--bs-text-opacity: 1;text-shadow: 0 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec} !important;}.chat-message-text{backdrop-filter: blur(5px);background-color: rgba(${MsgBoxRed},${MsgBoxGreen},${MsgBoxBlue},${localStorage.MsgBoxTra}) !important;box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .25) !important;} .dropdown-item {line-height: 1.54;backdrop-filter: blur(5px);}.offcanvas {background-color: rgba(43,44,64,0.5); }@keyframes M27shineGreen{0%{opacity:0.5;background-color:green;}100%{opacity:1;background-color:#77F602;}} @keyframes M27shineYellow{0%{opacity:0.5;background-color:yellow;}100%{opacity:1;background-color:#F6D603;}} @keyframes M27shineRed{0%{opacity:0.5;background-color:red;}100%{opacity:1;background-color:#F60303;}} .linkOpen{animation:M27shineGreen 5s ease-in infinite alternate} .linkBadWeb{animation:M27shineRed 2s ease-in infinite alternate} .linkOutTime{animation:M27shineYellow 4s ease-in infinite alternate} .loading-more {text-align: center;padding: 10px;color: #666;font-size: 12px;background-color: #66CCFF00; }`)
+        let nedAddStyleThee=document.createTextNode(`
+        .card{
+        --bs-card-bg: rgba(45, 45, 45, 0.7);}
+        .M27-chat-history-body {
+        flex: 0 1 auto;height: calc(100vh - 19.5rem);
+        padding: 1.25rem 1.25rem;
+        overflow-x: hidden;
+        overflow-y: auto;}
+        .M27-list-unstyled {list-style: none;
+        padding-left: 0;}
+        .M27-online-users-list {overflow:auto;padding: 5px;
+        max-height:200px;
+        scrollbar-width:thin !important;}
+        .M27-online-users-btn {border: none;
+        background: none;padding: 8px;display: flex;
+        align-items: center;cursor: pointer;
+        color: var(--bs-body-color);
+        transition: all 0.2s;position: relative;
+        width:36px;height:36px;}
+        .M27-online-users-btn:hover {
+        color: var(--bs-primary);}.text-muted {
+        --bs-text-opacity: 1;text-shadow: 0 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};
+        font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec} !important;}
+        .chat-message-text{
+        backdrop-filter: blur(5px);
+        background-color: rgba(${MsgBoxRed},${MsgBoxGreen},${MsgBoxBlue},${localStorage.MsgBoxTra}) !important;
+        box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .25) !important;}
+        .dropdown-item {line-height: 1.54;backdrop-filter: blur(5px);}
+        .offcanvas {background-color: rgba(43,44,64,0.5); }
+        @keyframes M27shineGreen{0%{opacity:0.5;background-color:green;}100%{opacity:1;background-color:#77F602;}} @keyframes M27shineYellow{0%{opacity:0.5;background-color:yellow;}100%{opacity:1;background-color:#F6D603;}} @keyframes M27shineRed{0%{opacity:0.5;background-color:red;}100%{opacity:1;background-color:#F60303;}} .linkOpen{animation:M27shineGreen 5s ease-in infinite alternate} .linkBadWeb{animation:M27shineRed 2s ease-in infinite alternate} .linkOutTime{animation:M27shineYellow 4s ease-in infinite alternate} .loading-more {text-align: center;padding: 10px;color: #666;font-size: 12px;background-color: #66CCFF00; }`)
         FixStyleThee.appendChild(nedAddStyleThee);
         if(!document.querySelector("#statelyMyInfoModal > ul > div")){}else{document.querySelector("#statelyMyInfoModal > ul > div").setAttribute("style","backdrop-filter: blur(5px);")}
         document.querySelector("body").setAttribute("style",`background-color:${localStorage.BackGroundColor}`);
@@ -413,16 +525,6 @@
         let printseenum={}
         let seenunvalue
         for(let i=0;i<seenum.length;i++){
-            // if (seenum[i].value=="100") {
-            //     localStorage.setItem(`CantSeeset${i + 1}`, "100");
-            //     printseenum[i] = ""
-            // }else if(Number(seenum[i].value)<10){
-            //     localStorage.setItem(`CantSeeset${i+1}`,"0"+seenum[i].value);
-            //     printseenum[i]="0"+seenum[i].value
-            // }else{
-            //     localStorage.setItem(`CantSeeset${i+1}`,seenum[i].value);
-            //     printseenum[i]=seenum[i].value
-            // }
             seenunvalue=(Math.round(Number(seenum[i].value)*255/100).toString(16))
             if(seenunvalue.length<=1){//转化为16进制来保存
                 seenunvalue="0"+seenunvalue;
@@ -604,8 +706,8 @@
     <p>可以通过以下方式向我反馈：<br> 在此链接下面回复BUG（推荐）：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a><br>前往GitHub仓库提交issue：<a href="https://github.com/M27-IAR/BHB_BbsBackGroundSetting/issues">GitHub仓库</a><br>私信我修改（不推荐）<a href="https://boyshelpboys.com/user-139020.htm">点击我进入后点击“发私信按钮”</a></p>
 </div>
 <div>
-<strong>当前版本为v3.0.10：</strong> <div style="border-bottom: white 3px solid;height: 0;width: 100%"></div>
-<p>v3.0.10更新：<br>修复了在部分情况下点击“在线人数”按钮会无法正常显示在线列表的BUG<br>重新添加了广告区域删除的功能<br>修改了在线列表交互逻辑<br><strong>现在可以通过点击名字进行@操作，通过点击头像进行跳转主页的操作</strong><br>【新聊天室暂时搁置】</p>
+<strong>当前版本为v3.0.11：</strong> <div style="border-bottom: white 3px solid;height: 0;width: 100%"></div>
+<p>v3.0.11更新：<br>修复了在网站主页脚本加载异常BUG<br>修改左侧导航栏位交互与个性化页面颜色设定一致，在<a href="https://boyshelpboys.com/my-s_customizer.htm">这个页面</a>前往个性化设置窗口<br><br>【新聊天室暂时搁置】</p>
 <p>完整更新日志请前往以下帖子查看：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a></p>
 <p>脚本作者：M27IAR</p>
 </div>`
@@ -615,7 +717,7 @@
     <button id="exit" class="fuckyou3">X</button><span>插件设置</span>
     </div>
 <div>
-<span>若出现无法正常使用的情况请清理浏览器缓存后重试</span><button class='fuckyou' style="padding: 0.125rem 0" id='newmsg'>更新日志</button><br>
+<span>若出现无法正常使用的情况请清理浏览器缓存后重试</span><button class='fuckyou' style="padding: 0.125rem 0" id='newmsg'>反馈方式&更新日志</button><br>
 <input type="checkbox" style="user-select:none;-moz-user-select: none; " name="MsgLightCheck" id="MsgLightCheck" ${(()=>{if(localStorage.MsgLightCheckX==="true"){return "checked"}else{return ""}})()}><label for="MsgLightCheck">启用指示灯</label>
 <input style="user-select:none;-moz-user-select: none;" class="SettiingInput" type="checkbox" ${leadermanhide} value="leadermanhide" name="leadermanhide" id="leadermanhide"><label for="leadermanhide">${leange1[1]}</label>
 <input style="user-select:none;-moz-user-select: none;" class="SettiingInput" type="checkbox" ${Scrollstylex} name="ScrollSett" id="ScrollSett">${leange2[0]}</input><br>
@@ -671,7 +773,7 @@
 </div>
 <div id="cantseegive" style="${(()=>{if (localStorage.TransparencySet!=="false"){return "display:block;";}else{return "display:none;";}})()}">
 <span>${leange2[1]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum1" value="${Math.ceil((Number("0x"+localStorage.CantSeeset1).toString(10))*100/255)}"><input class="SettiingInput  ColorSettinr" type="color" id="Msgcolor1" value="${localStorage.CantSeeColor1}"><br>
-<span>${leange2[3]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum2" style="display: none" value="${Math.ceil((Number("0x"+localStorage.CantSeeset3).toString(10))*100/255)}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor3" value="${localStorage.CantSeeColor3}"><br>
+<span style="display: none">${leange2[2]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum2" style="display: none" value="${Math.ceil((Number("0x"+localStorage.CantSeeset3).toString(10))*100/255)}"><input style="display: none" class="SettiingInput ColorSettinr" type="color" id="Msgcolor2" value="${localStorage.CantSeeColor3}">
 <span>${leange2[3]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum3" value="${Math.ceil((Number("0x"+localStorage.CantSeeset3).toString(10))*100/255)}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor3" value="${localStorage.CantSeeColor3}"><br>
 <span>${leange2[4]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum4" value="${Math.ceil((Number("0x"+localStorage.CantSeeset4).toString(10))*100/255)}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor4" value="${localStorage.CantSeeColor4}"><br>
 <span>${leange2[5]}</span><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum5" value="${Math.ceil((Number("0x"+localStorage.CantSeeset5).toString(10))*100/255)}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor5" value="${localStorage.CantSeeColor5}"><br>
@@ -829,7 +931,7 @@
             if(i!==TrackerLine.length-1){
             }
             TrackerLine[i].addEventListener('mouseenter', ()=> {
-                TrackerLine[i].style.backgroundColor="#FF8FA290";
+                TrackerLine[i].style.backgroundColor=`${ContentColor}90`;
                 TrackerLine[i].style.color="#ffffff";
                 TrackerLine[i].querySelector("a").style.color="#ffffff";
             })
@@ -838,7 +940,7 @@
                 TrackerLine[i].querySelector("a").style.color="#a3a4cc"
             })
             TrackerLine[i].addEventListener('click', ()=> {
-                TrackerLine[i].style.backgroundColor="#FF8FA2";
+                TrackerLine[i].style.backgroundColor=`${ContentColor}`;
                 TrackerLine[i].style.color="#ffffff";
             })
         }
@@ -1584,14 +1686,9 @@
         addsett(printstr1,printstr2,CheckUpdate);
     }else if(nowurl ==="https://www.boyshelpboys.com/"||nowurl ==="https://boyshelpboys.com/"||nowurl.includes("boyshelpboys.com/#")||nowurl.includes("boyshelpboys.com/index")){
         bac.setAttribute("style",`background-color:${localStorage.BackGroundColor};`)
-        if (document.querySelector("#top > div > div > main > div > div.col-lg-9.main > div.card")!==undefined){
-            document.querySelector("#top > div > div > main > div > div.col-lg-9.main > div.card").innerHTML=""
-        }
-        if (document.querySelector("#top > div > div > main > div > div.col-lg-3.aside > div:nth-child(3)")!==undefined){
+        if(typeof document.querySelector("#top > div > div > main > div > div.col-lg-3.aside > div:nth-child(3)")!=="undefined"){
             document.querySelector("#top > div > div > main > div > div.col-lg-3.aside > div:nth-child(3)").innerHTML=""
         }
-        // document.querySelector("#top > div > div > main > div > div.col-lg-9.main > div.card").setAttribute('style', 'display:none');
-        // document.querySelector("div.card:nth-child(4)").setAttribute('style', 'display:none');
         ScrollHidden()
         leftANDtop();
         WidthHeightSet();

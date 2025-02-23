@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修复了在部分情况下点击“在线人数”按钮会无法正常显示在线列表的BUG&#10;重新添加了广告区域删除的功能&#10;修改了在线列表交互逻辑；现在可以通过点击名字进行@操作，通过点击头像进行跳转主页的操作" />
+    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修复了在部分情况下点击“在线人数”按钮会无法正常显示在线列表的BUG&#10;重新添加了广告区域删除的功能&#10;修改了在线列表交互逻辑；现在可以通过点击名字进行@操作，通过点击头像进行跳转主页的操作">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,7 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="TEst1" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -204,15 +207,8 @@
       <workItem from="1739628123612" duration="2408000" />
       <workItem from="1739762088011" duration="603000" />
       <workItem from="1740057125629" duration="3032000" />
-      <workItem from="1740140832765" duration="6349000" />
-    </task>
-    <task id="LOCAL-00027" summary="添加了新的背景渲染选择项：图像渲染方式{可以选择按照网页尺寸渲染还是以图片尺寸渲染}居中渲染{设定图像中心居中渲染}&#10;适配了站长新工具栏的样式，调整了发送框和工具栏开启按钮的大小&#10;修改了站点内选中字体的效果，现在选中字体会修改其为蓝色">
-      <option name="closed" value="true" />
-      <created>1734434626109</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1734434626109</updated>
+      <workItem from="1740140832765" duration="7546000" />
+      <workItem from="1740280644302" duration="7237000" />
     </task>
     <task id="LOCAL-00028" summary="更新了对火狐浏览器的界面适配">
       <option name="closed" value="true" />
@@ -598,7 +594,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740153467413</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="修复了在部分情况下点击“在线人数”按钮会无法正常显示在线列表的BUG&#10;重新添加了广告区域删除的功能&#10;修改了在线列表交互逻辑；现在可以通过点击名字进行@操作，通过点击头像进行跳转主页的操作">
+      <option name="closed" value="true" />
+      <created>1740153725092</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1740153725092</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
