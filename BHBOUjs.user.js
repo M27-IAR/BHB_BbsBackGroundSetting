@@ -8,7 +8,7 @@
 // @author      M27IAR
 // @license     GPL-3.0-or-later
 // @license     GPL-3.0-or-later; https://www.gnu.org/licenses/gpl-3.0.txt
-// @update      https://openuserjs.org/meta/M27IAR/BHB聊天室背景图片更换（已全局兼容）.meta.js
+// @updateURL      https://openuserjs.org/meta/M27IAR/BHB聊天室背景图片更换（已全局兼容）.meta.js
 // @downloadURL https://openuserjs.org/install/M27IAR/BHB聊天室背景图片更换（已全局兼容）.user.js
 // ==/UserScript==
 (function(){
