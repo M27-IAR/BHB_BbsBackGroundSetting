@@ -189,8 +189,48 @@
     */
     //本地数值设定结束
 
+    //通过读取本地存储数据进行选择值设定
+    let webpiclod="";
+    let localpiclod="";
+    let leadermanhide="";
+    let PrintToBackground="";
+    let PrintToBBSGround="";
+    let Scrollstylex;
+    let BackPrintSelectBox="";
+    let Backleft;
+    let BackTop;
+    if (localStorage.centerPosition===""){//是否启用居中渲染
+        Backleft=localStorage.left+"px";
+        BackTop=localStorage.top+"px";
+    }else{
+        Backleft=BackTop="";
+    }
+    if (localStorage.webpiclod==="1"){//读取本地图片还是线上图片
+        webpiclod="checked"
+    }else{
+        localpiclod="checked"
+    }
+    if (localStorage.printToBack==="1"){//背景的填充位置
+        PrintToBackground="checked"
+    }else{
+        PrintToBBSGround="checked"
+    }
+    if (localStorage.scrollstyle==="1"){//滚动条渲染
+        Scrollstylex="checked"
+    }else{
+        Scrollstylex=""
+    }
+    if(localStorage.BackgroundPrint===""){
+        BackPrintSelectBox="default"
+    }else if(localStorage.BackgroundPrint==="cover"){
+        BackPrintSelectBox="PicFirst"
+    }else if(localStorage.BackgroundPrint==="contain"){
+        BackPrintSelectBox="WebFirst"
+    }
+    //通过读取本地存储数据进行选择值设定结束
+
     //移除顶栏的磨砂效果
-    let NeedFixStyleFive=document.querySelectorAll("body > style");
+    let NeedFixStyleFive=document.querySelectorAll("style");
     NeedFixStyleFive[NeedFixStyleFive.length-1].insertAdjacentHTML("afterend",'<style id="style5"></style>');
     let FixStyleFive=document.querySelector("#style5")
     let nedAddStyleFive=document.createTextNode(`.layout-navbar-fixed .layout-page:before {backdrop-filter:  blur(0px);}`)//添加处理上部控件的背景模糊的样式表
@@ -252,8 +292,9 @@
     function createMessageMenu() {}//覆盖站长的方法
 
     function leftANDtop() {
+        let MsgBoxRed=Number("0x"+localStorage.MsgBoxColor.substring(1,3)),MsgBoxGreen=Number("0x"+localStorage.MsgBoxColor.substring(3,5)),MsgBoxBlue=Number("0x"+localStorage.MsgBoxColor.substring(5))
         let NeedFixStyle=document.querySelector("head");//插入样式表修改左侧与顶栏样式
-        NeedFixStyle.insertAdjacentHTML("afterbegin",'<style id="style1"></style>');
+        NeedFixStyle.insertAdjacentHTML("afterbegin",'<style id="style1"></style>');//杂，但是为多页面内共有项目
         let nedAddStyle=document.createTextNode(` 
         ::selection{
         color:#0000FF !important;} 
@@ -336,8 +377,7 @@
         let FixStyleSec=document.querySelector("#style3");
         FixStyleSec.appendChild(nedAddStyleSec);
         //修改站长加的消息时间|添加指示灯的相关css动画样式
-        let MsgBoxRed=Number("0x"+localStorage.MsgBoxColor.substring(1,3)),MsgBoxGreen=Number("0x"+localStorage.MsgBoxColor.substring(3,5)),MsgBoxBlue=Number("0x"+localStorage.MsgBoxColor.substring(5))
-        let NeedFixStyleThee=document.querySelectorAll("body > style");
+        let NeedFixStyleThee=document.querySelectorAll("style");
         NeedFixStyleThee[NeedFixStyleThee.length-1].insertAdjacentHTML("afterend",'<style id="style4"></style>');
         let FixStyleThee=document.querySelector("#style4")
         let nedAddStyleThee=document.createTextNode(`
@@ -363,8 +403,12 @@
         color: var(--bs-primary);}.text-muted {
         --bs-text-opacity: 1;text-shadow: 0 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};
         font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec} !important;}
-        .chat-message-text{
-        backdrop-filter: blur(5px);
+        .dark-style .app-chat .app-chat-history .chat-history-body .chat-history .chat-message:not(.chat-message-right) .chat-message-text {
+        backdrop-filter: blur(5px) !important;
+        background-color: rgba(${MsgBoxRed},${MsgBoxGreen},${MsgBoxBlue},${localStorage.MsgBoxTra}) !important;
+        box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .25) !important;}
+        .dark-style .app-chat .app-chat-history .chat-history .chat-message.chat-message-right .chat-message-text {
+        backdrop-filter: blur(5px) !important;
         background-color: rgba(${MsgBoxRed},${MsgBoxGreen},${MsgBoxBlue},${localStorage.MsgBoxTra}) !important;
         box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .25) !important;}
         .dropdown-item {line-height: 1.54;backdrop-filter: blur(5px);}
@@ -705,8 +749,8 @@
     <p>可以通过以下方式向我反馈：<br> 在此链接下面回复BUG（推荐）：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a><br>前往GitHub仓库提交issue：<a href="https://github.com/M27-IAR/BHB_BbsBackGroundSetting/issues">GitHub仓库</a><br>私信我修改（不推荐）<a href="https://boyshelpboys.com/user-139020.htm">点击我进入后点击“发私信按钮”</a></p>
 </div>
 <div>
-<strong>当前版本为v3.0.11：</strong> <div style="border-bottom: white 3px solid;height: 0;width: 100%"></div>
-<p>v3.0.11更新：<br>修复了在网站主页脚本加载异常BUG<br>修改左侧导航栏位交互与个性化页面颜色设定一致，在<a href="https://boyshelpboys.com/my-s_customizer.htm">这个页面</a>前往个性化设置窗口<br><br>【新聊天室暂时搁置】</p>
+<strong>当前版本为v3.0.12：</strong> <div style="border-bottom: white 3px solid;height: 0;width: 100%"></div>
+<p>v3.0.12更新：<br>修复了样式表插入错误的问题<br>修复聊天室气泡磨砂效果失效问题<br>添加了帖子页面图片大图展示的功能<br>【新聊天室暂时搁置】</p>
 <p>完整更新日志请前往以下帖子查看：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a></p>
 <p>脚本作者：M27IAR</p>
 </div>`
@@ -905,7 +949,7 @@
     let AddStylesec=document.createTextNode(`@media(min-width: 768px) {::-webkit-scrollbar {width: 3px; height: 6px;border-radius: 20px;}::-webkit-scrollbar-track { background: var(--bs-body-bg);}::-webkit-scrollbar-thumb {background: var(--bs-secondary);border-radius: 20px;}::-webkit-scrollbar-thumb:hover {background: var(--bs-primary);}::-webkit-scrollbar-thumb:focus, ::-webkit-scrollbar-thumb:active {background: var(--bs-primary-active);}} `)
 
     function ScrollHidden() {//滚动条调整
-        let NeedFixStyle=document.querySelectorAll("body > style");//修改滚动条状态
+        let NeedFixStyle=document.querySelectorAll("style");//修改滚动条状态
         NeedFixStyle[NeedFixStyle.length-1].insertAdjacentHTML("afterend",'<style id="style2"></style>');
         let FixStyle=document.querySelector("#style2")
         if (localStorage.scrollstyle==="1"){
@@ -996,45 +1040,6 @@
         }
 
     }
-    //通过读取本地存储数据进行选择值设定
-    let webpiclod="";
-    let localpiclod="";
-    let leadermanhide="";
-    let PrintToBackground="";
-    let PrintToBBSGround="";
-    let Scrollstylex;
-    let BackPrintSelectBox="";
-    let Backleft;
-    let BackTop;
-    if (localStorage.centerPosition===""){//是否启用居中渲染
-        Backleft=localStorage.left+"px";
-        BackTop=localStorage.top+"px";
-    }else{
-        Backleft=BackTop="";
-    }
-    if (localStorage.webpiclod==="1"){//读取本地图片还是线上图片
-        webpiclod="checked"
-    }else{
-        localpiclod="checked"
-    }
-    if (localStorage.printToBack==="1"){//背景的填充位置
-        PrintToBackground="checked"
-    }else{
-        PrintToBBSGround="checked"
-    }
-    if (localStorage.scrollstyle==="1"){//滚动条渲染
-        Scrollstylex="checked"
-    }else{
-        Scrollstylex=""
-    }
-    if(localStorage.BackgroundPrint===""){
-        BackPrintSelectBox="default"
-    }else if(localStorage.BackgroundPrint==="cover"){
-        BackPrintSelectBox="PicFirst"
-    }else if(localStorage.BackgroundPrint==="contain"){
-        BackPrintSelectBox="WebFirst"
-    }
-    //通过读取本地存储数据进行选择值设定结束
     //数据库创建
     let request = indexedDB.open('databaseName', 6);
     // 处理数据库升级
@@ -1121,15 +1126,6 @@
                     </div>
                     </div>
                 `)
-                //点击跳转效果
-                // let UID=ListJson[ListJsonUserName].avatar.substring(ListJson[ListJsonUserName].avatar.lastIndexOf("/")+1,ListJson[ListJsonUserName].avatar.lastIndexOf("."))
-                // document.querySelector(`#M27-${ListJsonUserName}`).addEventListener('click', ()=>{
-                //     if (UID.includes('avatar')){
-                //         window.open("https://boyshelpboys.com/chat.htm")
-                //     }else{
-                //         window.open(`https://boyshelpboys.com/user-${UID}.htm`)
-                //     }
-                // })
             }
         }else{
             for(let i=0;i<OldOnlineUserListJSON.length;i++){//写入时间
@@ -1478,7 +1474,7 @@
         if(localStorage.M27NewBBGPrint==="true"){
         setInterval(()=>{if(typeof c === 'undefined' ){}else{clearInterval(c)}},1);//删除站长原本的消息获取
         //添加样式表
-        let NeedFixStyleSix=document.querySelectorAll("body > style");
+        let NeedFixStyleSix=document.querySelectorAll("style");
         NeedFixStyleSix[NeedFixStyleSix.length-1].insertAdjacentHTML("afterend",'<style id="style6"></style>');
         let FixStyleSix=document.querySelector("#style6")
         let InnetStyle=document.createTextNode(`
@@ -1685,9 +1681,6 @@
         addsett(printstr1,printstr2,CheckUpdate);
     }else if(nowurl ==="https://www.boyshelpboys.com/"||nowurl ==="https://boyshelpboys.com/"||nowurl.includes("boyshelpboys.com/#")||nowurl.includes("boyshelpboys.com/index")){
         bac.setAttribute("style",`background-color:${localStorage.BackGroundColor};`)
-        if(typeof document.querySelector("#top > div > div > main > div > div.col-lg-3.aside > div:nth-child(3)")!=="undefined"){
-            document.querySelector("#top > div > div > main > div > div.col-lg-3.aside > div:nth-child(3)").innerHTML=""
-        }
         ScrollHidden()
         leftANDtop();
         WidthHeightSet();
@@ -1701,7 +1694,6 @@
         Tiezi6.setAttribute('style', `background-color: ${localStorage.CantSeeColor6}${localStorage.CantSeeset6} !important;`)//搜索栏背景||边框
         Tiezi7.setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;border:1px solid ${localStorage.CantSeeColor8}${localStorage.CantSeeset8} !important;height:2.5rem !important;`)//搜索栏输入框背景||描边
 
-
         let printstr1=["线上地址","删除左侧导航栏","淡色字体大小","淡色字描边/字体颜色","淡色字描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
         let printstr2=["滚动条不显示","帖子栏1透明度","顶栏而下透明度","*没做*","*没做*","*没做*","搜索框颜色透明度","搜索输入框颜色",'搜索框描边',"*没做*"]
         addsett(printstr1,printstr2,CheckUpdate);
@@ -1710,12 +1702,84 @@
         let localget=document.querySelector("#save");
         localget.addEventListener("click",addtolocal,false);//点击向localst保存数据
         addlocalupdate.addEventListener("change",handleFileSelect,false)//本体提交图片时向DBD保存base64
+        if(document.querySelector("#top > div > div > main > div > div.col-lg-3.aside > div:nth-child(3)") !=null && typeof document.querySelector("#top > div > div > main > div > div.col-lg-3.aside > div:nth-child(3)")!=="undefined"){
+            document.querySelector("#top > div > div > main > div > div.col-lg-3.aside > div:nth-child(3)").innerHTML=""
+        }
+    }else if(nowurl.includes("boyshelpboys.com/thread-")){
+        // bac.setAttribute("style",`background-color:${localStorage.BackGroundColor};`)
+        // setInterval(function(){if (bac.style.backgroundColor===''){
+        //     console.log("reprint"); backPrint(bac,addtarge,nowurl);
+        // }},1)
+        leftANDtop();
+        WidthHeightSet();
+        backPrint(bac,addtarge,nowurl);
+        ScrollHidden();
+        rePrint(webWidth,webHeight);
+        leftContentContent();
 
-    }else{
-        bac.setAttribute("style",`background-color:${localStorage.BackGroundColor};`)
-        setInterval(function(){if (bac.style.backgroundColor===''){
-            console.log("reprint"); backPrint(bac,addtarge,nowurl);
-        }},1)
+        let printstr1=["线上地址","删除左侧导航栏","聊天室名称大小","聊天室名称描边/字体颜色","聊天室名称描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
+        let printstr2=["滚动条不显示","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","'*没做*'*没做*"]
+        addsett(printstr1,printstr2,CheckUpdate);
+        let addlocalupdate=document.querySelector("#webimgsrc");
+        let localget=document.querySelector("#save");
+        localget.addEventListener("click",addtolocal,false);//点击向localst保存数据
+        addlocalupdate.addEventListener("change",handleFileSelect,false)//本体提交图片时向DBD保存base64
+        //帖子界面图片放大观看功能
+        bac.insertAdjacentHTML("afterbegin",`
+        <div id="ImgBoxM" style="justify-content:center;align-items:center;background-color: rgba(0,0,0);z-index: 1000000000;position: fixed;display: none;left: 0;right: 0;top: 0;bottom: 0;width: 100%;height: 100%;">
+        <div id="ZoomSet" style="justify-content:center;align-items:center;height: ${Math.ceil(webHeight*0.9)}px;position: fixed;transition: transform  0.2s ease;">
+        <img style="max-width:100%;max-height: 100%;object-fit: contain;justify-content:center;" src="" id="PicIMgPrint" alt="">
+        </div>
+        </div>`)
+        let TargeImg
+        let ImgShow=document.querySelector("#PicIMgPrint");//灰色背景
+        let ImgBoxM=document.querySelector("#ImgBoxM");//图片
+        let ZoomSet=document.querySelector("#ZoomSet");//缩放框
+        let url=nowurl;//原始url记录
+        let scale = 1;
+        const scaleStep = 0.1; // 每次滚动的缩放步长
+        const minScale = 0.5; // 最小缩放比例
+        const maxScale = 3; // 最大缩放比例
+        document.querySelector("#the_thread_message").addEventListener("click",(e)=>{
+            console.log(e.target)
+            let ImgLoadTest=new Image()
+            if (e.target.src!=null){
+                ImgLoadTest.src=e.target.src
+                ImgLoadTest.onload=()=>{
+                    ImgShow.src=e.target.src;
+                    ImgBoxM.style.display="flex";
+                    e.target.id="M27TargeSave";
+                    TargeImg=e.target
+                }
+                ImgLoadTest.onerror=()=>{
+                    console.log("链接无法加载")
+                }
+            }
+        });
+        ImgBoxM.addEventListener("wheel",(e)=>{
+            e.preventDefault();
+            if(e.deltaY<0){
+                scale-=scaleStep
+            }else{
+                scale+=scaleStep
+            }
+            scale = Math.min(Math.max(scale, minScale), maxScale);
+            //ZoomSet.style.height=ZoomSet.style.height.substring(1,ZoomSet.style.height.indexOf("px"))+SollNum+"px"
+            ZoomSet.style.transform=`scale(${scale})`;
+        })//部分代码来自https://www.cnblogs.com/ai888/p/18613761
+        ImgBoxM.addEventListener("click",()=>{
+            ImgShow.src="";
+            ImgBoxM.style.display="none";
+            location.href=url.slice(0,url.indexOf("#M27TargeSave"))+'#M27TargeSave';
+            TargeImg.id=""
+            TargeImg=null
+            ZoomSet.style.height=Math.ceil(webHeight*0.9)+"px"
+        })
+        ImgShow.addEventListener("click",(e)=>{
+            e.stopPropagation()
+        })
+    }
+    else{
         leftANDtop();
         WidthHeightSet();
         backPrint(bac,addtarge,nowurl);

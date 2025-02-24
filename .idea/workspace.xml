@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修复了在部分情况下点击“在线人数”按钮会无法正常显示在线列表的BUG&#10;重新添加了广告区域删除的功能&#10;修改了在线列表交互逻辑；现在可以通过点击名字进行@操作，通过点击头像进行跳转主页的操作">
+    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修复了在网站主页脚本加载异常BUG。&#10;修改左侧导航栏位交互与个性化页面颜色设定一致。">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
     </list>
@@ -208,31 +208,8 @@
       <workItem from="1739762088011" duration="603000" />
       <workItem from="1740057125629" duration="3032000" />
       <workItem from="1740140832765" duration="7546000" />
-      <workItem from="1740280644302" duration="7237000" />
-    </task>
-    <task id="LOCAL-00028" summary="更新了对火狐浏览器的界面适配">
-      <option name="closed" value="true" />
-      <created>1734524499670</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1734524499670</updated>
-    </task>
-    <task id="LOCAL-00029" summary="适配闪电炫芬批的外链头像（暂时不推送）">
-      <option name="closed" value="true" />
-      <created>1734532119432</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1734532119432</updated>
-    </task>
-    <task id="LOCAL-00030" summary="适配闪电炫芬批的外链头像&#10;修了左侧导航栏背景修改导致不透明的问题">
-      <option name="closed" value="true" />
-      <created>1734793542239</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1734793542239</updated>
+      <workItem from="1740280644302" duration="7606000" />
+      <workItem from="1740373531766" duration="13891000" />
     </task>
     <task id="LOCAL-00031" summary="添加了一个新的背景特效（方块特效）&#10;添加了 启用图像背景 选项，关闭会不渲染选择的图像背景&#10;修改了站长聊天室发送按钮的样式&#10;修改了左侧导航栏的交互效果">
       <option name="closed" value="true" />
@@ -602,7 +579,31 @@
       <option name="project" value="LOCAL" />
       <updated>1740153725092</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="修复了在网站主页脚本加载异常BUG。&#10;修改左侧导航栏位交互与个性化页面颜色设定一致。">
+      <option name="closed" value="true" />
+      <created>1740323396781</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1740323396781</updated>
+    </task>
+    <task id="LOCAL-00078" summary="修复了在网站主页脚本加载异常BUG。&#10;修改左侧导航栏位交互与个性化页面颜色设定一致。">
+      <option name="closed" value="true" />
+      <created>1740323432860</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1740323432860</updated>
+    </task>
+    <task id="LOCAL-00079" summary="修复了在网站主页脚本加载异常BUG。&#10;修改左侧导航栏位交互与个性化页面颜色设定一致。">
+      <option name="closed" value="true" />
+      <created>1740323601849</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1740323601849</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -620,7 +621,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加了关闭指示灯的按钮和延迟信息按钮（点击指示灯即可）" />
     <MESSAGE value="添加了关闭指示灯的按钮和延迟信息按钮（点击指示灯即可）&#10;修复了延迟超过1000ms状态（黄灯）状态下阴影不正常显示的问题" />
     <MESSAGE value="看着不爽提交一下" />
     <MESSAGE value="修改了默认绘制图片背景的设置" />
@@ -645,6 +645,7 @@
     <MESSAGE value="test" />
     <MESSAGE value="change" />
     <MESSAGE value="修复了在部分情况下点击“在线人数”按钮会无法正常显示在线列表的BUG&#10;重新添加了广告区域删除的功能&#10;修改了在线列表交互逻辑；现在可以通过点击名字进行@操作，通过点击头像进行跳转主页的操作" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复了在部分情况下点击“在线人数”按钮会无法正常显示在线列表的BUG&#10;重新添加了广告区域删除的功能&#10;修改了在线列表交互逻辑；现在可以通过点击名字进行@操作，通过点击头像进行跳转主页的操作" />
+    <MESSAGE value="修复了在网站主页脚本加载异常BUG。&#10;修改左侧导航栏位交互与个性化页面颜色设定一致。" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复了在网站主页脚本加载异常BUG。&#10;修改左侧导航栏位交互与个性化页面颜色设定一致。" />
   </component>
 </project>
