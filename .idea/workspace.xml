@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修复了在网站主页脚本加载异常BUG。&#10;修改左侧导航栏位交互与个性化页面颜色设定一致。">
+    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="添加openuserjs版本">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BHBOUjs.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHBOUjs.user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +77,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/0/BHB/BHB后端&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/0/web1&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -93,6 +94,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\0\web1" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\0\web1\jQuery" />
     </key>
@@ -209,47 +213,8 @@
       <workItem from="1740057125629" duration="3032000" />
       <workItem from="1740140832765" duration="7546000" />
       <workItem from="1740280644302" duration="7606000" />
-      <workItem from="1740373531766" duration="13891000" />
-    </task>
-    <task id="LOCAL-00031" summary="添加了一个新的背景特效（方块特效）&#10;添加了 启用图像背景 选项，关闭会不渲染选择的图像背景&#10;修改了站长聊天室发送按钮的样式&#10;修改了左侧导航栏的交互效果">
-      <option name="closed" value="true" />
-      <created>1734879099815</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1734879099815</updated>
-    </task>
-    <task id="LOCAL-00032" summary="添加了一个新的背景特效（方块特效）&#10;添加了 启用图像背景 选项，关闭会不渲染选择的图像背景&#10;修改了站长聊天室发送按钮的样式&#10;修改了左侧导航栏的交互效果">
-      <option name="closed" value="true" />
-      <created>1734879490809</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1734879490809</updated>
-    </task>
-    <task id="LOCAL-00033" summary="在聊天室添加了站长服务器状态指示灯（测试中，还有我的灯更好看）">
-      <option name="closed" value="true" />
-      <created>1735143669789</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1735143669789</updated>
-    </task>
-    <task id="LOCAL-00034" summary="优化了务器状态指示灯（我的灯更好看）&#10;修改了字体描边办法">
-      <option name="closed" value="true" />
-      <created>1735213330456</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1735213330456</updated>
-    </task>
-    <task id="LOCAL-00035" summary="调整了服务器状态指示灯策略（我的灯更好看）&#10;重写了设置菜单">
-      <option name="closed" value="true" />
-      <created>1735382638811</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1735382638811</updated>
+      <workItem from="1740373531766" duration="15663000" />
+      <workItem from="1740453885730" duration="11153000" />
     </task>
     <task id="LOCAL-00036" summary="添加了关闭指示灯的按钮和延迟信息按钮（点击指示灯即可）">
       <option name="closed" value="true" />
@@ -603,7 +568,47 @@
       <option name="project" value="LOCAL" />
       <updated>1740323601849</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="修复了样式表插入错误的问题&#10;修复聊天室气泡磨砂效果失效问题&#10;添加了帖子页面图片大图展示的功能">
+      <option name="closed" value="true" />
+      <created>1740411396954</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1740411396954</updated>
+    </task>
+    <task id="LOCAL-00081" summary="修复了样式表插入错误的问题&#10;修复聊天室气泡磨砂效果失效问题&#10;添加了帖子页面图片大图展示的功能">
+      <option name="closed" value="true" />
+      <created>1740411449447</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1740411449447</updated>
+    </task>
+    <task id="LOCAL-00082" summary="添加openuserjs版本">
+      <option name="closed" value="true" />
+      <created>1740412029731</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1740412029731</updated>
+    </task>
+    <task id="LOCAL-00083" summary="添加openuserjs版本">
+      <option name="closed" value="true" />
+      <created>1740412061660</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1740412061660</updated>
+    </task>
+    <task id="LOCAL-00084" summary="添加openuserjs版本">
+      <option name="closed" value="true" />
+      <created>1740412158836</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1740412158836</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -621,8 +626,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加了关闭指示灯的按钮和延迟信息按钮（点击指示灯即可）&#10;修复了延迟超过1000ms状态（黄灯）状态下阴影不正常显示的问题" />
-    <MESSAGE value="看着不爽提交一下" />
     <MESSAGE value="修改了默认绘制图片背景的设置" />
     <MESSAGE value="修复了描边效果不正常设定的问题&#10;修复方块特效不能正常启用的问题" />
     <MESSAGE value="修复了滚动页面后设置栏不会置于页面中心的问题&#10;优化了信号灯的运行逻辑，现在在关闭后不会再进行请求&#10;修改了部分菜单选项的描述" />
@@ -646,6 +649,8 @@
     <MESSAGE value="change" />
     <MESSAGE value="修复了在部分情况下点击“在线人数”按钮会无法正常显示在线列表的BUG&#10;重新添加了广告区域删除的功能&#10;修改了在线列表交互逻辑；现在可以通过点击名字进行@操作，通过点击头像进行跳转主页的操作" />
     <MESSAGE value="修复了在网站主页脚本加载异常BUG。&#10;修改左侧导航栏位交互与个性化页面颜色设定一致。" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复了在网站主页脚本加载异常BUG。&#10;修改左侧导航栏位交互与个性化页面颜色设定一致。" />
+    <MESSAGE value="修复了样式表插入错误的问题&#10;修复聊天室气泡磨砂效果失效问题&#10;添加了帖子页面图片大图展示的功能" />
+    <MESSAGE value="添加openuserjs版本" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加openuserjs版本" />
   </component>
 </project>

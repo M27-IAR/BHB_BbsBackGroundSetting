@@ -4,7 +4,7 @@
 // @match       https://*.boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     3.0.12
+// @version     3.0.13
 // @author      M27IAR
 // @license     GPL-3.0-or-later
 // @license     GPL-3.0-or-later; https://www.gnu.org/licenses/gpl-3.0.txt
@@ -168,13 +168,13 @@
     if(!localStorage.webimgsrc){//线上图片链接
         localStorage.setItem("webimgsrc",'https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png');
     }
-    if(!localStorage.version||localStorage.version!=="3.0.12"){//更新后修改部分选项，理论上不会影响用户
-        localStorage.setItem("version","3.0.12");CheckUpdate=true;localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
-        if(localStorage.webimgsrc==="https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png"||localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png"||localStorage.webimgsrc==="https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg") {
+    if(!localStorage.version||localStorage.version!=="3.0.13"){//更新后修改部分选项，理论上不会影响用户
+        localStorage.setItem("version","3.0.13");CheckUpdate=true;localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
+        if(localStorage.webimgsrc==="https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png"||localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png"||localStorage.webimgsrc==="https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg") {
             if(webWidth<webHeight){
-                localStorage.setItem("webimgsrc", 'https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg');
+                localStorage.setItem("webimgsrc", 'https://m27iarsite.cc/20250225232321_67bde069e2d11.jpg');
             }else{
-                localStorage.setItem("webimgsrc", 'https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg');
+                localStorage.setItem("webimgsrc", 'https://m27iarsite.cc/20250225232331_67bde0730536d.jpg');
             }
         }
     }else{CheckUpdate=false}
@@ -186,6 +186,8 @@
     https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png
     https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg
     https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg
+    https://m27iarsite.cc/20250225232331_67bde0730536d.jpg
+    https://m27iarsite.cc/20250225232321_67bde069e2d11.jpg
     */
     //本地数值设定结束
 
@@ -230,8 +232,8 @@
     //通过读取本地存储数据进行选择值设定结束
 
     //移除顶栏的磨砂效果
-    let NeedFixStyleFive=document.querySelectorAll("style");
-    NeedFixStyleFive[NeedFixStyleFive.length-1].insertAdjacentHTML("afterend",'<style id="style5"></style>');
+    let NeedFixStyleFive=document.querySelector("head");
+    NeedFixStyleFive.insertAdjacentHTML("beforeend",'<style id="style5"></style>');
     let FixStyleFive=document.querySelector("#style5")
     let nedAddStyleFive=document.createTextNode(`.layout-navbar-fixed .layout-page:before {backdrop-filter:  blur(0px);}`)//添加处理上部控件的背景模糊的样式表
     FixStyleFive.appendChild(nedAddStyleFive)
@@ -377,12 +379,12 @@
         let FixStyleSec=document.querySelector("#style3");
         FixStyleSec.appendChild(nedAddStyleSec);
         //修改站长加的消息时间|添加指示灯的相关css动画样式
-        let NeedFixStyleThee=document.querySelectorAll("style");
-        NeedFixStyleThee[NeedFixStyleThee.length-1].insertAdjacentHTML("afterend",'<style id="style4"></style>');
+        let NeedFixStyleThee=document.querySelector("head");
+        NeedFixStyleThee.insertAdjacentHTML("beforeend",'<style id="style4"></style>');
         let FixStyleThee=document.querySelector("#style4")
         let nedAddStyleThee=document.createTextNode(`
         .card{
-        --bs-card-bg: rgba(45, 45, 45, 0.7);}
+        --bs-card-bg: rgba(45, 45, 45, 0.7) !important;}
         .M27-chat-history-body {
         flex: 0 1 auto;height: calc(100vh - 19.5rem);
         padding: 1.25rem 1.25rem;
@@ -749,8 +751,8 @@
     <p>可以通过以下方式向我反馈：<br> 在此链接下面回复BUG（推荐）：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a><br>前往GitHub仓库提交issue：<a href="https://github.com/M27-IAR/BHB_BbsBackGroundSetting/issues">GitHub仓库</a><br>私信我修改（不推荐）<a href="https://boyshelpboys.com/user-139020.htm">点击我进入后点击“发私信按钮”</a></p>
 </div>
 <div>
-<strong>当前版本为v3.0.12：</strong> <div style="border-bottom: white 3px solid;height: 0;width: 100%"></div>
-<p>v3.0.12更新：<br>修复了样式表插入错误的问题<br>修复聊天室气泡磨砂效果失效问题<br>添加了帖子页面图片大图展示的功能<br>【新聊天室暂时搁置】</p>
+<strong>当前版本为v3.0.13：</strong> <div style="border-bottom: white 3px solid;height: 0;width: 100%"></div>
+<p>v3.0.13更新：<br>更换默认背景<br>修复了帖子页面点击帖子内图片再返回时错误跳转的bug<br>修复了图片缩放没有复原的问题<br>修复了样式表没有成功插入的问题<br>调整了图片缩放逻辑<br>【新聊天室暂时搁置】</p>
 <p>完整更新日志请前往以下帖子查看：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a></p>
 <p>脚本作者：M27IAR</p>
 </div>`
@@ -949,8 +951,8 @@
     let AddStylesec=document.createTextNode(`@media(min-width: 768px) {::-webkit-scrollbar {width: 3px; height: 6px;border-radius: 20px;}::-webkit-scrollbar-track { background: var(--bs-body-bg);}::-webkit-scrollbar-thumb {background: var(--bs-secondary);border-radius: 20px;}::-webkit-scrollbar-thumb:hover {background: var(--bs-primary);}::-webkit-scrollbar-thumb:focus, ::-webkit-scrollbar-thumb:active {background: var(--bs-primary-active);}} `)
 
     function ScrollHidden() {//滚动条调整
-        let NeedFixStyle=document.querySelectorAll("style");//修改滚动条状态
-        NeedFixStyle[NeedFixStyle.length-1].insertAdjacentHTML("afterend",'<style id="style2"></style>');
+        let NeedFixStyle=document.querySelector("head");//修改滚动条状态
+        NeedFixStyle.insertAdjacentHTML("beforeend",'<style id="style2"></style>');
         let FixStyle=document.querySelector("#style2")
         if (localStorage.scrollstyle==="1"){
             FixStyle.appendChild(nedAddStyle);
@@ -1474,8 +1476,8 @@
         if(localStorage.M27NewBBGPrint==="true"){
         setInterval(()=>{if(typeof c === 'undefined' ){}else{clearInterval(c)}},1);//删除站长原本的消息获取
         //添加样式表
-        let NeedFixStyleSix=document.querySelectorAll("style");
-        NeedFixStyleSix[NeedFixStyleSix.length-1].insertAdjacentHTML("afterend",'<style id="style6"></style>');
+        let NeedFixStyleSix=document.querySelector("head");
+            NeedFixStyleSix.insertAdjacentHTML("afterend",'<style id="style6"></style>');
         let FixStyleSix=document.querySelector("#style6")
         let InnetStyle=document.createTextNode(`
         #M27-OnliceUser{display:flex;position: fixed;right: -48%;top:0;bottom: 0;background-color: #66ccff50;width: 50%;height:100%;backdrop-filter:  blur(5px);z-index: 100001;transition:all 0.3s ease 0.1s;}
@@ -1680,6 +1682,7 @@
         leftContentContent();
         addsett(printstr1,printstr2,CheckUpdate);
     }else if(nowurl ==="https://www.boyshelpboys.com/"||nowurl ==="https://boyshelpboys.com/"||nowurl.includes("boyshelpboys.com/#")||nowurl.includes("boyshelpboys.com/index")){
+        console.log("tes");
         bac.setAttribute("style",`background-color:${localStorage.BackGroundColor};`)
         ScrollHidden()
         leftANDtop();
@@ -1727,15 +1730,13 @@
         //帖子界面图片放大观看功能
         bac.insertAdjacentHTML("afterbegin",`
         <div id="ImgBoxM" style="justify-content:center;align-items:center;background-color: rgba(0,0,0);z-index: 1000000000;position: fixed;display: none;left: 0;right: 0;top: 0;bottom: 0;width: 100%;height: 100%;">
-        <div id="ZoomSet" style="justify-content:center;align-items:center;height: ${Math.ceil(webHeight*0.9)}px;position: fixed;transition: transform  0.2s ease;">
+        <div id="ZoomSet" style="display:flex;justify-content:center;align-items:center;height: ${Math.ceil(webHeight*0.9)}px;position: fixed;transition: transform  0.2s ease;">
         <img style="max-width:100%;max-height: 100%;object-fit: contain;justify-content:center;" src="" id="PicIMgPrint" alt="">
         </div>
-        </div>`)
-        let TargeImg
+        </div>`)//图片容纳框
         let ImgShow=document.querySelector("#PicIMgPrint");//灰色背景
         let ImgBoxM=document.querySelector("#ImgBoxM");//图片
         let ZoomSet=document.querySelector("#ZoomSet");//缩放框
-        let url=nowurl;//原始url记录
         let scale = 1;
         const scaleStep = 0.1; // 每次滚动的缩放步长
         const minScale = 0.5; // 最小缩放比例
@@ -1748,8 +1749,6 @@
                 ImgLoadTest.onload=()=>{
                     ImgShow.src=e.target.src;
                     ImgBoxM.style.display="flex";
-                    e.target.id="M27TargeSave";
-                    TargeImg=e.target
                 }
                 ImgLoadTest.onerror=()=>{
                     console.log("链接无法加载")
@@ -1759,21 +1758,17 @@
         ImgBoxM.addEventListener("wheel",(e)=>{
             e.preventDefault();
             if(e.deltaY<0){
-                scale-=scaleStep
-            }else{
                 scale+=scaleStep
+            }else{
+                scale-=scaleStep
             }
             scale = Math.min(Math.max(scale, minScale), maxScale);
-            //ZoomSet.style.height=ZoomSet.style.height.substring(1,ZoomSet.style.height.indexOf("px"))+SollNum+"px"
             ZoomSet.style.transform=`scale(${scale})`;
         })//部分代码来自https://www.cnblogs.com/ai888/p/18613761
-        ImgBoxM.addEventListener("click",()=>{
+        ImgBoxM.addEventListener("click",()=>{//重置图片框状态
             ImgShow.src="";
             ImgBoxM.style.display="none";
-            location.href=url.slice(0,url.indexOf("#M27TargeSave"))+'#M27TargeSave';
-            TargeImg.id=""
-            TargeImg=null
-            ZoomSet.style.height=Math.ceil(webHeight*0.9)+"px"
+            ZoomSet.style.transform=`scale(1)`;
         })
         ImgShow.addEventListener("click",(e)=>{
             e.stopPropagation()
