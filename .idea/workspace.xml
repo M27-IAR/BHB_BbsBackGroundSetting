@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="添加openuserjs版本">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
+    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="更换默认背景&#10;修复了帖子页面点击帖子内图片再返回时错误跳转的bug&#10;修复了图片缩放没有复原的问题&#10;修复了样式表没有成功插入的问题&#10;调整了图片缩放逻辑">
       <change beforePath="$PROJECT_DIR$/BHBOUjs.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHBOUjs.user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -214,15 +212,7 @@
       <workItem from="1740140832765" duration="7546000" />
       <workItem from="1740280644302" duration="7606000" />
       <workItem from="1740373531766" duration="15663000" />
-      <workItem from="1740453885730" duration="11153000" />
-    </task>
-    <task id="LOCAL-00036" summary="添加了关闭指示灯的按钮和延迟信息按钮（点击指示灯即可）">
-      <option name="closed" value="true" />
-      <created>1735400844145</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1735400844145</updated>
+      <workItem from="1740453885730" duration="11464000" />
     </task>
     <task id="LOCAL-00037" summary="添加了关闭指示灯的按钮和延迟信息按钮（点击指示灯即可）&#10;修复了延迟超过1000ms状态（黄灯）状态下阴影不正常显示的问题">
       <option name="closed" value="true" />
@@ -608,7 +598,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740412158836</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="更换默认背景&#10;修复了帖子页面点击帖子内图片再返回时错误跳转的bug&#10;修复了图片缩放没有复原的问题&#10;修复了样式表没有成功插入的问题&#10;调整了图片缩放逻辑">
+      <option name="closed" value="true" />
+      <created>1740497443308</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1740497443309</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -626,7 +624,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改了默认绘制图片背景的设置" />
     <MESSAGE value="修复了描边效果不正常设定的问题&#10;修复方块特效不能正常启用的问题" />
     <MESSAGE value="修复了滚动页面后设置栏不会置于页面中心的问题&#10;优化了信号灯的运行逻辑，现在在关闭后不会再进行请求&#10;修改了部分菜单选项的描述" />
     <MESSAGE value="修复消息时间无法隐藏的问题&#10;添加修改消息气泡颜色的功能&#10;修复了指示灯按钮设置重置的问题" />
@@ -651,6 +648,7 @@
     <MESSAGE value="修复了在网站主页脚本加载异常BUG。&#10;修改左侧导航栏位交互与个性化页面颜色设定一致。" />
     <MESSAGE value="修复了样式表插入错误的问题&#10;修复聊天室气泡磨砂效果失效问题&#10;添加了帖子页面图片大图展示的功能" />
     <MESSAGE value="添加openuserjs版本" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加openuserjs版本" />
+    <MESSAGE value="更换默认背景&#10;修复了帖子页面点击帖子内图片再返回时错误跳转的bug&#10;修复了图片缩放没有复原的问题&#10;修复了样式表没有成功插入的问题&#10;调整了图片缩放逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="更换默认背景&#10;修复了帖子页面点击帖子内图片再返回时错误跳转的bug&#10;修复了图片缩放没有复原的问题&#10;修复了样式表没有成功插入的问题&#10;调整了图片缩放逻辑" />
   </component>
 </project>

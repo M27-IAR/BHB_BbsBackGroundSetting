@@ -4,11 +4,11 @@
 // @match       https://*.boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     3.0.12
+// @version     3.0.13
 // @author      M27IAR
 // @license     GPL-3.0-or-later
 // @license     GPL-3.0-or-later; https://www.gnu.org/licenses/gpl-3.0.txt
-// @updateURL      https://openuserjs.org/meta/M27IAR/BHB%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2.meta.js
+// @updateURL   https://openuserjs.org/meta/M27IAR/BHB%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2.meta.js
 // @downloadURL https://openuserjs.org/install/M27IAR/BHB%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2.user.js
 // ==/UserScript==
 (function(){
@@ -170,13 +170,13 @@
     if(!localStorage.webimgsrc){//线上图片链接
         localStorage.setItem("webimgsrc",'https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png');
     }
-    if(!localStorage.version||localStorage.version!=="3.0.12"){//更新后修改部分选项，理论上不会影响用户
-        localStorage.setItem("version","3.0.12");CheckUpdate=true;localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
-        if(localStorage.webimgsrc==="https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png"||localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png"||localStorage.webimgsrc==="https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg") {
+    if(!localStorage.version||localStorage.version!=="3.0.13"){//更新后修改部分选项，理论上不会影响用户
+        localStorage.setItem("version","3.0.13");CheckUpdate=true;localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
+        if(localStorage.webimgsrc==="https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png"||localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png"||localStorage.webimgsrc==="https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg") {
             if(webWidth<webHeight){
-                localStorage.setItem("webimgsrc", 'https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg');
+                localStorage.setItem("webimgsrc", 'https://m27iarsite.cc/20250225232321_67bde069e2d11.jpg');
             }else{
-                localStorage.setItem("webimgsrc", 'https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg');
+                localStorage.setItem("webimgsrc", 'https://m27iarsite.cc/20250225232331_67bde0730536d.jpg');
             }
         }
     }else{CheckUpdate=false}
@@ -188,6 +188,8 @@
     https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png
     https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg
     https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg
+    https://m27iarsite.cc/20250225232331_67bde0730536d.jpg
+    https://m27iarsite.cc/20250225232321_67bde069e2d11.jpg
     */
     //本地数值设定结束
 
@@ -232,8 +234,8 @@
     //通过读取本地存储数据进行选择值设定结束
 
     //移除顶栏的磨砂效果
-    let NeedFixStyleFive=document.querySelectorAll("style");
-    NeedFixStyleFive[NeedFixStyleFive.length-1].insertAdjacentHTML("afterend",'<style id="style5"></style>');
+    let NeedFixStyleFive=document.querySelector("head");
+    NeedFixStyleFive.insertAdjacentHTML("beforeend",'<style id="style5"></style>');
     let FixStyleFive=document.querySelector("#style5")
     let nedAddStyleFive=document.createTextNode(`.layout-navbar-fixed .layout-page:before {backdrop-filter:  blur(0px);}`)//添加处理上部控件的背景模糊的样式表
     FixStyleFive.appendChild(nedAddStyleFive)
@@ -379,12 +381,12 @@
         let FixStyleSec=document.querySelector("#style3");
         FixStyleSec.appendChild(nedAddStyleSec);
         //修改站长加的消息时间|添加指示灯的相关css动画样式
-        let NeedFixStyleThee=document.querySelectorAll("style");
-        NeedFixStyleThee[NeedFixStyleThee.length-1].insertAdjacentHTML("afterend",'<style id="style4"></style>');
+        let NeedFixStyleThee=document.querySelector("head");
+        NeedFixStyleThee.insertAdjacentHTML("beforeend",'<style id="style4"></style>');
         let FixStyleThee=document.querySelector("#style4")
         let nedAddStyleThee=document.createTextNode(`
         .card{
-        --bs-card-bg: rgba(45, 45, 45, 0.7);}
+        --bs-card-bg: rgba(45, 45, 45, 0.7) !important;}
         .M27-chat-history-body {
         flex: 0 1 auto;height: calc(100vh - 19.5rem);
         padding: 1.25rem 1.25rem;
@@ -643,14 +645,14 @@
     function WidthHeightSet(){//背景宽高设定
         if(localStorage.BackgroundPrint===""){
             if (localStorage.heightsize==="auto"||localStorage.heightsize==="NaN"){
-            localHightSize="auto";
+                localHightSize="auto";
             }else{
-            localHightSize=localStorage.heightsize+'%';
+                localHightSize=localStorage.heightsize+'%';
             }
             if (localStorage.widthsize==="auto"||localStorage.widthsize==="NaN"){
-            localWidthSize="auto";
+                localWidthSize="auto";
             }else{
-            localWidthSize=localStorage.widthsize+'%';
+                localWidthSize=localStorage.widthsize+'%';
             }
         }else if(localStorage.BackgroundPrint==="cover"){
             localHightSize="";localWidthSize="cover";
@@ -751,8 +753,8 @@
     <p>可以通过以下方式向我反馈：<br> 在此链接下面回复BUG（推荐）：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a><br>前往GitHub仓库提交issue：<a href="https://github.com/M27-IAR/BHB_BbsBackGroundSetting/issues">GitHub仓库</a><br>私信我修改（不推荐）<a href="https://boyshelpboys.com/user-139020.htm">点击我进入后点击“发私信按钮”</a></p>
 </div>
 <div>
-<strong>当前版本为v3.0.12：</strong> <div style="border-bottom: white 3px solid;height: 0;width: 100%"></div>
-<p>v3.0.12更新：<br>修复了样式表插入错误的问题<br>修复聊天室气泡磨砂效果失效问题<br>添加了帖子页面图片大图展示的功能<br>【新聊天室暂时搁置】</p>
+<strong>当前版本为v3.0.13：</strong> <div style="border-bottom: white 3px solid;height: 0;width: 100%"></div>
+<p>v3.0.13更新：<br>更换默认背景<br>修复了帖子页面点击帖子内图片再返回时错误跳转的bug<br>修复了图片缩放没有复原的问题<br>修复了样式表没有成功插入的问题<br>调整了图片缩放逻辑<br>【新聊天室暂时搁置】</p>
 <p>完整更新日志请前往以下帖子查看：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a></p>
 <p>脚本作者：M27IAR</p>
 </div>`
@@ -951,8 +953,8 @@
     let AddStylesec=document.createTextNode(`@media(min-width: 768px) {::-webkit-scrollbar {width: 3px; height: 6px;border-radius: 20px;}::-webkit-scrollbar-track { background: var(--bs-body-bg);}::-webkit-scrollbar-thumb {background: var(--bs-secondary);border-radius: 20px;}::-webkit-scrollbar-thumb:hover {background: var(--bs-primary);}::-webkit-scrollbar-thumb:focus, ::-webkit-scrollbar-thumb:active {background: var(--bs-primary-active);}} `)
 
     function ScrollHidden() {//滚动条调整
-        let NeedFixStyle=document.querySelectorAll("style");//修改滚动条状态
-        NeedFixStyle[NeedFixStyle.length-1].insertAdjacentHTML("afterend",'<style id="style2"></style>');
+        let NeedFixStyle=document.querySelector("head");//修改滚动条状态
+        NeedFixStyle.insertAdjacentHTML("beforeend",'<style id="style2"></style>');
         let FixStyle=document.querySelector("#style2")
         if (localStorage.scrollstyle==="1"){
             FixStyle.appendChild(nedAddStyle);
@@ -1139,13 +1141,13 @@
             }
         }
         document.querySelector('#M27UserNun').innerText=OnliceUserNum
-            OldOnlineUserListJSON=OnlineUserListJSON//更新旧数组
+        OldOnlineUserListJSON=OnlineUserListJSON//更新旧数组
     }
     function GetServerStation(MsgLight,MsgPrint) {//信号灯|在线用户部分数据修改
         let nowTime,Time;
         if(UserListCompCheck){
             UserListCompCheck=false;
-        $.ajax({//获取服务器状态
+            $.ajax({//获取服务器状态
                 type:"GET",
                 url: `https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=signal`,
                 async:true,
@@ -1252,14 +1254,14 @@
 
     if (typeof Notification !== 'undefined' && typeof window.Notification !== 'undefined'){
         Notification.requestPermission().then(function(result) {//请求通知权限（哭啦什么都要权限啊
-        if (result === 'granted') {
-            console.log('允许显示系统通知');
-        } else if (result === 'denied') {
-            console.log('拒绝显示系统通知');
-        } else {
-            console.log('默认');
-        }
-    })
+            if (result === 'granted') {
+                console.log('允许显示系统通知');
+            } else if (result === 'denied') {
+                console.log('拒绝显示系统通知');
+            } else {
+                console.log('默认');
+            }
+        })
     }else{
         console.log("浏览器不支持Notification")
     }
@@ -1369,14 +1371,14 @@
         document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write > div > div").setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;height:2.5rem;`)
         msgInputBoxOutsite.setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;height:48px;`)//输入框外框调整
 
-                //站长工具栏启动按钮
+        //站长工具栏启动按钮
 
-            setInterval(function(){
-                let ToolBar=document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write > button")
-                if(ToolBar.style.height==="") {
-                    ToolBar.setAttribute("style","height:40px !important;width:40px !important;border-radius:20px;margin:0  0.3125rem 0 0;")
+        setInterval(function(){
+            let ToolBar=document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write > button")
+            if(ToolBar.style.height==="") {
+                ToolBar.setAttribute("style","height:40px !important;width:40px !important;border-radius:20px;margin:0  0.3125rem 0 0;")
             }
-            },1)
+        },1)
 
         document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write > div > button > i").insertAdjacentHTML("beforebegin",`<span style="margin-right: 0.125rem;font-size: 12px">发送</span>`)
         //发送按钮
@@ -1474,12 +1476,12 @@
 
         //自定义消息页面
         if(localStorage.M27NewBBGPrint==="true"){
-        setInterval(()=>{if(typeof c === 'undefined' ){}else{clearInterval(c)}},1);//删除站长原本的消息获取
-        //添加样式表
-        let NeedFixStyleSix=document.querySelectorAll("style");
-        NeedFixStyleSix[NeedFixStyleSix.length-1].insertAdjacentHTML("afterend",'<style id="style6"></style>');
-        let FixStyleSix=document.querySelector("#style6")
-        let InnetStyle=document.createTextNode(`
+            setInterval(()=>{if(typeof c === 'undefined' ){}else{clearInterval(c)}},1);//删除站长原本的消息获取
+            //添加样式表
+            let NeedFixStyleSix=document.querySelector("head");
+            NeedFixStyleSix.insertAdjacentHTML("afterend",'<style id="style6"></style>');
+            let FixStyleSix=document.querySelector("#style6")
+            let InnetStyle=document.createTextNode(`
         #M27-OnliceUser{display:flex;position: fixed;right: -48%;top:0;bottom: 0;background-color: #66ccff50;width: 50%;height:100%;backdrop-filter:  blur(5px);z-index: 100001;transition:all 0.3s ease 0.1s;}
         #M27-OnliceUser:hover{right: 0%;}
         @media(max-width:600px){
@@ -1493,21 +1495,21 @@
         #SelectList{width:3%;flex-direction:row;flex-wrap:wrap;display:flex;position: sticky;height:100%}
         #ShowLocal{width:95%;flex-direction:row;flex-wrap:wrap;display:flex;position: relative;overflow:scroll;}
         `)
-        FixStyleSix.appendChild(InnetStyle);
-        bac.insertAdjacentHTML('afterbegin',`
+            FixStyleSix.appendChild(InnetStyle);
+            bac.insertAdjacentHTML('afterbegin',`
         <div id="M27-OnliceUser"> 
         <div id="SelectList"><button style="width: 100%;height: 100%"></button></div>
         <div id="ShowLocal"></div>
         </div>`)
 
-        let MsgPageNum=0;//消息页数
-        let MsgId;//最新消息id
-        let MsgIdcheck=true;
-        let MgsList=[]//消息历史记录
-        let PrintNumCunt=0;//累计渲染消息计数
-        let IMGlist=document.querySelector("#ShowLocal");
-        let MSGGetCheck=true;
-        //let MsgGet=
+            let MsgPageNum=0;//消息页数
+            let MsgId;//最新消息id
+            let MsgIdcheck=true;
+            let MgsList=[]//消息历史记录
+            let PrintNumCunt=0;//累计渲染消息计数
+            let IMGlist=document.querySelector("#ShowLocal");
+            let MSGGetCheck=true;
+            //let MsgGet=
             $.ajax({
                 url:'https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=histary',
                 type:"GET",
@@ -1531,46 +1533,46 @@
                 });
             }
             setTimeout(()=>{//获取目前消息数量
-            console.log(MgsList)
-            document.querySelector(".chat-history-body > ul").style.display="none"
-            document.querySelector(".chat-history-body").insertAdjacentHTML("beforeend",`<ul class="M27-list-unstyled chat-history talk" data-base-href="../plugin/msto_chat/route/" id="M27-MsgList"></ul>`);
-            ul=document.querySelector('#M27-MsgList')
-            ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor3}${localStorage.CantSeeset3};`)
-            ul.innerHTML=""
-            let UserId=document.querySelector("#statelyMyInfoModal > ul > div > div:nth-child(1) > div.flex-grow-1 > a").innerHTML
+                console.log(MgsList)
+                document.querySelector(".chat-history-body > ul").style.display="none"
+                document.querySelector(".chat-history-body").insertAdjacentHTML("beforeend",`<ul class="M27-list-unstyled chat-history talk" data-base-href="../plugin/msto_chat/route/" id="M27-MsgList"></ul>`);
+                ul=document.querySelector('#M27-MsgList')
+                ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor3}${localStorage.CantSeeset3};`)
+                ul.innerHTML=""
+                let UserId=document.querySelector("#statelyMyInfoModal > ul > div > div:nth-child(1) > div.flex-grow-1 > a").innerHTML
                 console.log(MgsList.length)
                 for (let x=MgsList.length-1;x>=0;x--){//渲染全部消息
                     console.log(MgsList[x].length)
-                for (let y=MgsList[x].length-1;y>=0;y--){
-                if(JSON.parse(MgsList[x][y]).name){
-                    message=JSON.parse(MgsList[x][y]).msg//修正特殊消息内容
-                    message = message.replace(/\[img](.*?)\[\/img]/g, (match, url) => {
-                        // 清理B站图片链接中的参数
-                        url = url.replace(/@.*$/, '');
-                        return renderImage(url);
-                    });
-                    mediaPatterns.forEach(pattern => {
-                        message = message.replace(pattern.regex, pattern.handler);
-                    });if(message.includes("<img src=")){
-                        let Num1=message.indexOf("=");console.log(Num1);
-                        let Num2=message.indexOf("alt");console.log(Num2);
-                        let InputLink
-                        if(message.slice(Num1+2,Num2-2).includes("http")){
-                            InputLink=message.slice(Num1+2,Num2-2)
-                        }else{
-                            InputLink="https://boyshelpboys.com/"+message.slice(Num1+2,Num2-2)
-                        }
-                        PicUrl.splice(0,0,InputLink);
-                        IMGlist.insertAdjacentHTML("afterbegin",`<div class="DIVIMGshow"><img class="ListImgSet" src="${InputLink}" alt="${InputLink}"></div>`)
-                        console.log(PicUrl);
-                    }
-                    let UID=JSON.parse(MgsList[x][y]).pic.substring(JSON.parse(MgsList[x][y]).pic.lastIndexOf("/")+1,JSON.parse(MgsList[x][y]).pic.lastIndexOf("."))
-                    if (UID.includes('avatar')||UID===""){
-                        UID="https://boyshelpboys.com/chat.htm"
-                    }else{
-                        UID=`https://boyshelpboys.com/user-${UID}.htm`
-                    }
-                    ul.insertAdjacentHTML("beforeend",`<li data-index="${JSON.parse(MgsList[x][y]).id}" id="M27-${JSON.parse(MgsList[x][y]).id}" style="list-style:none;padding: 0;margin: 0;display: flex;width: 99%;height: auto;font-size: 1rem;justify-content: space-around;">
+                    for (let y=MgsList[x].length-1;y>=0;y--){
+                        if(JSON.parse(MgsList[x][y]).name){
+                            message=JSON.parse(MgsList[x][y]).msg//修正特殊消息内容
+                            message = message.replace(/\[img](.*?)\[\/img]/g, (match, url) => {
+                                // 清理B站图片链接中的参数
+                                url = url.replace(/@.*$/, '');
+                                return renderImage(url);
+                            });
+                            mediaPatterns.forEach(pattern => {
+                                message = message.replace(pattern.regex, pattern.handler);
+                            });if(message.includes("<img src=")){
+                                let Num1=message.indexOf("=");console.log(Num1);
+                                let Num2=message.indexOf("alt");console.log(Num2);
+                                let InputLink
+                                if(message.slice(Num1+2,Num2-2).includes("http")){
+                                    InputLink=message.slice(Num1+2,Num2-2)
+                                }else{
+                                    InputLink="https://boyshelpboys.com/"+message.slice(Num1+2,Num2-2)
+                                }
+                                PicUrl.splice(0,0,InputLink);
+                                IMGlist.insertAdjacentHTML("afterbegin",`<div class="DIVIMGshow"><img class="ListImgSet" src="${InputLink}" alt="${InputLink}"></div>`)
+                                console.log(PicUrl);
+                            }
+                            let UID=JSON.parse(MgsList[x][y]).pic.substring(JSON.parse(MgsList[x][y]).pic.lastIndexOf("/")+1,JSON.parse(MgsList[x][y]).pic.lastIndexOf("."))
+                            if (UID.includes('avatar')||UID===""){
+                                UID="https://boyshelpboys.com/chat.htm"
+                            }else{
+                                UID=`https://boyshelpboys.com/user-${UID}.htm`
+                            }
+                            ul.insertAdjacentHTML("beforeend",`<li data-index="${JSON.parse(MgsList[x][y]).id}" id="M27-${JSON.parse(MgsList[x][y]).id}" style="list-style:none;padding: 0;margin: 0;display: flex;width: 99%;height: auto;font-size: 1rem;justify-content: space-around;">
                                         <div style="margin: 0.375rem;box-shadow: 0 1px 5px ${(()=>{if (JSON.parse(MgsList[x]).name===UserId){return "red";}else{return "blue";}})()},0 -1px 5px ${(()=>{if (JSON.parse(MgsList[x]).name===UserId){return "red";}else{return "blue";}})()},1px 0 5px ${(()=>{if (JSON.parse(MgsList[x]).name===UserId){return "red";}else{return "blue";}})()},-1px 0 5px ${(()=>{if (JSON.parse(MgsList[x]).name===UserId){return "red";}else{return "blue";}})()};width: 2.25rem;height: 2.25rem; align-items: center;justify-items: center;display: flex;top: 0.125rem;left: 0.125rem;">
                                             <a href="${UID}" target="_blank"><img src='${JSON.parse(MgsList[x][y]).pic}' alt="${JSON.parse(MgsList[x][y]).name}" style="font-size: 6px;overflow: hidden;width: 2.25rem;height: 2.25rem;"></a>
                                         </div>
@@ -1578,68 +1580,68 @@
                                             <div style="width: 100%;height: auto;"><small style="font-size: 12px;" class="userName" data-username="${JSON.parse(MgsList[x][y]).name}" id="M27-${JSON.parse(MgsList[x][y]).name}-${JSON.parse(MgsList[x][y]).id}">${JSON.parse(MgsList[x][y]).name}</small>&emsp;<small style="font-size: small">${new Date(JSON.parse(MgsList[x][y]).time*1000).toLocaleString()}</small></div>
                                             <div class="chat-message-text" style="background-color: orange;padding: 0.375rem;margin:0.375rem 0 0 0.375rem;max-width:80% ;height: auto; white-space: normal;"><span style="word-break: break-all">${message}</span></div>
                                         </div></li>`)
-                //添加点击id@对方的效果
-                document.querySelector(`#M27-${JSON.parse(MgsList[x]).name}-${JSON.parse(MgsList[x][y]).id}`).addEventListener('click', ()=>{
-                    document.querySelector("#msg").value+="@"+document.querySelector(`#M27-${JSON.parse(MgsList[x][y]).name}-${JSON.parse(MgsList[x][y]).id}`).getAttribute('data-username')+" ";
-                })
-                    PrintNumCunt+=1;
+                            //添加点击id@对方的效果
+                            document.querySelector(`#M27-${JSON.parse(MgsList[x]).name}-${JSON.parse(MgsList[x][y]).id}`).addEventListener('click', ()=>{
+                                document.querySelector("#msg").value+="@"+document.querySelector(`#M27-${JSON.parse(MgsList[x][y]).name}-${JSON.parse(MgsList[x][y]).id}`).getAttribute('data-username')+" ";
+                            })
+                            PrintNumCunt+=1;
+                        }
+                        MsgId=JSON.parse(MgsList[x]).id//设定最新消息的id
+                        document.querySelector(".chat-history-body").scrollTop = document.querySelector(".chat-history-body").scrollHeight;//滚动至底部
+                    }
                 }
-                MsgId=JSON.parse(MgsList[x]).id//设定最新消息的id
-                document.querySelector(".chat-history-body").scrollTop = document.querySelector(".chat-history-body").scrollHeight;//滚动至底部
-                }
-            }
-            //定时询问新消息
-            //let MsgGtrAJAX=
+                //定时询问新消息
+                //let MsgGtrAJAX=
                 setInterval(()=>{
-                let CheckScroll;
-                MsgIdcheck=true
-                if(MSGGetCheck){
-                MSGGetCheck=false;
-                $.ajax({
-                    url:`https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=new&last_id=${MsgId}`,
-                    type:"GET",
-                    dataType:"json",
-                    async:true,
-                    success:function(data){
-                        CheckScroll=data.list.length
-                        for (let x=0;x<data.list.length;x++){
-                            MsgIdcheck=true
-                            for (let y=MgsList.length-1;y>=0;y--){//去重
-                                if (JSON.parse(data.list[x]).id===JSON.parse(MgsList[y]).id){
-                                    MsgIdcheck=false
-                                    break;
-                                }
-                            }
-                            if(JSON.parse(data.list[x]).name&&MsgIdcheck){
-                                message=JSON.parse(data.list[x]).msg
-                                message = message.replace(/\[img](.*?)\[\/img]/g, (match, url) => {
-                                    // 清理B站图片链接中的参数
-                                    url = url.replace(/@.*$/, '');
-                                    return renderImage(url);
-                                });
-                                mediaPatterns.forEach(pattern => {
-                                    message = message.replace(pattern.regex, pattern.handler);
-                                });
-                                if(message.includes("<img src=")){
-                                    let Num1=message.indexOf("=");
-                                    let Num2=message.indexOf("alt");
-                                    let InputLink
-                                    if(message.slice(Num1+2,Num2-2).includes("http")){
-                                        InputLink=message.slice(Num1+2,Num2-2)
-                                    }else{
-                                        InputLink="https://boyshelpboys.com/"+message.slice(Num1+2,Num2-2)
+                    let CheckScroll;
+                    MsgIdcheck=true
+                    if(MSGGetCheck){
+                        MSGGetCheck=false;
+                        $.ajax({
+                            url:`https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=new&last_id=${MsgId}`,
+                            type:"GET",
+                            dataType:"json",
+                            async:true,
+                            success:function(data){
+                                CheckScroll=data.list.length
+                                for (let x=0;x<data.list.length;x++){
+                                    MsgIdcheck=true
+                                    for (let y=MgsList.length-1;y>=0;y--){//去重
+                                        if (JSON.parse(data.list[x]).id===JSON.parse(MgsList[y]).id){
+                                            MsgIdcheck=false
+                                            break;
+                                        }
                                     }
-                                    PicUrl.splice(0,0,InputLink);
-                                    IMGlist.insertAdjacentHTML("afterbegin",`<div class="DIVIMGshow"><img class="ListImgSet" src="${InputLink}" alt="${InputLink}"></div>`)
-                                    console.log(PicUrl);
-                                }
-                                let UID=JSON.parse(data.list[x]).pic.substring(JSON.parse(data.list[x]).pic.lastIndexOf("/")+1,JSON.parse(data.list[x]).pic.lastIndexOf("."))
-                                if (UID.includes('avatar')||UID===""){
-                                    UID="https://boyshelpboys.com/chat.htm"
-                                }else{
-                                    UID=`https://boyshelpboys.com/user-${UID}.htm`
-                                }
-                                ul.insertAdjacentHTML("beforeend",`<li data-index="${JSON.parse(data.list[x]).id}" id="${JSON.parse(data.list[x]).id}" style="list-style:none;padding: 0;margin: 0;display: flex;width: 99%;height: auto;font-size: 1rem;justify-content: space-around;">
+                                    if(JSON.parse(data.list[x]).name&&MsgIdcheck){
+                                        message=JSON.parse(data.list[x]).msg
+                                        message = message.replace(/\[img](.*?)\[\/img]/g, (match, url) => {
+                                            // 清理B站图片链接中的参数
+                                            url = url.replace(/@.*$/, '');
+                                            return renderImage(url);
+                                        });
+                                        mediaPatterns.forEach(pattern => {
+                                            message = message.replace(pattern.regex, pattern.handler);
+                                        });
+                                        if(message.includes("<img src=")){
+                                            let Num1=message.indexOf("=");
+                                            let Num2=message.indexOf("alt");
+                                            let InputLink
+                                            if(message.slice(Num1+2,Num2-2).includes("http")){
+                                                InputLink=message.slice(Num1+2,Num2-2)
+                                            }else{
+                                                InputLink="https://boyshelpboys.com/"+message.slice(Num1+2,Num2-2)
+                                            }
+                                            PicUrl.splice(0,0,InputLink);
+                                            IMGlist.insertAdjacentHTML("afterbegin",`<div class="DIVIMGshow"><img class="ListImgSet" src="${InputLink}" alt="${InputLink}"></div>`)
+                                            console.log(PicUrl);
+                                        }
+                                        let UID=JSON.parse(data.list[x]).pic.substring(JSON.parse(data.list[x]).pic.lastIndexOf("/")+1,JSON.parse(data.list[x]).pic.lastIndexOf("."))
+                                        if (UID.includes('avatar')||UID===""){
+                                            UID="https://boyshelpboys.com/chat.htm"
+                                        }else{
+                                            UID=`https://boyshelpboys.com/user-${UID}.htm`
+                                        }
+                                        ul.insertAdjacentHTML("beforeend",`<li data-index="${JSON.parse(data.list[x]).id}" id="${JSON.parse(data.list[x]).id}" style="list-style:none;padding: 0;margin: 0;display: flex;width: 99%;height: auto;font-size: 1rem;justify-content: space-around;">
                                 <div style="margin: 0.375rem;box-shadow: 0 1px 5px ${(()=>{if (JSON.parse(data.list[x]).name===UserId){return "red";}else{return "blue";}})()},0 -1px 5px ${(()=>{if (JSON.parse(data.list[x]).name===UserId){return "red";}else{return "blue";}})()},1px 0 5px ${(()=>{if (JSON.parse(data.list[x]).name===UserId){return "red";}else{return "blue";}})()},-1px 0 5px ${(()=>{if (JSON.parse(data.list[x]).name===UserId){return "red";}else{return "blue";}})()};width: 2.25rem;height: 2.25rem; align-items: center;justify-items: center;display: flex;top: 0.125rem;left: 0.125rem;">
                                     <a href="${UID}" target="_blank"><img src='${JSON.parse(data.list[x]).pic}' alt="${JSON.parse(data.list[x]).name}" style="overflow: hidden;font-size: 8px;width: 2.25rem;height: 2.25rem;"></a>
                                 </div>
@@ -1647,29 +1649,29 @@
                                     <div style="width: 100%;height: auto;"><small style="font-size: 12px;" class="userName" data-username="${JSON.parse(data.list[x]).name}" id="M27-${JSON.parse(data.list[x]).name}-${JSON.parse(data.list[x]).id}">${JSON.parse(data.list[x]).name}</small>&emsp;<small style="font-size: small">${new Date(JSON.parse(data.list[x]).time*1000).toLocaleString()}</small></div>
                                     <div class="chat-message-text" style="background-color: orange;padding: 0.375rem;margin:0.375rem 0 0 0.375rem;max-width:80% ;height: auto; white-space: normal;"><span style="word-break: break-all">${message}</span></div>
                                 </div></li>`)
-                                //添加点击id@对方的效果
-                                document.querySelector(`#M27-${JSON.parse(data.list[x]).name}-${JSON.parse(data.list[x]).id}`).addEventListener('click', ()=>{
-                                    document.querySelector("#msg").value+="@"+document.querySelector(`#M27-${JSON.parse(data.list[x]).name}-${JSON.parse(data.list[x]).id}`).getAttribute('data-username')+" ";
-                                })
-                                PrintNumCunt+=1;
-                                MgsList.push(data.list[x])
-                                MsgId=JSON.parse(data.list[x]).id
-                            }else{MsgId=ul.querySelector('li:last-child').id}
-                        }
-                        if(CheckScroll>0){
-                            document.querySelector(".chat-history-body").scrollTop =document.querySelector(".chat-history-body").clientHeight+ document.querySelector(".chat-history-body").scrollHeight;
-                        }
-                        MSGGetCheck=true
-                    }
-                })}
+                                        //添加点击id@对方的效果
+                                        document.querySelector(`#M27-${JSON.parse(data.list[x]).name}-${JSON.parse(data.list[x]).id}`).addEventListener('click', ()=>{
+                                            document.querySelector("#msg").value+="@"+document.querySelector(`#M27-${JSON.parse(data.list[x]).name}-${JSON.parse(data.list[x]).id}`).getAttribute('data-username')+" ";
+                                        })
+                                        PrintNumCunt+=1;
+                                        MgsList.push(data.list[x])
+                                        MsgId=JSON.parse(data.list[x]).id
+                                    }else{MsgId=ul.querySelector('li:last-child').id}
+                                }
+                                if(CheckScroll>0){
+                                    document.querySelector(".chat-history-body").scrollTop =document.querySelector(".chat-history-body").clientHeight+ document.querySelector(".chat-history-body").scrollHeight;
+                                }
+                                MSGGetCheck=true
+                            }
+                        })}
                     $(document).off('contextmenu');
                 },1000)
                 //document.querySelector(".message-menu").innerHTML=""
-            document.querySelector(".chat-history-body").scrollTop =document.querySelector(".chat-history-body").scrollHeight;
-        },1000)}
+                document.querySelector(".chat-history-body").scrollTop =document.querySelector(".chat-history-body").scrollHeight;
+            },1000)}
 
     }else if(nowurl.includes('boyshelpboys.com/plugin')){
-            return "";
+        return "";
     }else if(nowurl.includes('boyshelpboys.com/my')){
         bac.setAttribute("style",`background-color:${localStorage.BackGroundColor};`)
         let printstr1=["线上地址","删除左侧导航栏","淡色字体大小","淡色字描边/字体颜色","淡色字描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
@@ -1682,6 +1684,7 @@
         leftContentContent();
         addsett(printstr1,printstr2,CheckUpdate);
     }else if(nowurl ==="https://www.boyshelpboys.com/"||nowurl ==="https://boyshelpboys.com/"||nowurl.includes("boyshelpboys.com/#")||nowurl.includes("boyshelpboys.com/index")){
+        console.log("tes");
         bac.setAttribute("style",`background-color:${localStorage.BackGroundColor};`)
         ScrollHidden()
         leftANDtop();
@@ -1729,15 +1732,13 @@
         //帖子界面图片放大观看功能
         bac.insertAdjacentHTML("afterbegin",`
         <div id="ImgBoxM" style="justify-content:center;align-items:center;background-color: rgba(0,0,0);z-index: 1000000000;position: fixed;display: none;left: 0;right: 0;top: 0;bottom: 0;width: 100%;height: 100%;">
-        <div id="ZoomSet" style="justify-content:center;align-items:center;height: ${Math.ceil(webHeight*0.9)}px;position: fixed;transition: transform  0.2s ease;">
+        <div id="ZoomSet" style="display:flex;justify-content:center;align-items:center;height: ${Math.ceil(webHeight*0.9)}px;position: fixed;transition: transform  0.2s ease;">
         <img style="max-width:100%;max-height: 100%;object-fit: contain;justify-content:center;" src="" id="PicIMgPrint" alt="">
         </div>
-        </div>`)
-        let TargeImg
+        </div>`)//图片容纳框
         let ImgShow=document.querySelector("#PicIMgPrint");//灰色背景
         let ImgBoxM=document.querySelector("#ImgBoxM");//图片
         let ZoomSet=document.querySelector("#ZoomSet");//缩放框
-        let url=nowurl;//原始url记录
         let scale = 1;
         const scaleStep = 0.1; // 每次滚动的缩放步长
         const minScale = 0.5; // 最小缩放比例
@@ -1750,8 +1751,6 @@
                 ImgLoadTest.onload=()=>{
                     ImgShow.src=e.target.src;
                     ImgBoxM.style.display="flex";
-                    e.target.id="M27TargeSave";
-                    TargeImg=e.target
                 }
                 ImgLoadTest.onerror=()=>{
                     console.log("链接无法加载")
@@ -1761,21 +1760,17 @@
         ImgBoxM.addEventListener("wheel",(e)=>{
             e.preventDefault();
             if(e.deltaY<0){
-                scale-=scaleStep
-            }else{
                 scale+=scaleStep
+            }else{
+                scale-=scaleStep
             }
             scale = Math.min(Math.max(scale, minScale), maxScale);
-            //ZoomSet.style.height=ZoomSet.style.height.substring(1,ZoomSet.style.height.indexOf("px"))+SollNum+"px"
             ZoomSet.style.transform=`scale(${scale})`;
         })//部分代码来自https://www.cnblogs.com/ai888/p/18613761
-        ImgBoxM.addEventListener("click",()=>{
+        ImgBoxM.addEventListener("click",()=>{//重置图片框状态
             ImgShow.src="";
             ImgBoxM.style.display="none";
-            location.href=url.slice(0,url.indexOf("#M27TargeSave"))+'#M27TargeSave';
-            TargeImg.id=""
-            TargeImg=null
-            ZoomSet.style.height=Math.ceil(webHeight*0.9)+"px"
+            ZoomSet.style.transform=`scale(1)`;
         })
         ImgShow.addEventListener("click",(e)=>{
             e.stopPropagation()
