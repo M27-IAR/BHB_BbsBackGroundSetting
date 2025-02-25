@@ -4,12 +4,14 @@
 // @match       https://*.boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     3.0.13
+// @version     3.0.14
 // @author      M27IAR
 // @license     GPL-3.0-or-later
 // @license     GPL-3.0-or-later; https://www.gnu.org/licenses/gpl-3.0.txt
 // ==/UserScript==
 (function(){
+    let webWidth = window.innerWidth;
+    let webHeight = window.innerHeight;//获取页面宽高
     let CheckUpdate=false//验证脚本是否更新
     //本地存储检测
     if(!localStorage.M27NewBBGPrint){//是否启用自定义聊天室
@@ -168,8 +170,8 @@
     if(!localStorage.webimgsrc){//线上图片链接
         localStorage.setItem("webimgsrc",'https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png');
     }
-    if(!localStorage.version||localStorage.version!=="3.0.13"){//更新后修改部分选项，理论上不会影响用户
-        localStorage.setItem("version","3.0.13");CheckUpdate=true;localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
+    if(!localStorage.version||localStorage.version!=="3.0.14"){//更新后修改部分选项，理论上不会影响用户
+        localStorage.setItem("version","3.0.14");CheckUpdate=true;localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
         if(localStorage.webimgsrc==="https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png"||localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png"||localStorage.webimgsrc==="https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg") {
             if(webWidth<webHeight){
                 localStorage.setItem("webimgsrc", 'https://m27iarsite.cc/20250225232321_67bde069e2d11.jpg');
@@ -250,8 +252,6 @@
     document.querySelector("#navbar-collapse > div").innerHTML=""//删除手机模式下顶部的图标
 
     //方片特效准备
-    let webWidth = window.innerWidth;
-    let webHeight = window.innerHeight;
     let DIVboxsize=localStorage.BoxSize;
     let printNunber
     let arr={};
@@ -405,11 +405,11 @@
         color: var(--bs-primary);}.text-muted {
         --bs-text-opacity: 1;text-shadow: 0 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};
         font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec} !important;}
-        .dark-style .app-chat .app-chat-history .chat-history-body .chat-history .chat-message:not(.chat-message-right) .chat-message-text {
+        html.dark-style.layout-navbar-fixed.layout-menu-fixed.radius-medium.layout-menu-style-v2.layout-menu-active-color-default body.route-chat div.layout-wrapper.layout-content-navbar div#top.layout-container div.layout-page div.content-wrapper main.container.flex-grow-1.container-p-y section.app-chat.card.overflow-hidden div.row.g-0 div.col.app-chat-history div.chat-history-wrapper div.chat-history-body ul.list-unstyled.chat-history.talk.mk-chat-box li.chat-message.left div.d-flex.overflow-hidden div.chat-message-wrapper.flex-grow-1 div.chat-message-text{
         backdrop-filter: blur(5px) !important;
         background-color: rgba(${MsgBoxRed},${MsgBoxGreen},${MsgBoxBlue},${localStorage.MsgBoxTra}) !important;
         box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .25) !important;}
-        .dark-style .app-chat .app-chat-history .chat-history .chat-message.chat-message-right .chat-message-text {
+        html.dark-style.layout-navbar-fixed.layout-menu-fixed.radius-medium.layout-menu-style-v2.layout-menu-active-color-default body.route-chat div.layout-wrapper.layout-content-navbar div#top.layout-container div.layout-page div.content-wrapper main.container.flex-grow-1.container-p-y section.app-chat.card.overflow-hidden div.row.g-0 div.col.app-chat-history div.chat-history-wrapper div.chat-history-body ul.list-unstyled.chat-history.talk.mk-chat-box li.chat-message.right.chat-message-right div.d-flex.overflow-hidden div.chat-message-wrapper.flex-grow-1 div.chat-message-text{
         backdrop-filter: blur(5px) !important;
         background-color: rgba(${MsgBoxRed},${MsgBoxGreen},${MsgBoxBlue},${localStorage.MsgBoxTra}) !important;
         box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .25) !important;}
@@ -752,6 +752,7 @@
 </div>
 <div>
 <strong>当前版本为v3.0.13：</strong> <div style="border-bottom: white 3px solid;height: 0;width: 100%"></div>
+<p>v3.0.14更新：<br>修复了设定初始值时页面加载错误核默认图片没有更新的bug <br>修复聊天室气泡特效没有正确设定的bug</p>
 <p>v3.0.13更新：<br>更换默认背景<br>修复了帖子页面点击帖子内图片再返回时错误跳转的bug<br>修复了图片缩放没有复原的问题<br>修复了样式表没有成功插入的问题<br>调整了图片缩放逻辑<br>【新聊天室暂时搁置】</p>
 <p>完整更新日志请前往以下帖子查看：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a></p>
 <p>脚本作者：M27IAR</p>

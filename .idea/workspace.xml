@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="更换默认背景&#10;修复了帖子页面点击帖子内图片再返回时错误跳转的bug&#10;修复了图片缩放没有复原的问题&#10;修复了样式表没有成功插入的问题&#10;调整了图片缩放逻辑">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BHBOUjs.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHBOUjs.user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,15 +213,8 @@
       <workItem from="1740140832765" duration="7546000" />
       <workItem from="1740280644302" duration="7606000" />
       <workItem from="1740373531766" duration="15663000" />
-      <workItem from="1740453885730" duration="12140000" />
-    </task>
-    <task id="LOCAL-00038" summary="看着不爽提交一下">
-      <option name="closed" value="true" />
-      <created>1735401510780</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1735401510780</updated>
+      <workItem from="1740453885730" duration="13507000" />
+      <workItem from="1740500142016" duration="1144000" />
     </task>
     <task id="LOCAL-00039" summary="看着不爽提交一下">
       <option name="closed" value="true" />
@@ -607,7 +600,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740497611218</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="更换默认背景&#10;修复了帖子页面点击帖子内图片再返回时错误跳转的bug&#10;修复了图片缩放没有复原的问题&#10;修复了样式表没有成功插入的问题&#10;调整了图片缩放逻辑">
+      <option name="closed" value="true" />
+      <created>1740498287992</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1740498287992</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
