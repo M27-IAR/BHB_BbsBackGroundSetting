@@ -8,8 +8,8 @@
 // @author      M27IAR
 // @license     GPL-3.0-or-later
 // @license     GPL-3.0-or-later; https://www.gnu.org/licenses/gpl-3.0.txt
-// @updateURL   https://openuserjs.org/meta/M27IAR/BHB%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2.meta.js
-// @downloadURL https://openuserjs.org/install/M27IAR/BHB%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2.user.js
+// @updateURL   https://openuserjs.org/meta/M27IAR/BHB聊天室背景图片更换（已全局兼容）.meta.js
+// @downloadURL https://openuserjs.org/install/M27IAR/BHB聊天室背景图片更换（已全局兼容）.user.js
 // ==/UserScript==
 (function(){
     let CheckUpdate=false//验证脚本是否更新
