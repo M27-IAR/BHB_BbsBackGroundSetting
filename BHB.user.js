@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name        BHB聊天室背景图片更换（已全局兼容）
+// @name        BHB背景图片更换（已全局兼容）
 // @namespace   Violentmonkey Scripts
-// @match       https://*.boyshelpboys.com/*
+// @match       https://*boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     3.0.14
+// @version     3.0.15
 // @author      M27IAR
 // @license     GPL-3.0-or-later
 // @license     GPL-3.0-or-later; https://www.gnu.org/licenses/gpl-3.0.txt
@@ -170,8 +170,8 @@
     if(!localStorage.webimgsrc){//线上图片链接
         localStorage.setItem("webimgsrc",'https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png');
     }
-    if(!localStorage.version||localStorage.version!=="3.0.14"){//更新后修改部分选项，理论上不会影响用户
-        localStorage.setItem("version","3.0.14");CheckUpdate=true;localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
+    if(!localStorage.version||localStorage.version!=="3.0.15"){//更新后修改部分选项，理论上不会影响用户
+        localStorage.setItem("version","3.0.15");CheckUpdate=true;localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
         if(localStorage.webimgsrc==="https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png"||localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png"||localStorage.webimgsrc==="https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg") {
             if(webWidth<webHeight){
                 localStorage.setItem("webimgsrc", 'https://m27iarsite.cc/20250225232321_67bde069e2d11.jpg');
@@ -383,6 +383,7 @@
         NeedFixStyleThee.insertAdjacentHTML("beforeend",'<style id="style4"></style>');
         let FixStyleThee=document.querySelector("#style4")
         let nedAddStyleThee=document.createTextNode(`
+        
         .card{
         --bs-card-bg: rgba(45, 45, 45, 0.7) !important;}
         .M27-chat-history-body {
@@ -402,7 +403,8 @@
         transition: all 0.2s;position: relative;
         width:36px;height:36px;}
         .M27-online-users-btn:hover {
-        color: var(--bs-primary);}.text-muted {
+        color: var(--bs-primary);}
+        .text-muted {
         --bs-text-opacity: 1;text-shadow: 0 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};
         font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec} !important;}
         html.dark-style.layout-navbar-fixed.layout-menu-fixed.radius-medium.layout-menu-style-v2.layout-menu-active-color-default body.route-chat div.layout-wrapper.layout-content-navbar div#top.layout-container div.layout-page div.content-wrapper main.container.flex-grow-1.container-p-y section.app-chat.card.overflow-hidden div.row.g-0 div.col.app-chat-history div.chat-history-wrapper div.chat-history-body ul.list-unstyled.chat-history.talk.mk-chat-box li.chat-message.left div.d-flex.overflow-hidden div.chat-message-wrapper.flex-grow-1 div.chat-message-text{
@@ -747,18 +749,17 @@
         <div style="z-index:10001; position: sticky ;height:28px;width:100%;top: 0;left:0;background-color: rgba(36,70,88,0.4);backdrop-filter: blur(5px);">
     <button id="Msgexit" class="fuckyou3">X</button><span>反馈方式&更新日志</span>
     </div>
-    <div style="z-index:10001; position: sticky ;height:auto;width:100%;right: 0;left:0;top: 30px">
-    <p>可以通过以下方式向我反馈：<br> 在此链接下面回复BUG（推荐）：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a><br>前往GitHub仓库提交issue：<a href="https://github.com/M27-IAR/BHB_BbsBackGroundSetting/issues">GitHub仓库</a><br>私信我修改（不推荐）<a href="https://boyshelpboys.com/user-139020.htm">点击我进入后点击“发私信按钮”</a></p>
+    <div style="z-index:10001; position: sticky ;height:auto;width:100%;right: 0;left:0;top: 30px;backdrop-filter: blur(5px);font-size: 13px">
+    <p style="margin: 0">可以通过以下方式向我反馈：<br> 在此链接下面回复BUG（推荐）：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a><br>前往GitHub仓库提交issue：<a href="https://github.com/M27-IAR/BHB_BbsBackGroundSetting/issues">GitHub仓库</a><br>私信我修改（不推荐）<a href="https://boyshelpboys.com/user-139020.htm">点击我进入后点击“发私信按钮”</a><br>
+    脚本作者：M27IAR&nbsp;&nbsp;&nbsp;完整更新日志请前往以下帖子查看：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a><br>
+    <strong>当前版本为v3.0.15：</strong> <div style="border-bottom: white 3px solid;height: 0;width: 100%"></div>
+    </p>
 </div>
 <div>
-<strong>当前版本为v3.0.13：</strong> <div style="border-bottom: white 3px solid;height: 0;width: 100%"></div>
-<p>v3.0.14更新：<br>修复了设定初始值时页面加载错误核默认图片没有更新的bug <br>修复聊天室气泡特效没有正确设定的bug</p>
-<p>v3.0.13更新：<br>更换默认背景<br>修复了帖子页面点击帖子内图片再返回时错误跳转的bug<br>修复了图片缩放没有复原的问题<br>修复了样式表没有成功插入的问题<br>调整了图片缩放逻辑<br>【新聊天室暂时搁置】</p>
-<p>完整更新日志请前往以下帖子查看：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a></p>
-<p>脚本作者：M27IAR</p>
+<p>v3.0.15更新：<br>修复了x浏览器没有正确加载脚本的问题<br>更新了www前缀域名的BHB站点识别<br>【新聊天室暂时搁置】</p>
 </div>`
         let addmain=`<div id="localsett" >
-<div >
+<div>
 <div style="position: sticky ;height:28px;width:100%;top: 0;left:0;background-color: rgba(36,70,88,0.4);backdrop-filter: blur(5px);">
     <button id="exit" class="fuckyou3">X</button><span>插件设置</span>
     </div>
@@ -1267,7 +1268,7 @@
 
     let nowurl = window.location.href;//读取当前所在网页
 
-    if (nowurl.includes('https://boyshelpboys.com/chat.htm')) {//如果当前网页为聊天室页面
+    if (nowurl.includes('boyshelpboys.com/chat.htm')) {//如果当前网页为聊天室页面
         WidthHeightSet();
         let printstr1=["线上地址","删除左侧导航栏","聊天室名称大小","聊天室名称字体/描边颜色","聊天室名称描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
         let printstr2=["滚动条不显示","历史记录1透明度","顶栏下部透明度","历史记录2透明度","外层边框透明度","顶栏透明度","发送边框透明度","发送框透明度","发送框描边","'聊天留言'透明度"]
@@ -1474,11 +1475,11 @@
         })
 
         //自定义消息页面
-        if(localStorage.M27NewBBGPrint==="true"){
+        if(localStorage.M27NewBBGPrint==="1"){
         setInterval(()=>{if(typeof c === 'undefined' ){}else{clearInterval(c)}},1);//删除站长原本的消息获取
         //添加样式表
         let NeedFixStyleSix=document.querySelector("head");
-            NeedFixStyleSix.insertAdjacentHTML("afterend",'<style id="style6"></style>');
+            NeedFixStyleSix.insertAdjacentHTML("beforeend",'<style id="style6"></style>');
         let FixStyleSix=document.querySelector("#style6")
         let InnetStyle=document.createTextNode(`
         #M27-OnliceUser{display:flex;position: fixed;right: -48%;top:0;bottom: 0;background-color: #66ccff50;width: 50%;height:100%;backdrop-filter:  blur(5px);z-index: 100001;transition:all 0.3s ease 0.1s;}
@@ -1710,10 +1711,6 @@
             document.querySelector("#top > div > div > main > div > div.col-lg-3.aside > div:nth-child(3)").innerHTML=""
         }
     }else if(nowurl.includes("boyshelpboys.com/thread-")){
-        // bac.setAttribute("style",`background-color:${localStorage.BackGroundColor};`)
-        // setInterval(function(){if (bac.style.backgroundColor===''){
-        //     console.log("reprint"); backPrint(bac,addtarge,nowurl);
-        // }},1)
         leftANDtop();
         WidthHeightSet();
         backPrint(bac,addtarge,nowurl);
