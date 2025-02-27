@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修复了设定初始值时页面加载错误核默认图片没有更新的bug&#10;修复聊天室气泡特效没有正确设定的bug">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修复了x浏览器没有正确加载脚本的问题&#10;更新了www前缀域名的BHB站点识别">
       <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -216,15 +215,7 @@
       <workItem from="1740453885730" duration="13507000" />
       <workItem from="1740500142016" duration="1729000" />
       <workItem from="1740572311288" duration="2159000" />
-      <workItem from="1740656907464" duration="5055000" />
-    </task>
-    <task id="LOCAL-00042" summary="修改了默认绘制图片背景的设置">
-      <option name="closed" value="true" />
-      <created>1735741405963</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1735741405963</updated>
+      <workItem from="1740656907464" duration="5702000" />
     </task>
     <task id="LOCAL-00043" summary="修复了描边效果不正常设定的问题&#10;修复方块特效不能正常启用的问题">
       <option name="closed" value="true" />
@@ -610,7 +601,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740501563093</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="修复了x浏览器没有正确加载脚本的问题&#10;更新了www前缀域名的BHB站点识别">
+      <option name="closed" value="true" />
+      <created>1740668312892</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1740668312892</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -628,7 +627,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修复了滚动页面后设置栏不会置于页面中心的问题&#10;优化了信号灯的运行逻辑，现在在关闭后不会再进行请求&#10;修改了部分菜单选项的描述" />
     <MESSAGE value="修复消息时间无法隐藏的问题&#10;添加修改消息气泡颜色的功能&#10;修复了指示灯按钮设置重置的问题" />
     <MESSAGE value="修复站长全屏模式的bug&#10;修复了网络指示灯的问题,调整了获取网络状态的机制" />
     <MESSAGE value="修复图片无法读取的bug" />
@@ -653,6 +651,7 @@
     <MESSAGE value="添加openuserjs版本" />
     <MESSAGE value="更换默认背景&#10;修复了帖子页面点击帖子内图片再返回时错误跳转的bug&#10;修复了图片缩放没有复原的问题&#10;修复了样式表没有成功插入的问题&#10;调整了图片缩放逻辑" />
     <MESSAGE value="修复了设定初始值时页面加载错误核默认图片没有更新的bug&#10;修复聊天室气泡特效没有正确设定的bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复了设定初始值时页面加载错误核默认图片没有更新的bug&#10;修复聊天室气泡特效没有正确设定的bug" />
+    <MESSAGE value="修复了x浏览器没有正确加载脚本的问题&#10;更新了www前缀域名的BHB站点识别" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复了x浏览器没有正确加载脚本的问题&#10;更新了www前缀域名的BHB站点识别" />
   </component>
 </project>
