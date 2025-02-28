@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修复了x浏览器没有正确加载脚本的问题&#10;更新了www前缀域名的BHB站点识别">
-      <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BHBOUjs.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHBOUjs.user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,6 +216,7 @@
       <workItem from="1740500142016" duration="1729000" />
       <workItem from="1740572311288" duration="2159000" />
       <workItem from="1740656907464" duration="5702000" />
+      <workItem from="1740709474769" duration="9000" />
     </task>
     <task id="LOCAL-00043" summary="修复了描边效果不正常设定的问题&#10;修复方块特效不能正常启用的问题">
       <option name="closed" value="true" />
