@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="更新链接">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BHBOUjs.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHBOUjs.user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
@@ -224,15 +225,7 @@
       <workItem from="1740920240129" duration="3456000" />
       <workItem from="1740962951257" duration="10769000" />
       <workItem from="1741158521535" duration="4560000" />
-      <workItem from="1741351635798" duration="6942000" />
-    </task>
-    <task id="LOCAL-00047" summary="修复站长全屏模式的bug&#10;修复了网络指示灯的问题,调整了获取网络状态的机制">
-      <option name="closed" value="true" />
-      <created>1736348876159</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1736348876159</updated>
+      <workItem from="1741351635798" duration="7796000" />
     </task>
     <task id="LOCAL-00048" summary="修复图片无法读取的bug">
       <option name="closed" value="true" />
@@ -618,7 +611,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741359288022</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="更新链接">
+      <option name="closed" value="true" />
+      <created>1741359578102</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1741359578102</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
