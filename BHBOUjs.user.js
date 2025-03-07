@@ -859,7 +859,7 @@
                 console.log(data);
                 document.querySelector("#UpdateLog").innerHTML=data.description;
                 if(!localStorage.version||localStorage.version!== data.version.toString()){//更新后修改部分选项，理论上不会影响用户
-                    document.querySelector("#WebV").innerHTML=`服务器端最新版本为：v${data.version.toString()}，请前往以下站点下载更新：<a href="https://www.greasyfork.us.kg/zh-CN/scripts/519010-bhb%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2-%E5%B7%B2%E5%85%A8%E5%B1%80%E5%85%BC%E5%AE%B9">链接1</a><a href="https://greasyfork.org/zh-CN/scripts/519010-bhb%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2-%E5%B7%B2%E5%85%A8%E5%B1%80%E5%85%BC%E5%AE%B9">链接2</a>`
+                    document.querySelector("#WebV").innerHTML=`服务器端最新版本为：v${data.version.toString()}，请前往以下站点下载更新：<a href="https://openuserjs.org/scripts/M27IAR/BHB%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2%EF%BC%88%E5%B7%B2%E5%85%A8%E5%B1%80%E5%85%BC%E5%AE%B9%EF%BC%89">链接</a>`
                 }else{document.querySelector("#WebV").innerHTML=`服务器端最新版本为：v${data.version.toString()}`}
                 addaddNetMsg.setAttribute('style', `position: fixed;left:50%;top:50%;overflow:auto; border-radius: 5px;transform: translate(-50%, -50%);width: 330px;height: 550px;border: 1px solid aqua;z-index:10000;display:${(()=>{if(!localStorage.version||localStorage.version!== data.version.toString()||FirstTime){return "block"}else{return "none"}})()};background-color:rgba(40,64,120,0.4);color:#f0f5f9;text-shadow:0 1px 0.5px #32353E,0 -1px 0.5px #32353E,1px 0 0.5px #32353E,-1px 0 0.5px #32353E;`)
             },
