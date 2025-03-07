@@ -4,7 +4,7 @@
 // @match       https://*boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     3.0.15
+// @version     3.0.16
 // @author      M27IAR
 // @license     GPL-3.0-or-later
 // @license     GPL-3.0-or-later; https://www.gnu.org/licenses/gpl-3.0.txt
@@ -12,7 +12,6 @@
 (function(){
     let webWidth = window.innerWidth;
     let webHeight = window.innerHeight;//获取页面宽高
-    let CheckUpdate=false//验证脚本是否更新
     //本地存储检测
     if(!localStorage.M27NewBBGPrint){//是否启用自定义聊天室
         localStorage.setItem("M27NewBBGPrint","false")
@@ -170,16 +169,16 @@
     if(!localStorage.webimgsrc){//线上图片链接
         localStorage.setItem("webimgsrc",'https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png');
     }
-    if(!localStorage.version||localStorage.version!=="3.0.15"){//更新后修改部分选项，理论上不会影响用户
-        localStorage.setItem("version","3.0.15");CheckUpdate=true;localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
-        if(localStorage.webimgsrc==="https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png"||localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png"||localStorage.webimgsrc==="https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg") {
+    if(!localStorage.version||localStorage.version!== "3.0.16"){//安装后的更新检测覆盖
+        localStorage.setItem("version","3.0.16");localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
+         if(localStorage.webimgsrc==="https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png"||localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png"||localStorage.webimgsrc==="https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg") {
             if(webWidth<webHeight){
                 localStorage.setItem("webimgsrc", 'https://m27iarsite.cc/20250225232321_67bde069e2d11.jpg');
             }else{
                 localStorage.setItem("webimgsrc", 'https://m27iarsite.cc/20250225232331_67bde0730536d.jpg');
             }
         }
-    }else{CheckUpdate=false}
+    }
     /*
     这里是历史使用过的默认在线URL，需要自取：
     https://t1-img.233213.xyz/2024/11/25/67447535ec930.jpg
@@ -740,23 +739,23 @@
             document.querySelector("#heightsize").disabled=false;
         }
     }
-    function addsett(leange1,leange2,CheckUpdate) {//添加设置项目
+    function addsett(leange1,leange2) {//添加设置项目
         let BoxPrintCheckOn;
         if(localStorage.BoxPrint!=="no"){BoxPrintCheckOn='checked'}else{BoxPrintCheckOn=''}
         let oldaddtarge=document.querySelector("#navbar-collapse")
         let addbott="<button class='fuckyou'>插件设置</button>"
-        let addNetMsg=`<div id="MegNew">
+        let addNetMsg=`<div id="MegNew" style="display: none;">
         <div style="z-index:10001; position: sticky ;height:28px;width:100%;top: 0;left:0;background-color: rgba(36,70,88,0.4);backdrop-filter: blur(5px);">
     <button id="Msgexit" class="fuckyou3">X</button><span>反馈方式&更新日志</span>
     </div>
     <div style="z-index:10001; position: sticky ;height:auto;width:100%;right: 0;left:0;top: 30px;backdrop-filter: blur(5px);font-size: 13px">
     <p style="margin: 0">可以通过以下方式向我反馈：<br> 在此链接下面回复BUG（推荐）：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a><br>前往GitHub仓库提交issue：<a href="https://github.com/M27-IAR/BHB_BbsBackGroundSetting/issues">GitHub仓库</a><br>私信我修改（不推荐）<a href="https://boyshelpboys.com/user-139020.htm">点击我进入后点击“发私信按钮”</a><br>
     脚本作者：M27IAR&nbsp;&nbsp;&nbsp;完整更新日志请前往以下帖子查看：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a><br>
-    <strong>当前版本为v3.0.15：</strong> <div style="border-bottom: white 3px solid;height: 0;width: 100%"></div>
+    <strong>当前版本为v3.0.16</strong><br><span id="WebV">服务器端最新版本为：v </span><div style="border-bottom: white 3px solid;height: 0;width: 100%"></div>
     </p>
 </div>
-<div>
-<p>v3.0.15更新：<br>修复了x浏览器没有正确加载脚本的问题<br>更新了www前缀域名的BHB站点识别<br>【新聊天室暂时搁置】</p>
+<div id="UpdateLog">
+
 </div>`
         let addmain=`<div id="localsett" >
 <div>
@@ -844,9 +843,23 @@
         let printSelcetBox=document.querySelector("#selectBox");
 
         printSelcetBox.addEventListener("change",function(){checkPrint();})
-        console.log(CheckUpdate)
         adddiv.setAttribute('style', 'position: fixed;left:50%;top:50%;overflow:auto; border-radius: 5px;transform: translate(-50%, -50%);width: 330px;height: 550px;border: 1px solid aqua;z-index:10000;display:none;background-color:rgba(40,64,120,0.4);color:#f0f5f9;text-shadow:0 1px 0.5px #32353E,0 -1px 0.5px #32353E,1px 0 0.5px #32353E,-1px 0 0.5px #32353E;')
-        addaddNetMsg.setAttribute('style', `position: fixed;left:50%;top:50%;overflow:auto; border-radius: 5px;transform: translate(-50%, -50%);width: 330px;height: 550px;border: 1px solid aqua;z-index:10000;display:${(()=>{if(CheckUpdate){return "block"}else{return "none"}})()};background-color:rgba(40,64,120,0.4);color:#f0f5f9;text-shadow:0 1px 0.5px #32353E,0 -1px 0.5px #32353E,1px 0 0.5px #32353E,-1px 0 0.5px #32353E;`)
+
+        $.ajax({//更新日志弹出判断|在线服务器版本号比对提醒
+            type:"GET",
+            url:"https://m27iarsite.cc/package.json",
+            dataType:"json",
+            success:function(data){
+                console.log(data);
+                document.querySelector("#UpdateLog").innerHTML=data.description;
+                if(!localStorage.version||localStorage.version!== data.version.toString()){//更新后修改部分选项，理论上不会影响用户
+                    document.querySelector("#WebV").innerHTML=`服务器端最新版本为：v${data.version.toString()}，请前往以下站点下载更新：<a href="https://www.greasyfork.us.kg/zh-CN/scripts/519010-bhb%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2-%E5%B7%B2%E5%85%A8%E5%B1%80%E5%85%BC%E5%AE%B9">链接1</a><a href="https://greasyfork.org/zh-CN/scripts/519010-bhb%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2-%E5%B7%B2%E5%85%A8%E5%B1%80%E5%85%BC%E5%AE%B9">链接2</a>`
+                }else{document.querySelector("#WebV").innerHTML=`服务器端最新版本为：v${data.version.toString()}`}
+                addaddNetMsg.setAttribute('style', `position: fixed;left:50%;top:50%;overflow:auto; border-radius: 5px;transform: translate(-50%, -50%);width: 330px;height: 550px;border: 1px solid aqua;z-index:10000;display:${(()=>{if(!localStorage.version||localStorage.version!== data.version.toString()){return "block"}else{return "none"}})()};background-color:rgba(40,64,120,0.4);color:#f0f5f9;text-shadow:0 1px 0.5px #32353E,0 -1px 0.5px #32353E,1px 0 0.5px #32353E,-1px 0 0.5px #32353E;`)
+            },
+            error:function(){document.querySelector("#WebV").innerHTML="获取服务器数据失败"}
+        })
+
         addbutt.addEventListener("click",function(){//开关设置栏1
             let adddiv=document.querySelector("#localsett")
             if (adddiv.style.display==="block"){
@@ -1074,9 +1087,6 @@
         transaction.oncomplete = function() {
             console.log('空数据插入DBD成功');
         };
-        transaction.onerror = function(event) {
-            console.error('Transaction failed:', event);
-        };
     };
     // 错误处理
     request.onerror = function(event) {
@@ -1269,13 +1279,15 @@
     let nowurl = window.location.href;//读取当前所在网页
 
     if (nowurl.includes('boyshelpboys.com/chat.htm')) {//如果当前网页为聊天室页面
+        let BBSmsgBack=document.querySelector("#top > div > div > main > section > div")
+        backPrint(BBSmsgBack,document.querySelector("#top > div > div > main > section > div > div"),nowurl);
         WidthHeightSet();
         let printstr1=["线上地址","删除左侧导航栏","聊天室名称大小","聊天室名称字体/描边颜色","聊天室名称描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
         let printstr2=["滚动条不显示","历史记录1透明度","顶栏下部透明度","历史记录2透明度","外层边框透明度","顶栏透明度","发送边框透明度","发送框透明度","发送框描边","'聊天留言'透明度"]
         leftANDtop();
         ScrollHidden();
         leftContentContent();
-        addsett(printstr1,printstr2,CheckUpdate);
+        addsett(printstr1,printstr2,);
         //聊天室页面的独占设置内容
         let AddSetter=`
     <div id="MsgSet" style="width:100%;background-color: rgba(36,70,88,0.4);border:1px solid aqua;display: flex;">
@@ -1348,7 +1360,6 @@
         let fackone=document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs")//输入框部分
         let msginputbox=document.querySelector("#msg")//输入框自己
         let LiuYanTop=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom")
-        let BBSmsgBack=document.querySelector("#top > div > div > main > section > div")
         let msgInputBoxOutsite=document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write")
         fackone.className='shadow-xs'//修改输入框部分css，删除上部的渐变黑条
         fackone.setAttribute('style',`padding: .5rem .5rem; position: relative; border-radius: .375rem; margin: 0 1.5rem 1rem 1.5rem;background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6}`)
@@ -1360,7 +1371,6 @@
 
         let addlocalupdate=document.querySelector("#webimgsrc");
 
-        backPrint(BBSmsgBack,document.querySelector("#top > div > div > main > section > div > div"),nowurl);
         bac.setAttribute('style',`background-color:${localStorage.BackGroundColor};`)//网页背景部分
         LiuYanTop.setAttribute("style",`background-color:${localStorage.CantSeeColor9}${localStorage.CantSeeset9};border:0px !important;`);
         baca.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1} !important;`)//聊天历史记录1
@@ -1674,22 +1684,21 @@
             return "";
     }else if(nowurl.includes('boyshelpboys.com/my')){
         bac.setAttribute("style",`background-color:${localStorage.BackGroundColor};`)
+        backPrint(bac,addtarge,nowurl);
         let printstr1=["线上地址","删除左侧导航栏","淡色字体大小","淡色字描边/字体颜色","淡色字描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
         let printstr2=["滚动条不显示","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","'*没做*'*没做*"]
-
         leftANDtop();
         WidthHeightSet();
-        backPrint(bac,addtarge,nowurl);
         ScrollHidden();
         leftContentContent();
-        addsett(printstr1,printstr2,CheckUpdate);
+        addsett(printstr1,printstr2,);
+
     }else if(nowurl ==="https://www.boyshelpboys.com/"||nowurl ==="https://boyshelpboys.com/"||nowurl.includes("boyshelpboys.com/#")||nowurl.includes("boyshelpboys.com/index")){
-        console.log("tes");
+        backPrint(bac,addtarge,nowurl);
         bac.setAttribute("style",`background-color:${localStorage.BackGroundColor};`)
         ScrollHidden()
         leftANDtop();
         WidthHeightSet();
-        backPrint(bac,addtarge,nowurl);
         leftContentContent();
 
         let Tiezi1=document.querySelector("#top > div > div > main > div > div.col-lg-9.main > div.card-threadlist > div.card.card-body.py-2");
@@ -1701,7 +1710,7 @@
 
         let printstr1=["线上地址","删除左侧导航栏","淡色字体大小","淡色字描边/字体颜色","淡色字描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
         let printstr2=["滚动条不显示","帖子栏1透明度","顶栏而下透明度","*没做*","*没做*","*没做*","搜索框颜色透明度","搜索输入框颜色",'搜索框描边',"*没做*"]
-        addsett(printstr1,printstr2,CheckUpdate);
+        addsett(printstr1,printstr2,);
 
         let addlocalupdate=document.querySelector("#webimgsrc");
         let localget=document.querySelector("#save");
@@ -1711,16 +1720,16 @@
             document.querySelector("#top > div > div > main > div > div.col-lg-3.aside > div:nth-child(3)").innerHTML=""
         }
     }else if(nowurl.includes("boyshelpboys.com/thread-")){
+        backPrint(bac,addtarge,nowurl);
         leftANDtop();
         WidthHeightSet();
-        backPrint(bac,addtarge,nowurl);
         ScrollHidden();
         rePrint(webWidth,webHeight);
         leftContentContent();
 
         let printstr1=["线上地址","删除左侧导航栏","聊天室名称大小","聊天室名称描边/字体颜色","聊天室名称描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
         let printstr2=["滚动条不显示","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","'*没做*'*没做*"]
-        addsett(printstr1,printstr2,CheckUpdate);
+        addsett(printstr1,printstr2,);
         let addlocalupdate=document.querySelector("#webimgsrc");
         let localget=document.querySelector("#save");
         localget.addEventListener("click",addtolocal,false);//点击向localst保存数据
@@ -1773,16 +1782,16 @@
         })
     }
     else{
+        backPrint(bac,addtarge,nowurl);
         leftANDtop();
         WidthHeightSet();
-        backPrint(bac,addtarge,nowurl);
         ScrollHidden();
         rePrint(webWidth,webHeight);
         leftContentContent();
 
         let printstr1=["线上地址","删除左侧导航栏","聊天室名称大小","聊天室名称描边/字体颜色","聊天室名称描边大小","顶部","左部","背景高度比例(填写0即为auto)","背景宽度比例(填写0即为auto)","在线图片","本地图片","section写入","body-background写入","渲染到网页背景","渲染到聊天室背景"];
         let printstr2=["滚动条不显示","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","*没做*","'*没做*'*没做*"]
-        addsett(printstr1,printstr2,CheckUpdate);
+        addsett(printstr1,printstr2,);
         let addlocalupdate=document.querySelector("#webimgsrc");
         let localget=document.querySelector("#save");
         localget.addEventListener("click",addtolocal,false);//点击向localst保存数据
