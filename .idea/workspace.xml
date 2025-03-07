@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修复更新完成后第一次加载脚本不显示更新日志的bug&#10;修复获取服务器数据未过滤缓存导致的时效性问题">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BHBOUjs.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHBOUjs.user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -225,23 +223,7 @@
       <workItem from="1740962951257" duration="10769000" />
       <workItem from="1741158521535" duration="4560000" />
       <workItem from="1741351635798" duration="7796000" />
-      <workItem from="1741360412032" duration="436000" />
-    </task>
-    <task id="LOCAL-00049" summary="修复图片无法读取的bug">
-      <option name="closed" value="true" />
-      <created>1736349776355</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1736349776355</updated>
-    </task>
-    <task id="LOCAL-00050" summary="修复图片无法读取的bug">
-      <option name="closed" value="true" />
-      <created>1736350288287</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1736350288287</updated>
+      <workItem from="1741360412032" duration="648000" />
     </task>
     <task id="LOCAL-00051" summary="修复图片无法读取的bug">
       <option name="closed" value="true" />
@@ -619,7 +601,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741360451979</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="修复更新完成后第一次加载脚本不显示更新日志的bug&#10;修复获取服务器数据未过滤缓存导致的时效性问题">
+      <option name="closed" value="true" />
+      <created>1741360866966</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1741360866967</updated>
+    </task>
+    <task id="LOCAL-00099" summary="修复更新完成后第一次加载脚本不显示更新日志的bug&#10;修复获取服务器数据未过滤缓存导致的时效性问题">
+      <option name="closed" value="true" />
+      <created>1741360925676</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1741360925677</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
