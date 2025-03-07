@@ -4,7 +4,7 @@
 // @match       https://*.boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     3.0.13
+// @version     3.0.17
 // @author      M27IAR
 // @license     GPL-3.0-or-later
 // @license     GPL-3.0-or-later; https://www.gnu.org/licenses/gpl-3.0.txt
@@ -12,6 +12,7 @@
 // @downloadURL https://openuserjs.org/install/M27IAR/BHB聊天室背景图片更换（已全局兼容）.user.js
 // ==/UserScript==
 (function(){
+    let FirstTime=false
     let webWidth = window.innerWidth;
     let webHeight = window.innerHeight;//获取页面宽高
     //本地存储检测
@@ -172,6 +173,7 @@
         localStorage.setItem("webimgsrc",'https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png');
     }
     if(!localStorage.version||localStorage.version!== "3.0.16"){//安装后的更新检测覆盖
+        FirstTime=true
         localStorage.setItem("version","3.0.16");localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
         if(localStorage.webimgsrc==="https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png"||localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png"||localStorage.webimgsrc==="https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg") {
             if(webWidth<webHeight){
@@ -180,7 +182,7 @@
                 localStorage.setItem("webimgsrc", 'https://m27iarsite.cc/20250225232331_67bde0730536d.jpg');
             }
         }
-    }
+    }else {FirstTime=false}
     /*
     这里是历史使用过的默认在线URL，需要自取：
     https://t1-img.233213.xyz/2024/11/25/67447535ec930.jpg
@@ -857,7 +859,7 @@
                 if(!localStorage.version||localStorage.version!== data.version.toString()){//更新后修改部分选项，理论上不会影响用户
                     document.querySelector("#WebV").innerHTML=`服务器端最新版本为：v${data.version.toString()}，请前往以下站点下载更新：<a href="https://openuserjs.org/scripts/M27IAR/BHB%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2%EF%BC%88%E5%B7%B2%E5%85%A8%E5%B1%80%E5%85%BC%E5%AE%B9%EF%BC%89">链接</a>`
                 }else{document.querySelector("#WebV").innerHTML=`服务器端最新版本为：v${data.version.toString()}`}
-                addaddNetMsg.setAttribute('style', `position: fixed;left:50%;top:50%;overflow:auto; border-radius: 5px;transform: translate(-50%, -50%);width: 330px;height: 550px;border: 1px solid aqua;z-index:10000;display:${(()=>{if(!localStorage.version||localStorage.version!== data.version.toString()){return "block"}else{return "none"}})()};background-color:rgba(40,64,120,0.4);color:#f0f5f9;text-shadow:0 1px 0.5px #32353E,0 -1px 0.5px #32353E,1px 0 0.5px #32353E,-1px 0 0.5px #32353E;`)
+                addaddNetMsg.setAttribute('style', `position: fixed;left:50%;top:50%;overflow:auto; border-radius: 5px;transform: translate(-50%, -50%);width: 330px;height: 550px;border: 1px solid aqua;z-index:10000;display:${(()=>{if(!localStorage.version||localStorage.version!== data.version.toString()||FirstTime){return "block"}else{return "none"}})()};background-color:rgba(40,64,120,0.4);color:#f0f5f9;text-shadow:0 1px 0.5px #32353E,0 -1px 0.5px #32353E,1px 0 0.5px #32353E,-1px 0 0.5px #32353E;`)
             },
             error:function(){document.querySelector("#WebV").innerHTML="获取服务器数据失败"}
         })
