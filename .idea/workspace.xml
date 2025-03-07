@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="更新链接">
+    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修复更新完成后第一次加载脚本不显示更新日志的bug&#10;修复获取服务器数据未过滤缓存导致的时效性问题">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BHBOUjs.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHBOUjs.user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,14 +225,7 @@
       <workItem from="1740962951257" duration="10769000" />
       <workItem from="1741158521535" duration="4560000" />
       <workItem from="1741351635798" duration="7796000" />
-    </task>
-    <task id="LOCAL-00048" summary="修复图片无法读取的bug">
-      <option name="closed" value="true" />
-      <created>1736349612212</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1736349612212</updated>
+      <workItem from="1741360412032" duration="436000" />
     </task>
     <task id="LOCAL-00049" summary="修复图片无法读取的bug">
       <option name="closed" value="true" />
@@ -619,7 +611,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741359578102</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="修复更新完成后第一次加载脚本不显示更新日志的bug&#10;修复获取服务器数据未过滤缓存导致的时效性问题">
+      <option name="closed" value="true" />
+      <created>1741360451979</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1741360451979</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -637,7 +637,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修复图片无法读取的bug" />
     <MESSAGE value="修复站长全屏模式的bug" />
     <MESSAGE value="修复站长全屏模式的bug&#10;修复了透明度设置为“100”时没有正常实现的问题&#10;修复点歌界面被错误覆盖的问题" />
     <MESSAGE value="更新README内容" />
@@ -662,6 +661,7 @@
     <MESSAGE value="修复了x浏览器没有正确加载脚本的问题&#10;更新了www前缀域名的BHB站点识别" />
     <MESSAGE value="添加检测在线版本号功能&#10;调整了代码加载顺序" />
     <MESSAGE value="更新链接" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新链接" />
+    <MESSAGE value="修复更新完成后第一次加载脚本不显示更新日志的bug&#10;修复获取服务器数据未过滤缓存导致的时效性问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复更新完成后第一次加载脚本不显示更新日志的bug&#10;修复获取服务器数据未过滤缓存导致的时效性问题" />
   </component>
 </project>
