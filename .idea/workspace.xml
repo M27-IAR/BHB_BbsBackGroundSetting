@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修复了x浏览器没有正确加载脚本的问题&#10;更新了www前缀域名的BHB站点识别">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BHBOUjs.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHBOUjs.user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="更新链接" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -226,23 +220,7 @@
       <workItem from="1740920240129" duration="3456000" />
       <workItem from="1740962951257" duration="10769000" />
       <workItem from="1741158521535" duration="4560000" />
-      <workItem from="1741351635798" duration="6318000" />
-    </task>
-    <task id="LOCAL-00044" summary="修复了描边效果不正常设定的问题&#10;修复方块特效不能正常启用的问题">
-      <option name="closed" value="true" />
-      <created>1735799888896</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1735799888896</updated>
-    </task>
-    <task id="LOCAL-00045" summary="修复了滚动页面后设置栏不会置于页面中心的问题&#10;优化了信号灯的运行逻辑，现在在关闭后不会再进行请求&#10;修改了部分菜单选项的描述">
-      <option name="closed" value="true" />
-      <created>1735915150336</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1735915150336</updated>
+      <workItem from="1741351635798" duration="6624000" />
     </task>
     <task id="LOCAL-00046" summary="修复消息时间无法隐藏的问题&#10;添加修改消息气泡颜色的功能&#10;修复了指示灯按钮设置重置的问题">
       <option name="closed" value="true" />
@@ -620,7 +598,23 @@
       <option name="project" value="LOCAL" />
       <updated>1740709497665</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="添加检测在线版本号功能&#10;调整了代码加载顺序">
+      <option name="closed" value="true" />
+      <created>1741358972771</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1741358972771</updated>
+    </task>
+    <task id="LOCAL-00094" summary="更新链接">
+      <option name="closed" value="true" />
+      <created>1741359196562</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1741359196562</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -638,8 +632,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修复消息时间无法隐藏的问题&#10;添加修改消息气泡颜色的功能&#10;修复了指示灯按钮设置重置的问题" />
-    <MESSAGE value="修复站长全屏模式的bug&#10;修复了网络指示灯的问题,调整了获取网络状态的机制" />
     <MESSAGE value="修复图片无法读取的bug" />
     <MESSAGE value="修复站长全屏模式的bug" />
     <MESSAGE value="修复站长全屏模式的bug&#10;修复了透明度设置为“100”时没有正常实现的问题&#10;修复点歌界面被错误覆盖的问题" />
@@ -663,6 +655,8 @@
     <MESSAGE value="更换默认背景&#10;修复了帖子页面点击帖子内图片再返回时错误跳转的bug&#10;修复了图片缩放没有复原的问题&#10;修复了样式表没有成功插入的问题&#10;调整了图片缩放逻辑" />
     <MESSAGE value="修复了设定初始值时页面加载错误核默认图片没有更新的bug&#10;修复聊天室气泡特效没有正确设定的bug" />
     <MESSAGE value="修复了x浏览器没有正确加载脚本的问题&#10;更新了www前缀域名的BHB站点识别" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复了x浏览器没有正确加载脚本的问题&#10;更新了www前缀域名的BHB站点识别" />
+    <MESSAGE value="添加检测在线版本号功能&#10;调整了代码加载顺序" />
+    <MESSAGE value="更新链接" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新链接" />
   </component>
 </project>
