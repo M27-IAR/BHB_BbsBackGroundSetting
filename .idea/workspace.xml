@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修复更新完成后第一次加载脚本不显示更新日志的bug&#10;修复获取服务器数据未过滤缓存导致的时效性问题">
+    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修复部分文字错误&#10;修复部分设置失效的bug&#10;修复“顶部”与“左部”两选项效果错误以及被错误锁定的问题&#10;修复无法获取到服务器更新类数据是显示异常的问题">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
@@ -84,7 +84,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.stickyLines&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;,
     &quot;ts.external.directory.path&quot;: &quot;D:\\Program Files\\JetBrains\\WebStorm 2024.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -230,15 +230,27 @@
       <workItem from="1741658961184" duration="5970000" />
       <workItem from="1741740139420" duration="2527000" />
       <workItem from="1742091818736" duration="4871000" />
-      <workItem from="1742211244529" duration="5955000" />
-    </task>
-    <task id="LOCAL-00055" summary="修复站长全屏模式的bug&#10;修复了透明度设置为“100”时没有正常实现的问题&#10;修复点歌界面被错误覆盖的问题">
-      <option name="closed" value="true" />
-      <created>1736569144505</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1736569144505</updated>
+      <workItem from="1742211244529" duration="7602000" />
+      <workItem from="1742870470305" duration="1591000" />
+      <workItem from="1742963942091" duration="7165000" />
+      <workItem from="1743075145291" duration="3026000" />
+      <workItem from="1743142590850" duration="2896000" />
+      <workItem from="1743310397356" duration="7379000" />
+      <workItem from="1743386013681" duration="411000" />
+      <workItem from="1743564011631" duration="9291000" />
+      <workItem from="1743651808948" duration="2511000" />
+      <workItem from="1743739259869" duration="595000" />
+      <workItem from="1743767633056" duration="11269000" />
+      <workItem from="1743779390323" duration="13000" />
+      <workItem from="1743819369953" duration="1715000" />
+      <workItem from="1743854758236" duration="6198000" />
+      <workItem from="1743909230803" duration="2393000" />
+      <workItem from="1743989001253" duration="2415000" />
+      <workItem from="1744077483051" duration="702000" />
+      <workItem from="1744246429016" duration="791000" />
+      <workItem from="1744339084865" duration="12513000" />
+      <workItem from="1744426918897" duration="11968000" />
+      <workItem from="1744498554843" duration="645000" />
     </task>
     <task id="LOCAL-00056" summary="修复站长全屏模式的bug&#10;修复了透明度设置为“100”时没有正常实现的问题&#10;修复点歌界面被错误覆盖的问题">
       <option name="closed" value="true" />
@@ -624,7 +636,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741361555628</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="修复部分文字错误&#10;修复部分设置失效的bug&#10;修复“顶部”与“左部”两选项效果错误以及被错误锁定的问题&#10;修复无法获取到服务器更新类数据是显示异常的问题">
+      <option name="closed" value="true" />
+      <created>1742219253638</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1742219253638</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -642,7 +662,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修复站长全屏模式的bug" />
     <MESSAGE value="修复站长全屏模式的bug&#10;修复了透明度设置为“100”时没有正常实现的问题&#10;修复点歌界面被错误覆盖的问题" />
     <MESSAGE value="更新README内容" />
     <MESSAGE value="删除" />
@@ -667,6 +686,7 @@
     <MESSAGE value="添加检测在线版本号功能&#10;调整了代码加载顺序" />
     <MESSAGE value="更新链接" />
     <MESSAGE value="修复更新完成后第一次加载脚本不显示更新日志的bug&#10;修复获取服务器数据未过滤缓存导致的时效性问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复更新完成后第一次加载脚本不显示更新日志的bug&#10;修复获取服务器数据未过滤缓存导致的时效性问题" />
+    <MESSAGE value="修复部分文字错误&#10;修复部分设置失效的bug&#10;修复“顶部”与“左部”两选项效果错误以及被错误锁定的问题&#10;修复无法获取到服务器更新类数据是显示异常的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复部分文字错误&#10;修复部分设置失效的bug&#10;修复“顶部”与“左部”两选项效果错误以及被错误锁定的问题&#10;修复无法获取到服务器更新类数据是显示异常的问题" />
   </component>
 </project>

@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name        BHB聊天室背景图片更换（已全局兼容）
+// @name        BHB背景图片更换（已全局兼容）
 // @namespace   Violentmonkey Scripts
 // @match       https://*boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     3.0.19.2
+// @version     3.1.0
 // @author      M27IAR
 // @license     GPL-3.0-or-later
 // @license     GPL-3.0-or-later; https://www.gnu.org/licenses/gpl-3.0.txt
@@ -170,9 +170,9 @@
     if(!localStorage.webimgsrc){//线上图片链接
         localStorage.setItem("webimgsrc",'https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png');
     }
-    if(!localStorage.version||localStorage.version!== "3.0.19.2"){//安装后的更新检测覆盖
+    if(!localStorage.version||localStorage.version!== "3.1.0"){//安装后的更新检测覆盖
         FirstTime=true
-        localStorage.setItem("version","3.0.19.2");localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
+        localStorage.setItem("version","3.1.0");localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
          if(localStorage.webimgsrc==="https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png"||localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png"||localStorage.webimgsrc==="https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg") {
             if(webWidth<webHeight){
                 localStorage.setItem("webimgsrc", 'https://m27iarsite.cc/20250225232321_67bde069e2d11.jpg');
@@ -752,9 +752,9 @@
     <button id="Msgexit" class="fuckyou3">X</button><span>反馈方式&更新日志</span>
     </div>
     <div style="z-index:10001; position: sticky ;height:auto;width:100%;right: 0;left:0;top: 30px;backdrop-filter: blur(5px);font-size: 13px">
-    <p style="margin: 0">可以通过以下方式向我反馈：<br> 在此链接下面回复BUG（推荐）：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a><br>前往GitHub仓库提交issue：<a href="https://github.com/M27-IAR/BHB_BbsBackGroundSetting/issues">GitHub仓库</a><br>私信我修改（不推荐）<a href="https://boyshelpboys.com/user-139020.htm">点击我进入后点击“发私信按钮”</a><br>
+    <p style="margin: 0">使用指南：<a href="https://boyshelpboys.com/thread-2012.htm#tutorial">点击进入</a><br>可以通过以下方式向我反馈：<br> 在此链接下面回复BUG（推荐）：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a><br>前往GitHub仓库提交issue：<a href="https://github.com/M27-IAR/BHB_BbsBackGroundSetting/issues">GitHub仓库</a><br>私信我修改（不推荐）<a href="https://boyshelpboys.com/user-139020.htm">点击我进入后点击“发私信按钮”</a><br>
     脚本作者：M27IAR&nbsp;&nbsp;&nbsp;完整更新日志请前往以下帖子查看：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a><br>
-    <strong>当前版本为v3.0.19.2</strong><br><span id="WebV">服务器端最新版本为：v </span><div style="border-bottom: white 3px solid;height: 0;width: 100%"></div>
+    <strong>当前版本为v3.1.0</strong><br><span id="WebV">服务器端最新版本为：v </span><div style="border-bottom: white 3px solid;height: 0;width: 100%"></div>
     </p>
 </div>
 <div id="UpdateLog">
@@ -850,21 +850,21 @@
 
         printSelcetBox.addEventListener("change",function(){checkPrint();})
         document.querySelector("#center").addEventListener("click",function(){checkPrint();})
-        adddiv.setAttribute('style', 'position: fixed;left:50%;top:50%;overflow:auto; border-radius: 5px;transform: translate(-50%, -50%);width: 330px;height: 550px;border: 1px solid aqua;z-index:10000;display:none;background-color:rgba(40,64,120,0.4);color:#f0f5f9;text-shadow:0 1px 0.5px #32353E,0 -1px 0.5px #32353E,1px 0 0.5px #32353E,-1px 0 0.5px #32353E;')
+        adddiv.setAttribute('style', 'position: fixed;left:50%;top:50%;overflow:auto; border-radius: 5px;transform: translate(-50%, -50%);width: 330px;height: 550px;border: 1px solid aqua;z-index:10000;display:none;background-color:rgba(40,64,120,0.7);color:#f0f5f9;text-shadow:0 1px 0.5px #32353E,0 -1px 0.5px #32353E,1px 0 0.5px #32353E,-1px 0 0.5px #32353E;')
 
         let timestamp = new Date().getTime();
+        addaddNetMsg.setAttribute('style', `position: fixed;left:50%;top:50%;overflow:auto; border-radius: 5px;transform: translate(-50%, -50%);width: 330px;height: 550px;border: 1px solid aqua;z-index:10000;display:none;background-color:rgba(40,64,120,0.7);color:#f0f5f9;text-shadow:0 1px 0.5px #32353E,0 -1px 0.5px #32353E,1px 0 0.5px #32353E,-1px 0 0.5px #32353E;`)
         $.ajax({//更新日志弹出判断|在线服务器版本号比对提醒
             type:"GET",
             url:`https://m27iarsite.cc/package.json?timestamp=${timestamp}`,
             dataType:"json",
             cache:false,
             success:function(data){
-                console.log(data);
                 document.querySelector("#UpdateLog").innerHTML=data.description;
                 if(!localStorage.version||localStorage.version!== data.version.toString()){//更新后修改部分选项，理论上不会影响用户
-                    document.querySelector("#WebV").innerHTML=`服务器端最新版本为：v${data.version.toString()}，Greayfork请前往以下站点下载更新：<a href="https://www.greasyfork.us.kg/zh-CN/scripts/519010-bhb%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2-%E5%B7%B2%E5%85%A8%E5%B1%80%E5%85%BC%E5%AE%B9">链接1</a><a href="https://greasyfork.org/zh-CN/scripts/519010-bhb%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2-%E5%B7%B2%E5%85%A8%E5%B1%80%E5%85%BC%E5%AE%B9">链接2</a><br>OpenUserJS请前往以下站点更新：<a href="https://openuserjs.org/scripts/M27IAR/BHB%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2%EF%BC%88%E5%B7%B2%E5%85%A8%E5%B1%80%E5%85%BC%E5%AE%B9%EF%BC%89">OpenUserJS链接</a>`
+                    document.querySelector("#WebV").innerHTML=`服务器端最新版本为：v${data.version.toString()}，Greayfork请前往以下站点下载更新：<a href="https://greasyfork.dpdns.org/zh-CN/scripts/519010-bhb%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2-%E5%B7%B2%E5%85%A8%E5%B1%80%E5%85%BC%E5%AE%B9">链接1</a><a href="https://greasyfork.org/zh-CN/scripts/519010-bhb%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2-%E5%B7%B2%E5%85%A8%E5%B1%80%E5%85%BC%E5%AE%B9">链接2</a><br>OpenUserJS请前往以下站点更新：<a href="https://openuserjs.org/scripts/M27IAR/BHB%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2%EF%BC%88%E5%B7%B2%E5%85%A8%E5%B1%80%E5%85%BC%E5%AE%B9%EF%BC%89">OpenUserJS链接</a>`
                 }else{document.querySelector("#WebV").innerHTML=`服务器端最新版本为：v${data.version.toString()}`}
-                addaddNetMsg.setAttribute('style', `position: fixed;left:50%;top:50%;overflow:auto; border-radius: 5px;transform: translate(-50%, -50%);width: 330px;height: 550px;border: 1px solid aqua;z-index:10000;display:${(()=>{if(!localStorage.version||localStorage.version!== data.version.toString()||FirstTime){return "block"}else{return "none"}})()};background-color:rgba(40,64,120,0.4);color:#f0f5f9;text-shadow:0 1px 0.5px #32353E,0 -1px 0.5px #32353E,1px 0 0.5px #32353E,-1px 0 0.5px #32353E;`)
+                addaddNetMsg.setAttribute('style', `position: fixed;left:50%;top:50%;overflow:auto; border-radius: 5px;transform: translate(-50%, -50%);width: 330px;height: 550px;border: 1px solid aqua;z-index:10000;display:${(()=>{if(!localStorage.version||localStorage.version!== data.version.toString()||FirstTime){return "block"}else{return "none"}})()};background-color:rgba(40,64,120,0.7);color:#f0f5f9;text-shadow:0 1px 0.5px #32353E,0 -1px 0.5px #32353E,1px 0 0.5px #32353E,-1px 0 0.5px #32353E;`)
             },
             error:function(){document.querySelector("#WebV").innerHTML="获取服务器数据失败"}
         })
@@ -1230,7 +1230,7 @@
     }
     let PicUrl=[]
     let message;//站长的特殊链接处理
-    function renderImage(url, alt = '') {
+    function renderImage(url, alt = '') {//图片处理
         return `<img src="${url}" alt="${alt}" referrerpolicy="no-referrer" class="chat-image" style="width: 7.5rem;object-fit: contain;">`;
     }
     const mediaPatterns = [
@@ -1270,6 +1270,64 @@
 
         }
     ];
+    function renderExternalLink(url, title = '') {//聊天室链接处理
+        const displayTitle = title || url;
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="M27-link">${displayTitle}</a>`;
+    }
+    function ImgShowBoxLoad(State,Url){
+        if (State==="load"){
+            bac.insertAdjacentHTML("afterbegin",`
+        <div id="ImgBoxM" style="justify-content:center;align-items:center;background-color: rgba(0,0,0);z-index: 1000000000;position: fixed;display: none;left: 0;right: 0;top: 0;bottom: 0;width: 100%;height: 100%;">
+        <div id="ZoomSet" style="display:flex;justify-content:center;align-items:center;height: ${Math.ceil(webHeight*0.9)}px;position: fixed;transition: transform  0.2s ease;">
+        <img style="max-width:100%;max-height: 100%;object-fit: contain;justify-content:center;" src="" id="PicIMgPrint" alt="">
+        </div>
+        </div>`)//图片容纳框
+            let ImgShow=document.querySelector("#PicIMgPrint");//灰色背景
+            let ImgBoxM=document.querySelector("#ImgBoxM");//图片
+            let ZoomSet=document.querySelector("#ZoomSet");//缩放框
+            let scale = 1;
+            const scaleStep = 0.1; // 每次滚动的缩放步长
+            const minScale = 0.1; // 最小缩放比例
+            const maxScale = 10; // 最大缩放比例
+            ImgBoxM.addEventListener("wheel",(e)=>{
+                e.preventDefault();
+                if(e.deltaY<0){
+                    scale+=scaleStep
+                }else{
+                    scale-=scaleStep
+                }
+                scale = Math.min(Math.max(scale, minScale), maxScale);
+                ZoomSet.style.transform=`scale(${scale})`;
+            })//部分代码来自https://www.cnblogs.com/ai888/p/18613761
+            ImgBoxM.addEventListener("click",()=>{//重置图片框状态
+                ImgShow.src="";
+                ImgBoxM.style.display="none";
+                ZoomSet.style.transform=`scale(1)`;
+            })
+            ImgShow.addEventListener("click",(e)=>{
+                e.stopPropagation()
+            })
+        }else if(State==="show"){
+            let ImgShow=document.querySelector("#PicIMgPrint");//灰色背景
+            let ImgBoxM=document.querySelector("#ImgBoxM");//图片
+            ImgShow.src=Url;
+            ImgBoxM.style.display="flex";
+        }
+    }
+    function PicList(State,message,IMGlist){
+        if(State==="push"){//图片列表实现
+            let Num1=message.indexOf("=");
+            let Num2=message.indexOf("alt");
+            let InputLink
+            if(message.slice(Num1+2,Num2-2).includes("http")){
+                InputLink=message.slice(Num1+2,Num2-2)
+            }else{
+                InputLink="https://boyshelpboys.com/"+message.slice(Num1+2,Num2-2)
+            }
+            PicUrl.splice(0,0,InputLink);
+            IMGlist.insertAdjacentHTML("afterbegin",`<div class="DIVIMGshow"><img class="ListImgSet" src="${InputLink}" alt="${InputLink}"></div>`)
+        }
+    }
 
     if (typeof Notification !== 'undefined' && typeof window.Notification !== 'undefined'){
         Notification.requestPermission().then(function(result) {//请求通知权限（哭啦什么都要权限啊
@@ -1476,7 +1534,7 @@
 
         //在线人数重写
         document.querySelector("div.chat-history-header.border-bottom > div > div").nextElementSibling.remove();
-        document.querySelector("div.chat-history-header.border-bottom > div > div").insertAdjacentHTML('afterend',`<button id="M27ChangeUserList" class="M27-online-users-btn" title="在线用户"><i class="la la-users" style="font-size: 20px;"></i><span style="font-size: 12px;color: hotpink;min-width: 20px;text-align: center;position: absolute;top: 2px;right: 2px;padding: 0 2px;"  id="M27UserNun">0</span></button>`)
+        document.querySelector("div.chat-history-header.border-bottom > div > div").insertAdjacentHTML('afterend',`<button id="M27ChangeUserList" class="M27-online-users-btn" title="在线用户"><i class="la la-users" style="font-size: 20px;"></i><span style="font-size: 12px;color: ${localStorage.statelyThemeColor};min-width: 20px;text-align: center;position: absolute;top: 2px;right: 2px;padding: 0 2px;"  id="M27UserNun">0</span></button>`)
         document.querySelector("#M27ChangeUserList").addEventListener("click",()=>{
             if (document.querySelector("div.chat-history-header.border-bottom").nextElementSibling.style.display==="none"||document.querySelector("div.chat-history-header.border-bottom").nextElementSibling.style===""){
                 document.querySelector("div.chat-history-header.border-bottom").nextElementSibling.setAttribute("style","display: block;")
@@ -1494,40 +1552,276 @@
         })
 
         //自定义消息页面
-        if(localStorage.M27NewBBGPrint==="1"){
-        setInterval(()=>{if(typeof c === 'undefined' ){}else{clearInterval(c)}},1);//删除站长原本的消息获取
+        if(localStorage.M27NewBBGPrint==="true"){
+            setInterval(()=>{if(typeof c === 'undefined' ){}else{clearInterval(c);}},1);//删除站长原本的消息获取
         //添加样式表
         let NeedFixStyleSix=document.querySelector("head");
-            NeedFixStyleSix.insertAdjacentHTML("beforeend",'<style id="style6"></style>');
+        NeedFixStyleSix.insertAdjacentHTML("beforeend",'<style id="style6"></style>');
         let FixStyleSix=document.querySelector("#style6")
+        let MsgBoxRed=Number("0x"+localStorage.MsgBoxColor.substring(1,3)),MsgBoxGreen=Number("0x"+localStorage.MsgBoxColor.substring(3,5)),MsgBoxBlue=Number("0x"+localStorage.MsgBoxColor.substring(5))
         let InnetStyle=document.createTextNode(`
         #M27-OnliceUser{display:flex;position: fixed;right: -48%;top:0;bottom: 0;background-color: #66ccff50;width: 50%;height:100%;backdrop-filter:  blur(5px);z-index: 100001;transition:all 0.3s ease 0.1s;}
         #M27-OnliceUser:hover{right: 0%;}
-        @media(max-width:600px){
-        #M27-OnliceUser{position: fixed;right: -60%;top:0;bottom: 0;background-color: #66ccff50;width: 70%;backdrop-filter:  blur(5px);z-index: 100001;transition:all 0.3s ease 0.1s;}
-        #M27-OnliceUser:hover{right: 0%;}
-        #SelectList{width:9%;flex-direction:row;flex-wrap:wrap;display:flex;position: sticky;height:100%}
-        #ShowLocal{width:91%;flex-direction:row;flex-wrap:wrap;display:flex;position: relative;overflow:scroll;}
-        }
         .ListImgSet{max-height:100px;max-width:100%;}
         .DIVIMGshow{border:3px solid gray;margin:3px;}
         #SelectList{width:3%;flex-direction:row;flex-wrap:wrap;display:flex;position: sticky;height:100%}
-        #ShowLocal{width:95%;flex-direction:row;flex-wrap:wrap;display:flex;position: relative;overflow:scroll;}
+        #MsgIMGShowLocal{width:97%;flex-direction:row;flex-wrap:wrap;display:flex;position: relative;overflow:scroll;}
+        @media(max-width:600px){
+        #M27-OnliceUser{position: fixed;right: -63%;top:0;bottom: 0;background-color: #66ccff50;width: 70%;backdrop-filter:  blur(5px);z-index: 100001;transition:all 0.3s ease 0.1s;}
+        #M27-OnliceUser:hover{right: 0%;}
+        #SelectList{width:10%;flex-direction:row;flex-wrap:wrap;display:flex;position: sticky;height:100%}
+        #MsgIMGShowLocal{width:90%;flex-direction:row;flex-wrap:wrap;display:flex;position: relative;overflow:scroll;}
+        }
+        .M27-MsgBox{
+        list-style:none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        width: 99%;
+        height: auto;
+        font-size: 1rem;
+        justify-content: space-around;
+        }
+        .M27-MsgAvatar{
+        margin: 0.375rem;
+        width: 2.25rem;
+        height: 2.25rem; 
+        align-items: center;
+        justify-items: center;
+        display: flex;
+        top: 0.125rem;
+        left: 0.125rem;
+        }
+        .M27-MsgAvatarImg{
+        font-size: 6px;
+        overflow: hidden;
+        width: 2.25rem;
+        height: 2.25rem;
+        }
+        .M27-MsgContent{
+        width: 95%;
+        align-items: flex-start;
+        justify-items: center;
+        display: flex;
+        flex-direction: column;
+        }
+        .M27-userName{
+        font-size: 12px;
+        }
+        .M27-ChatMssageText{
+        background-color: orange;
+        padding: 0.375rem;
+        margin:0.375rem 0 0 0.375rem;
+        max-width:80% ;
+        height: auto; 
+        white-space: normal;
+        color:#FFFFFF;
+        position: relative;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        border-radius:0rem .375rem .375rem .375rem;
+        padding: .75rem 1rem;
+        backdrop-filter: blur(5px) !important;
+        background-color: rgba(${MsgBoxRed},${MsgBoxGreen},${MsgBoxBlue},${localStorage.MsgBoxTra}) !important;
+        box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .25) !important;
+        }
+        .M27-link{
+        display:block;
+        margin:5px 0; 
+        word-break:break-all;
+        }
         `)
         FixStyleSix.appendChild(InnetStyle);
         bac.insertAdjacentHTML('afterbegin',`
         <div id="M27-OnliceUser"> 
-        <div id="SelectList"><button style="width: 100%;height: 100%"></button></div>
-        <div id="ShowLocal"></div>
+        <div id="SelectList"><button style="width: 100%;" id="SelectButton"></button><button style="width: 100%;" id="ImgListButton"></button></div>
+        <div id="MsgIMGShowLocal"></div>
         </div>`)
 
         let MsgPageNum=0;//消息页数
+        let MsgNum=0//消息条数
         let MsgId;//最新消息id
-        let MsgIdcheck=true;
-        let MgsList=[]//消息历史记录
+        let MsgIdcheck=true;//消息id验证
+        let MgsList=[]//处理后的消息记录
+        let LoadMsgList=[]//服务器端获取的消息记录
         let PrintNumCunt=0;//累计渲染消息计数
-        let IMGlist=document.querySelector("#ShowLocal");
-        let MSGGetCheck=true;
+        let IMGlist=document.querySelector("#MsgIMGShowLocal");
+        ImgShowBoxLoad("load")//加载图像展示框
+            let LoadMsgListProxy=new Proxy(LoadMsgList,{
+            set(target, p, newValue) {
+                target[p]=newValue;
+                let SlotCheck=false;//验证数组空槽
+                let SlotCheckArray=Array.from(target)
+                for (let i=0;i<=target.length-1;i++){
+                    if(SlotCheckArray[i]===null || SlotCheckArray[i]===undefined || SlotCheckArray[i]===""){
+                        SlotCheck=false;
+                        break;
+                    }else{
+                        SlotCheck=true;
+                    }
+                }//验证数组空槽结束
+                if (SlotCheck && target.length===MsgPageNum){//调整数据格式并填充
+                    for (let i=0;i<=target.length-1;i++){
+                        target[i].forEach(item=>{
+                            let InputJSON={msg:`${JSON.parse(item).msg}`,name:`${JSON.parse(item).name}`,pic:`${JSON.parse(item).pic}`,time:`${JSON.parse(item).time}`,id:`${JSON.parse(item).id}`,msgboxID:`${i}`}
+                            MsgListProxy.push(InputJSON)
+                        });
+                    }
+                }
+            }
+        })
+        let MsgListProxy=new Proxy(MgsList,{
+            set(target, p, newValue) {
+                if (p!=="length"){
+                target.push(newValue)
+                    if (target.length>=MsgNum){
+                        document.querySelector(".chat-history-body > ul").style.display="none"//隐藏原来的消息列表
+                        document.querySelector(".chat-history-body").insertAdjacentHTML("beforeend",`<ul class="M27-list-unstyled chat-history talk" data-base-href="../plugin/msto_chat/route/" id="M27-MsgList"></ul>`);//添加新的消息列表
+                        ul=document.querySelector('#M27-MsgList')//重新对ul赋值使其对应新消息列表
+                        ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor3}${localStorage.CantSeeset3};`)
+                        ul.innerHTML=""
+                        ul.addEventListener("click",function(e){
+                            if (e.target.className.includes("M27-userName")){//点击名字@对方
+                                document.querySelector("#msg").value+="@"+e.target.getAttribute('data-username')+" ";
+                            }else if (e.target.className.includes("chat-image")){//点击图片进入图片展示页面
+                                let ImgLoadTest=new Image()
+                                if (e.target.src!=null){//图片加载检测
+                                    ImgLoadTest.src=e.target.src
+                                    ImgLoadTest.onload=()=>{
+                                        ImgShowBoxLoad("show",e.target.src)
+                                    }
+                                    ImgLoadTest.onerror=()=>{
+                                        console.log("链接无法加载")
+                                    }
+                                }
+                            }
+                        })
+                        let UserId=document.querySelector("#statelyMyInfoModal > ul > div > div:nth-child(1) > div.flex-grow-1 > a").innerHTML
+                        //渲染全部消息
+                            for (let y=0;y<MgsList.length;y++){
+                                if(MgsList[y].name){
+                                    message=MgsList[y].msg//修正特殊消息内容
+                                    message = message.replace(/\[img](.*?)\[\/img]/g, (match, url) => {
+                                        // 清理B站图片链接中的参数
+                                        url = url.replace(/@.*$/, '');
+                                        return renderImage(url);
+                                    });
+                                    mediaPatterns.forEach(pattern => {
+                                        message = message.replace(pattern.regex, pattern.handler);
+                                    });
+                                    message = message.replace(/https?:\/\/[^\s<>"']+/g, url => {
+                                        // 检查是否是已处理过的媒体链接
+                                        if (url.match(/\.(jpg|jpeg|gif|png|webp|avif|mp4|webm|ogg|mp3|wav|m4a)(?:@[^@\s<>"']*)?$/i) || url.includes('bilibili.com/video') || url.includes('douyin.com/video') || url.includes('music.163.com/#/song')) {
+                                            return url;
+                                        }
+                                        // 检查URL是否已经被转换为HTML标签
+                                        if (/<(?:img|video|audio|iframe)[^>]*>/.test(url)) {
+                                            return url;
+                                        }
+                                        return renderExternalLink(url);
+                                    });
+                                    if(message.includes("<img src=")){//图片列表实现
+                                        PicList("push",message,IMGlist);
+                                    }
+                                    //点击头像跳转实现
+                                    let UID=MgsList[y].pic.substring(MgsList[y].pic.lastIndexOf("/")+1,MgsList[y].pic.lastIndexOf("."))
+                                    if (UID.includes('avatar')||UID===""){
+                                        UID="https://boyshelpboys.com/chat.htm"
+                                    }else{
+                                        UID=`https://boyshelpboys.com/user-${UID}.htm`
+                                    }
+                                    //消息内容填充
+                                    ul.insertAdjacentHTML("beforeend",`<li data-index="${MgsList[y].id}" id="M27-${MgsList[y].id}" class="M27-MsgBox">
+                                        <div class="M27-MsgAvatar" style="box-shadow: 0 1px 5px ${(()=>{if (MgsList[y].name===UserId){return "red";}else{return "blue";}})()},0 -1px 5px ${(()=>{if (MgsList[y].name===UserId){return "red";}else{return "blue";}})()},1px 0 5px ${(()=>{if (MgsList[y].name===UserId){return "red";}else{return "blue";}})()},-1px 0 5px ${(()=>{if (MgsList[y].name===UserId){return "red";}else{return "blue";}})()};">
+                                            <a href="${UID}" target="_blank"><img src='${MgsList[y].pic}' alt="${MgsList[y].name}" class="M27-MsgAvatarImg"></a>
+                                        </div>
+                                        <div class="M27-MsgContent">
+                                            <div style="width: 100%;height: auto;"><small class="M27-userName" data-username="${MgsList[y].name}" id="M27-${MgsList[y].name}-${MgsList[y].id}">${MgsList[y].name}</small>&emsp;<small style="font-size: small">${new Date(MgsList[y].time*1000).toLocaleString()}</small></div>
+                                            <div class="M27-ChatMssageText"><span style="word-break: break-all;">${message}</span></div>
+                                        </div></li>`)
+                                    //添加点击id@对方的效果
+                                    PrintNumCunt+=1;
+                                }
+                                MsgId=MgsList[y].id//设定最新消息的id
+                                document.querySelector(".chat-history-body").scrollTop = document.querySelector(".chat-history-body").scrollHeight;//滚动至底部
+                            }
+                            let MsgLoadCheck=true
+                            setInterval(()=>{
+                                let CheckScroll;
+                                if (MsgLoadCheck){
+                                    MsgLoadCheck=false;
+                                    $.ajax({
+                                        url:`https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=new&last_id=${MsgId}`,
+                                        type:"GET",
+                                        dataType:"json",
+                                        async:true,
+                                        timeout:5000,
+                                        success:function(data){
+                                            CheckScroll=data.list.length
+                                            MsgIdcheck=true
+                                            for (let x=0;x<data.list.length;x++){
+                                                for (let y=MgsList.length-1;y>=0;y--){//去重
+                                                    if (JSON.parse(data.list[x]).id===MgsList[y].id){
+                                                        MsgIdcheck=false
+                                                        break;
+                                                    }
+                                                }
+                                                if(JSON.parse(data.list[x]).name&&MsgIdcheck){
+                                                    message=JSON.parse(data.list[x]).msg
+                                                    message = message.replace(/\[img](.*?)\[\/img]/g, (match, url) => {
+                                                        // 清理B站图片链接中的参数
+                                                        url = url.replace(/@.*$/, '');
+                                                        return renderImage(url);
+                                                    });
+                                                    mediaPatterns.forEach(pattern => {//处理媒体链接
+                                                        message = message.replace(pattern.regex, pattern.handler);
+                                                    });
+                                                    message = message.replace(/https?:\/\/[^\s<>"']+/g, url => {
+                                                        // 检查是否是已处理过的媒体链接
+                                                        if (url.match(/\.(jpg|jpeg|gif|png|webp|avif|mp4|webm|ogg|mp3|wav|m4a)(?:@[^@\s<>"']*)?$/i) || url.includes('bilibili.com/video') || url.includes('douyin.com/video') || url.includes('music.163.com/#/song')) {
+                                                            return url;
+                                                        }
+                                                        // 检查URL是否已经被转换为HTML标签
+                                                        if (/<(?:img|video|audio|iframe)[^>]*>/.test(url)) {
+                                                            return url;
+                                                        }
+                                                        return renderExternalLink(url);
+                                                    });
+                                                    if(message.includes("<img src=")){//图片列表实现
+                                                        PicList("push",message,IMGlist)
+                                                    }
+                                                    let UID=JSON.parse(data.list[x]).pic.substring(JSON.parse(data.list[x]).pic.lastIndexOf("/")+1,JSON.parse(data.list[x]).pic.lastIndexOf("."))
+                                                    if (UID.includes('avatar')||UID===""){
+                                                        UID="https://boyshelpboys.com/chat.htm"
+                                                    }else{
+                                                        UID=`https://boyshelpboys.com/user-${UID}.htm`
+                                                    }
+                                                    ul.insertAdjacentHTML("beforeend",`<li data-index="${JSON.parse(data.list[x]).id}" id="M27-${JSON.parse(data.list[x]).id}" class="M27-MsgBox">
+                                                    <div class="M27-MsgAvatar" style="box-shadow: 0 1px 5px ${(()=>{if (JSON.parse(data.list[x]).name===UserId){return "red";}else{return "blue";}})()},0 -1px 5px ${(()=>{if (JSON.parse(data.list[x]).name===UserId){return "red";}else{return "blue";}})()},1px 0 5px ${(()=>{if (JSON.parse(data.list[x]).name===UserId){return "red";}else{return "blue";}})()},-1px 0 5px ${(()=>{if (JSON.parse(data.list[x]).name===UserId){return "red";}else{return "blue";}})()};">
+                                                        <a href="${UID}" target="_blank"><img src='${JSON.parse(data.list[x]).pic}' alt="${JSON.parse(data.list[x]).name}" class="M27-MsgAvatarImg"></a>
+                                                    </div>
+                                                    <div class="M27-MsgContent">
+                                                        <div style="width: 100%;height: auto;"><small class="M27-userName" data-username="${JSON.parse(data.list[x]).name}" id="M27-${JSON.parse(data.list[x]).name}-${JSON.parse(data.list[x]).id}">${JSON.parse(data.list[x]).name}</small>&emsp;<small style="font-size: small">${new Date(JSON.parse(data.list[x]).time*1000).toLocaleString()}</small></div>
+                                                        <div class="M27-ChatMssageText"><span style="word-break: break-all;">${message}</span></div>
+                                                    </div></li>`)
+                                                    PrintNumCunt+=1;
+                                                    MgsList.push(data.list[x])
+                                                    MsgId=JSON.parse(data.list[x]).id
+                                                }else{MsgId=JSON.parse(data.list[x]).id}
+                                                if(CheckScroll>0){
+                                                    document.querySelector(".chat-history-body").scrollTop =document.querySelector(".chat-history-body").clientHeight+ document.querySelector(".chat-history-body").scrollHeight;
+                                                }
+                                            }
+                                            MsgLoadCheck=true
+                                        },
+                                        error:function (){console.error("新消息列表获取失败，正在重新获取。");MsgLoadCheck=true;}
+                                    })
+                                }
+                            },1000)
+                    }
+                }
+                return true
+            }
+        })
         //let MsgGet=
             $.ajax({
                 url:'https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=histary',
@@ -1536,158 +1830,24 @@
                 async:false,
                 success:function(data){
                     MsgPageNum=Math.ceil(data.total/10)
+                    MsgNum=Math.ceil(data.total)
+                    //LoadMsgList.length=MsgPageNum
+                    for(let i=1;i<=MsgPageNum;i++){//读取全部消息
+                        $.ajax({
+                            url:`https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=histary&page=${i}`,
+                            type:"GET",
+                            dataType:"json",
+                            async:true,
+                            success:function(data){
+                                LoadMsgListProxy[i-1]=data.list.reverse();
+                            },
+                            error:function(){console.error(`消息组${i}获取失败！`)}
+                        });
+                    }
                 },
-                error:function(data){}
+                error:function(){console.error('服务器数据获取失败')}
             })
-            for(let i=1;i<=MsgPageNum;i++){//读取全部消息
-                $.ajax({
-                    url:`https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=histary&page=${i}`,
-                    type:"GET",
-                    dataType:"json",
-                    async:true,
-                    success:function(data){
-                        MgsList.push({"id":i,"msgBody":data.list})
-                    },
-                    error:function(data){}
-                });
             }
-            setTimeout(()=>{//获取目前消息数量
-            console.log(MgsList)
-            document.querySelector(".chat-history-body > ul").style.display="none"
-            document.querySelector(".chat-history-body").insertAdjacentHTML("beforeend",`<ul class="M27-list-unstyled chat-history talk" data-base-href="../plugin/msto_chat/route/" id="M27-MsgList"></ul>`);
-            ul=document.querySelector('#M27-MsgList')
-            ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor3}${localStorage.CantSeeset3};`)
-            ul.innerHTML=""
-            let UserId=document.querySelector("#statelyMyInfoModal > ul > div > div:nth-child(1) > div.flex-grow-1 > a").innerHTML
-                console.log(MgsList.length)
-                for (let x=MgsList.length-1;x>=0;x--){//渲染全部消息
-                    console.log(MgsList[x].length)
-                for (let y=MgsList[x].length-1;y>=0;y--){
-                if(JSON.parse(MgsList[x][y]).name){
-                    message=JSON.parse(MgsList[x][y]).msg//修正特殊消息内容
-                    message = message.replace(/\[img](.*?)\[\/img]/g, (match, url) => {
-                        // 清理B站图片链接中的参数
-                        url = url.replace(/@.*$/, '');
-                        return renderImage(url);
-                    });
-                    mediaPatterns.forEach(pattern => {
-                        message = message.replace(pattern.regex, pattern.handler);
-                    });if(message.includes("<img src=")){
-                        let Num1=message.indexOf("=");console.log(Num1);
-                        let Num2=message.indexOf("alt");console.log(Num2);
-                        let InputLink
-                        if(message.slice(Num1+2,Num2-2).includes("http")){
-                            InputLink=message.slice(Num1+2,Num2-2)
-                        }else{
-                            InputLink="https://boyshelpboys.com/"+message.slice(Num1+2,Num2-2)
-                        }
-                        PicUrl.splice(0,0,InputLink);
-                        IMGlist.insertAdjacentHTML("afterbegin",`<div class="DIVIMGshow"><img class="ListImgSet" src="${InputLink}" alt="${InputLink}"></div>`)
-                        console.log(PicUrl);
-                    }
-                    let UID=JSON.parse(MgsList[x][y]).pic.substring(JSON.parse(MgsList[x][y]).pic.lastIndexOf("/")+1,JSON.parse(MgsList[x][y]).pic.lastIndexOf("."))
-                    if (UID.includes('avatar')||UID===""){
-                        UID="https://boyshelpboys.com/chat.htm"
-                    }else{
-                        UID=`https://boyshelpboys.com/user-${UID}.htm`
-                    }
-                    ul.insertAdjacentHTML("beforeend",`<li data-index="${JSON.parse(MgsList[x][y]).id}" id="M27-${JSON.parse(MgsList[x][y]).id}" style="list-style:none;padding: 0;margin: 0;display: flex;width: 99%;height: auto;font-size: 1rem;justify-content: space-around;">
-                                        <div style="margin: 0.375rem;box-shadow: 0 1px 5px ${(()=>{if (JSON.parse(MgsList[x]).name===UserId){return "red";}else{return "blue";}})()},0 -1px 5px ${(()=>{if (JSON.parse(MgsList[x]).name===UserId){return "red";}else{return "blue";}})()},1px 0 5px ${(()=>{if (JSON.parse(MgsList[x]).name===UserId){return "red";}else{return "blue";}})()},-1px 0 5px ${(()=>{if (JSON.parse(MgsList[x]).name===UserId){return "red";}else{return "blue";}})()};width: 2.25rem;height: 2.25rem; align-items: center;justify-items: center;display: flex;top: 0.125rem;left: 0.125rem;">
-                                            <a href="${UID}" target="_blank"><img src='${JSON.parse(MgsList[x][y]).pic}' alt="${JSON.parse(MgsList[x][y]).name}" style="font-size: 6px;overflow: hidden;width: 2.25rem;height: 2.25rem;"></a>
-                                        </div>
-                                        <div style="width: 95%;align-items: flex-start;justify-items: center;display: flex;flex-direction: column;">
-                                            <div style="width: 100%;height: auto;"><small style="font-size: 12px;" class="userName" data-username="${JSON.parse(MgsList[x][y]).name}" id="M27-${JSON.parse(MgsList[x][y]).name}-${JSON.parse(MgsList[x][y]).id}">${JSON.parse(MgsList[x][y]).name}</small>&emsp;<small style="font-size: small">${new Date(JSON.parse(MgsList[x][y]).time*1000).toLocaleString()}</small></div>
-                                            <div class="chat-message-text" style="background-color: orange;padding: 0.375rem;margin:0.375rem 0 0 0.375rem;max-width:80% ;height: auto; white-space: normal;"><span style="word-break: break-all">${message}</span></div>
-                                        </div></li>`)
-                //添加点击id@对方的效果
-                document.querySelector(`#M27-${JSON.parse(MgsList[x]).name}-${JSON.parse(MgsList[x][y]).id}`).addEventListener('click', ()=>{
-                    document.querySelector("#msg").value+="@"+document.querySelector(`#M27-${JSON.parse(MgsList[x][y]).name}-${JSON.parse(MgsList[x][y]).id}`).getAttribute('data-username')+" ";
-                })
-                    PrintNumCunt+=1;
-                }
-                MsgId=JSON.parse(MgsList[x]).id//设定最新消息的id
-                document.querySelector(".chat-history-body").scrollTop = document.querySelector(".chat-history-body").scrollHeight;//滚动至底部
-                }
-            }
-            //定时询问新消息
-            //let MsgGtrAJAX=
-                setInterval(()=>{
-                let CheckScroll;
-                MsgIdcheck=true
-                if(MSGGetCheck){
-                MSGGetCheck=false;
-                $.ajax({
-                    url:`https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=new&last_id=${MsgId}`,
-                    type:"GET",
-                    dataType:"json",
-                    async:true,
-                    success:function(data){
-                        CheckScroll=data.list.length
-                        for (let x=0;x<data.list.length;x++){
-                            MsgIdcheck=true
-                            for (let y=MgsList.length-1;y>=0;y--){//去重
-                                if (JSON.parse(data.list[x]).id===JSON.parse(MgsList[y]).id){
-                                    MsgIdcheck=false
-                                    break;
-                                }
-                            }
-                            if(JSON.parse(data.list[x]).name&&MsgIdcheck){
-                                message=JSON.parse(data.list[x]).msg
-                                message = message.replace(/\[img](.*?)\[\/img]/g, (match, url) => {
-                                    // 清理B站图片链接中的参数
-                                    url = url.replace(/@.*$/, '');
-                                    return renderImage(url);
-                                });
-                                mediaPatterns.forEach(pattern => {
-                                    message = message.replace(pattern.regex, pattern.handler);
-                                });
-                                if(message.includes("<img src=")){
-                                    let Num1=message.indexOf("=");
-                                    let Num2=message.indexOf("alt");
-                                    let InputLink
-                                    if(message.slice(Num1+2,Num2-2).includes("http")){
-                                        InputLink=message.slice(Num1+2,Num2-2)
-                                    }else{
-                                        InputLink="https://boyshelpboys.com/"+message.slice(Num1+2,Num2-2)
-                                    }
-                                    PicUrl.splice(0,0,InputLink);
-                                    IMGlist.insertAdjacentHTML("afterbegin",`<div class="DIVIMGshow"><img class="ListImgSet" src="${InputLink}" alt="${InputLink}"></div>`)
-                                    console.log(PicUrl);
-                                }
-                                let UID=JSON.parse(data.list[x]).pic.substring(JSON.parse(data.list[x]).pic.lastIndexOf("/")+1,JSON.parse(data.list[x]).pic.lastIndexOf("."))
-                                if (UID.includes('avatar')||UID===""){
-                                    UID="https://boyshelpboys.com/chat.htm"
-                                }else{
-                                    UID=`https://boyshelpboys.com/user-${UID}.htm`
-                                }
-                                ul.insertAdjacentHTML("beforeend",`<li data-index="${JSON.parse(data.list[x]).id}" id="${JSON.parse(data.list[x]).id}" style="list-style:none;padding: 0;margin: 0;display: flex;width: 99%;height: auto;font-size: 1rem;justify-content: space-around;">
-                                <div style="margin: 0.375rem;box-shadow: 0 1px 5px ${(()=>{if (JSON.parse(data.list[x]).name===UserId){return "red";}else{return "blue";}})()},0 -1px 5px ${(()=>{if (JSON.parse(data.list[x]).name===UserId){return "red";}else{return "blue";}})()},1px 0 5px ${(()=>{if (JSON.parse(data.list[x]).name===UserId){return "red";}else{return "blue";}})()},-1px 0 5px ${(()=>{if (JSON.parse(data.list[x]).name===UserId){return "red";}else{return "blue";}})()};width: 2.25rem;height: 2.25rem; align-items: center;justify-items: center;display: flex;top: 0.125rem;left: 0.125rem;">
-                                    <a href="${UID}" target="_blank"><img src='${JSON.parse(data.list[x]).pic}' alt="${JSON.parse(data.list[x]).name}" style="overflow: hidden;font-size: 8px;width: 2.25rem;height: 2.25rem;"></a>
-                                </div>
-                                <div style="width: 95%;align-items: flex-start;justify-items: center;display: flex;flex-direction: column;">
-                                    <div style="width: 100%;height: auto;"><small style="font-size: 12px;" class="userName" data-username="${JSON.parse(data.list[x]).name}" id="M27-${JSON.parse(data.list[x]).name}-${JSON.parse(data.list[x]).id}">${JSON.parse(data.list[x]).name}</small>&emsp;<small style="font-size: small">${new Date(JSON.parse(data.list[x]).time*1000).toLocaleString()}</small></div>
-                                    <div class="chat-message-text" style="background-color: orange;padding: 0.375rem;margin:0.375rem 0 0 0.375rem;max-width:80% ;height: auto; white-space: normal;"><span style="word-break: break-all">${message}</span></div>
-                                </div></li>`)
-                                //添加点击id@对方的效果
-                                document.querySelector(`#M27-${JSON.parse(data.list[x]).name}-${JSON.parse(data.list[x]).id}`).addEventListener('click', ()=>{
-                                    document.querySelector("#msg").value+="@"+document.querySelector(`#M27-${JSON.parse(data.list[x]).name}-${JSON.parse(data.list[x]).id}`).getAttribute('data-username')+" ";
-                                })
-                                PrintNumCunt+=1;
-                                MgsList.push(data.list[x])
-                                MsgId=JSON.parse(data.list[x]).id
-                            }else{MsgId=ul.querySelector('li:last-child').id}
-                        }
-                        if(CheckScroll>0){
-                            document.querySelector(".chat-history-body").scrollTop =document.querySelector(".chat-history-body").clientHeight+ document.querySelector(".chat-history-body").scrollHeight;
-                        }
-                        MSGGetCheck=true
-                    }
-                })}
-                    $(document).off('contextmenu');
-                },1000)
-                //document.querySelector(".message-menu").innerHTML=""
-            document.querySelector(".chat-history-body").scrollTop =document.querySelector(".chat-history-body").scrollHeight;
-        },1000)}
 
     }else if(nowurl.includes('boyshelpboys.com/plugin')){
             return "";
@@ -1744,51 +1904,20 @@
         localget.addEventListener("click",addtolocal,false);//点击向localst保存数据
         addlocalupdate.addEventListener("change",handleFileSelect,false)//本体提交图片时向DBD保存base64
         //帖子界面图片放大观看功能
-        bac.insertAdjacentHTML("afterbegin",`
-        <div id="ImgBoxM" style="justify-content:center;align-items:center;background-color: rgba(0,0,0);z-index: 1000000000;position: fixed;display: none;left: 0;right: 0;top: 0;bottom: 0;width: 100%;height: 100%;">
-        <div id="ZoomSet" style="display:flex;justify-content:center;align-items:center;height: ${Math.ceil(webHeight*0.9)}px;position: fixed;transition: transform  0.2s ease;">
-        <img style="max-width:100%;max-height: 100%;object-fit: contain;justify-content:center;" src="" id="PicIMgPrint" alt="">
-        </div>
-        </div>`)//图片容纳框
-        let ImgShow=document.querySelector("#PicIMgPrint");//灰色背景
-        let ImgBoxM=document.querySelector("#ImgBoxM");//图片
-        let ZoomSet=document.querySelector("#ZoomSet");//缩放框
-        let scale = 1;
-        const scaleStep = 0.1; // 每次滚动的缩放步长
-        const minScale = 0.5; // 最小缩放比例
-        const maxScale = 3; // 最大缩放比例
+        ImgShowBoxLoad("load")
         document.querySelector("#the_thread_message").addEventListener("click",(e)=>{
             console.log(e.target)
             let ImgLoadTest=new Image()
             if (e.target.src!=null){
                 ImgLoadTest.src=e.target.src
                 ImgLoadTest.onload=()=>{
-                    ImgShow.src=e.target.src;
-                    ImgBoxM.style.display="flex";
+                    ImgShowBoxLoad("show",e.target.src)
                 }
                 ImgLoadTest.onerror=()=>{
                     console.log("链接无法加载")
                 }
             }
         });
-        ImgBoxM.addEventListener("wheel",(e)=>{
-            e.preventDefault();
-            if(e.deltaY<0){
-                scale+=scaleStep
-            }else{
-                scale-=scaleStep
-            }
-            scale = Math.min(Math.max(scale, minScale), maxScale);
-            ZoomSet.style.transform=`scale(${scale})`;
-        })//部分代码来自https://www.cnblogs.com/ai888/p/18613761
-        ImgBoxM.addEventListener("click",()=>{//重置图片框状态
-            ImgShow.src="";
-            ImgBoxM.style.display="none";
-            ZoomSet.style.transform=`scale(1)`;
-        })
-        ImgShow.addEventListener("click",(e)=>{
-            e.stopPropagation()
-        })
     }
     else{
         backPrint(bac,addtarge,nowurl);
