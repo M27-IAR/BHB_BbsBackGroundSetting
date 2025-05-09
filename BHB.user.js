@@ -4,7 +4,7 @@
 // @match       https://*boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     3.1.1.3
+// @version     3.1.1.4
 // @author      M27IAR
 // @license     GPL-3.0-or-later
 // @license     GPL-3.0-or-later; https://www.gnu.org/licenses/gpl-3.0.txt
@@ -170,9 +170,9 @@
     if(!localStorage.webimgsrc){//线上图片链接
         localStorage.setItem("webimgsrc",'https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png');
     }
-    if(!localStorage.version||localStorage.version!== "3.1.1.3"){//安装后的更新检测覆盖
+    if(!localStorage.version||localStorage.version!== "3.1.1.4"){//安装后的更新检测覆盖
         FirstTime=true
-        localStorage.setItem("version","3.1.1.3");localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
+        localStorage.setItem("version","3.1.1.4");localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
          if(localStorage.webimgsrc==="https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png"||localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png"||localStorage.webimgsrc==="https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg") {
             if(webWidth<webHeight){
                 localStorage.setItem("webimgsrc", 'https://m27iarsite.cc/20250225232321_67bde069e2d11.jpg');
@@ -934,7 +934,7 @@
         </p>
         <hr>
         <div>
-            <strong>当前版本为v3.1.1.3</strong>
+            <strong>当前版本为v3.1.1.4</strong>
             <br>
             <span id="WebV">服务器端最新版本为：v </span>
             <div id="UpdateLog">
@@ -957,7 +957,7 @@
     <div style="z-index:10001; position: sticky ;height:auto;width:100%;right: 0;left:0;top: 30px;backdrop-filter: blur(5px);font-size: 13px">
     <p style="margin: 0">使用指南：<a href="https://boyshelpboys.com/thread-2012.htm#tutorial">点击进入</a><br>可以通过以下方式向我反馈：<br> 在此链接下面回复BUG（推荐）：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a><br>前往GitHub仓库提交issue：<a href="https://github.com/M27-IAR/BHB_BbsBackGroundSetting/issues">GitHub仓库</a><br>私信我修改（不推荐）<a href="https://boyshelpboys.com/user-139020.htm">点击我进入后点击“发私信按钮”</a><br>
     脚本作者：M27IAR&nbsp;&nbsp;&nbsp;完整更新日志请前往以下帖子查看：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a><br>
-    <strong>当前版本为v3.1.1.3</strong><br><span id="WebV">服务器端最新版本为：v </span><div style="border-bottom: white 3px solid;height: 0;width: 100%"></div>
+    <strong>当前版本为v3.1.1.4</strong><br><span id="WebV">服务器端最新版本为：v </span><div style="border-bottom: white 3px solid;height: 0;width: 100%"></div>
     </p>
 </div>
 <div id="UpdateLog">
@@ -2106,16 +2106,31 @@
         }
     }else if(NowURL.includes("boyshelpboys.com/thread-")){
         let printCheckForDefuleBackPrint=true;//帖子背景图片检测
-        document.getElementById("the_thread_message").childNodes.forEach((item)=>{
-            if (typeof(item.style)!=="undefined"){
-                if (parseFloat (item.style.opacity)===parseFloat (item.style.opacity)&&parseFloat (item.style.opacity)>=0){
-                    printCheckForDefuleBackPrint=false
+        if(document.getElementById("the_thread_message")!==null){
+            ImgShowBoxLoad("load")//图片显示模块加载
+            document.querySelector("#the_thread_message").addEventListener("click",(e)=>{
+                console.log(e.target)
+                let ImgLoadTest=new Image()
+                if (e.target.src!=null){
+                    ImgLoadTest.src=e.target.src
+                    ImgLoadTest.onload=()=>{
+                        ImgShowBoxLoad("show",e.target.src)
+                    }
+                    ImgLoadTest.onerror=()=>{
+                        console.log("链接无法加载")
+                    }
                 }
-            }
-        })
+            });
+            document.getElementById("the_thread_message").childNodes.forEach((item)=>{//背景校验
+                if (typeof(item.style)!=="undefined"){
+                    if (parseFloat (item.style.opacity)===parseFloat (item.style.opacity)&&parseFloat (item.style.opacity)>=0){
+                        printCheckForDefuleBackPrint=false
+                    }
+                }
+            })
+        }
         if (!printCheckForDefuleBackPrint){
             bac.setAttribute("style",`background-color:${localStorage.BackGroundColor};background-image:url()`)
-            console.log(printCheckForDefuleBackPrint)
         }else{
             backPrint(bac,addtarge,NowURL);
         }
@@ -2133,20 +2148,6 @@
         localget.addEventListener("click",addtolocal,false);//点击向localst保存数据
         addlocalupdate.addEventListener("change",handleFileSelect,false)//本体提交图片时向DBD保存base64
         //帖子界面图片放大观看功能
-        ImgShowBoxLoad("load")
-        document.querySelector("#the_thread_message").addEventListener("click",(e)=>{
-            console.log(e.target)
-            let ImgLoadTest=new Image()
-            if (e.target.src!=null){
-                ImgLoadTest.src=e.target.src
-                ImgLoadTest.onload=()=>{
-                    ImgShowBoxLoad("show",e.target.src)
-                }
-                ImgLoadTest.onerror=()=>{
-                    console.log("链接无法加载")
-                }
-            }
-        });
     }
     else{
         backPrint(bac,addtarge,NowURL);
