@@ -4,7 +4,7 @@
 // @match       https://*boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     3.1.1.4
+// @version     3.1.1.5
 // @author      M27IAR
 // @license     GPL-3.0-or-later
 // @license     GPL-3.0-or-later; https://www.gnu.org/licenses/gpl-3.0.txt
@@ -170,9 +170,9 @@
     if(!localStorage.webimgsrc){//线上图片链接
         localStorage.setItem("webimgsrc",'https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png');
     }
-    if(!localStorage.version||localStorage.version!== "3.1.1.4"){//安装后的更新检测覆盖
+    if(!localStorage.version||localStorage.version!== "3.1.1.5"){//安装后的更新检测覆盖
         FirstTime=true
-        localStorage.setItem("version","3.1.1.4");localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
+        localStorage.setItem("version","3.1.1.5");localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
          if(localStorage.webimgsrc==="https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png"||localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png"||localStorage.webimgsrc==="https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg") {
             if(webWidth<webHeight){
                 localStorage.setItem("webimgsrc", 'https://m27iarsite.cc/20250225232321_67bde069e2d11.jpg');
@@ -744,6 +744,8 @@
         }
     }
     function NewAddSeet() {
+        let BoxPrintCheckOn;
+        if(localStorage.BoxPrint!=="no"){BoxPrintCheckOn='checked'}else{BoxPrintCheckOn=''}
         let newaddbott="<button class='fuckyou' id='newtype'>新插件设置</button>";
         document.querySelector("#navbar-collapse").insertAdjacentHTML("afterbegin",newaddbott);
         document.querySelector("#newtype").addEventListener("click",()=>{
@@ -755,7 +757,7 @@
         })
         document.querySelector("head").insertAdjacentHTML("afterbegin",'<style id="style7"></style>');
         let nedAddStyleSec=document.createTextNode(`
-            #SettingBox{
+        #SettingBox{
             position: fixed;
             left: 50%;
             top: 50%;
@@ -765,15 +767,16 @@
             display: flex;
             font-family: "微软雅黑", sans-serif;
             background-color: #e3fdfd;
-            color:black;
             transition: 0.5s;
+            color: black;
         }
         .SettSelectChange{
-            width: 850px;
+            width: 65%;
             height: 550px;
             border: #71c9ce 1px solid;
         }
         #SettingSelect{
+            position: fixed;
             overflow: auto;
             left: 0;
             top: 0;
@@ -834,7 +837,6 @@
             position: fixed;
             flex-wrap: wrap;
             flex-direction: column;
-
         }
         .SettingShow hr{
             margin: 0;
@@ -850,30 +852,42 @@
         .itemBox{
             border: 1px solid #71c9ce;
             width:40%;
-            margin:auto;
-            display: flex;
+            margin: 0.5rem auto auto;
             flex-direction: column;
+            flex-flow: row wrap;
         }
         .itemBox label{
             margin: 0.5rem 0.5rem 0.5rem 0;
+            display: flex;
+            font-size: 14px;
         }
-        @media screen and (max-width: 768px) {
+        .itemBox input{
+            width:80%;
+        }
+        @media screen and (max-width: 400px) {
             .SettSelectChange{
                 width: 350px;
                 height: 550px;
             }
+            .itemBox label{
+                flex:0 0 100%
+            }
+            #SettingSelect{
+                left: -100%;
+            }
         }`)
         let FixStyleSec=document.querySelector("#style7");
         FixStyleSec.appendChild(nedAddStyleSec);
-        let AddSettingBox=`<div id="SettingBox" class="SettSelectChange" style="display: none;">
-    <div id="SettingSelect" style="order:1;">
+        let AddSettingBox=`
+<div id="SettingBox" class="SettSelectChange">
+    <div id="SettingSelect" style="order:1;overflow: hidden;">
         <div class="JsName"><img src="https://boyshelpboys.com//view/img/logo.png" alt="BHB社区" style="width: 48px"><a href="https://boyshelpboys.com/thread-2012.htm">BHB_backprint</a></div><input type="radio" name="SettingBoxShow" id="one" class="SettingBoxShow" value="all"><label for="one" class="SettingBoxClickShow">通&nbsp&nbsp&nbsp用</label><input type="radio" name="SettingBoxShow" id="two" class="SettingBoxShow" value="Background"><label for="two" class="SettingBoxClickShow">背&nbsp&nbsp&nbsp景</label><input type="radio" name="SettingBoxShow" id="three" class="SettingBoxShow" value="Fort"><label for="three" class="SettingBoxClickShow">字&nbsp&nbsp&nbsp体</label><input type="radio" name="SettingBoxShow" id="fore" class="SettingBoxShow" value="Location"><label for="fore" class="SettingBoxClickShow">定&nbsp&nbsp&nbsp位</label><input type="radio" name="SettingBoxShow" id="five" class="SettingBoxShow" value="Mage"><label for="five" class="SettingBoxClickShow">特&nbsp&nbsp&nbsp效</label><input type="radio" name="SettingBoxShow" id="six" class="SettingBoxShow" value="Item"><label for="six" class="SettingBoxClickShow">部&nbsp&nbsp&nbsp件</label><input type="radio" name="SettingBoxShow" id="seven" class="SettingBoxShow" value="About"><label for="seven" class="SettingBoxClickShow">关&nbsp&nbsp&nbsp于</label>
     </div>
     <div class="SettingShow" style="order:3;" id="all">
 
             <h1 style="font-family: '微软雅黑', sans-serif;margin: 0.25rem;">通用设置</h1>
             <hr>
-            
+
     </div>
     <div class="SettingShow" style="order:3;" id="Background">
 
@@ -894,27 +908,52 @@
 
             <h1 style="font-family: '微软雅黑', sans-serif;margin: 0.25rem;">特效设置</h1>
             <hr>
+        <div class="itemBox"><span>文本框</span><hr>
+            <label for="BoxPrintEn">启用方块特效<input class="SettiingInput" type="checkbox" name="BoxPrintEn" id="BoxPrintEn" value="BoxPrintEn" ${BoxPrintCheckOn}></label><br>
+            <label>背景方格大小<input class="SettiingInput RangeSetting" type="range" min="50" max="150" step="1" onchange='localStorage.BoxSize=value' value="${localStorage.BoxSize}" id="BoxSizeNum"></label><br>
+            <span>边框线设置</span><label for="BoxBorderColor"><input class="SettiingInput ColorSettinr" type="color" id="BoxBorderColor" onchange="localStorage.BoxBorderColor=value" value="${localStorage.BoxBorderColor}"></label>
+            <label for="BoxPrintCansee"><input class="SettiingInput RangeSetting" type="range" min="0" max="99" step="1" onchange='localStorage.BoxBorderCansee=value' value="${localStorage.BoxBorderCansee}" id="BoxPrintCansee"></label>
+            <span>方片颜色</span><label for="BoxColor"><input class="SettiingInput ColorSettinr" type="color" id="BoxColor" onchange="localStorage.BoxColor=value" value="${localStorage.BoxColor}"></label>
+
+        </div>
+
     </div>
     <div class="SettingShow" style="order:3;" id="Item">
             <h1 style="font-family: '微软雅黑', sans-serif;margin: 0.25rem;">部件设置</h1>
             <hr>
-        <div class="itemBox"><span>文本框边框线</span>
-            <label>边框线透明度<input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum8" value="${Math.ceil((Number('0x'+localStorage.CantSeeset8).toString(10))*100/255)}">
-            </label>
-            <label>边框线颜色<input class="SettiingInput ColorSettinr" type="color" id="Msgcolor8" value="${localStorage.CantSeeColor8}"></label>
+        <div  style="display: flex; width: 100%;flex-wrap: wrap; justify-content: space-between; align-items: flex-start;margin-top: 5px" >
+            <div class="itemBox"><span>文本框</span><hr>
+                <span>边框线透明度</span>
+                <label><input type="text" id="MsgSeeNum8Text" value="${Math.ceil((Number('0x'+localStorage.CantSeeset8).toString(10))*100/255)}"><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum8" value="${Math.ceil((Number('0x'+localStorage.CantSeeset8).toString(10))*100/255)}" onchange="document.querySelector('#MsgSeeNum8Text').value=value">
+                </label>
+                <span>边框线颜色</span>
+                <label><input type="text" id="Msgcolor8Text" value="${localStorage.CantSeeColor8}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor8" value="${localStorage.CantSeeColor8}" onchange="document.querySelector('#Msgcolor8Text').value=value"></label>
+            </div>
+            <div class="itemBox"><span>文本框</span><hr>
+                <span>文本框透明度</span>
+                <label><input type="text" id="MsgSeeNum7Text" value="${Math.ceil((Number('0x'+localStorage.CantSeeset7).toString(10))*100/255)}"><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum7" value="${Math.ceil((Number('0x'+localStorage.CantSeeset7).toString(10))*100/255)}" onchange="document.querySelector('#MsgSeeNum7Text').value=value">
+                </label>
+                <span>文本框背景颜色</span>
+                <label><input type="text" id="Msgcolor7Text" value="${localStorage.CantSeeColor7}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor7" value="${localStorage.CantSeeColor7}" onchange="document.querySelector('#Msgcolor7Text').value=value"></label>
+            </div>
+            <div class="itemBox"><span>内容区</span><hr>
+                <span>内容区透明度</span>
+                <label><input type="text" id="MsgSeeNum1Text" value="${Math.ceil((Number('0x'+localStorage.CantSeeset1).toString(10))*100/255)}"><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum1" value="${Math.ceil((Number('0x'+localStorage.CantSeeset1).toString(10))*100/255)}" onchange="document.querySelector('#MsgSeeNum1Text').value=value">
+                </label>
+                <span>内容区背景颜色</span>
+                <label><input type="text" id="Msgcolor1Text" value="${localStorage.CantSeeColor1}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor1" value="${localStorage.CantSeeColor1}" onchange="document.querySelector('#Msgcolor1Text').value=value"></label>
+            </div>
+            <div class="itemBox"><span>顶栏</span><hr>
+                <span>顶栏透明度</span>
+                <label><input type="text" id="MsgSeeNum5Text" value="${Math.ceil((Number('0x'+localStorage.CantSeeset5).toString(10))*100/255)}"><input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum5" value="${Math.ceil((Number('0x'+localStorage.CantSeeset5).toString(10))*100/255)}" onchange="document.querySelector('#MsgSeeNum5Text').value=value">
+                </label>
+                <span>顶栏背景颜色</span>
+                <label><input type="text" id="Msgcolor5Text" value="${localStorage.CantSeeColor5}"><input class="SettiingInput ColorSettinr" type="color" id="Msgcolor5" value="${localStorage.CantSeeColor5}" onchange="document.querySelector('#Msgcolor5Text').value=value"></label>
+            </div>
         </div>
-        <div class="itemBox"><span>文本框</span>
-            <label>文本框透明度<input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum7" value="${Math.ceil((Number('0x'+localStorage.CantSeeset7).toString(10))*100/255)}">
-            </label>
-            <label>文本框背景颜色<input class="SettiingInput ColorSettinr" type="color" id="Msgcolor7" value="${localStorage.CantSeeColor7}"></label>
-        </div>
-        <div class="itemBox"><span>文本框</span>
-            <label>文本框透明度<input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum7" value="${Math.ceil((Number('0x'+localStorage.CantSeeset7).toString(10))*100/255)}">
-            </label>
-            <label>文本框背景颜色<input class="SettiingInput ColorSettinr" type="color" id="Msgcolor7" value="${localStorage.CantSeeColor7}"></label>
-        </div>
+
     </div>
-    <div class="SettingShow" style="order:3;" id="About">
+    <div class="SettingShow" style="order:3;flex-wrap: nowrap" id="About">
         <h1 style="font-family: '微软雅黑', sans-serif;margin: 0.25rem;">关于</h1>
         <hr>
         <p>
@@ -934,7 +973,7 @@
         </p>
         <hr>
         <div>
-            <strong>当前版本为v3.1.1.4</strong>
+            <strong>当前版本为v3.1.0.1</strong>
             <br>
             <span id="WebV">服务器端最新版本为：v </span>
             <div id="UpdateLog">
@@ -944,6 +983,17 @@
     </div>
 </div>`;
         bac.insertAdjacentHTML("afterbegin",AddSettingBox);
+        let lastClick="";
+        document.querySelector("#SettingBox").addEventListener("click",(e)=>{
+            console.log(e.target.checked);
+            if(lastClick!==""&&e.target.checked){
+                document.querySelector(`#${lastClick}`).style.display = "none";
+            }
+            if(e.target.checked) {
+                document.querySelector(`#${e.target.value}`).style.display = "flex";
+                lastClick=e.target.value;
+            }
+        })
     }
     function addsett(leange1,leange2) {//添加设置项目
         let BoxPrintCheckOn;
@@ -957,7 +1007,7 @@
     <div style="z-index:10001; position: sticky ;height:auto;width:100%;right: 0;left:0;top: 30px;backdrop-filter: blur(5px);font-size: 13px">
     <p style="margin: 0">使用指南：<a href="https://boyshelpboys.com/thread-2012.htm#tutorial">点击进入</a><br>可以通过以下方式向我反馈：<br> 在此链接下面回复BUG（推荐）：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a><br>前往GitHub仓库提交issue：<a href="https://github.com/M27-IAR/BHB_BbsBackGroundSetting/issues">GitHub仓库</a><br>私信我修改（不推荐）<a href="https://boyshelpboys.com/user-139020.htm">点击我进入后点击“发私信按钮”</a><br>
     脚本作者：M27IAR&nbsp;&nbsp;&nbsp;完整更新日志请前往以下帖子查看：<a href="https://boyshelpboys.com/thread-2012.htm">BHB聊天室背景更换</a><br>
-    <strong>当前版本为v3.1.1.4</strong><br><span id="WebV">服务器端最新版本为：v </span><div style="border-bottom: white 3px solid;height: 0;width: 100%"></div>
+    <strong>当前版本为v3.1.1.5</strong><br><span id="WebV">服务器端最新版本为：v </span><div style="border-bottom: white 3px solid;height: 0;width: 100%"></div>
     </p>
 </div>
 <div id="UpdateLog">
@@ -1477,27 +1527,46 @@
         const displayTitle = title || url;
         return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="M27-link">${displayTitle}</a>`;
     }
-    function ImgShowBoxLoad(State,Url){
+    let firoffsetX,firoffsetY,changoffsetX,changoffsetY,allchangeX=0,allchangeY=0;//图片移动相关变量
+    function ImgDragFunction(e){//图片展示部分需要的拖动方法
+        changoffsetX=e.offsetX;
+        changoffsetY=e.offsetY;
+        console.log(firoffsetX,changoffsetX,firoffsetY,changoffsetY)
+        console.log(firoffsetX-changoffsetX,firoffsetY-changoffsetY)
+        console.log(allchangeX,allchangeY)
+        document.querySelector("#ZoomSet").style.translate=`${(allchangeX+(changoffsetX-firoffsetX))*2}px ${(allchangeY+(changoffsetY-firoffsetY))*2}px`;
+        e.stopPropagation();
+    }
+    function ImgShowBoxLoad(State,Url){//图片展示方法
         if (State==="load"){
             bac.insertAdjacentHTML("afterbegin",`
-        <div id="ImgBoxM" style="justify-content:center;align-items:center;background-color: rgba(0,0,0);z-index: 1000000000;position: fixed;display: none;left: 0;right: 0;top: 0;bottom: 0;width: 100%;height: 100%;">
-        <div id="ZoomSet" style="display:flex;justify-content:center;align-items:center;height: ${Math.ceil(webHeight*0.9)}px;position: fixed;transition: transform  0.2s ease;">
-        <img style="max-width:100%;max-height: 100%;object-fit: contain;justify-content:center;" src="" id="PicIMgPrint" alt="">
+        <div id="ImgBoxM" style="justify-content:center;align-items:center;background-color: rgba(0,0,0);z-index: 100000000;position: fixed;display: none;left: 0;right: 0;top: 0;bottom: 0;width: 100%;height: 100%;">
+        <div id="ZoomSet" draggable="true" style="display:flex;justify-content:center;align-items:center;height: ${Math.ceil(webHeight*0.9)}px;position: fixed;transition: all  0.2s ease;">
+        <img style="flex:0 0 auto;max-width:100%;max-height: 100%;object-fit: contain;justify-content:center;" src="" id="PicIMgPrint" alt="" draggable="false">
         </div>
-        </div>`)//图片容纳框
-            let ImgShow=document.querySelector("#PicIMgPrint");//灰色背景
-            let ImgBoxM=document.querySelector("#ImgBoxM");//图片
+        <div id="SetBox" style="position: absolute;width: 250px;height: 70px;bottom: 10%;background-color: #aaaaaaaa;display: flex;z-index: 1000000000;">
+        <input type="button" value="Max" id="PicMax">
+        <input type="button" value="Min" id="PicMin">
+        <input type="button" value="LeftTurn" id="PicLeftTurn">
+        <input type="button" value="RightTurn" id="PicRightTurn">
+        </div>
+        </div>
+        `);//图片容纳框
+            let ImgShow=document.querySelector("#PicIMgPrint");//图片
+            let ImgBoxM=document.querySelector("#ImgBoxM");//灰色背景
             let ZoomSet=document.querySelector("#ZoomSet");//缩放框
-            let scale = 1;
+            let scale = 1;//缩放比率
+            let rotatevalue=0;//旋转比率
             const scaleStep = 0.1; // 每次滚动的缩放步长
             const minScale = 0.1; // 最小缩放比例
             const maxScale = 10; // 最大缩放比例
             ImgBoxM.addEventListener("wheel",(e)=>{
                 e.preventDefault();
                 if(e.deltaY<0){
-                    scale+=scaleStep
+                    scale+=scaleStep*scale;
                 }else{
-                    scale-=scaleStep
+                    scale-=scaleStep*scale;
+                    console.log(scaleStep*scale);
                 }
                 scale = Math.min(Math.max(scale, minScale), maxScale);
                 ZoomSet.style.transform=`scale(${scale})`;
@@ -1506,9 +1575,53 @@
                 ImgShow.src="";
                 ImgBoxM.style.display="none";
                 ZoomSet.style.transform=`scale(1)`;
-            })
+                scale=1;
+                ZoomSet.style.translate="0 0";
+                ZoomSet.click();
+                allchangeX=0;
+                allchangeY=0
+            });
             ImgShow.addEventListener("click",(e)=>{
-                e.stopPropagation()
+                e.stopPropagation();
+            });
+            ZoomSet.ondragstart = e => {e.preventDefault();}
+            ZoomSet.ondragend = e => {e.preventDefault();}
+            ZoomSet.addEventListener("mousedown",(e)=>{
+                firoffsetX=e.offsetX
+                firoffsetY=e.offsetY
+                e.stopPropagation();
+                ZoomSet.addEventListener("mousemove",ImgDragFunction);
+            });
+            ImgBoxM.addEventListener("mouseup",(e)=>{
+                ZoomSet.removeEventListener("mousemove",ImgDragFunction);
+                allchangeX=Number(ZoomSet.style.translate.substring(0,ZoomSet.style.translate.indexOf("px")));
+                allchangeY=Number(ZoomSet.style.translate.substring(ZoomSet.style.translate.indexOf("px")+3,ZoomSet.style.translate.lastIndexOf("px")));
+                document.querySelector("#ZoomSet").style.translate=`${allchangeX}px ${allchangeY}px`
+                e.stopPropagation();})
+             document.querySelector("#SetBox").addEventListener("click",(e)=>{
+                 console.log(e.target.value);
+                if(e.target.value==="Max"){
+                    scale+=scaleStep*scale;
+                    scale = Math.min(Math.max(scale, minScale), maxScale);
+                    ZoomSet.style.transform=`scale(${scale})`;
+                }else if(e.target.value==="Min"){
+                    scale-=scaleStep*scale;
+                    scale = Math.min(Math.max(scale, minScale), maxScale);
+                    ZoomSet.style.transform=`scale(${scale})`;
+                }else if(e.target.value==="LeftTurn"){
+                    rotatevalue+=90;
+                    if (rotatevalue>=360) {
+                        rotatevalue = 0;
+                        ZoomSet.style.rotate = `${rotatevalue}deg`;
+                    }else{ZoomSet.style.rotate=`${rotatevalue}deg`;}
+                }else if(e.target.value==="RightTurn"){
+                    rotatevalue-=90;
+                    if (rotatevalue<=-360){
+                        rotatevalue=0;
+                        ZoomSet.style.rotate=`${rotatevalue}deg`;
+                    }else{ZoomSet.style.rotate=`${rotatevalue}deg`;}
+                }
+                 e.stopPropagation();
             })
         }else if(State==="show"){
             let ImgShow=document.querySelector("#PicIMgPrint");//灰色背景
@@ -2108,9 +2221,8 @@
         let printCheckForDefuleBackPrint=true;//帖子背景图片检测
         if(document.getElementById("the_thread_message")!==null){
             ImgShowBoxLoad("load")//图片显示模块加载
-            document.querySelector("#the_thread_message").addEventListener("click",(e)=>{
-                console.log(e.target)
-                let ImgLoadTest=new Image()
+            document.querySelector("div.col-lg-9.main").addEventListener("click",(e)=>{
+                let ImgLoadTest=new Image()//检测图片是否可加载辅助模块
                 if (e.target.src!=null){
                     ImgLoadTest.src=e.target.src
                     ImgLoadTest.onload=()=>{
