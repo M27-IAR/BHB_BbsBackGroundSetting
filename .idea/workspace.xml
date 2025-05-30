@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修复在帖子编写界面背景不正常显示的问题。">
+    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="添加图片拖动功能。（半成品）&#10;修复无法点击帖子回复内图片来放大展示的问题。&#10;调整了图片展示页面缩放计算方式，使其缩放动画更线性。&#10;添加图片控制台功能。">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
@@ -281,15 +281,12 @@
       <workItem from="1747614089301" duration="9108000" />
       <workItem from="1747697807542" duration="4334000" />
       <workItem from="1747788149896" duration="2453000" />
-      <workItem from="1747817104233" duration="18510000" />
-    </task>
-    <task id="LOCAL-00064" summary="添加了焦点检测，现在页面不在焦点将不在进行服务器链接延迟检测&#10;重写了站长的在线人数部分内容,加快了更新速度&#10;修复了指示灯在刚启动页面时没有更新的BUG&#10;添加了背景色调节功能">
-      <option name="closed" value="true" />
-      <created>1736911337443</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1736911337444</updated>
+      <workItem from="1747817104233" duration="18605000" />
+      <workItem from="1747872553457" duration="24029000" />
+      <workItem from="1747960993991" duration="19088000" />
+      <workItem from="1748087098146" duration="600000" />
+      <workItem from="1748424548775" duration="3927000" />
+      <workItem from="1748567695685" duration="5919000" />
     </task>
     <task id="LOCAL-00065" summary="修复了在线列表点击时无法跳转的问题&#10;修复了在部分页面背景色没有被正确设置的问题&#10;添加了主页部分的颜色|透明度调整内容&#10;修复了颜色|透明度调整内容中滑动条没有正常显示的BUG&#10;修复了点击其他位置时在线用户页面|服务器延迟信息页面不会自动隐藏的问题&#10;重写了渲染方案,现在不再区分section模式和background模式,同时’渲染到聊天室页面‘已支持透明度修改">
       <option name="closed" value="true" />
@@ -675,7 +672,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746795329950</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="添加图片拖动功能。（半成品）&#10;修复无法点击帖子回复内图片来放大展示的问题。&#10;调整了图片展示页面缩放计算方式，使其缩放动画更线性。&#10;添加图片控制台功能。">
+      <option name="closed" value="true" />
+      <created>1747840908057</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1747840908058</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -693,7 +698,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="重写了对主页小字体颜色描边渲染的修改方式" />
     <MESSAGE value="gx" />
     <MESSAGE value="添加了焦点检测，现在页面不在焦点将不在进行服务器链接延迟检测&#10;重写了站长的在线人数部分内容,加快了更新速度&#10;修复了指示灯在刚启动页面时没有更新的BUG&#10;添加了背景色调节功能" />
     <MESSAGE value="修复了在线列表点击时无法跳转的问题&#10;修复了在部分页面背景色没有被正确设置的问题&#10;添加了主页部分的颜色|透明度调整内容&#10;修复了颜色|透明度调整内容中滑动条没有正常显示的BUG&#10;修复了点击其他位置时在线用户页面|服务器延迟信息页面不会自动隐藏的问题&#10;重写了渲染方案,现在不再区分section模式和background模式,同时’渲染到聊天室页面‘已支持透明度修改" />
@@ -718,6 +722,7 @@
     <MESSAGE value="自定义聊天室界面上线，可通过“聊天室页面设置”》勾选“启用新聊天室界面”》刷新聊天室界面来启用。" />
     <MESSAGE value="添加聊天室消息通知功能，目前在启动自定义聊天室界面时自动启动。&#10;自定义聊天室界面添加了图片放大查看界面。&#10;重新设计了图片放大部分代码。&#10;添加帖子背景图检测，现在在检测到帖子有背景图情况下不会再次渲染背景图。&#10;修复了滚动条隐藏失败的bug。&#10;修复了在部分情况下背景图片宽高设定异常的问题。&#10;&#10;PS：自定义聊天室界面上线，可通过“聊天室页面设置”》勾选“启用新聊天室界面”》刷新聊天室界面来启用。" />
     <MESSAGE value="修复在帖子编写界面背景不正常显示的问题。" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复在帖子编写界面背景不正常显示的问题。" />
+    <MESSAGE value="添加图片拖动功能。（半成品）&#10;修复无法点击帖子回复内图片来放大展示的问题。&#10;调整了图片展示页面缩放计算方式，使其缩放动画更线性。&#10;添加图片控制台功能。" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加图片拖动功能。（半成品）&#10;修复无法点击帖子回复内图片来放大展示的问题。&#10;调整了图片展示页面缩放计算方式，使其缩放动画更线性。&#10;添加图片控制台功能。" />
   </component>
 </project>
