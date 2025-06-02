@@ -287,6 +287,7 @@
       <workItem from="1748087098146" duration="600000" />
       <workItem from="1748424548775" duration="3927000" />
       <workItem from="1748567695685" duration="5919000" />
+      <workItem from="1748861878178" duration="1973000" />
     </task>
     <task id="LOCAL-00065" summary="修复了在线列表点击时无法跳转的问题&#10;修复了在部分页面背景色没有被正确设置的问题&#10;添加了主页部分的颜色|透明度调整内容&#10;修复了颜色|透明度调整内容中滑动条没有正常显示的BUG&#10;修复了点击其他位置时在线用户页面|服务器延迟信息页面不会自动隐藏的问题&#10;重写了渲染方案,现在不再区分section模式和background模式,同时’渲染到聊天室页面‘已支持透明度修改">
       <option name="closed" value="true" />
