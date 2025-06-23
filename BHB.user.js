@@ -4,7 +4,7 @@
 // @match       https://*boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     3.2.0.2
+// @version     3.2.1.0
 // @author      M27IAR
 // @license     GPL-3.0-or-later
 // @license     GPL-3.0-or-later; https://www.gnu.org/licenses/gpl-3.0.txt
@@ -167,10 +167,14 @@
     if(!localStorage.webimgsrc){//线上图片链接
         localStorage.setItem("webimgsrc",'https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png');
     }
-    if(!localStorage.version||localStorage.version!== "3.2.0.2"){//安装后的更新检测覆盖
+    if(!localStorage.version||localStorage.version!== "3.2.1.0"){//安装后的更新检测覆盖
         FirstTime=true
-        localStorage.setItem("version","3.2.0.2");localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
-         if(localStorage.webimgsrc==="https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg"||localStorage.webimgsrc==="https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png"||localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png"||localStorage.webimgsrc==="https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg") {
+        localStorage.setItem("version","3.2.1.0");localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
+         if(localStorage.webimgsrc==="https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg"
+             ||localStorage.webimgsrc==="https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg"
+             ||localStorage.webimgsrc==="https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png"
+             ||localStorage.webimgsrc==="https://t1-img.233213.xyz/2024/11/29/674922c38c1df.png"
+             ||localStorage.webimgsrc==="https://file.uhsea.com/2501/8298cc1941d4d5173d32e8a78bf67e6a6K.jpg") {
             if(webWidth<webHeight){
                 localStorage.setItem("webimgsrc", 'https://m27iarsite.cc/20250225232321_67bde069e2d11.jpg');
             }else{
@@ -178,6 +182,7 @@
             }
         }
     }else {FirstTime=false}
+
     /*
     这里是历史使用过的默认在线URL，需要自取：
     https://t1-img.233213.xyz/2024/11/25/67447535ec930.jpg
@@ -248,6 +253,7 @@
     let addtarge=document.querySelector("#backread");
     let bac=document.querySelector("body")//网页本体
     document.querySelector("#navbar-collapse > div").innerHTML=""//删除手机模式下顶部的图标
+    let UserId=document.querySelector("#statelyMyInfoModal > ul > div > div:nth-child(1) > div.flex-grow-1 > a").innerHTML//用户id记录
 
     //方片特效准备
     let DIVboxsize=localStorage.BoxSize;
@@ -808,7 +814,7 @@
             <label style="user-select:none;-moz-user-select:none;" for="webpicon" >
                 <span>在线图片</span>
                 <input class="SettiingInput" type='radio' ${webpiclod} name='picloadsele' id='webpicon'  width='100px' value="webpicon">
-                <input class="SettiingInput ShowInputText" type='text'  value='${localStorage.webimgsrc}' name='' id='localimgsrc' style="width:50%;color: black;">
+                <input class="SettiingInput ShowInputText" type='text'  value='${localStorage.webimgsrc}' name='' id='localimgsrc' style="width:50%;color: black;" onchange="localStorage.webimgsrc=this.value">
             </label>
             </div>
             <div id="LocalImgCheck">
@@ -1240,17 +1246,54 @@
         document.querySelector('#M27UserNun').innerText=OnliceUserNum
             OldOnlineUserListJSON=OnlineUserListJSON//更新旧数组
     }
+    let NoNewUIMsgId;
+    let loadCount=0;
+    let lastMsgList,NoUserMsgCount;
     function GetServerStation(MsgLight,MsgPrint) {//信号灯|在线用户部分数据修改
         let nowTime,Time;
         if(UserListCompCheck){
             UserListCompCheck=false;
         $.ajax({//获取服务器状态
                 type:"GET",
-                url: `https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=signal`,
+                url: `https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=new&${typeof (NoNewUIMsgId)!=='undefined'?'last_id='+NoNewUIMsgId:''}`,
                 async:true,
                 timeout:TimeOutSet,
                 beforeSend:function(){nowTime=Date.now();},
+                success:function (data){//非脚本自定义界面时通知系统
+                    if(localStorage.M27NewBBGPrint!=="true"){
+                        let MsgListGer=JSON.parse(data).list;
+                        if (MsgListGer.length>0){
+                        NoNewUIMsgId=JSON.parse(MsgListGer[MsgListGer.length-1]).id;
+                        NoUserMsgCount=MsgListGer.length
+                        if (typeof (lastMsgList)!=="undefined"&&lastMsgList.length>0){
+                            MsgListGer.forEach(item=>{
+                                if (JSON.parse(item).name===UserId) {
+                                    NoUserMsgCount--
+                                }
+                                lastMsgList.forEach(itemx=>{
+                                    if (JSON.parse(item).id===JSON.parse(itemx).id){
+                                        NoUserMsgCount--
+                                    }
+                                })
+                            })
+                        }
+                            if (NoteSte&&MsgListGer.length===1&&!document.hasFocus()&&loadCount>=2&&NoUserMsgCount>0){
+                                let msgNoteJSON={"body":JSON.parse(MsgListGer).name+":"+JSON.parse(MsgListGer).msg,"icon":JSON.parse(MsgListGer).pic}
+                                if(JSON.parse(MsgListGer).msg!==""&&JSON.parse(MsgListGer).msg!==0&&typeof (JSON.parse(MsgListGer).msg)!==undefined&&(JSON.parse(MsgListGer).msg).indexOf('[img]')!==-1){
+                                    msgNoteJSON.image=JSON.parse(MsgListGer).msg.substring(((JSON.parse(MsgListGer).msg).indexOf('[img]')+5),(JSON.parse(MsgListGer).msg).indexOf('[/img]'))
+                                }
+                                let msgpushbox=new Notification("新消息来袭",msgNoteJSON);
+                                setTimeout(()=>{msgpushbox.close()},3000);
+                            }else if(NoteSte&&!document.hasFocus()&&MsgListGer.length>1&&loadCount>=2&&NoUserMsgCount>0){
+                                let msgpushbox=new Notification("新消息来袭",{"body":`多个新消息等待接收`});
+                                setTimeout(()=>{msgpushbox.close()},3000);
+                            }
+                            lastMsgList=MsgListGer;
+                        }
+                    }
+                },
                 complete:function(date,xhr){
+                    loadCount++
                     Time=Date.now();
                     let ReportCode=date.status;
                     if((Time-nowTime)>=TimeOutSet){
@@ -1298,13 +1341,7 @@
                     UserListCompCheck=true;
                 },
             })
-        }else{
         }
-    }
-    function MesWebTestPlan(MsgLight,MsgPrint){//信号灯数据获取
-        if(document.hasFocus()||localStorage.M27NewBBGPrint==="true"){
-            GetServerStation(MsgLight,MsgPrint)
-        }else{}
     }
     let PicUrl=[]
     let message;//站长的特殊链接处理
@@ -1359,9 +1396,14 @@
         console.log(firoffsetX,changoffsetX,firoffsetY,changoffsetY)
         console.log(firoffsetX-changoffsetX,firoffsetY-changoffsetY)
         console.log(allchangeX,allchangeY)
-        document.querySelector("#ZoomSet").style.translate=`${(allchangeX+(changoffsetX-firoffsetX))*2}px ${(allchangeY+(changoffsetY-firoffsetY))*2}px`;
+        document.querySelector("#ZoomSet").style.translate=`${(allchangeX+(changoffsetX-firoffsetX)*scale)}px ${(allchangeY+(changoffsetY-firoffsetY)*scale)}px`;
         e.stopPropagation();
     }
+    let scale = 1;//缩放比率
+    let rotatevalue=0;//旋转比率
+    const scaleStep = 0.1; // 每次滚动的缩放步长
+    const minScale = 0.1; // 最小缩放比例
+    const maxScale = 10; // 最大缩放比例
     function ImgShowBoxLoad(State,Url){//图片展示方法
         if (State==="load"){
             bac.insertAdjacentHTML("afterbegin",`
@@ -1380,11 +1422,6 @@
             let ImgShow=document.querySelector("#PicImgPrint");//图片
             let ImgBoxM=document.querySelector("#ImgBoxM");//灰色背景
             let ZoomSet=document.querySelector("#ZoomSet");//缩放框
-            let scale = 1;//缩放比率
-            let rotatevalue=0;//旋转比率
-            const scaleStep = 0.1; // 每次滚动的缩放步长
-            const minScale = 0.1; // 最小缩放比例
-            const maxScale = 10; // 最大缩放比例
             ImgBoxM.addEventListener("wheel",(e)=>{
                 e.preventDefault();
                 if(e.deltaY<0){
@@ -1421,9 +1458,10 @@
                 ZoomSet.removeEventListener("mousemove",ImgDragFunction);
                 allchangeX=Number(ZoomSet.style.translate.substring(0,ZoomSet.style.translate.indexOf("px")));
                 allchangeY=Number(ZoomSet.style.translate.substring(ZoomSet.style.translate.indexOf("px")+3,ZoomSet.style.translate.lastIndexOf("px")));
-                document.querySelector("#ZoomSet").style.translate=`${allchangeX}px ${allchangeY}px`
+                document.querySelector("#ZoomSet").style.translate=`${allchangeX}px ${allchangeY}px`;
+                console.log(allchangeY,allchangeX)
                 e.stopPropagation();})
-             document.querySelector("#SetBox").addEventListener("click",(e)=>{
+            document.querySelector("#SetBox").addEventListener("click",(e)=>{
                  console.log(e.target.value);
                 if(e.target.value==="Max"){
                     scale+=scaleStep*scale;
@@ -1467,6 +1505,7 @@
             }
             PicUrl.splice(0,0,InputLink);
             IMGlist.insertAdjacentHTML("afterbegin",`<div class="DIVIMGshow"><img class="ListImgSet" src="${InputLink}" alt="${InputLink}"></div>`)
+            return InputLink;
         }
     }
     let NoteSte=false;
@@ -1536,7 +1575,7 @@
         //指示灯计时器
         GetServerStation(MsgLight,MsgPrint)
         let IntTime=setInterval(()=> {
-            MesWebTestPlan(MsgLight,MsgPrint);
+            GetServerStation(MsgLight,MsgPrint);
         },3000)
 
         document.querySelector("#MsgLightCheck").addEventListener("click",(e)=>{//调整指示灯的开关
@@ -1544,7 +1583,7 @@
                 localStorage.setItem("MsgLightCheckX","true");
                 MsgLight.style.display="block";
                 IntTime=setInterval(()=> {
-                    MesWebTestPlan(MsgLight,MsgPrint)
+                    GetServerStation(MsgLight,MsgPrint);
                 },3000);
             }else{
                 localStorage.setItem("MsgLightCheckX","false");
@@ -1819,7 +1858,6 @@
                                 }
                             }
                         })
-                        let UserId=document.querySelector("#statelyMyInfoModal > ul > div > div:nth-child(1) > div.flex-grow-1 > a").innerHTML
                         //渲染全部消息
                             for (let y=0;y<MgsList.length;y++){
                                 if(MgsList[y].name){
@@ -1883,6 +1921,7 @@
                                         success:function(data){
                                             NoteMsgGet=CheckScroll=data.list.length
                                             MsgIdcheck=true
+                                            let MsgImgURL;
                                             for (let x=0;x<data.list.length;x++){
                                                 for (let y=MgsList.length-1;y>=0;y--){//去重
                                                     if (JSON.parse(data.list[x]).id===MgsList[y].id){
@@ -1915,7 +1954,8 @@
                                                         return renderExternalLink(url);
                                                     });
                                                     if(message.includes("<img src=")){//图片列表实现
-                                                        PicList("push",message,IMGlist)
+                                                        MsgImgURL=PicList("push",message,IMGlist)
+                                                        console.log(MsgImgURL)
                                                     }
                                                     let UID=JSON.parse(data.list[x]).pic.substring(JSON.parse(data.list[x]).pic.lastIndexOf("/")+1,JSON.parse(data.list[x]).pic.lastIndexOf("."))
                                                     if (UID.includes('avatar')||UID===""){
@@ -1940,7 +1980,12 @@
                                                 }
                                             }
                                             if (NoteSte&&NoteMsgGet===1&&!document.hasFocus()){
-                                                let msgpushbox=new Notification("新消息来袭",{"body":JSON.parse(data.list[0]).name+":"+JSON.parse(data.list[0]).msg,"icon":JSON.parse(data.list[0]).pic});
+                                                let msgNoteJSON={"body":JSON.parse(data.list[0]).name+":"+JSON.parse(data.list[0]).msg,"icon":JSON.parse(data.list[0]).pic}
+                                                if(MsgImgURL!==""&&MsgImgURL!==0&&MsgImgURL!==undefined){
+                                                    msgNoteJSON.image=MsgImgURL
+                                                }
+                                                console.log(msgNoteJSON)
+                                                let msgpushbox=new Notification("新消息来袭",msgNoteJSON);
                                                 setTimeout(()=>{msgpushbox.close()},3000);
                                             }else if(NoteSte&&NoteMsgGet>1){
                                                 let msgpushbox=new Notification("新消息来袭",{"body":`多个新消息等待接收`});
