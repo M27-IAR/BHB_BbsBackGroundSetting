@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        BHB聊天室背景图片更换（已全局兼容）
+// @name        BHB背景图片更换（已全局兼容）
 // @namespace   Violentmonkey Scripts
 // @match       https://*boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
@@ -252,6 +252,7 @@
     document.querySelector("body").insertAdjacentHTML("afterbegin",addHTML);
     let addtarge=document.querySelector("#backread");
     let bac=document.querySelector("body")//网页本体
+    console.log(document.querySelector("#navbar-collapse > div"))
     document.querySelector("#navbar-collapse > div").innerHTML=""//删除手机模式下顶部的图标
     let UserId=document.querySelector("#statelyMyInfoModal > ul > div > div:nth-child(1) > div.flex-grow-1 > a").innerHTML//用户id记录
 
@@ -595,7 +596,7 @@
                 document.querySelector("#SettingBox").style.display="flex";
             }else {
                 document.querySelector("#SettingBox").style.display="none";
-                location.reload();
+                //location.reload();
             }
         })
         document.querySelector("head").insertAdjacentHTML("afterbegin",'<style id="style7"></style>');
@@ -767,7 +768,7 @@
         FixStyleSec.appendChild(nedAddStyleSec);
         let AddSettingBox=`
 <div id="SettingBox" class="SettSelectChange" style="display: none;">
-    <div style="position: absolute;z-index: 100000000;right:0;padding: 5px 10px;margin: 3px;background-color: #00b3b4;border:1px solid #71c9ce;border-radius: 5px;user-select: none;" onclick="if (document.querySelector('#SettingBox').style.display==='none'){document.querySelector('#SettingBox').style.display='flex';}else {document.querySelector('#SettingBox').style.display='none';location.reload();}"><span>X</span></div>
+    <div style="position: absolute;z-index: 100000000;right:0;padding: 5px 10px;margin: 3px;background-color: #00b3b4;border:1px solid #71c9ce;border-radius: 5px;user-select: none;" id="quit" onclick="if (document.querySelector('#SettingBox').style.display==='none'){document.querySelector('#SettingBox').style.display='flex';}else {document.querySelector('#SettingBox').style.display='none';}"><span>X</span></div>
     <div id="SettingSelect" style="order:1;overflow: hidden;">
         <div class="JsName"><img src="https://boyshelpboys.com//view/img/logo.png" alt="BHB社区" style="width: 48px"><a href="https://boyshelpboys.com/thread-2012.htm">设置</a></div><input type="radio" name="SettingBoxShow" id="one" class="SettingBoxShow" value="all"><label for="one" class="SettingBoxClickShow">通&nbsp&nbsp&nbsp用</label><input type="radio" name="SettingBoxShow" id="two" class="SettingBoxShow" value="Background"><label for="two" class="SettingBoxClickShow">背&nbsp&nbsp&nbsp景</label><input type="radio" name="SettingBoxShow" id="three" class="SettingBoxShow" value="Fort"><label for="three" class="SettingBoxClickShow">字&nbsp&nbsp&nbsp体</label><input type="radio" name="SettingBoxShow" id="fore" class="SettingBoxShow" value="Location"><label for="fore" class="SettingBoxClickShow">定&nbsp&nbsp&nbsp位</label><input type="radio" name="SettingBoxShow" id="five" class="SettingBoxShow" value="Mage"><label for="five" class="SettingBoxClickShow">特&nbsp&nbsp&nbsp效</label><input type="radio" name="SettingBoxShow" id="six" class="SettingBoxShow" value="Item"><label for="six" class="SettingBoxClickShow">部&nbsp&nbsp&nbsp件</label><input type="radio" name="SettingBoxShow" id="seven" class="SettingBoxShow" value="About" id="AboutSelect"><label for="seven" class="SettingBoxClickShow" >关&nbsp&nbsp&nbsp于</label>
     </div>
@@ -775,7 +776,8 @@
     <input type="button" value="┄" class="ShowButton">
             <h1 style="font-family: '微软雅黑', sans-serif;margin: 0.25rem;">通用设置</h1>
             <hr>
-            <div class="itemBox"><span>杂项</span><hr>
+            <div class="itemBox">
+            <span>杂项</span><hr>
         <label for="MsgLightCheck">
             <span>启用指示灯</span>
             <input type="checkbox" style="user-select:none;-moz-user-select: none; " name="MsgLightCheck" id="MsgLightCheck" ${(()=>{if(localStorage.MsgLightCheckX==="true"){return "checked"}else{return ""}})()}>
@@ -831,7 +833,7 @@
             <label for="notseenumber">
                 <span>背景图片透明度</span>
                 <input type="text" class="ShowInputText" id="notseenumberText" maxlength="3" oninput="this.value = this.value.replace(/[^0-9]/g, '')" onchange="if (Number(this.value)<=100&&Number(this.value)>=0){document.querySelector('#notseenumber').value=this.value;localStorage.canseenunber=this.value;}else{this.value=50;document.querySelector('#notseenumber').value=this.value;localStorage.canseenunber=this.value;}" value="${localStorage.canseenunber}">
-                <input class="SettiingInput RangeSetting" type="range" min="0" max="1" step="0.01" value="${localStorage.canseenunber}" id="notseenumber" onchange="localStorage.canseenunber=this.value;notseenumberText.value=this.value"><br>
+                <input class="SettiingInput RangeSetting" type="range" min="0" max="1" step="0.01" value="${localStorage.canseenunber}" id="notseenumber" onchange="localStorage.canseenunber=this.value;document.querySelector('#notseenumberText').value=this.value"><br>
             </label>
     </div>
     <div class="SettingShow" style="order:3;" id="Fort">
@@ -994,7 +996,6 @@
     </div>
 </div>`;
         bac.insertAdjacentHTML("afterbegin",AddSettingBox);
-
         document.querySelector("#LoadImgCheck").addEventListener("click",(e)=>{//图片本地|在线加载选项
             if(e.target.value==="localpicon"){
                 localStorage.localpiclod="1";
@@ -1013,7 +1014,6 @@
                 document.querySelector("#printToBBS").checked=true;
             }
         });
-
         document.querySelector("#webimgsrc").addEventListener("change",handleFileSelect)//本体提交图片时向DBD保存base64
         document.querySelector("#ScrollSett").addEventListener("change",SetScroll)//调整滚动条状态
         let lastClick="";
@@ -1033,10 +1033,14 @@
             }
             console.log(webWidth);
             if (webWidth<=678) {
-                document.querySelector("#SettingSelect").style.left = "-30%"
+                document.querySelector("#SettingSelect").style.left = "-30%" 
                 console.log(document.querySelector("#SettingSelect").style.left);
 
             }
+        })
+        document.querySelector("#quit").addEventListener("click",()=>{
+            if (lastClick!=="About"){location.reload()}
+
         })
         document.querySelectorAll(".ShowButton").forEach(element=>{element.addEventListener("click",()=>{
             document.querySelector("#SettingSelect").style.left="0";
@@ -1412,10 +1416,10 @@
         <img style="flex:0 0 auto;max-width:100%;max-height: 100%;object-fit: contain;justify-content:center;" src="" id="PicImgPrint" alt="" draggable="false">
         </div>
         <div id="SetBox" style="position: absolute;width: 250px;height: 70px;bottom: 10%;background-color: #aaaaaaaa;display: flex;z-index: 1000000000;">
-        <input type="button" value="Max" id="PicMax">
-        <input type="button" value="Min" id="PicMin">
-        <input type="button" value="LeftTurn" id="PicLeftTurn">
-        <input type="button" value="RightTurn" id="PicRightTurn">
+        <input type="button" value="放大" id="PicMax">
+        <input type="button" value="缩小" id="PicMin">
+        <input type="button" value="向左翻转90°" id="PicLeftTurn">
+        <input type="button" value="向右翻转90°" id="PicRightTurn">
         </div>
         </div>
         `);//图片容纳框
@@ -1463,21 +1467,21 @@
                 e.stopPropagation();})
             document.querySelector("#SetBox").addEventListener("click",(e)=>{
                  console.log(e.target.value);
-                if(e.target.value==="Max"){
+                if(e.target.id==="PicMax"){
                     scale+=scaleStep*scale;
                     scale = Math.min(Math.max(scale, minScale), maxScale);
                     ZoomSet.style.transform=`scale(${scale})`;
-                }else if(e.target.value==="Min"){
+                }else if(e.target.id==="PicMin"){
                     scale-=scaleStep*scale;
                     scale = Math.min(Math.max(scale, minScale), maxScale);
                     ZoomSet.style.transform=`scale(${scale})`;
-                }else if(e.target.value==="LeftTurn"){
+                }else if(e.target.id==="PicLeftTurn"){
                     rotatevalue+=90;
                     if (rotatevalue>=360) {
                         rotatevalue = 0;
                         ZoomSet.style.rotate = `${rotatevalue}deg`;
                     }else{ZoomSet.style.rotate=`${rotatevalue}deg`;}
-                }else if(e.target.value==="RightTurn"){
+                }else if(e.target.id==="PicRightTurn"){
                     rotatevalue-=90;
                     if (rotatevalue<=-360){
                         rotatevalue=0;
@@ -1805,11 +1809,11 @@
         let MsgNum=0//消息条数
         let MsgId;//最新消息id
         let MsgIdcheck=true;//消息id验证
-        let MgsList=[]//处理后的消息记录
-        let LoadMsgList=[]//服务器端获取的消息记录
+        let MgsList=[];//处理后的消息记录
+        let LoadMsgList=[];//服务器端获取的消息记录
         let PrintNumCunt=0;//累计渲染消息计数
         let IMGlist=document.querySelector("#MsgIMGShowLocal");
-            let LoadMsgListProxy=new Proxy(LoadMsgList,{
+            let LoadMsgListProxy=new Proxy(LoadMsgList,{//历史消息排列|填充
             set(target, p, newValue) {
                 target[p]=newValue;
                 let SlotCheck=false;//验证数组空槽
@@ -1822,17 +1826,21 @@
                         SlotCheck=true;
                     }
                 }//验证数组空槽结束
-                if (SlotCheck && target.length===MsgPageNum){//调整数据格式并填充
+                if (SlotCheck && target.length===MsgPageNum){//当确认数据获取完备时，调整数据格式并填充
                     for (let i=0;i<=target.length-1;i++){
                         target[i].forEach(item=>{
                             let InputJSON={msg:`${JSON.parse(item).msg}`,name:`${JSON.parse(item).name}`,pic:`${JSON.parse(item).pic}`,time:`${JSON.parse(item).time}`,id:`${JSON.parse(item).id}`,msgboxID:`${i}`}
-                            MsgListProxy.push(InputJSON)
+                            if (typeof JSON.parse(item).quote!=="undefined"){//若有引用消息，额外添加
+                                InputJSON.quote=JSON.parse(item).quote;
+                            }
+                            MsgListProxy.push(InputJSON);
                         });
                     }
                 }
+                return null;
             }
         })
-        let MsgListProxy=new Proxy(MgsList,{
+        let MsgListProxy=new Proxy(MgsList,{//列表加载完成后的渲染部分
             set(target, p, newValue) {
                 if (p!=="length"){
                 target.push(newValue)
@@ -1898,7 +1906,20 @@
                                         </div>
                                         <div class="M27-MsgContent">
                                             <div style="width: 100%;height: auto;"><small class="M27-userName" data-username="${MgsList[y].name}" id="M27-${MgsList[y].name}-${MgsList[y].id}">${MgsList[y].name}</small>&emsp;<small style="font-size: small">${new Date(MgsList[y].time*1000).toLocaleString()}</small></div>
-                                            <div class="M27-ChatMssageText"><span style="word-break: break-all;">${message}</span></div>
+                                            <div class="M27-ChatMssageText">
+                                            <span style="word-break: break-all;">
+                                            ${(()=>{if(typeof (MgsList[y].quote)!=='undefined'){return `
+                                            <a href='#M27-${MgsList[y].quote.id}'>
+                                            <div style="opacity: 0.8;background-color: rgba(66,66,66,0.2);min-height: 50px;border-radius: 5px;border-left: 1px solid gray;display: flex;margin-bottom: 10px;flex-wrap: wrap;">
+                                            <div style="margin-left: 5px;color:darkgray;font-size: 12px;font-weight: bold;flex: 1 1 100%"><span>${MgsList[y].quote.name}</span></div><br>
+                                            <div style="margin-left: 5px;color:lightgray;font-size: 16px;flex: 1 1 100%"><span>${MgsList[y].quote.msg}</span></div>
+                                            </div>
+                                            </a>
+                                            `
+                                            ;}else{return '';}})()}
+                                            ${message}
+                                            </span>
+                                            </div>
                                         </div></li>`)
                                     //添加点击id@对方的效果
                                     PrintNumCunt+=1;
@@ -1969,7 +1990,19 @@
                                                     </div>
                                                     <div class="M27-MsgContent">
                                                         <div style="width: 100%;height: auto;"><small class="M27-userName" data-username="${JSON.parse(data.list[x]).name}" id="M27-${JSON.parse(data.list[x]).name}-${JSON.parse(data.list[x]).id}">${JSON.parse(data.list[x]).name}</small>&emsp;<small style="font-size: small">${new Date(JSON.parse(data.list[x]).time*1000).toLocaleString()}</small></div>
-                                                        <div class="M27-ChatMssageText"><span style="word-break: break-all;">${message}</span></div>
+                                                        <div class="M27-ChatMssageText">
+                                                        <span style="word-break: break-all;">
+                                                        ${(()=>{if(typeof (JSON.parse(data.list[x]).quote)!=='undefined'){return `
+                                                            <a href='#M27-${JSON.parse(data.list[x]).quote.id}'>
+                                                            <div style="opacity: 0.8;background-color: rgba(66,66,66,0.2);min-height: 50px;border-radius: 5px;border-left: 1px solid gray;display: flex;margin-bottom: 10px;flex-wrap: wrap;">
+                                                            <div style="margin-left: 5px;color:darkgray;font-size: 12px;font-weight: bold;flex: 1 1 100%"><span>${JSON.parse(data.list[x]).quote.name}</span></div><br>
+                                                            <div style="margin-left: 5px;color:lightgray;font-size: 16px;flex: 1 1 100%"><span>${JSON.parse(data.list[x]).quote.msg}</span></div>
+                                                            </div>
+                                                            </a>
+                                                            `
+                                                        ;}else{return '';}})()}
+                                                        ${message}
+                                                        </span></div>
                                                     </div></li>`)
                                                     PrintNumCunt+=1;
                                                     MgsList.push(data.list[x])
@@ -1999,10 +2032,10 @@
                             },1000)
                     }
                 }
-                return true
+                return true;
             }
         })
-        //let MsgGet=
+            let MsgPageCount=[]//消息列表序号计数
             $.ajax({
                 url:'https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=histary',
                 type:"GET",
@@ -2010,25 +2043,35 @@
                 async:false,
                 success:function(data){
                     MsgPageNum=Math.ceil(data.total/10)
+                    for (let i=1;i<=Number(MsgPageNum);i++){
+                        MsgPageCount.push(i)
+                        console.log(MsgPageCount);
+                    }
                     MsgNum=Math.ceil(data.total)
                     //LoadMsgList.length=MsgPageNum
-                    for(let i=1;i<=MsgPageNum;i++){//读取全部消息
-                        $.ajax({
-                            url:`https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=histary&page=${i}`,
-                            type:"GET",
-                            dataType:"json",
-                            async:true,
-                            success:function(data){
-                                LoadMsgListProxy[i-1]=data.list.reverse();
-                            },
-                            error:function(){console.error(`消息组${i}获取失败！`)}
-                        });
-                    }
                 },
                 error:function(){console.error('服务器数据获取失败')}
             })
-            }
-
+            let testNum=0
+            do{
+                MsgPageCount.forEach((element,index)=>{
+                    testNum++
+                    $.ajax({
+                        url:`https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=histary&page=${element}`,
+                        type:"GET",
+                        dataType:"json",
+                        async:true,
+                        success:function(data){
+                            LoadMsgListProxy[element-1]=data.list.reverse();
+                            MsgPageCount.splice(index,1);
+                        },
+                        error:function(){
+                            console.error(`消息组${element}获取失败！`)
+                        }
+                    });
+                })
+            } while (MsgPageCount>0&&testNum<=5)
+        }
     }else if(NowURL.includes('boyshelpboys.com/plugin')){
             return "";
     }else if(NowURL.includes('boyshelpboys.com/my')){
@@ -2083,6 +2126,51 @@
                         printCheckForDefuleBackPrint=false
                     }
                 }
+            })
+        }
+        let preList=document.querySelectorAll("pre");
+        if (preList.length>0){
+            preList.forEach(item=>{
+                if (item.classList.contains('language-javascript')===true){
+                    item.insertAdjacentHTML('beforebegin',`
+                    <div id="M27jsAdd" style="vertical-align: center;text-align: center;width: 150px;height: 60px;background-color: rgba(0,0,0,0);border: 2px solid #66ccff;border-radius: 5px;">
+                    <span style="text-align: center;line-height: 55px;font-size: 16px;user-select: none;">运行下列脚本</span>
+                    </div>
+                    `);
+                }
+            })
+            document.querySelectorAll("#M27jsAdd").forEach(item=>{
+                item.addEventListener("click",()=>{
+                        let preloadJS=item.nextElementSibling.children[0].innerText;
+                        bac.insertAdjacentHTML('afterbegin',`
+                        <div id="loadCheckBG" style="width: 100%;height: ${webHeight}px;background-color: rgba(102,205,255,0.3);z-index: 10000000;position: fixed;display: flex;">
+                        <div id="loadCheck" style="width: 250px;height: 150px;background-color:rgb(153,239,178);border: 1px solid #b7f1a0;border-radius: 5px;position: fixed;top: 50%;left: 50%;transform: translate(-50%,-50%); ">
+                        <div style="color:black;margin: 2px;font-size: 12px">
+                        <span>您正在尝试加载一串未知后果javascript代码 </span> <br>
+                        <span>请确认代码是否<span style="color:red">安全可靠</span></span> <br>
+                        <span>不安全的代码可能导致您的<span style="color:red;font-size: 14px;">个人信息泄漏未知的等严重后果</span>且<span style="color:red;font-size: 14px;">无法挽回</span></span><br>
+                        <span>运行此代码导致的所有后果由您<span style="color:red;font-size: 14px;">个人承担</span></span>
+                        </div>
+                        <button style="background-color: red;border: 1px solid rgba(33,255,77,0.68);border-radius:5px;margin: 0 5px;" id="Yes">我已知晓，继续加载</button>
+                        <button style="color: black;background-color: rgba(162,224,129,0.81);border: 1px solid rgba(33,255,77,0.68);border-radius:5px;margin: 0 5px;" id="No">取消加载</button>
+                        </div>
+                        </div>
+                        `)
+                    document.querySelector("#loadCheckBG").addEventListener("click",(e)=>{
+                        e.target.remove()
+                    })
+                    document.querySelector("#loadCheck").addEventListener("click",(e)=>{
+                        e.stopPropagation()
+                        if (e.target.id==='Yes'){
+                            let UserLoadFunc=new Function(preloadJS);
+                            let reportVal=UserLoadFunc()
+                            console.log(reportVal);
+                            document.querySelector("#loadCheckBG").remove()
+                        }else if(e.target.id==='No'){
+                            document.querySelector("#loadCheckBG").remove()
+                        }
+                    })
+                })
             })
         }
         if (!printCheckForDefuleBackPrint){

@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="通知功能添加图片展示功能。&#10;添加不启用新聊天室界面时的通知功能。">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +87,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;,
     &quot;ts.external.directory.path&quot;: &quot;D:\\Program Files\\JetBrains\\WebStorm 2024.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -298,6 +300,24 @@
       <workItem from="1750297416990" duration="2804000" />
       <workItem from="1750312588737" duration="2102000" />
       <workItem from="1750664868605" duration="2264000" />
+      <workItem from="1750721590436" duration="5793000" />
+      <workItem from="1750982153493" duration="2700000" />
+      <workItem from="1751243065837" duration="666000" />
+      <workItem from="1751715295277" duration="632000" />
+      <workItem from="1752380243503" duration="490000" />
+      <workItem from="1753050575477" duration="9378000" />
+      <workItem from="1753140654915" duration="15404000" />
+      <workItem from="1753229720808" duration="1715000" />
+      <workItem from="1753314884961" duration="1018000" />
+      <workItem from="1753354188433" duration="608000" />
+      <workItem from="1753486335319" duration="462000" />
+      <workItem from="1753576589406" duration="1846000" />
+      <workItem from="1753671486086" duration="10386000" />
+      <workItem from="1753745106464" duration="8804000" />
+      <workItem from="1753958756267" duration="4900000" />
+      <workItem from="1754001982810" duration="1445000" />
+      <workItem from="1755082217032" duration="8920000" />
+      <workItem from="1755092763772" duration="1888000" />
     </task>
     <task id="LOCAL-00067" summary="修复了在主页时背景图片不显示的BUG&#10;重写了在线栏，只会显示在线人数和最后在线时间&#10;新的聊天室界面现已上线（Beta），在聊天室界面的插件设置=》聊天室界面设置=》启用新的聊天室界面 点击勾选后刷新即可开始使用">
       <option name="closed" value="true" />
