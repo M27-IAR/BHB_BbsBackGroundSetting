@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="通知功能添加图片展示功能。&#10;添加不启用新聊天室界面时的通知功能。">
+    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="现在，在关于界面关闭设置菜单时不会自动刷新。&#10;脚本修改的聊天室界面支持显示引用类消息。&#10;翻译了图片放大展示界面控制台的英文。&#10;现在支持运行作者写在帖子内的脚本代码。&#10;尝试给自定义聊天室界面添加了消息获取失败重复获取的机制(在代码层面最多会重试5次)。">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
@@ -317,15 +317,7 @@
       <workItem from="1753958756267" duration="4900000" />
       <workItem from="1754001982810" duration="1445000" />
       <workItem from="1755082217032" duration="8920000" />
-      <workItem from="1755092763772" duration="1888000" />
-    </task>
-    <task id="LOCAL-00067" summary="修复了在主页时背景图片不显示的BUG&#10;重写了在线栏，只会显示在线人数和最后在线时间&#10;新的聊天室界面现已上线（Beta），在聊天室界面的插件设置=》聊天室界面设置=》启用新的聊天室界面 点击勾选后刷新即可开始使用">
-      <option name="closed" value="true" />
-      <created>1737441920344</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1737441920345</updated>
+      <workItem from="1755092763772" duration="2200000" />
     </task>
     <task id="LOCAL-00068" summary="修复了在主页时背景图片不显示的BUG&#10;重写了在线栏，只会显示在线人数和最后在线时间&#10;新的聊天室界面现已上线（Beta），在聊天室界面的插件设置=》聊天室界面设置=》启用新的聊天室界面 点击勾选后刷新即可开始使用&#10;删除了“顶栏下部透明度”选项，因为可以被背景色透明度替代并且有BUG">
       <option name="closed" value="true" />
@@ -711,7 +703,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750680288115</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="现在，在关于界面关闭设置菜单时不会自动刷新。&#10;脚本修改的聊天室界面支持显示引用类消息。&#10;翻译了图片放大展示界面控制台的英文。&#10;现在支持运行作者写在帖子内的脚本代码。&#10;尝试给自定义聊天室界面添加了消息获取失败重复获取的机制(在代码层面最多会重试5次)。">
+      <option name="closed" value="true" />
+      <created>1755094988506</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1755094988506</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -729,7 +729,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修复了在线列表点击时无法跳转的问题&#10;修复了在部分页面背景色没有被正确设置的问题&#10;添加了主页部分的颜色|透明度调整内容&#10;修复了颜色|透明度调整内容中滑动条没有正常显示的BUG&#10;修复了点击其他位置时在线用户页面|服务器延迟信息页面不会自动隐藏的问题&#10;重写了渲染方案,现在不再区分section模式和background模式,同时’渲染到聊天室页面‘已支持透明度修改" />
     <MESSAGE value="修复了在线用户中有特殊类型ID会导致报错的问题" />
     <MESSAGE value="修复了在主页时背景图片不显示的BUG&#10;重写了在线栏，只会显示在线人数和最后在线时间&#10;新的聊天室界面现已上线（Beta），在聊天室界面的插件设置=》聊天室界面设置=》启用新的聊天室界面 点击勾选后刷新即可开始使用" />
     <MESSAGE value="修复了在主页时背景图片不显示的BUG&#10;重写了在线栏，只会显示在线人数和最后在线时间&#10;新的聊天室界面现已上线（Beta），在聊天室界面的插件设置=》聊天室界面设置=》启用新的聊天室界面 点击勾选后刷新即可开始使用&#10;删除了“顶栏下部透明度”选项，因为可以被背景色透明度替代并且有BUG" />
@@ -754,6 +753,7 @@
     <MESSAGE value="添加图片拖动功能。（半成品）&#10;修复无法点击帖子回复内图片来放大展示的问题。&#10;调整了图片展示页面缩放计算方式，使其缩放动画更线性。&#10;添加图片控制台功能。" />
     <MESSAGE value="修复设置页面二次切换到一个页面时显示异常的问题&#10;修复分菜单“聊天室界面设置”内容显示异常的问题" />
     <MESSAGE value="通知功能添加图片展示功能。&#10;添加不启用新聊天室界面时的通知功能。" />
-    <option name="LAST_COMMIT_MESSAGE" value="通知功能添加图片展示功能。&#10;添加不启用新聊天室界面时的通知功能。" />
+    <MESSAGE value="现在，在关于界面关闭设置菜单时不会自动刷新。&#10;脚本修改的聊天室界面支持显示引用类消息。&#10;翻译了图片放大展示界面控制台的英文。&#10;现在支持运行作者写在帖子内的脚本代码。&#10;尝试给自定义聊天室界面添加了消息获取失败重复获取的机制(在代码层面最多会重试5次)。" />
+    <option name="LAST_COMMIT_MESSAGE" value="现在，在关于界面关闭设置菜单时不会自动刷新。&#10;脚本修改的聊天室界面支持显示引用类消息。&#10;翻译了图片放大展示界面控制台的英文。&#10;现在支持运行作者写在帖子内的脚本代码。&#10;尝试给自定义聊天室界面添加了消息获取失败重复获取的机制(在代码层面最多会重试5次)。" />
   </component>
 </project>
