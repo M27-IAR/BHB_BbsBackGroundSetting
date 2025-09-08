@@ -4,7 +4,7 @@
 // @match       https://*boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     3.2.2.0
+// @version     3.2.3.0
 // @author      M27IAR
 // @license     GPL-3.0-or-later
 // @license     GPL-3.0-or-later; https://www.gnu.org/licenses/gpl-3.0.txt
@@ -12,8 +12,8 @@
 (function(){
     let FirstTime=false
     let webWidth = window.innerWidth;
-    let webHeight = window.innerHeight;//获取页面宽高
-    //本地存储检测
+    let webHeight = window.innerHeight;//获取页面宽高|用于特效效果加载使用
+    //本地数据检测|若无相关数据则填充相关默认值
     if(!localStorage.M27NewBBGPrint){//是否启用自定义聊天室
         localStorage.setItem("M27NewBBGPrint","false")
     }
@@ -116,60 +116,44 @@
     if(!localStorage.scrollstyle){//滚动条状态
         localStorage.setItem("scrollstyle","1")
     }
+    localStorage.removeItem("CantSeeset3")
+    localStorage.removeItem("CantSeeset4")
+    localStorage.removeItem("CantSeeset6")
+    localStorage.removeItem("CantSeeset9")
     if(!localStorage.CantSeeset1){//聊天历史记录1
         localStorage.setItem("CantSeeset1","00");
     }
-    if(!localStorage.CantSeeset3){//聊天历史记录2（位置更靠里
-        localStorage.setItem("CantSeeset3","00");
-    }
-    if(!localStorage.CantSeeset4){//聊天页面外层边框
-        localStorage.setItem("CantSeeset4","20");
-    }
-    if(!localStorage.CantSeeset5){//聊天页面外层边框
+    if(!localStorage.CantSeeset5){
         localStorage.setItem("CantSeeset5","20");
     }
-    if(!localStorage.CantSeeset6){//聊天页面外层边框
-        localStorage.setItem("CantSeeset6","20");
-    }
-    if(!localStorage.CantSeeset7){//聊天页面外层边框
+    if(!localStorage.CantSeeset7){
         localStorage.setItem("CantSeeset7","20");
     }
-    if(!localStorage.CantSeeset8){//聊天页面外层边框
+    if(!localStorage.CantSeeset8){
         localStorage.setItem("CantSeeset8","50");
     }
-    if(!localStorage.CantSeeset9){//聊天页面外层边框
-        localStorage.setItem("CantSeeset9","20");
-    }
-    if(!localStorage.CantSeeColor1){//聊天历史记录1
+    localStorage.removeItem("CantSeeColor3")
+    localStorage.removeItem("CantSeeColor4")
+    localStorage.removeItem("CantSeeColor6")
+    localStorage.removeItem("CantSeeColor9")
+    if(!localStorage.CantSeeColor1){
         localStorage.setItem("CantSeeColor1","#2b2c40");
     }
-    if(!localStorage.CantSeeColor3){//自顶栏往下部分
-        localStorage.setItem("CantSeeColor3","#2b2c40");
-    }
-    if(!localStorage.CantSeeColor4){//聊天页面外层边框
-        localStorage.setItem("CantSeeColor4","#2b2c40");
-    }
-    if(!localStorage.CantSeeColor5){//聊天页面外层边框
+    if(!localStorage.CantSeeColor5){
         localStorage.setItem("CantSeeColor5","#2b2c40");
     }
-    if(!localStorage.CantSeeColor6){//聊天页面外层边框
-        localStorage.setItem("CantSeeColor6","#2b2c40");
-    }
-    if(!localStorage.CantSeeColor7){//聊天页面外层边框
+    if(!localStorage.CantSeeColor7){
         localStorage.setItem("CantSeeColor7","#2b2c40");
     }
-    if(!localStorage.CantSeeColor8){//聊天页面外层边框
+    if(!localStorage.CantSeeColor8){
         localStorage.setItem("CantSeeColor8","#66ccff");
-    }
-    if(!localStorage.CantSeeColor9){//聊天页面外层边框
-        localStorage.setItem("CantSeeColor9","#2b2c40");
     }
     if(!localStorage.webimgsrc){//线上图片链接
         localStorage.setItem("webimgsrc",'https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png');
     }
-    if(!localStorage.version||localStorage.version!== "3.2.2.0"){//安装后的更新检测覆盖
+    if(!localStorage.version||localStorage.version!== "3.2.3.0"){//安装后的更新检测覆盖
         FirstTime=true
-        localStorage.setItem("version","3.2.2.0");localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
+        localStorage.setItem("version","3.2.3.0");localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
          if(localStorage.webimgsrc==="https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg"
              ||localStorage.webimgsrc==="https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg"
              ||localStorage.webimgsrc==="https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png"
@@ -247,12 +231,10 @@
 
     let localHightSize="";
     let localWidthSize="";
-    //背景图片需要的div插入
-    let addHTML='<div id="backread">'
+    let addHTML='<div id="backread">'    //背景特效需要的div插入
     document.querySelector("body").insertAdjacentHTML("afterbegin",addHTML);
     let addtarge=document.querySelector("#backread");
     let bac=document.querySelector("body")//网页本体
-    console.log(document.querySelector("#navbar-collapse > div"))
     document.querySelector("#navbar-collapse > div").innerHTML=""//删除手机模式下顶部的图标
     let UserId=document.querySelector("#statelyMyInfoModal > ul > div > div:nth-child(1) > div.flex-grow-1 > a").innerHTML//用户id记录
 
@@ -271,7 +253,7 @@
         clearInterval(tiner)
     }
 
-    window.addEventListener('resize', function(){//在界面尺寸变更时重新填充背景方块
+    window.addEventListener('resize', function(){//背景特效|在界面尺寸变更时重新填充背景方块
         clearInterval(tiner);
         webWidth=window.innerWidth;
         webHeight=window.innerHeight;
@@ -309,7 +291,7 @@
         .RangeSetting{height:0.5rem;width:7.8125rem;} 
         .ColorSettinr{width:2.75rem;} 
         .SettiingInput{padding:2px 1px;border:0.125rem 0rem;} 
-        .GameBarFix{background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6} !important;
+        .GameBarFix{background-color:${localStorage.CantSeeColor5}${localStorage.CantSeeset5} !important;
         border:0 !important;margin:0 !important; transition: 0.3s;} 
         hr{margin: 0.125rem 0 !important;color:#f0f5f9;} 
         small{text-shadow: 1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor} ;font-size:${localStorage.NameFontSize}px !important; color:${localStorage.LocalFontColorsec} } 
@@ -832,7 +814,7 @@
             </div>
             <label for="notseenumber">
                 <span>背景图片透明度</span>
-                <input type="text" class="ShowInputText" id="notseenumberText" maxlength="3" oninput="this.value = this.value.replace(/[^0-9]/g, '')" onchange="if (Number(this.value)<=100&&Number(this.value)>=0){document.querySelector('#notseenumber').value=this.value;localStorage.canseenunber=this.value;}else{this.value=50;document.querySelector('#notseenumber').value=this.value;localStorage.canseenunber=this.value;}" value="${localStorage.canseenunber}">
+                <input type="text" class="ShowInputText" id="notseenumberText" style="width:15%;" maxlength="3" oninput="this.value = this.value.replace(/[^0-9]/g, '')" onchange="if (Number(this.value)<=100&&Number(this.value)>=0){document.querySelector('#notseenumber').value=this.value;localStorage.canseenunber=this.value;}else{this.value=50;document.querySelector('#notseenumber').value=this.value;localStorage.canseenunber=this.value;}" value="${localStorage.canseenunber}">
                 <input class="SettiingInput RangeSetting" type="range" min="0" max="1" step="0.01" value="${localStorage.canseenunber}" id="notseenumber" onchange="localStorage.canseenunber=this.value;document.querySelector('#notseenumberText').value=this.value"><br>
             </label>
     </div>
@@ -924,45 +906,46 @@
             <div class="itemBox"><span>文本框边框线</span><hr>
                 <span>边框线透明度</span>
                 <label>
-                <input type="text" class="ShowInputText" id="MsgSeeNum8Text" maxlength="3" oninput="this.value = this.value.replace(/[^0-9]/g, '')" onchange="if (Number(this.value)<=100&&Number(this.value)>=0){document.querySelector('#MsgSeeNum8').value=this.value;}else{this.value=50}" value="${Math.ceil((Number('0x'+localStorage.CantSeeset8).toString(10))*100/255)}">
-                <input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum8" value="${Math.ceil((Number('0x'+localStorage.CantSeeset8).toString(10))*100/255)}" onchange="document.querySelector('#MsgSeeNum8Text').value=value">
+                <input type="text" class="ShowInputText" id="MsgSeeNum8Text" maxlength="3" oninput="this.value = this.value.replace(/[^0-9]/g, '')" onchange="if (Number(this.value)<=100&&Number(this.value)>=0){document.querySelector('#MsgSeeNum8').value=this.value;}else{this.value=50;}localStorage.setItem('CantSeeset8',((~~(value*255/100))!==0?(~~(value*255/100)).toString(16):(~~(value*255/100)).toString(16)+'0'))" value="${Math.ceil((Number('0x'+localStorage.CantSeeset8).toString(10))*100/255)}">
+                <input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum8" value="${Math.ceil((Number('0x'+localStorage.CantSeeset8).toString(10))*100/255)}" onchange="document.querySelector('#MsgSeeNum8Text').value=value;localStorage.setItem('CantSeeset8',((~~(value*255/100))!==0?(~~(value*255/100)).toString(16):(~~(value*255/100)).toString(16)+'0'))">
                 </label>
                 <span>边框线颜色</span>
-                <label><input type="text" class="ShowInputText" id="Msgcolor8Text" maxlength="7" oninput="this.value = this.value.replace(/[^a-f0-9#]/gi, '0');if(this.value.length>7){this.value='#'+this.value.substring(1,6)}" onchange="if (this.value.indexOf('#')===0){let VaLeng=this.value.length;if (VaLeng<7){for (let i=0;i<7-VaLeng;i++){this.value+='0';}document.querySelector('#Msgcolor8').value=this.value}else {document.querySelector('#Msgcolor8').value=this.value}}" value="${localStorage.CantSeeColor8}">
-                <input class="SettiingInput ColorSettinr" type="color" id="Msgcolor8" value="${localStorage.CantSeeColor8}" onchange="document.querySelector('#Msgcolor8Text').value=value"></label>
+                <label>
+                <input type="text" class="ShowInputText" id="Msgcolor8Text" maxlength="7" oninput="this.value = this.value.replace(/[^a-f0-9#]/gi, '0');if(this.value.length>7){this.value='#'+this.value.substring(1,6)}" onchange="if (this.value.indexOf('#')===0){let VaLeng=this.value.length;if (VaLeng<7){for (let i=0;i<7-VaLeng;i++){this.value+='0';}document.querySelector('#Msgcolor8').value=this.value}else {document.querySelector('#Msgcolor8').value=this.value}localStorage.setItem('CanSeeColor8',this.value)}" value="${localStorage.CantSeeColor8}">
+                <input class="SettiingInput ColorSettinr" type="color" id="Msgcolor8" value="${localStorage.CantSeeColor8}" onchange="document.querySelector('#Msgcolor8Text').value=value;localStorage.setItem('CanSeeColor8',value)}"></label>
             </div>
             <div class="itemBox"><span>文本框</span><hr>
                 <span>文本框透明度</span>
                 <label>
-                <input type="text" class="ShowInputText" maxlength="3" id="MsgSeeNum7Text" oninput="this.value = this.value.replace(/[^0-9]/g, '')" onchange="if (Number(this.value)<=100&&Number(this.value)>=0){document.querySelector('#MsgSeeNum7').value=this.value}else{this.value=50}" value="${Math.ceil((Number('0x'+localStorage.CantSeeset7).toString(10))*100/255)}">
-                <input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum7" value="${Math.ceil((Number('0x'+localStorage.CantSeeset7).toString(10))*100/255)}" onchange="document.querySelector('#MsgSeeNum7Text').value=value">
+                <input type="text" class="ShowInputText" maxlength="3" id="MsgSeeNum7Text" oninput="this.value = this.value.replace(/[^0-9]/g, '')" onchange="if (Number(this.value)<=100&&Number(this.value)>=0){document.querySelector('#MsgSeeNum7').value=this.value}else{this.value=50;}localStorage.setItem('CantSeeset7',((~~(value*255/100))!==0?(~~(value*255/100)).toString(16):(~~(value*255/100)).toString(16)+'0'))" value="${Math.ceil((Number('0x'+localStorage.CantSeeset7).toString(10))*100/255)}">
+                <input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum7" value="${Math.ceil((Number('0x'+localStorage.CantSeeset7).toString(10))*100/255)}" onchange="document.querySelector('#MsgSeeNum7Text').value=value;localStorage.setItem('CantSeeset7',((~~(value*255/100))!==0?(~~(value*255/100)).toString(16):(~~(value*255/100)).toString(16)+'0'))">
                 </label>
                 <span>文本框背景颜色</span>
                 <label>
-                <input type="text" class="ShowInputText" id="Msgcolor7Text" maxlength="7" oninput="this.value = this.value.replace(/[^a-f0-9#]/gi, '0');if(this.value.length>7){this.value='#'+this.value.substring(1,6)}" onchange="if (this.value.indexOf('#')===0){let VaLeng=this.value.length;if (VaLeng<7){for (let i=0;i<7-VaLeng;i++){this.value+='0';}document.querySelector('#Msgcolor7').value=this.value}else {document.querySelector('#Msgcolor7').value=this.value}}" value="${localStorage.CantSeeColor7}">
-                <input class="SettiingInput ColorSettinr" type="color" id="Msgcolor7" value="${localStorage.CantSeeColor7}" onchange="document.querySelector('#Msgcolor7Text').value=value"></label>
+                <input type="text" class="ShowInputText" id="Msgcolor7Text" maxlength="7" oninput="this.value = this.value.replace(/[^a-f0-9#]/gi, '0');if(this.value.length>7){this.value='#'+this.value.substring(1,6)}" onchange="if (this.value.indexOf('#')===0){let VaLeng=this.value.length;if (VaLeng<7){for (let i=0;i<7-VaLeng;i++){this.value+='0';}document.querySelector('#Msgcolor7').value=this.value}else {document.querySelector('#Msgcolor7').value=this.value}localStorage.setItem('CanSeeColor7',value)}" value="${localStorage.CantSeeColor7}">
+                <input class="SettiingInput ColorSettinr" type="color" id="Msgcolor7" value="${localStorage.CantSeeColor7}" onchange="document.querySelector('#Msgcolor7Text').value=value;localStorage.setItem('CanSeeColor7',value)"></label>
             </div>
             <div class="itemBox"><span>内容区</span><hr>
                 <span>内容区透明度</span>
                 <label>
-                <input type="text" class="ShowInputText" maxlength="3" id="MsgSeeNum1Text" oninput="this.value = this.value.replace(/[^0-9]/g, '')" onchange="if (Number(this.value)<=100&&Number(this.value)>=0){document.querySelector('#MsgSeeNum1').value=this.value}else{this.value=50}" value="${Math.ceil((Number('0x'+localStorage.CantSeeset1).toString(10))*100/255)}">
-                <input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum1" value="${Math.ceil((Number('0x'+localStorage.CantSeeset1).toString(10))*100/255)}" onchange="document.querySelector('#MsgSeeNum1Text').value=value">
+                <input type="text" class="ShowInputText" maxlength="3" id="MsgSeeNum1Text" oninput="this.value = this.value.replace(/[^0-9]/g, '')" onchange="if (Number(this.value)<=100&&Number(this.value)>=0){document.querySelector('#MsgSeeNum1').value=this.value}else{this.value=50;}localStorage.setItem('CantSeeset1',((~~(value*255/100))!==0?(~~(value*255/100)).toString(16):(~~(value*255/100)).toString(16)+'0'))" value="${Math.ceil((Number('0x'+localStorage.CantSeeset1).toString(10))*100/255)}">
+                <input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum1" value="${Math.ceil((Number('0x'+localStorage.CantSeeset1).toString(10))*100/255)}" onchange="document.querySelector('#MsgSeeNum1Text').value=value;localStorage.setItem('CantSeeset1',((~~(value*255/100))!==0?(~~(value*255/100)).toString(16):(~~(value*255/100)).toString(16)+'0'))">
                 </label>
                 <span>内容区背景颜色</span>
                 <label>
-                <input type="text" class="ShowInputText" maxlength="7" oninput="this.value = this.value.replace(/[^a-f0-9#]/gi, '0');if(this.value.length>7){this.value='#'+this.value.substring(1,6)}" onchange="if (this.value.indexOf('#')===0){let VaLeng=this.value.length;if (VaLeng<7){for (let i=0;i<7-VaLeng;i++){this.value+='0';}document.querySelector('#Msgcolor1').value=this.value}else {document.querySelector('#Msgcolor1').value=this.value}}" id="Msgcolor1Text" value="${localStorage.CantSeeColor1}">
-                <input class="SettiingInput ColorSettinr" type="color" id="Msgcolor1" value="${localStorage.CantSeeColor1}" onchange="document.querySelector('#Msgcolor1Text').value=value"></label>
+                <input type="text" class="ShowInputText" maxlength="7" oninput="this.value = this.value.replace(/[^a-f0-9#]/gi, '0');if(this.value.length>7){this.value='#'+this.value.substring(1,6)}" onchange="if (this.value.indexOf('#')===0){let VaLeng=this.value.length;if (VaLeng<7){for (let i=0;i<7-VaLeng;i++){this.value+='0';}document.querySelector('#Msgcolor1').value=this.value}else {document.querySelector('#Msgcolor1').value=this.value}localStorage.setItem('CanSeeColor1',value)}" id="Msgcolor1Text" value="${localStorage.CantSeeColor1}">
+                <input class="SettiingInput ColorSettinr" type="color" id="Msgcolor1" value="${localStorage.CantSeeColor1}" onchange="document.querySelector('#Msgcolor1Text').value=value;localStorage.setItem('CanSeeColor1',value)"></label>
             </div>
             <div class="itemBox"><span>顶栏</span><hr>
                 <span>顶栏透明度</span>
                 <label>
-                <input type="text" class="ShowInputText" maxlength="3" id="MsgSeeNum5Text" oninput="this.value = this.value.replace(/[^0-9]/g, '')" onchange="if (Number(this.value)<=100&&Number(this.value)>=0){document.querySelector('#MsgSeeNum5').value=this.value}else{this.value=50}" value="${Math.ceil((Number('0x'+localStorage.CantSeeset5).toString(10))*100/255)}">
-                <input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum5" value="${Math.ceil((Number('0x'+localStorage.CantSeeset5).toString(10))*100/255)}" onchange="document.querySelector('#MsgSeeNum5Text').value=value">
+                <input type="text" class="ShowInputText" maxlength="3" id="MsgSeeNum5Text" oninput="this.value = this.value.replace(/[^0-9]/g, '')" onchange="if (Number(this.value)<=100&&Number(this.value)>=0){document.querySelector('#MsgSeeNum5').value=this.value}else{this.value=50;}localStorage.setItem('CantSeeset5',((~~(value*255/100))!==0?(~~(value*255/100)).toString(16):(~~(value*255/100)).toString(16)+'0'))" value="${Math.ceil((Number('0x'+localStorage.CantSeeset5).toString(10))*100/255)}">
+                <input class="SettiingInput RangeSetting" type="range" id="MsgSeeNum5" value="${Math.ceil((Number('0x'+localStorage.CantSeeset5).toString(10))*100/255)}" onchange="document.querySelector('#MsgSeeNum5Text').value=value;localStorage.setItem('CantSeeset5',((~~(value*255/100))!==0?(~~(value*255/100)).toString(16):(~~(value*255/100)).toString(16)+'0'))">
                 </label>
                 <span>顶栏背景颜色</span>
                 <label>
-                <input type="text" class="ShowInputText" maxlength="7" oninput="this.value = this.value.replace(/[^a-f0-9#]/gi, '0');if(this.value.length>7){this.value='#'+this.value.substring(1,6)}" onchange="if (this.value.indexOf('#')===0){let VaLeng=this.value.length;if (VaLeng<7){for (let i=0;i<7-VaLeng;i++){this.value+='0';}document.querySelector('#Msgcolor5').value=this.value}else {document.querySelector('#Msgcolor5').value=this.value}}" id="Msgcolor5Text" value="${localStorage.CantSeeColor5}">
-                <input class="SettiingInput ColorSettinr" type="color" id="Msgcolor5" value="${localStorage.CantSeeColor5}" onchange="document.querySelector('#Msgcolor5Text').value=value"></label>
+                <input type="text" class="ShowInputText" maxlength="7" oninput="this.value = this.value.replace(/[^a-f0-9#]/gi, '0');if(this.value.length>7){this.value='#'+this.value.substring(1,6)}" onchange="if (this.value.indexOf('#')===0){let VaLeng=this.value.length;if (VaLeng<7){for (let i=0;i<7-VaLeng;i++){this.value+='0';}document.querySelector('#Msgcolor5').value=this.value}else {document.querySelector('#Msgcolor5').value=this.value}localStorage.setItem('CanSeeColor5',value)}" id="Msgcolor5Text" value="${localStorage.CantSeeColor5}">
+                <input class="SettiingInput ColorSettinr" type="color" id="Msgcolor5" value="${localStorage.CantSeeColor5}" onchange="document.querySelector('#Msgcolor5Text').value=value;localStorage.setItem('CanSeeColor5',value)"></label>
             </div>
         </div>
     </div>
@@ -1283,7 +1266,7 @@
                         }
                             if (NoteSte&&MsgListGer.length===1&&!document.hasFocus()&&loadCount>=2&&NoUserMsgCount>0){
                                 let msgNoteJSON={"body":JSON.parse(MsgListGer).name+":"+JSON.parse(MsgListGer).msg,"icon":JSON.parse(MsgListGer).pic}
-                                if(JSON.parse(MsgListGer).msg!==""&&JSON.parse(MsgListGer).msg!==0&&typeof (JSON.parse(MsgListGer).msg)!==undefined&&(JSON.parse(MsgListGer).msg).indexOf('[img]')!==-1){
+                                if(JSON.parse(MsgListGer).msg!==""&&JSON.parse(MsgListGer).msg!==0&&typeof (JSON.parse(MsgListGer).msg)!=="undefined"&&(JSON.parse(MsgListGer).msg).indexOf('[img]')!==-1){
                                     msgNoteJSON.image=JSON.parse(MsgListGer).msg.substring(((JSON.parse(MsgListGer).msg).indexOf('[img]')+5),(JSON.parse(MsgListGer).msg).indexOf('[/img]'))
                                 }
                                 let msgpushbox=new Notification("新消息来袭",msgNoteJSON);
@@ -1613,7 +1596,7 @@
         let LiuYanTop=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom")
         let msgInputBoxOutsite=document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write")
         fackone.className='shadow-xs'//修改输入框部分css，删除上部的渐变黑条
-        fackone.setAttribute('style',`padding: .5rem .5rem; position: relative; border-radius: .375rem; margin: 0 1.5rem 1rem 1.5rem;background-color:${localStorage.CantSeeColor6}${localStorage.CantSeeset6}`)
+        fackone.setAttribute('style',`padding: .5rem .5rem; position: relative; border-radius: .375rem; margin: 0 1.5rem 1rem 1.5rem;background-color:${localStorage.CantSeeColor5}${localStorage.CantSeeset5}`)
 
         //阻止冒泡
         LiuYanTop.addEventListener('click',function (e){e.stopPropagation();})//解决点击顶部栏错误消失
@@ -1623,10 +1606,10 @@
         let addlocalupdate=document.querySelector("#webimgsrc");
 
         bac.setAttribute('style',`background-color:${localStorage.BackGroundColor};`)//网页背景部分
-        LiuYanTop.setAttribute("style",`background-color:${localStorage.CantSeeColor9}${localStorage.CantSeeset9};border:0px !important;`);
+        LiuYanTop.setAttribute("style",`background-color:${localStorage.CantSeeColor5}${localStorage.CantSeeset5};border:0px !important;`);
         baca.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1} !important;`)//聊天历史记录1
-        ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor3}${localStorage.CantSeeset3} !important;`)//聊天历史记录2（位置更靠里）
-        histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4} !important;`)//聊天页面外层边框
+        ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1} !important;`)//聊天历史记录2（位置更靠里）
+        histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1} !important;`)//聊天页面外层边框
         msginputbox.setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;border:1px solid ${localStorage.CantSeeColor8}${localStorage.CantSeeset8} !important;height:2.5rem !important;`)//输入框部分
 
         document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write > div > div").setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;height:2.5rem;`)
@@ -1669,7 +1652,7 @@
             if(document.querySelector("#layout-navbar").style.display==="none"){
                 document.querySelector("#layout-navbar").style.display="flex"
                 //FixStyleFive.innerHTML="";
-                histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4} !important;z-index:275 !important;`)
+                histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1} !important;z-index:275 !important;`)
                 if (localStorage.leaderhide==="0"){
                     document.querySelector("#layout-menu").style.display="flex";
                 }
@@ -1677,13 +1660,13 @@
                 document.querySelector("#layout-navbar").style.display="none";
                 document.querySelector("#top > div").style.backdropFilter="none";
                 //FixStyleFive.appendChild(nedAddStyleFive);
-                histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4} !important;z-index:275 !important;`)
+                histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1} !important;z-index:275 !important;`)
                 if (localStorage.leaderhide==="0"){
                     document.querySelector("#layout-menu").style.display="none";
                 }
             }
         })
-        histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor4}${localStorage.CantSeeset4} !important;z-index:275 !important;`)
+        histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1} !important;z-index:275 !important;`)
 
         //表情功能 暂时搁置
         let MojPack=`<button id="MojPack" class="toolbar-btn">😀</button>`
@@ -1808,11 +1791,11 @@
         let MsgPageNum=0;//消息页数
         let MsgNum=0//消息条数
         let MsgId;//最新消息id
-        let MsgIdcheck=true;//消息id验证
+        let MsgIdcheck=true;//消息id重复性验证
         let MgsList=[];//处理后的消息记录
         let LoadMsgList=[];//服务器端获取的消息记录
         let PrintNumCunt=0;//累计渲染消息计数
-        let IMGlist=document.querySelector("#MsgIMGShowLocal");
+        let IMGlist=document.querySelector("#MsgIMGShowLocal");//右侧图片展示列表
             let LoadMsgListProxy=new Proxy(LoadMsgList,{//历史消息排列|填充
             set(target, p, newValue) {
                 target[p]=newValue;
@@ -1848,7 +1831,7 @@
                         document.querySelector(".chat-history-body > ul").style.display="none"//隐藏原来的消息列表
                         document.querySelector(".chat-history-body").insertAdjacentHTML("beforeend",`<ul class="M27-list-unstyled chat-history talk" data-base-href="../plugin/msto_chat/route/" id="M27-MsgList"></ul>`);//添加新的消息列表
                         ul=document.querySelector('#M27-MsgList')//重新对ul赋值使其对应新消息列表
-                        ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor3}${localStorage.CantSeeset3};`)
+                        ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1};`)
                         ul.innerHTML=""
                         ul.addEventListener("click",function(e){
                             if (e.target.className.includes("M27-userName")){//点击名字@对方
@@ -1924,7 +1907,9 @@
                                     //添加点击id@对方的效果
                                     PrintNumCunt+=1;
                                 }
-                                MsgId=MgsList[y].id//设定最新消息的id
+                                do {
+                                    MsgId = MgsList[y].id
+                                }while(typeof MsgId==="undefined")//设定最新消息的id
                                 document.querySelector(".chat-history-body").scrollTop = document.querySelector(".chat-history-body").scrollHeight;//滚动至底部
                             }
                             let MsgLoadCheck=true
@@ -2006,8 +1991,13 @@
                                                     </div></li>`)
                                                     PrintNumCunt+=1;
                                                     MgsList.push(data.list[x])
+                                                    do {
+                                                        MsgId=JSON.parse(data.list[x]).id
+                                                    }while(typeof MsgId==="undefined")
+
+                                                }else{do {
                                                     MsgId=JSON.parse(data.list[x]).id
-                                                }else{MsgId=JSON.parse(data.list[x]).id}
+                                                }while(typeof MsgId==="undefined")}
                                                 if(CheckScroll>0){
                                                     document.querySelector(".chat-history-body").scrollTop =document.querySelector(".chat-history-body").clientHeight+ document.querySelector(".chat-history-body").scrollHeight;
                                                 }
@@ -2094,7 +2084,7 @@
         let Tiezi6=document.querySelector("#top > div > div > main > div > div.col-lg-3.aside > div:nth-child(2)")
         let Tiezi7=document.querySelector("#search_form > div > input")
         Tiezi1.setAttribute('style', `background-color:${localStorage.CantSeeColor1}${localStorage.CantSeeset1};`);//帖子部分外框颜色|透明度
-        Tiezi6.setAttribute('style', `background-color: ${localStorage.CantSeeColor6}${localStorage.CantSeeset6} !important;`)//搜索栏背景||边框
+        Tiezi6.setAttribute('style', `background-color: ${localStorage.CantSeeColor5}${localStorage.CantSeeset5} !important;`)//搜索栏背景||边框
         Tiezi7.setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;border:1px solid ${localStorage.CantSeeColor8}${localStorage.CantSeeset8} !important;height:2.5rem !important;`)//搜索栏输入框背景||描边
 
         NewAddSeet();
