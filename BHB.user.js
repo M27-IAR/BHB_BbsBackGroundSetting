@@ -20,6 +20,7 @@
     if(!localStorage.BackGroundColor){//背景颜色
         localStorage.setItem("BackGroundColor","#000000")
     }
+
     if(!localStorage.MsgLightCheckX){
         localStorage.setItem("MsgLightCheckX",'true')
     }
