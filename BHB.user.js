@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        BHB聊天室背景图片更换（已全局兼容）
+// @name        BHB背景图片更换（已全局兼容）
 // @namespace   Violentmonkey Scripts
 // @match       https://*boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
@@ -20,7 +20,6 @@
     if(!localStorage.BackGroundColor){//背景颜色
         localStorage.setItem("BackGroundColor","#000000")
     }
-
     if(!localStorage.MsgLightCheckX){
         localStorage.setItem("MsgLightCheckX",'true')
     }
