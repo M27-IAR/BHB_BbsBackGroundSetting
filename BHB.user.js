@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        BHB聊天室背景图片更换（已全局兼容）
+// @name        BHB背景图片更换（已全局兼容）
 // @namespace   Violentmonkey Scripts
 // @match       https://*boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
@@ -14,6 +14,9 @@
     let webWidth = window.innerWidth;
     let webHeight = window.innerHeight;//获取页面宽高|用于特效效果加载使用
     //本地数据检测|若无相关数据则填充相关默认值
+    if (!localStorage.EmoDBlist){//表情数据库计数
+        localStorage.setItem("EmoDBlist",0)
+    }
     if(!localStorage.M27NewBBGPrint){//是否启用自定义聊天室
         localStorage.setItem("M27NewBBGPrint","false")
     }
@@ -356,7 +359,7 @@
         NeedFixStyle.insertAdjacentHTML("afterbegin",'<style id="style3"></style>');
         let nedAddStyleSec=document.createTextNode(`
     .M27MojPackImg{
-    width:100px; height:100px;background-size:cover;background-color:#000000;} 
+    width:100px; height:100px;background-size:cover;background-color:#000000;margin:10px} 
     .M27flexDivSet{
     pointer-events: none; 
     transition: background-color 2s;
@@ -431,25 +434,11 @@
         let imgFile = new FileReader();
         imgFile.readAsDataURL(addlocalupdate.files[0]);
         imgFile.onload = function () {
+            console.log(this)
             let imgDataBase64 = this.result; //base64数据
             // 打开或创建一个数据库
-            let request = indexedDB.open('databaseName', 6);
-            // 处理数据库升级
-            request.onupgradeneeded = function(event) {
-                let db = event.target.result;
-                // 创建对象存储（表）并设置主键
-                if (!db.objectStoreNames.contains("storeName")) {
-                    // 数据库不存在，可以在此处创建对象存储空间
-                    let objectStore = db.createObjectStore("storeName", { keyPath: "id" });
-                    objectStore.createIndex('fieldName', 'fieldName', { unique: false });
-                }
-                if (!db.objectStoreNames.contains("EmoDB")) {
-                    // 数据库不存在，可以在此处创建对象存储空间
-                    let objectStoreSec = db.createObjectStore('EmoDB', { keyPath: 'id' });
-                    // 创建索引
-                    objectStoreSec.createIndex('fieldName', 'fieldName', { unique: false });
-                }
-            };request.onsuccess = function(event) {// 数据库打开成功时的回调
+            let request = indexedDB.open('databaseName', 13);
+            request.onsuccess = function(event) {// 数据库打开成功时的回调
                 let db = event.target.result;
                 // 进行事务操作
                 let transaction = db.transaction('storeName', 'readwrite');
@@ -494,23 +483,15 @@
         }
     }
 
-    function backPrint(BBSmsgBack,Fromer){//背景渲染设定
-        let openpic = indexedDB.open('databaseName', 6);//调用数据库读取本地存储的base64图片数据
-        openpic.onupgradeneeded = function(event) {//没有调用则创建|选择了新版本数据库而重建
-            let db = event.target.result;
-            // 创建对象存储（表）并设置主键
-            if (!db.objectStoreNames.contains("storeName")) {
-                // 数据库不存在，可以在此处创建对象存储空间
-                let objectStore = db.createObjectStore("storeName", { keyPath: "id" });
-                objectStore.createIndex('fieldName', 'fieldName', { unique: false });
-            }
-            if (!db.objectStoreNames.contains("EmoDB")) {
-                // 数据库不存在，可以在此处创建对象存储空间
-                let objectStoreSec = db.createObjectStore('EmoDB', { keyPath: 'id' });
-                // 创建索引
-                objectStoreSec.createIndex('fieldName', 'fieldName', { unique: false });
-            }
-        };
+    function backPrint(BBSmsgBack,Fromer,NowURL='defaut'){//背景渲染设定
+        let FromerAddStyle;
+        if(NowURL.includes("bhb_chat")){
+            FromerAddStyle=""
+        }else{
+            FromerAddStyle=`background-attachment:fixed;display: flex;align-items: center;justify-content: center;position: fixed;pointer-events: none;z-index:0;height:100%;width:100%;`
+
+        }
+        let openpic = indexedDB.open('databaseName', 13);//调用数据库读取本地存储的base64图片数据
         openpic.onsuccess = function(event) {
             let db = event.target.result;
             // 查询数据
@@ -527,29 +508,29 @@
                     if(event.target.result.name==="空"&&localStorage.localpiclod === "1"){//如果数据库没有本地图片数据
                         if(localStorage.printToBack==="1"){
                             alert('数据库无图片相关内容存储，将加载在线图片，请在设置添加本地图片')//如果数据库没有本地图片数据且选择渲染本地图片
-                            bac.setAttribute('style', `background-color:${localStorage.BackGroundColor};background-position:${(()=>{if(localStorage.centerPosition==="none"){return ""}else{return "center"}})()}${Backleft} ${BackTop} ;  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};  background-attachment:fixed;`);
+                            bac.setAttribute('style', `background-color:${localStorage.BackGroundColor};background-position:${(()=>{if(localStorage.centerPosition==="none"){return ""}else{return "center"}})()}${Backleft} ${BackTop} ;  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}`);
                             addtarge.setAttribute('style', `background-position:${(()=>{if(localStorage.centerPosition==="none"){return ""}else{return "center"}})()}${Backleft} ${BackTop} ;  background-attachment:fixed; background-color: ${localStorage.BackGroundColor}${BackimagePrintPlanNum};background-repeat: no-repeat;background-size:cover;display: flex;align-items: center;justify-content: center;position: fixed;pointer-events: none;z-index:0;height:100%;width:100%;`);
                         }else if(localStorage.printToBack==="0"){
                             alert('数据库无图片相关内容存储，将加载在线图片，请在设置添加本地图片')//如果数据库没有本地图片数据且选择渲染本地图片
-                            BBSmsgBack.setAttribute('style', `background-position:${(()=>{if(localStorage.centerPosition==="none"){return ""}else{return "center"}})()}${Backleft} ${BackTop} ;  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-attachment:fixed;`);
-                            Fromer.setAttribute('style', `background-color: ${localStorage.BackGroundColor}${BackimagePrintPlanNum};`);
+                            BBSmsgBack.setAttribute('style', `background-position:${(()=>{if(localStorage.centerPosition==="none"){return ""}else{return "center"}})()}${Backleft} ${BackTop} ;  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}`);
+                            Fromer.setAttribute('style', `background-color: ${localStorage.BackGroundColor}${BackimagePrintPlanNum};${FromerAddStyle}`);
                         }
                     }else if(localStorage.localpiclod === "0"){
                         if(localStorage.printToBack==="1"){
                             //通过section写入项目留下的标签实现颜色覆盖
-                            bac.setAttribute('style', `background-color:${localStorage.BackGroundColor};background-position:${(()=>{if(localStorage.centerPosition==="none"){return ""}else{return "center"}})()}${Backleft} ${BackTop} ;  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; background-attachment:fixed;`);
+                            bac.setAttribute('style', `background-color:${localStorage.BackGroundColor};background-position:${(()=>{if(localStorage.centerPosition==="none"){return ""}else{return "center"}})()}${Backleft} ${BackTop} ;  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}`);
                             addtarge.setAttribute('style', `background-position:${(()=>{if(localStorage.centerPosition==="none"){return ""}else{return "center"}})()}${Backleft} ${BackTop} ;  background-attachment:fixed; background-color: ${localStorage.BackGroundColor}${BackimagePrintPlanNum};background-repeat: no-repeat;background-size:cover;display: flex;align-items: center;justify-content: center;position: fixed;pointer-events: none;z-index:0;height:100%;width:100%;`);
                         }else if(localStorage.printToBack==="0"){
-                            BBSmsgBack.setAttribute('style', `background-position:${(()=>{if(localStorage.centerPosition==="none"){return ""}else{return "center"}})()}${Backleft} ${BackTop} ;  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}; b background-attachment:fixed;`);
-                            Fromer.setAttribute('style', `background-color: ${localStorage.BackGroundColor}${BackimagePrintPlanNum};`);
+                            BBSmsgBack.setAttribute('style', `background-position:${(()=>{if(localStorage.centerPosition==="none"){return ""}else{return "center"}})()}${Backleft} ${BackTop} ;  background-attachment:fixed; background-image: url(${localStorage.webimgsrc}); background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}`);
+                            Fromer.setAttribute('style', `background-color: ${localStorage.BackGroundColor}${BackimagePrintPlanNum};${FromerAddStyle}`);
                         }
                     }else if(localStorage.localpiclod === "1"){
                         if(localStorage.printToBack==="1"){
-                            bac.setAttribute('style', `background-color:${localStorage.BackGroundColor};background-position:${(()=>{if(localStorage.centerPosition==="none"){return ""}else{return "center"}})()}${Backleft} ${BackTop} ;  background-attachment:fixed; background-image: url(${event.target.result.name});background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};  background-attachment:fixed;`)
+                            bac.setAttribute('style', `background-color:${localStorage.BackGroundColor};background-position:${(()=>{if(localStorage.centerPosition==="none"){return ""}else{return "center"}})()}${Backleft} ${BackTop} ;  background-attachment:fixed; background-image: url(${event.target.result.name});background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};`)
                             addtarge.setAttribute('style', `background-position:${(()=>{if(localStorage.centerPosition==="none"){return ""}else{return "center"}})()}${Backleft} ${BackTop} ;  background-attachment:fixed; background-color: ${localStorage.BackGroundColor}${BackimagePrintPlanNum};background-repeat: no-repeat;background-size:cover;display: flex;align-items: center;justify-content: center;position: fixed;pointer-events: none;z-index:0;height:100%;width:100%; `);
                         }else if(localStorage.printToBack==="0"){
-                            BBSmsgBack.setAttribute('style', `background-position:${(()=>{if(localStorage.centerPosition==="none"){return ""}else{return "center"}})()}${Backleft} ${BackTop} ;  background-attachment:fixed; background-image: url(${event.target.result.name});background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize};background-attachment:fixed;`)
-                            Fromer.setAttribute('style', `background-color: ${localStorage.BackGroundColor}${BackimagePrintPlanNum};`);
+                            BBSmsgBack.setAttribute('style', `background-position:${(()=>{if(localStorage.centerPosition==="none"){return ""}else{return "center"}})()}${Backleft} ${BackTop} ;  background-attachment:fixed; background-image: url(${event.target.result.name});background-repeat: no-repeat; background-size:${localHightSize} ${localWidthSize}`)
+                            Fromer.setAttribute('style', `background-color: ${localStorage.BackGroundColor}${BackimagePrintPlanNum};${FromerAddStyle}`);
                         }
                     }
                 }
@@ -1138,11 +1119,12 @@
 
         }
     }
-    //数据库创建
-    let request = indexedDB.open('databaseName', 6);
+    //数据库创建|初始化数据库
+    let request = indexedDB.open('databaseName', 13);
     // 处理数据库升级
     request.onupgradeneeded = function(event) {
         let db = event.target.result;
+        let upgradeTran=event.target.transaction;
         // 创建对象存储（表）并设置主键
         if (!db.objectStoreNames.contains("storeName")) {
             // 数据库不存在，可以在此处创建对象存储空间
@@ -1153,7 +1135,16 @@
             // 数据库不存在，可以在此处创建对象存储空间
             let objectStoreSec = db.createObjectStore('EmoDB', { keyPath: 'id' });
             // 创建索引
-            objectStoreSec.createIndex('fieldName', 'fieldName', { unique: false });
+            objectStoreSec.createIndex('picNAME', 'picNAME', { unique: false });
+        } else{
+            let objectStoreSec =upgradeTran.objectStore("EmoDB") ;
+            if (!objectStoreSec.indexNames.contains("picNAME")) {//添加新索引方便新功能
+                objectStoreSec.createIndex('picNAME', 'picNAME', { unique: false });
+            }
+            if (objectStoreSec.indexNames.contains("fieldName")) {//删除旧的无用索引
+                objectStoreSec.deleteIndex('fieldName');
+                console.log("work")
+            }
         }
 
     };
@@ -1514,9 +1505,8 @@
 
     let NowURL = window.location.href;//读取当前所在网页
 
-    if (NowURL.includes('boyshelpboys.com/chat.htm')) {//如果当前网页为聊天室页面
-        let BBSmsgBack=document.querySelector("#top > div > div > main > section > div")
-        backPrint(BBSmsgBack,document.querySelector("#top > div > div > main > section > div > div"),NowURL);
+    if (NowURL.includes('boyshelpboys.com/bhb_chat.htm')) {//如果当前网页为聊天室页面
+        backPrint(document.querySelector("#top > div > div"),document.querySelector("#top > div > div > main > div"),NowURL);
         WidthHeightSet();
         leftANDtop();
         ScrollHidden();
@@ -1550,59 +1540,56 @@
             }
         })
 
-        //聊天室消息状态指示灯
-        let MsgServerTime=` <span id="MsgServer" class="" style="display: ${(()=>{if(localStorage.MsgLightCheckX==='true'){return 'block';}else{return 'none';}})()};border-radius: 50%;border:1px solid gray;height:16px;width:16px;text-align: center;background-color: gray;"></span>`
-        document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom > div").insertAdjacentHTML("afterend",MsgServerTime)
-        let MsgLight=document.querySelector("#MsgServer");
-        let MsgServerReport=`<div id="MsgBox" style="z-index:1000001;display:none; top: 10px;right:50px;position: absolute;width: 180px;height: 50px;background-color: rgba(40, 64, 120, 0.4);border: 1px solid aqua;"><span id="Msg"></span> </div>`
-        document.querySelector("#top > div > div > main > section > div > div > div > div.online-users-panel").insertAdjacentHTML("afterend",MsgServerReport)
-        let MsgPrint= document.querySelector("#Msg");
-        let OnliceUserList=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom").nextElementSibling;
-        OnliceUserList.innerHTML="";
-        OnliceUserList.innerHTML=`<div class="panel-body"><div class="M27-online-users-list" id="M27CHANGE"></div></div>`;
-        //指示灯计时器
-        GetServerStation(MsgLight,MsgPrint)
-        let IntTime=setInterval(()=> {
-            GetServerStation(MsgLight,MsgPrint);
-        },3000)
-
-        document.querySelector("#MsgLightCheck").addEventListener("click",(e)=>{//调整指示灯的开关
-            if(e.target.checked){
-                localStorage.setItem("MsgLightCheckX","true");
-                MsgLight.style.display="block";
-                IntTime=setInterval(()=> {
-                    GetServerStation(MsgLight,MsgPrint);
-                },3000);
-            }else{
-                localStorage.setItem("MsgLightCheckX","false");
-                MsgLight.style.display="none";
-                clearInterval(IntTime);
-            }
-        })
-        MsgLight.addEventListener("click",()=>{//点击指示灯显示相关信息
-            if(document.querySelector("#MsgBox").style.display==="none"){
-                document.querySelector("#MsgBox").style.display="block";
-            }else{
-                document.querySelector("#MsgBox").style.display="none";
-            }
-        })
+        // //聊天室消息状态指示灯
+        // let MsgServerTime=` <span id="MsgServer" class="" style="display: ${(()=>{if(localStorage.MsgLightCheckX==='true'){return 'block';}else{return 'none';}})()};border-radius: 50%;border:1px solid gray;height:16px;width:16px;text-align: center;background-color: gray;"></span>`
+        // document.querySelector("div.chat-header>span#chatTitle").insertAdjacentHTML("afterend",MsgServerTime)
+        // let MsgLight=document.querySelector("#MsgServer");
+        // let MsgServerReport=`<div id="MsgBox" style="z-index:1000001;display:none; top: 10px;right:50px;position: absolute;width: 180px;height: 50px;background-color: rgba(40, 64, 120, 0.4);border: 1px solid aqua;"><span id="Msg"></span> </div>`
+        // document.querySelector("#top > div > div > main > section > div > div > div > div.online-users-panel").insertAdjacentHTML("afterend",MsgServerReport)
+        // let MsgPrint= document.querySelector("#Msg");
+        // let OnliceUserList=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom").nextElementSibling;
+        // OnliceUserList.innerHTML="";
+        // OnliceUserList.innerHTML=`<div class="panel-body"><div class="M27-online-users-list" id="M27CHANGE"></div></div>`;
+        // //指示灯计时器
+        // GetServerStation(MsgLight,MsgPrint)
+        // let IntTime=setInterval(()=> {
+        //     GetServerStation(MsgLight,MsgPrint);
+        // },3000)
+        //
+        // document.querySelector("#MsgLightCheck").addEventListener("click",(e)=>{//调整指示灯的开关
+        //     if(e.target.checked){
+        //         localStorage.setItem("MsgLightCheckX","true");
+        //         MsgLight.style.display="block";
+        //         IntTime=setInterval(()=> {
+        //             GetServerStation(MsgLight,MsgPrint);
+        //         },3000);
+        //     }else{
+        //         localStorage.setItem("MsgLightCheckX","false");
+        //         MsgLight.style.display="none";
+        //         clearInterval(IntTime);
+        //     }
+        // })
+        // MsgLight.addEventListener("click",()=>{//点击指示灯显示相关信息
+        //     if(document.querySelector("#MsgBox").style.display==="none"){
+        //         document.querySelector("#MsgBox").style.display="block";
+        //     }else{
+        //         document.querySelector("#MsgBox").style.display="none";
+        //     }
+        // })
         //点击页面其他部分则隐藏相关菜单
-        document.addEventListener('click',function(){document.querySelector("#MsgBox").style.display="none";document.querySelector(".online-users-panel").style.display="none";})
+        // document.addEventListener('click',function(){document.querySelector("#MsgBox").style.display="none";document.querySelector(".online-users-panel").style.display="none";})
 
-        let baca=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-body")//聊天历史记录1
-        let ul=document.querySelector(".chat-history-body > ul")//聊天历史记录2（位置更靠里）
-        let histor=document.querySelector("#top > div > div > main > section")//聊天页面外层边框
-        let fackone=document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs")//输入框部分
-        let msginputbox=document.querySelector("#msg")//输入框自己
-        let LiuYanTop=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom")
+        let baca=document.querySelector("#top > div > div > main > div > div.chat-container > div.chat-main")//聊天历史记录1
+        let ul=document.querySelector("#messages")//聊天历史记录2（位置更靠里）
+        let histor=document.querySelector("#top > div > div > main > div > div.chat-container")//聊天页面外层边框
+        let msginputbox=document.querySelector("#input")//输入框自己
+        let LiuYanTop=document.querySelector("#top > div > div > main > div > div.chat-container > div.chat-main > div.chat-header")
         let msgInputBoxOutsite=document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write")
-        fackone.className='shadow-xs'//修改输入框部分css，删除上部的渐变黑条
-        fackone.setAttribute('style',`padding: .5rem .5rem; position: relative; border-radius: .375rem; margin: 0 1.5rem 1rem 1.5rem;background-color:${localStorage.CantSeeColor5}${localStorage.CantSeeset5}`)
 
         //阻止冒泡
-        LiuYanTop.addEventListener('click',function (e){e.stopPropagation();})//解决点击顶部栏错误消失
-        document.querySelector("#M27CHANGE").addEventListener("click",(e)=>{e.stopPropagation();});//解决点击自身错误消失
-        document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.chat-toolbar").className="chat-toolbar GameBarFix"
+        // LiuYanTop.addEventListener('click',function (e){e.stopPropagation();})//解决点击顶部栏错误消失
+        // document.querySelector("#M27CHANGE").addEventListener("click",(e)=>{e.stopPropagation();});//解决点击自身错误消失
+        // document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.chat-toolbar").className="chat-toolbar GameBarFix"
 
         let addlocalupdate=document.querySelector("#webimgsrc");
 
@@ -1613,75 +1600,144 @@
         histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1} !important;`)//聊天页面外层边框
         msginputbox.setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;border:1px solid ${localStorage.CantSeeColor8}${localStorage.CantSeeset8} !important;height:2.5rem !important;`)//输入框部分
 
-        document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write > div > div").setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;height:2.5rem;`)
-        msgInputBoxOutsite.setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;height:48px;`)//输入框外框调整
-                //站长工具栏启动按钮
-            setInterval(function(){
-                let ToolBar=document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write > button")
-                if(ToolBar.style.height==="") {
-                    ToolBar.setAttribute("style","height:40px !important;width:40px !important;border-radius:20px;margin:0  0.3125rem 0 0;")
-            }
-            },1)
-
-        document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write > div > button > i").insertAdjacentHTML("beforebegin",`<span style="margin-right: 0.125rem;font-size: 12px">发送</span>`)
-        //发送按钮
-        let SendButton=document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write > div > button");
-        SendButton.className='send-btn send-btn-M27'
-
         addlocalupdate.addEventListener("change",handleFileSelect,false)//本体提交图片时向DBD保存base64
 
-        //针对@闪电炫芬批插件的外链头像图片做适配（不在自定义聊天室界面可用
-        document.querySelector(".chat-history-body > ul > li:nth-child(1048)  ")
-        let oldLen=0
-        setInterval(()=> {
-            let Liloader= document.querySelectorAll(".chat-history-body > ul > li")
-            if (oldLen ===Liloader.length){
-            }else{
-                for (let i = 0; i < Liloader.length; i++) {
-                    let imgfix=Liloader[i].querySelector("div > div.user-avatar.flex-shrink-0.me-4 > div > a > img")
-                    if (imgfix!==null&&imgfix.src.includes("https://boyshelpboys.com/.")){
-                        let needFix=imgfix.src
-                        imgfix.src=needFix.substring(26);
-                    }
-                }
-            }
-            oldLen= Liloader.length;
-        },1000)
-
-        //站长的全屏内容适配
-        document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom > div > div > button").addEventListener("click",function (){
-            if(document.querySelector("#layout-navbar").style.display==="none"){
-                document.querySelector("#layout-navbar").style.display="flex"
-                //FixStyleFive.innerHTML="";
-                histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1} !important;z-index:275 !important;`)
-                if (localStorage.leaderhide==="0"){
-                    document.querySelector("#layout-menu").style.display="flex";
-                }
-            }else{
-                document.querySelector("#layout-navbar").style.display="none";
-                document.querySelector("#top > div").style.backdropFilter="none";
-                //FixStyleFive.appendChild(nedAddStyleFive);
-                histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1} !important;z-index:275 !important;`)
-                if (localStorage.leaderhide==="0"){
-                    document.querySelector("#layout-menu").style.display="none";
-                }
-            }
-        })
-        histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1} !important;z-index:275 !important;`)
-
         //表情功能 暂时搁置
-        let MojPack=`<button id="MojPack" class="toolbar-btn">😀</button>`
-        let ToolBar= document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.chat-toolbar.GameBarFix > div");
-        ToolBar.insertAdjacentHTML("afterend",MojPack)
+        let MojPack=`<button id="MojPack" class="toolbar-btn">😀表情</button>`
+        let ToolBar=document.querySelector("#inputToolbar");
+        ToolBar.insertAdjacentHTML("beforeend",MojPack)
         let MojPackOut=document.querySelector("#MojPack");
         let adddiv4=`<div id="MojPackBack" ></div>`
         bac.insertAdjacentHTML("beforeend",adddiv4)
         let adddiv4Out=document.querySelector("#MojPackBack");
-        adddiv4Out.setAttribute('style','overflow:auto; border-radius: 5px;position: absolute;top: 40%;left: 20%;transform: translate(0%, -45%);width: 70%;height: 45%;border: 1px solid gray;z-index:1;display:none;background-color:rgba(30, 32, 34, 0.70);color:#f0f5f9;flex-wrap:wrap;flex-direction:row;justify-content:space-around;align-items:center;z-index:1000000;')
+        adddiv4Out.setAttribute('style','overflow:auto; border-radius: 5px;position: absolute;top: 40%;left: 20%;transform: translate(0%, -45%);width: 70%;height: 65%;border: 1px solid gray;z-index:1;display:none;background-color:rgba(30, 32, 34, 0.70);color:#f0f5f9;flex-wrap:wrap;flex-direction:row;justify-content:space-around;align-items:center;z-index:1000000;')
         MojPackOut.addEventListener('click',()=>{if(adddiv4Out.style.display==="none" ){adddiv4Out.style.display="flex"}else{adddiv4Out.style.display="none"}})
-        let MojPackAdd=`<div class="M27MojPackImg la la-plus-circle" title="点击添加图片" style="text-align: center;line-height: 100px; font-size: 80px;" id="MojPackAddImg" ></div>`
+        let MojPackAdd=`
+        <div class="M27MojPackImg las la-minus-circle" title="点击删除图片" style="text-align: center;line-height: 100px; font-size: 80px;" id="MojPackDeleteImg" ></div>
+        <div class="M27MojPackImg la la-plus-circle" title="点击添加图片" style="text-align: center;line-height: 100px; font-size: 80px;" id="MojPackAddImg" ></div>`
         adddiv4Out.insertAdjacentHTML("afterbegin",MojPackAdd);
-        //let MojPackAddGet=document.querySelector("#MojPackAddImg");
+        let MojPackAddGet=document.querySelector("#MojPackAddImg");
+        let MojPackDeleteGet=document.querySelector("#MojPackDeleteImg");
+        let request = indexedDB.open('databaseName', 13);
+        request.onsuccess=(e)=>{//启动数据库，准备填充表情包界面
+            let db=e.target.result
+            let objectStore =  db.transaction('EmoDB').objectStore('EmoDB');
+            objectStore.openCursor().onsuccess=(e)=>{
+                let cursor=e.target.result
+                if (cursor){//遍历中|读取到一个填充一个
+                    let binaryString=atob(cursor.value.picBASE64.slice(cursor.value.picBASE64.indexOf(",")+1))
+                    const byteArray=new Uint8Array(binaryString.length)
+                    for(let i=0;i<byteArray.length;i++){
+                        byteArray[i]=binaryString.charCodeAt(i);
+                    }
+                    const blobIMG=new Blob([byteArray],{type:`${cursor.value.picBASE64.slice(cursor.value.picBASE64.indexOf(":")+1,cursor.value.picBASE64.indexOf(";"))}`});
+                    const imageUrl = URL.createObjectURL(blobIMG);
+                    let MojIMGAdd=`<div class="M27MojPackImg la M27Mojuse" title='${cursor.value.picNAME}' style="text-align: center;line-height: 100px; font-size: 80px;background-image:url(${imageUrl});background-position: center" ></div>`
+                    MojPackAddGet.insertAdjacentHTML("afterend",MojIMGAdd);
+                    cursor.continue();
+                }else{//遍历完成|为之前填充的表情包添加点击发送事件
+                    console.log("数据库遍历完毕");
+                    document.querySelectorAll('.M27Mojuse').forEach((e)=>{
+                        e.stopPropagation();
+                        e.addEventListener('click',function Send(e){
+                            let SearchTitle=e.target.title;
+                            let request = indexedDB.open('databaseName', 13);
+                            request.onsuccess=(e)=>{
+                            let db=e.target.result
+                            let objectStore =  db.transaction('EmoDB','readonly').objectStore('EmoDB');
+                            let SearchReport=objectStore.index('picNAME').get(`${SearchTitle}`)
+                            SearchReport.onsuccess=(e)=>{
+
+                                console.log(e.target.result);
+                                let binaryString=atob(e.target.result.picBASE64.slice(e.target.result.picBASE64.indexOf(",")+1))
+                                const byteArray=new Uint8Array(binaryString.length)
+                                for(let i=0;i<byteArray.length;i++){
+                                    byteArray[i]=binaryString.charCodeAt(i);
+                                }
+                                const blobIMG=new Blob([byteArray],{type:`${e.target.result.picBASE64.slice(e.target.result.picBASE64.indexOf(":")+1,e.target.result.picBASE64.indexOf(";"))}`});
+                                console.log(blobIMG)
+                                const formData=new FormData();
+                                formData.append('file',blobIMG,e.target.result.picNAME);
+                                let fileReader=new FileReader()
+                                fileReader.addEventListener("loadend",()=>{
+                                    console.log(fileReader.result)
+                                })
+                                fileReader.readAsText(blobIMG);
+                                console.log(`${e.target.result.picBASE64.slice(e.target.result.picBASE64.indexOf(":")+1,e.target.result.picBASE64.indexOf(";",e.target.result.picBASE64.indexOf("/")+1))}`);
+                                $.ajax({//发送事件
+                                    url:'https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=upload_image',
+                                    type: 'POST',
+                                    data: formData,
+                                    contentType:false,
+                                    processData: false,
+                                    success: function(response) {
+                                        try {
+                                            if (typeof response === 'string') {
+                                                response = JSON.parse(response);
+                                                console.log(response);
+                                            }
+                                            if (response.code === 0 && response.data) {
+                                                console.log(response.data);
+                                                // 发送图片消息
+                                                send(`[img]${response.data}[/img]`);
+                                            } else {
+                                                alert('上传失败：' + (response.message || '未知错误'));
+                                            }
+                                        } catch (e) {
+                                            console.error('Response parse error:', e, response);
+                                            alert('上传失败：服务器响应解析错误');
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error('Upload error:', {xhr, status, error});
+                                        alert('上传失败：' + error);
+                                    }
+                                });
+                            }
+                            }
+                        })
+                    })
+                }
+            }
+        }
+        //let MojPicAdd=`<div class="M27MojPackImg la la-plus-circle" title="" style="text-align: center;line-height: 100px; font-size: 80px;" id="" ></div>`
+        MojPackAddGet.addEventListener("click",()=>{//表情包添加事件
+            const $input = $('<input type="file" accept="image/*" multiple style="display:none">');//添加文件选择框并激活点击事件
+            $('body').append($input);
+            $input.trigger('click');
+            $input.on('change',(e)=>{//选中后填充到数据库
+                Array.from(e.target.files).forEach((file,index)=>{
+                    let imgFile = new FileReader();
+                    let EmoInputList=e.target.files[index]
+                    imgFile.readAsDataURL(EmoInputList)
+                    imgFile.onload=()=>{
+                        let inputBASE64=imgFile.result
+                        let request = indexedDB.open('databaseName', 13);
+                        request.onsuccess=(e)=>{
+                            let db=e.target.result
+                            let transaction = db.transaction('EmoDB', 'readwrite');
+                            let objectStore = transaction.objectStore('EmoDB');
+                            objectStore.put({id:localStorage.EmoDBlist,picNAME:EmoInputList.name,picBASE64:inputBASE64})//保存图片计数|图片名|图片BASE64数据
+                            localStorage.EmoDBlist++
+                        }
+                        request.onerror = (event)=> {
+                            console.error('Database error:', event.target.error);
+                        };
+                    }
+                })
+            });
+            $input.remove()
+        })
+        MojPackDeleteGet.addEventListener("click",()=>{
+            document.querySelectorAll('.M27Mojuse').forEach(e=>{
+                console.log(e)
+                let ReadyRemove=e;
+                let Title=e.title;
+                let AddDeleteButton=`<input type="button" class="DeleteButton" title="${Title}"  style="display: none" id="M27Moj${Title}"><label for="M27Moj${Title}" style="width: 30px;height:30px;background-color: rgba(0,0,0,0.3);line-height: 28px;font-size: 19px;text-align: center;position: relative;top: -55%;left: -33%;">X</label>`;
+                e.insertAdjacentHTML('afterbegin',AddDeleteButton)
+
+            })
+        })
 
         //在线人数重写
         document.querySelector("div.chat-history-header.border-bottom > div > div").nextElementSibling.remove();
@@ -2033,7 +2089,7 @@
                 dataType:"json",
                 async:false,
                 success:function(data){
-                    MsgPageNum=Math.ceil(data.total/10)
+                    data.total>=10?MsgPageNum=Math.ceil(data.total/10):MsgPageNum=1;
                     for (let i=1;i<=Number(MsgPageNum);i++){
                         MsgPageCount.push(i)
                         console.log(MsgPageCount);
@@ -2061,7 +2117,7 @@
                         }
                     });
                 })
-            } while (MsgPageCount>0&&testNum<=5)
+            } while (MsgPageCount>0&&(MsgPageCount<=5?testNum<MsgPageCount:testNum<=5))
         }
     }else if(NowURL.includes('boyshelpboys.com/plugin')){
             return "";

@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="现在，在关于界面关闭设置菜单时不会自动刷新&#10;脚本修改的聊天室界面支持显示引用类消息&#10;翻译了图片放大展示界面控制台的英文&#10;现在支持运行作者写在帖子内的脚本代码&#10;尝试给自定义聊天室界面添加了消息获取失败重复获取的机制(在代码层面最多会重试5次)&#10;调整了部分区域绑定的颜色调节块&#10;修复部件界面中调节无效的bug">
+      <change afterPath="$PROJECT_DIR$/更新日志（临时）.TXT" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -336,6 +338,15 @@
       <workItem from="1756856537382" duration="3633000" />
       <workItem from="1757157374083" duration="1334000" />
       <workItem from="1757318968727" duration="11797000" />
+      <workItem from="1757416670919" duration="654000" />
+      <workItem from="1758241353387" duration="7888000" />
+      <workItem from="1758363385125" duration="12351000" />
+      <workItem from="1758535073651" duration="16404000" />
+      <workItem from="1758627626745" duration="7827000" />
+      <workItem from="1758715195150" duration="9247000" />
+      <workItem from="1758881448233" duration="605000" />
+      <workItem from="1760187024102" duration="660000" />
+      <workItem from="1760267657454" duration="9910000" />
     </task>
     <task id="LOCAL-00070" summary="测试">
       <option name="closed" value="true" />
