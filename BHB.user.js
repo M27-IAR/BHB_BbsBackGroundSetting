@@ -4,7 +4,7 @@
 // @match       https://*boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     3.2.4.2
+// @version     3.2.4.3
 // @author      M27IAR
 // @license     GPL-3.0-or-later
 // @license     GPL-3.0-or-later; https://www.gnu.org/licenses/gpl-3.0.txt
@@ -136,6 +136,9 @@
     if(!localStorage.CantSeeset8){
         localStorage.setItem("CantSeeset8","50");
     }
+    if(!localStorage.CantSeesetBBSMsgList){
+        localStorage.setItem("CantSeesetBBSMsgList","50");
+    }
     localStorage.removeItem("CantSeeColor3")
     localStorage.removeItem("CantSeeColor4")
     localStorage.removeItem("CantSeeColor6")
@@ -152,12 +155,15 @@
     if(!localStorage.CantSeeColor8){
         localStorage.setItem("CantSeeColor8","#66ccff");
     }
+    if(!localStorage.CantSeesetBBSMsgListColor){
+        localStorage.setItem("CantSeesetBBSMsgListColor","#272727");
+    }
     if(!localStorage.webimgsrc){//线上图片链接
         localStorage.setItem("webimgsrc",'https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png');
     }
-    if(!localStorage.version||localStorage.version!== "3.2.4.2"){//安装后的更新检测覆盖
+    if(!localStorage.version||localStorage.version!== "3.2.4.3"){//安装后的更新检测覆盖
         FirstTime=true
-        localStorage.setItem("version","3.2.4.2");localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
+        localStorage.setItem("version","3.2.4.3");localStorage.removeItem("CantSeeColor2");localStorage.removeItem("CantSeeset2");
          if(localStorage.webimgsrc==="https://file.uhsea.com/2501/c8859f9cfcefe1b9fd658301aa1c70af5P.jpg"
              ||localStorage.webimgsrc==="https://file.uhsea.com/2501/54d2c95d4f41d80cec435c63cd50dd24RG.jpg"
              ||localStorage.webimgsrc==="https://file.uhsea.com/2501/dcf32737963071eb748593c038add7cdP3.png"
@@ -883,11 +889,13 @@
             </label>
         </div>
     </div>
-    <div class="SettingShow" style="order:3;" id="Item">
+    <div class="SettingShow" style="order:3;flex-wrap: revert;" id="Item">
     <input type="button" value="┄" class="ShowButton">
+            <div>
             <h1 style="font-family: '微软雅黑', sans-serif;margin: 0.25rem;">部件设置</h1>
             <hr>
             <p>透明度限制为0-100；颜色为16进制RGB格式，不限制大小写（例：#66ccFF）。</p>
+            </div>
         <div  style="display: flex;flex-wrap: wrap; justify-content: space-between; align-items: flex-start;margin-top: 5px;" >
             <div class="itemBox"><span>文本框边框线</span><hr>
                 <span>边框线透明度</span>
@@ -930,8 +938,8 @@
                 </label>
                 <span>顶栏背景颜色</span>
                 <label>
-                <input type="text" class="ShowInputText" maxlength="7" oninput="this.value = this.value.replace(/[^a-f0-9#]/gi, '0');if(this.value.length>7){this.value='#'+this.value.substring(1,6)}" onchange="if (this.value.indexOf('#')===0){let VaLeng=this.value.length;if (VaLeng<7){for (let i=0;i<7-VaLeng;i++){this.value+='0';}document.querySelector('#Msgcolor5').value=this.value}else {document.querySelector('#Msgcolor5').value=this.value}localStorage.setItem('CanSeeColor5',value)}" id="Msgcolor5Text" value="${localStorage.CantSeeColor5}">
-                <input class="SettiingInput ColorSettinr" type="color" id="Msgcolor5" value="${localStorage.CantSeeColor5}" onchange="document.querySelector('#Msgcolor5Text').value=value;localStorage.setItem('CanSeeColor5',value)"></label>
+                <input type="text" class="ShowInputText" maxlength="7" oninput="this.value = this.value.replace(/[^a-f0-9#]/gi, '0');if(this.value.length>7){this.value='#'+this.value.substring(1,6)}" onchange="if (this.value.indexOf('#')===0){let VaLeng=this.value.length;if (VaLeng<7){for (let i=0;i<7-VaLeng;i++){this.value+='0';}document.querySelector('#Msgcolor5').value=this.value}else {document.querySelector('#Msgcolor5').value=this.value}localStorage.setItem('CantSeeColor5',value)}" id="Msgcolor5Text" value="${localStorage.CantSeeColor5}">
+                <input class="SettiingInput ColorSettinr" type="color" id="Msgcolor5" value="${localStorage.CantSeeColor5}" onchange="document.querySelector('#Msgcolor5Text').value=value;localStorage.setItem('CantSeesetBBSMsgListColor',value)"></label>
             </div>
         </div>
     </div>
@@ -1169,163 +1177,7 @@
         console.error('Database error:', event.target.error);
     };
     //初始值部分结束
-    let UserListCompCheck=true;//检测用户列表更新状态
-    let TimeOutSet=3000;//超时设定
-    let WebGetJSON;//获取的在线列表
-    let OnliceUserNum=0;//在线人数计数
-    let OnlineUserListJSON;//本地在线列表
-    let OldOnlineUserListJSON=[];//历史在线列表，用于比对
-    function GetOnliceAndPrint() {//在线用户相关修改
-        let ListJsonUserName
-        let ListJson
-        let UploadCheck=false;
-        OnlineUserListJSON=[];
-        OnliceUserNum=0;
-        for (let i=0;i<WebGetJSON.length;i++){//插入用户数据
-            if(WebGetJSON[i][Object.keys(WebGetJSON[i])[0]].isOnline===true){
-                OnlineUserListJSON.splice(0,0,WebGetJSON[i]);
-            }
-        }
-        if(OldOnlineUserListJSON.length!==OnlineUserListJSON.length){
-            UploadCheck=true
-        }else{
-            for(let i=0;i<OnlineUserListJSON.length;i++){
-                if(Object.keys(OldOnlineUserListJSON[i]).toString()!==Object.keys(OnlineUserListJSON[i]).toString()){
-                    UploadCheck=true;
-                    break;
-                }
-            }
-        }
-        //更新则写入
-        if(OnlineUserListJSON.length>0&&UploadCheck){//验证是否为空
-            let AddOnLice=document.querySelector("#M27CHANGE");
-            AddOnLice.innerHTML=""
-            for (let i=0;i<OnlineUserListJSON.length;i++){//插入用户数据
-                OnliceUserNum+=1//在线人数计数器
-                ListJsonUserName=Object.keys(OnlineUserListJSON[i])//人员ID
-                ListJson=OnlineUserListJSON[i]//人员信息
-                let UID=ListJson[ListJsonUserName].avatar.substring(ListJson[ListJsonUserName].avatar.lastIndexOf("/")+1,ListJson[ListJsonUserName].avatar.lastIndexOf("."))
-                //添加显示信息
-                AddOnLice.insertAdjacentHTML("beforeend",`<div class="online-user-item" id="M27-${ListJsonUserName}">
-                    <div class="avatar">
-                        <img data-UID="${UID}" src="${ListJson[ListJsonUserName].avatar}" alt="${ListJsonUserName}" onerror="this.src='./plugin/msto_chat/assets/default-avatar.png'">
-                    </div>
-                    <div class="user-info">
-                        <h6 class="username">${ListJsonUserName}</h6>
-                        <span style="font-size: 10px">最后在线时间：${(new Date((OnlineUserListJSON[i][Object.keys(OnlineUserListJSON[i])[0]].lastActive)*1000)).toString().slice(16,25)}</span>
-                    </div>
-                    </div>
-                `)
-            }
-        }else{
-            for(let i=0;i<OldOnlineUserListJSON.length;i++){//写入时间
-                OnliceUserNum+=1//在线人数计数器
-                ListJsonUserName=Object.keys(OldOnlineUserListJSON[i])//人员ID
-                ListJson=OldOnlineUserListJSON[i]//人员信息
-                //更新在线时间
-                document.querySelector(`#M27-${ListJsonUserName}>div.user-info>span`).innerHTML=`最后在线时间：${(new Date((OnlineUserListJSON[i][Object.keys(OnlineUserListJSON[i])[0]].lastActive)*1000)).toString().slice(16,25)}`
-            }
-        }
-        document.querySelector('#M27UserNun').innerText=OnliceUserNum
-            OldOnlineUserListJSON=OnlineUserListJSON//更新旧数组
-    }
-    let NoNewUIMsgId;
-    let loadCount=0;
-    let lastMsgList,NoUserMsgCount;
-    function GetServerStation(MsgLight,MsgPrint) {//信号灯|在线用户部分数据修改
-        let nowTime,Time;
-        if(UserListCompCheck){
-            UserListCompCheck=false;
-        $.ajax({//获取服务器状态
-                type:"GET",
-                url: `https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=msg&type=new&${typeof (NoNewUIMsgId)!=='undefined'?'last_id='+NoNewUIMsgId:''}`,
-                async:true,
-                timeout:TimeOutSet,
-                beforeSend:function(){nowTime=Date.now();},
-                success:function (data){//非脚本自定义界面时通知系统
-                    if(localStorage.M27NewBBGPrint!=="true"){
-                        let MsgListGer=JSON.parse(data).list;
-                        if (MsgListGer.length>0){
-                        NoNewUIMsgId=JSON.parse(MsgListGer[MsgListGer.length-1]).id;
-                        NoUserMsgCount=MsgListGer.length
-                        if (typeof (lastMsgList)!=="undefined"&&lastMsgList.length>0){
-                            MsgListGer.forEach(item=>{
-                                if (JSON.parse(item).name===UserId) {
-                                    NoUserMsgCount--
-                                }
-                                lastMsgList.forEach(itemx=>{
-                                    if (JSON.parse(item).id===JSON.parse(itemx).id){
-                                        NoUserMsgCount--
-                                    }
-                                })
-                            })
-                        }
-                            if (NoteSte&&MsgListGer.length===1&&!document.hasFocus()&&loadCount>=2&&NoUserMsgCount>0){
-                                let msgNoteJSON={"body":JSON.parse(MsgListGer).name+":"+JSON.parse(MsgListGer).msg,"icon":JSON.parse(MsgListGer).pic}
-                                if(JSON.parse(MsgListGer).msg!==""&&JSON.parse(MsgListGer).msg!==0&&typeof (JSON.parse(MsgListGer).msg)!=="undefined"&&(JSON.parse(MsgListGer).msg).indexOf('[img]')!==-1){
-                                    msgNoteJSON.image=JSON.parse(MsgListGer).msg.substring(((JSON.parse(MsgListGer).msg).indexOf('[img]')+5),(JSON.parse(MsgListGer).msg).indexOf('[/img]'))
-                                }
-                                let msgpushbox=new Notification("新消息来袭",msgNoteJSON);
-                                setTimeout(()=>{msgpushbox.close()},3000);
-                            }else if(NoteSte&&!document.hasFocus()&&MsgListGer.length>1&&loadCount>=2&&NoUserMsgCount>0){
-                                let msgpushbox=new Notification("新消息来袭",{"body":`多个新消息等待接收`});
-                                setTimeout(()=>{msgpushbox.close()},3000);
-                            }
-                            lastMsgList=MsgListGer;
-                        }
-                    }
-                },
-                complete:function(date,xhr){
-                    loadCount++
-                    Time=Date.now();
-                    let ReportCode=date.status;
-                    if((Time-nowTime)>=TimeOutSet){
-                        MsgLight.style.backgroundColor="red";
-                        MsgLight.style.boxShadow= "0px 1px 10px #F60303,0px -1px 10px #F60303,1px 0px 10px #F60303,-1px 0px 10px #F60303";
-                        MsgLight.style.border="1px solid #F60303";
-                        MsgLight.className="linkBadWeb";
-                        MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>收信延迟过高`;
-                        TimeOutSet=TimeOutSet+1000;
-                        UserListCompCheck=true;
-                    }else if(xhr==='success'&&(Time-nowTime>1000)){
-                        MsgLight.style.boxShadow= "0px 1px 10px #F6D603,1px 0px 10px #F6D603,-1px 0px 10px #F6D603,0px -1px 10px #F6D603";
-                        MsgLight.style.backgroundColor="yellow";
-                        MsgLight.style.border="1px solid #F6D603";
-                        MsgLight.className="linkOutTime";
-                        MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>网络状态一般`;
-                        WebGetJSON=JSON.parse(date.responseText).active_users;
-                        GetOnliceAndPrint();
-                        TimeOutSet=3000;
-                        UserListCompCheck=true;
-                    }else if (ReportCode===200&&xhr==="success"){
-                        MsgLight.style.backgroundColor="green";
-                        MsgLight.style.boxShadow= "0px 1px 10px #77F602,0px -1px 10px #77F602,-1px 0px 10px #77F602,1px 0px 10px #77F602";
-                        MsgLight.style.border="1px solid #77F602";
-                        MsgLight.className="linkOpen";
-                        MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>网络状态良好`;
-                        WebGetJSON=JSON.parse(date.responseText).active_users;
-                        GetOnliceAndPrint()
-                        TimeOutSet=3000;
-                        UserListCompCheck=true;
-                    }else if(ReportCode>=400||ReportCode>=500||xhr!=="success"){
-                        MsgLight.style.backgroundColor="red";
-                        MsgLight.style.boxShadow= "0px 1px 10px #F60303,0px -1px 10px #F60303,1px 0px 10px #F60303,-1px 0px 10px #F60303";
-                        MsgLight.style.border="1px solid #F60303";
-                        MsgLight.className="linkBadWeb";
-                        MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>但无法正确链接到服务器`;
-                    }
-                },
-                error: function (){
-                    MsgLight.style.backgroundColor="red";
-                    MsgLight.style.boxShadow= "0px 1px 10px #F60303,0px -1px 10px #F60303,1px 0px 10px #F60303,-1px 0px 10px #F60303";
-                    MsgLight.style.border="1px solid red";
-                    MsgLight.className="linkBadWeb";
-                    MsgPrint.innerHTML=`当前收信延迟：${Time-nowTime}<br>但无法正确链接到服务器`;
-                    UserListCompCheck=true;
-                },
-            })
-        }
-    }
+
     let PicUrl=[]
     let message;//站长的特殊链接处理
     function renderImage(url, alt = '') {//图片处理
@@ -1510,6 +1362,7 @@
     let NowURL = window.location.href;//读取当前所在网页
 
     if (NowURL.includes('boyshelpboys.com/bhb_chat.htm')) {//如果当前网页为聊天室页面
+
         backPrint(document.querySelector("#top > div > div"),document.querySelector("#top > div > div > main > div"),NowURL);
         WidthHeightSet();
         leftANDtop();
@@ -1522,7 +1375,7 @@
     <span>聊天室界面设置</span><hr>
     <div id="MsgSetSet">
     <label for="BBSprintCheck" style="margin:0;user-select:none;-moz-user-select:none;width: auto;">
-    <span>启用新的聊天室界面</span>
+    <span>启用新的聊天室界面（无效中）</span>
     <input  ${(()=>{if (localStorage.M27NewBBGPrint!=="false"){return "checked";}else{return "";}})()} type="checkbox" class="SettiingInput" name="BBSprintCheck" id="BBSprintCheck" value="PrintPicplan">
     </label>
     <span>消息气泡透明度调整</span>
@@ -1533,7 +1386,7 @@
     <label for="MsgBoxColor">
     <input class="SettiingInput ColorSettinr" type="color" id="MsgBoxColor" onchange="localStorage.MsgBoxColor=value" value="${localStorage.MsgBoxColor}">
     </label>
-    </div>`
+    </div>`//杂项页面|聊天室气泡&自定义聊天室开关
         document.querySelector("#all > div:nth-child(4)").insertAdjacentHTML("afterend",AddSetter);
         document.querySelector("#BBSprintCheck").addEventListener("click",(e)=>{
             if(e.target.checked){
@@ -1542,6 +1395,29 @@
                 localStorage.setItem("M27NewBBGPrint","false");
             }
         })
+        let AddSetterSec=`
+        <div class="itemBox"><span>聊天室界面|消息列表区</span><hr>
+                <span>透明度</span>
+                <label>
+                <input type="text" class="ShowInputText" maxlength="3" id="CantSeesetBBSMsgListText" oninput="this.value = this.value.replace(/[^0-9]/g, '')" onchange="if (Number(this.value)<=100&&Number(this.value)>=0){document.querySelector('#CantSeesetBBSMsgList').value=this.value}else{this.value=50;}localStorage.setItem('CantSeesetBBSMsgList',((~~(value*255/100))!==0?(~~(value*255/100)).toString(16):(~~(value*255/100)).toString(16)+'0'))" value="${Math.ceil((Number('0x'+localStorage.CantSeesetBBSMsgList).toString(10))*100/255)}">
+                <input class="SettiingInput RangeSetting" type="range" id="CantSeesetBBSMsgList" value="${Math.ceil((Number('0x'+localStorage.CantSeesetBBSMsgList).toString(10))*100/255)}" onchange="document.querySelector('#CantSeesetBBSMsgListText').value=value;localStorage.setItem('CantSeesetBBSMsgList',((~~(value*255/100))!==0?(~~(value*255/100)).toString(16):(~~(value*255/100)).toString(16)+'0'))">
+                </label>
+                <span>背景颜色</span>
+                <label>
+                <input type="text" class="ShowInputText" maxlength="7" oninput="this.value = this.value.replace(/[^a-f0-9#]/gi, '0');if(this.value.length>7){this.value='#'+this.value.substring(1,6)}" onchange="if (this.value.indexOf('#')===0){let VaLeng=this.value.length;if (VaLeng<7){for (let i=0;i<7-VaLeng;i++){this.value+='0';}document.querySelector('#CantSeesetBBSMsgListColor').value=this.value}else {document.querySelector('#CantSeesetBBSMsgListColor').value=this.value}localStorage.setItem('CantSeesetBBSMsgListColor',value)}" id="CantSeesetBBSMsgListColorText" value="${localStorage.CantSeesetBBSMsgListColor}">
+                <input class="SettiingInput ColorSettinr" type="color" id="CantSeesetBBSMsgListColor" value="${localStorage.CantSeesetBBSMsgListColor}" onchange="document.querySelector('#CantSeesetBBSMsgListColorText').value=value;localStorage.setItem('CantSeesetBBSMsgListColor',value)"></label>
+            </div>
+        `
+        console.log(document.querySelector("#Item > div"))
+        document.querySelector("#Item > div:nth-last-child(1)").insertAdjacentHTML("beforeend",AddSetterSec);
+        document.querySelector("#BBSprintCheck").addEventListener("click",(e)=>{
+            if(e.target.checked){
+                localStorage.setItem("M27NewBBGPrint","true");
+            }else{
+                localStorage.setItem("M27NewBBGPrint","false");
+            }
+        })
+
         //聊天室界面修改所用CSS
         let NeedFixStyle=document.querySelector("body");
         NeedFixStyle.insertAdjacentHTML("afterend",'<style id="ChatStyle"></style>');
@@ -1550,7 +1426,7 @@
         width: 260px !important;
         display: flex !important;
         flex-direction: column !important;
-        background: #0000 !important;
+        background: ${localStorage.CantSeesetBBSMsgListColor}${localStorage.CantSeesetBBSMsgList} !important;
         border-right: 1px solid #444444 !important;
         }
         @media screen and (max-width: 768px){
@@ -1565,7 +1441,7 @@
     padding: 0 !important;
     margin: 0 !important;
     z-index: 99999 !important;
-    background: #0000 !important;
+    background: ${localStorage.CantSeesetBBSMsgListColor}${localStorage.CantSeesetBBSMsgList} !important;
     }
     .chat-sidebar {
     width: 100% !important;
@@ -1577,61 +1453,17 @@
        
         .input-area{
         border-top: 1px solid #444444 !important;
-        background: #0000 !important;
-}
+        background: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;
+        }
         }
         `)
         document.querySelector("#ChatStyle").appendChild(ChatAddStyle)
-        // //聊天室消息状态指示灯
-        // let MsgServerTime=` <span id="MsgServer" class="" style="display: ${(()=>{if(localStorage.MsgLightCheckX==='true'){return 'block';}else{return 'none';}})()};border-radius: 50%;border:1px solid gray;height:16px;width:16px;text-align: center;background-color: gray;"></span>`
-        // document.querySelector("div.chat-header>span#chatTitle").insertAdjacentHTML("afterend",MsgServerTime)
-        // let MsgLight=document.querySelector("#MsgServer");
-        // let MsgServerReport=`<div id="MsgBox" style="z-index:1000001;display:none; top: 10px;right:50px;position: absolute;width: 180px;height: 50px;background-color: rgba(40, 64, 120, 0.4);border: 1px solid aqua;"><span id="Msg"></span> </div>`
-        // document.querySelector("#top > div > div > main > section > div > div > div > div.online-users-panel").insertAdjacentHTML("afterend",MsgServerReport)
-        // let MsgPrint= document.querySelector("#Msg");
-        // let OnliceUserList=document.querySelector("#top > div > div > main > section > div > div > div > div.chat-history-header.border-bottom").nextElementSibling;
-        // OnliceUserList.innerHTML="";
-        // OnliceUserList.innerHTML=`<div class="panel-body"><div class="M27-online-users-list" id="M27CHANGE"></div></div>`;
-        // //指示灯计时器
-        // GetServerStation(MsgLight,MsgPrint)
-        // let IntTime=setInterval(()=> {
-        //     GetServerStation(MsgLight,MsgPrint);
-        // },3000)
-        //
-        // document.querySelector("#MsgLightCheck").addEventListener("click",(e)=>{//调整指示灯的开关
-        //     if(e.target.checked){
-        //         localStorage.setItem("MsgLightCheckX","true");
-        //         MsgLight.style.display="block";
-        //         IntTime=setInterval(()=> {
-        //             GetServerStation(MsgLight,MsgPrint);
-        //         },3000);
-        //     }else{
-        //         localStorage.setItem("MsgLightCheckX","false");
-        //         MsgLight.style.display="none";
-        //         clearInterval(IntTime);
-        //     }
-        // })
-        // MsgLight.addEventListener("click",()=>{//点击指示灯显示相关信息
-        //     if(document.querySelector("#MsgBox").style.display==="none"){
-        //         document.querySelector("#MsgBox").style.display="block";
-        //     }else{
-        //         document.querySelector("#MsgBox").style.display="none";
-        //     }
-        // })
-        //点击页面其他部分则隐藏相关菜单
-        // document.addEventListener('click',function(){document.querySelector("#MsgBox").style.display="none";document.querySelector(".online-users-panel").style.display="none";})
 
         let baca=document.querySelector("#top > div > div > main > div > div.chat-container > div.chat-main")//聊天历史记录1
         let ul=document.querySelector("#messages")//聊天历史记录2（位置更靠里）
         let histor=document.querySelector("#top > div > div > main > div > div.chat-container")//聊天页面外层边框
         let msginputbox=document.querySelector("#input")//输入框自己
         let LiuYanTop=document.querySelector("#top > div > div > main > div > div.chat-container > div.chat-main > div.chat-header")
-        let msgInputBoxOutsite=document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.form-send-message.d-flex.justify-content-between.align-items-center.talk.write")
-
-        //阻止冒泡
-        // LiuYanTop.addEventListener('click',function (e){e.stopPropagation();})//解决点击顶部栏错误消失
-        // document.querySelector("#M27CHANGE").addEventListener("click",(e)=>{e.stopPropagation();});//解决点击自身错误消失
-        // document.querySelector("#top > div > div > main > section > div > div > div > div.shadow-xs > div.chat-toolbar").className="chat-toolbar GameBarFix"
 
         let addlocalupdate=document.querySelector("#webimgsrc");
 
@@ -1645,7 +1477,7 @@
         addlocalupdate.addEventListener("change",handleFileSelect,false)//本体提交图片时向DBD保存base64
 
         //表情功能 暂时搁置
-        let MojPack=`<button id="MojPack" class="toolbar-btn">😀表情</button>`
+        let MojPack=`<button id="MojPack" class="toolbar-btn">😀</button>`
         let ToolBar=document.querySelector("#inputToolbar");
         ToolBar.insertAdjacentHTML("beforeend",MojPack)
         let MojPackOut=document.querySelector("#MojPack");
@@ -1680,7 +1512,6 @@
                 }else{//遍历完成|为之前填充的表情包添加点击发送事件
                     console.log("数据库遍历完毕");
                     document.querySelectorAll('.M27Mojuse').forEach((e)=>{
-                        e.target.stopPropagation();
                         e.addEventListener('click',function Send(e){
                             let SearchTitle=e.target.title;
                             let request = indexedDB.open('databaseName', 13);
@@ -1688,9 +1519,9 @@
                             let db=e.target.result
                             let objectStore =  db.transaction('EmoDB','readonly').objectStore('EmoDB');
                             let SearchReport=objectStore.index('picNAME').get(`${SearchTitle}`)
-                            SearchReport.onsuccess=(e)=>{
-
+                            SearchReport.onsuccess=(e)=>{//读取数据库并重编码为File类型
                                 console.log(e.target.result);
+                                if (e.target.result!==undefined){
                                 let binaryString=atob(e.target.result.picBASE64.slice(e.target.result.picBASE64.indexOf(",")+1))
                                 const byteArray=new Uint8Array(binaryString.length)
                                 for(let i=0;i<byteArray.length;i++){
@@ -1706,7 +1537,7 @@
                                 })
                                 fileReader.readAsText(blobIMG);
                                 console.log(`${e.target.result.picBASE64.slice(e.target.result.picBASE64.indexOf(":")+1,e.target.result.picBASE64.indexOf(";",e.target.result.picBASE64.indexOf("/")+1))}`);
-                                $.ajax({//发送事件
+                                $.ajax({//上传并发送
                                     url:'https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=upload_image',
                                     type: 'POST',
                                     data: formData,
@@ -1720,8 +1551,8 @@
                                             }
                                             if (response.code === 0 && response.data) {
                                                 console.log(response.data);
-                                                // 发送图片消息
-                                                send(`[img]${response.data}[/img]`);
+                                                document.querySelector("#input").value=response.data;
+                                                document.querySelector("#sendBtn").click()
                                             } else {
                                                 alert('上传失败：' + (response.message || '未知错误'));
                                             }
@@ -1735,6 +1566,7 @@
                                         alert('上传失败：' + error);
                                     }
                                 });
+                                }
                             }
                             }
                         })
@@ -1742,12 +1574,13 @@
                 }
             }
         }
-        //let MojPicAdd=`<div class="M27MojPackImg la la-plus-circle" title="" style="text-align: center;line-height: 100px; font-size: 80px;" id="" ></div>`
         MojPackAddGet.addEventListener("click",()=>{//表情包添加事件
-            const $input = $('<input type="file" accept="image/*" multiple style="display:none">');//添加文件选择框并激活点击事件
+            console.log("work")
+            const $input = $('<input type="file" accept="image/*" multiple style="display:none" id="AddMoj">');//添加文件选择框并激活点击事件
             $('body').append($input);
             $input.trigger('click');
-            $input.on('change',(e)=>{//选中后填充到数据库
+            document.querySelector("#AddMoj").addEventListener('change',(e)=>{//选中后填充到数据库
+                console.table(e.target.files);
                 Array.from(e.target.files).forEach((file,index)=>{
                     let imgFile = new FileReader();
                     let EmoInputList=e.target.files[index]
@@ -1755,12 +1588,81 @@
                     imgFile.onload=()=>{
                         let inputBASE64=imgFile.result
                         let request = indexedDB.open('databaseName', 13);
+                        console.log(inputBASE64)
                         request.onsuccess=(e)=>{
                             let db=e.target.result
                             let transaction = db.transaction('EmoDB', 'readwrite');
                             let objectStore = transaction.objectStore('EmoDB');
                             objectStore.put({id:localStorage.EmoDBlist,picNAME:EmoInputList.name,picBASE64:inputBASE64})//保存图片计数|图片名|图片BASE64数据
                             localStorage.EmoDBlist++
+                            let binaryString=atob(inputBASE64.slice(inputBASE64.indexOf(",")+1))
+                            const byteArray=new Uint8Array(binaryString.length)
+                            for(let i=0;i<byteArray.length;i++){
+                                byteArray[i]=binaryString.charCodeAt(i);
+                            }
+                            const blobIMG=new Blob([byteArray],{type:`${inputBASE64.slice(inputBASE64.indexOf(":")+1,inputBASE64.indexOf(";"))}`});
+                            const imageUrl = URL.createObjectURL(blobIMG);
+                            let MojIMGAdd=`<div class="M27MojPackImg la M27Mojuse" title='${EmoInputList.name}' style="text-align: center;line-height: 100px; font-size: 80px;background-image:url(${imageUrl});background-position: center" ></div>`
+                            MojPackAddGet.insertAdjacentHTML("afterend",MojIMGAdd);
+                            console.log(MojPackAddGet.nextElementSibling);
+                            MojPackAddGet.nextElementSibling.addEventListener('click',function Send(e){
+                                let SearchTitle=e.target.title;
+                                let request = indexedDB.open('databaseName', 13);
+                                request.onsuccess=(e)=>{
+                                    let db=e.target.result
+                                    let objectStore =  db.transaction('EmoDB','readonly').objectStore('EmoDB');
+                                    let SearchReport=objectStore.index('picNAME').get(`${SearchTitle}`)
+                                    SearchReport.onsuccess=(e)=>{//读取数据库并重编码为File类型
+                                        console.log(e.target.result);
+                                        if (e.target.result!==undefined){
+                                            let binaryString=atob(e.target.result.picBASE64.slice(e.target.result.picBASE64.indexOf(",")+1))
+                                            const byteArray=new Uint8Array(binaryString.length)
+                                            for(let i=0;i<byteArray.length;i++){
+                                                byteArray[i]=binaryString.charCodeAt(i);
+                                            }
+                                            const blobIMG=new Blob([byteArray],{type:`${e.target.result.picBASE64.slice(e.target.result.picBASE64.indexOf(":")+1,e.target.result.picBASE64.indexOf(";"))}`});
+                                            console.log(blobIMG)
+                                            const formData=new FormData();
+                                            formData.append('file',blobIMG,e.target.result.picNAME);
+                                            let fileReader=new FileReader()
+                                            fileReader.addEventListener("loadend",()=>{
+                                                console.log(fileReader.result)
+                                            })
+                                            fileReader.readAsText(blobIMG);
+                                            console.log(`${e.target.result.picBASE64.slice(e.target.result.picBASE64.indexOf(":")+1,e.target.result.picBASE64.indexOf(";",e.target.result.picBASE64.indexOf("/")+1))}`);
+                                            $.ajax({//上传并发送
+                                                url:'https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=upload_image',
+                                                type: 'POST',
+                                                data: formData,
+                                                contentType:false,
+                                                processData: false,
+                                                success: function(response) {
+                                                    try {
+                                                        if (typeof response === 'string') {
+                                                            response = JSON.parse(response);
+                                                            console.log(response);
+                                                        }
+                                                        if (response.code === 0 && response.data) {
+                                                            console.log(response.data);
+                                                            document.querySelector("#input").value=response.data;
+                                                            document.querySelector("#sendBtn").click()
+                                                        } else {
+                                                            alert('上传失败：' + (response.message || '未知错误'));
+                                                        }
+                                                    } catch (e) {
+                                                        console.error('Response parse error:', e, response);
+                                                        alert('上传失败：服务器响应解析错误');
+                                                    }
+                                                },
+                                                error: function(xhr, status, error) {
+                                                    console.error('Upload error:', {xhr, status, error});
+                                                    alert('上传失败：' + error);
+                                                }
+                                            });
+                                        }
+                                    }
+                                }
+                            })
                         }
                         request.onerror = (event)=> {
                             console.error('Database error:', event.target.error);
@@ -1770,15 +1672,42 @@
             });
             $input.remove()
         })
-        MojPackDeleteGet.addEventListener("click",()=>{
-            document.querySelectorAll('.M27Mojuse').forEach(e=>{
-                console.log(e)
-                let ReadyRemove=e;
-                let Title=e.title;
-                let AddDeleteButton=`<input type="button" class="DeleteButton" title="${Title}"  style="display: none" id="M27Moj${Title}"><label for="M27Moj${Title}" style="width: 30px;height:30px;background-color: rgba(0,0,0,0.3);line-height: 28px;font-size: 19px;text-align: center;position: relative;top: -55%;left: -33%;">X</label>`;
-                e.insertAdjacentHTML('afterbegin',AddDeleteButton)
-
-            })
+        let StartRemove=false;//判断是否为删除模式
+        MojPackDeleteGet.addEventListener("click",()=>{//表情包删除事件
+            if(!StartRemove){
+                document.querySelectorAll('.M27Mojuse').forEach(e=>{
+                    let ReadyRemove=e;
+                    let Title=e.title;
+                    let AddDeleteButton=`<input type="button" class="DeleteButton" title="${Title}"  style="display: none" id="M27Moj${Title}"><label class="DeleteButtonLabel" for="M27Moj${Title}" style="width: 30px;height:30px;background-color: rgba(0,0,0,0.3);line-height: 28px;font-size: 19px;text-align: center;position: relative;top: -55%;left: -33%;">X</label>`;
+                    e.insertAdjacentHTML('afterbegin',AddDeleteButton)
+                    e.querySelector('.DeleteButton').addEventListener('click', (e)=>{
+                        e.stopPropagation();
+                        let request = indexedDB.open('databaseName', 13);
+                        request.onsuccess=(e)=>{
+                            let db=e.target.result
+                            let objectStore =  db.transaction('EmoDB','readwrite').objectStore('EmoDB');
+                            let SearchReport=objectStore.index('picNAME').get(`${Title}`)
+                            SearchReport.onsuccess=(e)=>{
+                                console.log(e.target.result)
+                                let DeleteWorker=objectStore.delete(e.target.result.id);
+                                DeleteWorker.onsuccess=()=>{
+                                    ReadyRemove.remove();
+                                    localStorage.EmoDBlist--
+                                    console.log("删除完成")
+                                }
+                            }
+                        }
+                    })
+                    StartRemove=true;
+                })
+            }else{
+                document.querySelectorAll('.M27Mojuse').forEach(e=>{
+                    console.log(e.querySelector('.DeleteButton'))
+                    e.querySelector('.DeleteButton').remove()
+                    e.querySelector('.DeleteButtonLabel').remove()
+                })
+                StartRemove=false;
+            }
         })
 
         //在线人数重写
