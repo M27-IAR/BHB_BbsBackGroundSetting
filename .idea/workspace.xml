@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="添加对聊天室界面消息列表区的颜色与透明度调整。&#10;聊天室表情包功能基本完成，已可以使用。&#10;请注意聊天室表情包数据皆保存于本地，在其他浏览器或者其他设备登录不会且无法同步，后续可能会想办法支持。">
+    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="适配，修bug。">
       <change afterPath="$PROJECT_DIR$/更新日志（临时）.TXT" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -352,23 +349,7 @@
       <workItem from="1760868085202" duration="2990000" />
       <workItem from="1761045909964" duration="1012000" />
       <workItem from="1761128074833" duration="5052000" />
-      <workItem from="1761302808671" duration="1890000" />
-    </task>
-    <task id="LOCAL-00074" summary="change">
-      <option name="closed" value="true" />
-      <created>1739202226991</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1739202226992</updated>
-    </task>
-    <task id="LOCAL-00075" summary="修复了在部分情况下点击“在线人数”按钮会无法正常显示在线列表的BUG&#10;重新添加了广告区域删除的功能&#10;修改了在线列表交互逻辑；现在可以通过点击名字进行@操作，通过点击头像进行跳转主页的操作">
-      <option name="closed" value="true" />
-      <created>1740153467413</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1740153467413</updated>
+      <workItem from="1761302808671" duration="2236000" />
     </task>
     <task id="LOCAL-00076" summary="修复了在部分情况下点击“在线人数”按钮会无法正常显示在线列表的BUG&#10;重新添加了广告区域删除的功能&#10;修改了在线列表交互逻辑；现在可以通过点击名字进行@操作，通过点击头像进行跳转主页的操作">
       <option name="closed" value="true" />
@@ -746,7 +727,23 @@
       <option name="project" value="LOCAL" />
       <updated>1760451561224</updated>
     </task>
-    <option name="localTasksCounter" value="123" />
+    <task id="LOCAL-00123" summary="适配，修bug。">
+      <option name="closed" value="true" />
+      <created>1761315088853</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1761315088854</updated>
+    </task>
+    <task id="LOCAL-00124" summary="适配，修bug。">
+      <option name="closed" value="true" />
+      <created>1761315301513</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1761315301513</updated>
+    </task>
+    <option name="localTasksCounter" value="125" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -774,7 +771,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="测试" />
     <MESSAGE value="更改开源协议" />
     <MESSAGE value="test" />
     <MESSAGE value="change" />
@@ -799,6 +795,7 @@
     <MESSAGE value="对新聊天室进行基本适配，删除部分无效代码。&#10;修复在选中“渲染到聊天室背景”时其他页面的背景透明度数据无法正常生效的问题。&#10;稍微完善表情包功能代码（未完成请注意）。" />
     <MESSAGE value="修复手机端网页背景不显示的问题。&#10;调整部分区块的颜色和透明度。&#10;修复聊天室界面气泡颜色设置失效的问题。" />
     <MESSAGE value="添加对聊天室界面消息列表区的颜色与透明度调整。&#10;聊天室表情包功能基本完成，已可以使用。&#10;请注意聊天室表情包数据皆保存于本地，在其他浏览器或者其他设备登录不会且无法同步，后续可能会想办法支持。" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加对聊天室界面消息列表区的颜色与透明度调整。&#10;聊天室表情包功能基本完成，已可以使用。&#10;请注意聊天室表情包数据皆保存于本地，在其他浏览器或者其他设备登录不会且无法同步，后续可能会想办法支持。" />
+    <MESSAGE value="适配，修bug。" />
+    <option name="LAST_COMMIT_MESSAGE" value="适配，修bug。" />
   </component>
 </project>
