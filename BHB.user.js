@@ -4,7 +4,7 @@
 // @match       https://*boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     3.2.4.4
+// @version     3.2.4.5
 // @author      M27IAR
 // @license     GPL-3.0-or-later
 // @license     GPL-3.0-or-later; https://www.gnu.org/licenses/gpl-3.0.txt
@@ -989,7 +989,7 @@
                     document.querySelector("#WebV").innerHTML=`服务器端最新版本为：v${data.version.toString()}，Greayfork请前往以下站点下载更新：<a href="https://greasyfork.dpdns.org/zh-CN/scripts/519010-bhb%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2-%E5%B7%B2%E5%85%A8%E5%B1%80%E5%85%BC%E5%AE%B9">链接1</a><a href="https://greasyfork.org/zh-CN/scripts/519010-bhb%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2-%E5%B7%B2%E5%85%A8%E5%B1%80%E5%85%BC%E5%AE%B9">链接2</a><br>OpenUserJS请前往以下站点更新：<a href="https://openuserjs.org/scripts/M27IAR/BHB%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2%EF%BC%88%E5%B7%B2%E5%85%A8%E5%B1%80%E5%85%BC%E5%AE%B9%EF%BC%89">OpenUserJS链接</a>`
                     document.querySelector("#SettingBox").style.display="flex";
                     document.querySelector(`#About`).style.display = "flex";
-                    document.querySelector("#AboutSelect").checked=true;
+                    document.querySelector("#seven").checked=true;
                 }else{document.querySelector("#WebV").innerHTML=`服务器端最新版本为：v${data.version.toString()}`
                     if(FirstTime){
                         document.querySelector("#SettingBox").style.display="flex";
