@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="修复手机端网页背景不显示的问题。&#10;调整部分区块的颜色和透明度。&#10;修复聊天室界面气泡颜色设置失效的问题。">
+    <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="添加对聊天室界面消息列表区的颜色与透明度调整。&#10;聊天室表情包功能基本完成，已可以使用。&#10;请注意聊天室表情包数据皆保存于本地，在其他浏览器或者其他设备登录不会且无法同步，后续可能会想办法支持。">
       <change afterPath="$PROJECT_DIR$/更新日志（临时）.TXT" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
@@ -348,15 +348,11 @@
       <workItem from="1760187024102" duration="660000" />
       <workItem from="1760267657454" duration="10230000" />
       <workItem from="1760349793537" duration="7968000" />
-      <workItem from="1760436509088" duration="13933000" />
-    </task>
-    <task id="LOCAL-00073" summary="更改开源协议">
-      <option name="closed" value="true" />
-      <created>1739023235901</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1739023235901</updated>
+      <workItem from="1760436509088" duration="14182000" />
+      <workItem from="1760868085202" duration="2990000" />
+      <workItem from="1761045909964" duration="1012000" />
+      <workItem from="1761128074833" duration="5052000" />
+      <workItem from="1761302808671" duration="1890000" />
     </task>
     <task id="LOCAL-00074" summary="change">
       <option name="closed" value="true" />
@@ -742,7 +738,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760366531217</updated>
     </task>
-    <option name="localTasksCounter" value="122" />
+    <task id="LOCAL-00122" summary="添加对聊天室界面消息列表区的颜色与透明度调整。&#10;聊天室表情包功能基本完成，已可以使用。&#10;请注意聊天室表情包数据皆保存于本地，在其他浏览器或者其他设备登录不会且无法同步，后续可能会想办法支持。">
+      <option name="closed" value="true" />
+      <created>1760451561223</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1760451561224</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -770,7 +774,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修复了在主页时背景图片不显示的BUG&#10;重写了在线栏，只会显示在线人数和最后在线时间&#10;新的聊天室界面现已上线（Beta），在聊天室界面的插件设置=》聊天室界面设置=》启用新的聊天室界面 点击勾选后刷新即可开始使用&#10;删除了“顶栏下部透明度”选项，因为可以被背景色透明度替代并且有BUG" />
     <MESSAGE value="测试" />
     <MESSAGE value="更改开源协议" />
     <MESSAGE value="test" />
@@ -795,6 +798,7 @@
     <MESSAGE value="现在，在关于界面关闭设置菜单时不会自动刷新。&#10;脚本修改的聊天室界面支持显示引用类消息。&#10;翻译了图片放大展示界面控制台的英文。&#10;现在支持运行作者写在帖子内的脚本代码。&#10;尝试给自定义聊天室界面添加了消息获取失败重复获取的机制(在代码层面最多会重试5次)。" />
     <MESSAGE value="对新聊天室进行基本适配，删除部分无效代码。&#10;修复在选中“渲染到聊天室背景”时其他页面的背景透明度数据无法正常生效的问题。&#10;稍微完善表情包功能代码（未完成请注意）。" />
     <MESSAGE value="修复手机端网页背景不显示的问题。&#10;调整部分区块的颜色和透明度。&#10;修复聊天室界面气泡颜色设置失效的问题。" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复手机端网页背景不显示的问题。&#10;调整部分区块的颜色和透明度。&#10;修复聊天室界面气泡颜色设置失效的问题。" />
+    <MESSAGE value="添加对聊天室界面消息列表区的颜色与透明度调整。&#10;聊天室表情包功能基本完成，已可以使用。&#10;请注意聊天室表情包数据皆保存于本地，在其他浏览器或者其他设备登录不会且无法同步，后续可能会想办法支持。" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加对聊天室界面消息列表区的颜色与透明度调整。&#10;聊天室表情包功能基本完成，已可以使用。&#10;请注意聊天室表情包数据皆保存于本地，在其他浏览器或者其他设备登录不会且无法同步，后续可能会想办法支持。" />
   </component>
 </project>
