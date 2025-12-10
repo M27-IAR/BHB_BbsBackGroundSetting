@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="适配，修bug。">
       <change afterPath="$PROJECT_DIR$/更新日志（临时）.TXT" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -349,15 +351,8 @@
       <workItem from="1760868085202" duration="2990000" />
       <workItem from="1761045909964" duration="1012000" />
       <workItem from="1761128074833" duration="5052000" />
-      <workItem from="1761302808671" duration="2236000" />
-    </task>
-    <task id="LOCAL-00076" summary="修复了在部分情况下点击“在线人数”按钮会无法正常显示在线列表的BUG&#10;重新添加了广告区域删除的功能&#10;修改了在线列表交互逻辑；现在可以通过点击名字进行@操作，通过点击头像进行跳转主页的操作">
-      <option name="closed" value="true" />
-      <created>1740153725092</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1740153725092</updated>
+      <workItem from="1761302808671" duration="2410000" />
+      <workItem from="1761389558739" duration="1900000" />
     </task>
     <task id="LOCAL-00077" summary="修复了在网站主页脚本加载异常BUG。&#10;修改左侧导航栏位交互与个性化页面颜色设定一致。">
       <option name="closed" value="true" />
@@ -743,7 +738,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761315301513</updated>
     </task>
-    <option name="localTasksCounter" value="125" />
+    <task id="LOCAL-00125" summary="适配，修bug。">
+      <option name="closed" value="true" />
+      <created>1761315383803</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1761315383803</updated>
+    </task>
+    <option name="localTasksCounter" value="126" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
