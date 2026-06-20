@@ -353,14 +353,10 @@
       <workItem from="1761128074833" duration="5052000" />
       <workItem from="1761302808671" duration="2410000" />
       <workItem from="1761389558739" duration="1900000" />
-    </task>
-    <task id="LOCAL-00077" summary="修复了在网站主页脚本加载异常BUG。&#10;修改左侧导航栏位交互与个性化页面颜色设定一致。">
-      <option name="closed" value="true" />
-      <created>1740323396781</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1740323396781</updated>
+      <workItem from="1765375822005" duration="827000" />
+      <workItem from="1780229797000" duration="6889000" />
+      <workItem from="1780748651285" duration="4923000" />
+      <workItem from="1781952733186" duration="1857000" />
     </task>
     <task id="LOCAL-00078" summary="修复了在网站主页脚本加载异常BUG。&#10;修改左侧导航栏位交互与个性化页面颜色设定一致。">
       <option name="closed" value="true" />
@@ -746,7 +742,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761315383803</updated>
     </task>
-    <option name="localTasksCounter" value="126" />
+    <task id="LOCAL-00126" summary="适配，修bug。">
+      <option name="closed" value="true" />
+      <created>1765375892414</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1765375892415</updated>
+    </task>
+    <option name="localTasksCounter" value="127" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

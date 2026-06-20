@@ -4,7 +4,7 @@
 // @match       https://*boyshelpboys.com/*
 // @description BHB界面背景图片修改，长期更新中（大概
 // @grant       none
-// @version     3.2.4.6
+// @version     3.2.4.67
 // @author      M27IAR
 // @license     GPL-3.0-or-later
 // @license     GPL-3.0-or-later; https://www.gnu.org/licenses/gpl-3.0.txt
@@ -229,7 +229,7 @@
     //通过读取本地存储数据进行选择值设定结束
 
     //移除顶栏的磨砂效果
-    document.querySelector("#header").setAttribute("style","background-color:#0000 !important;width: 80%;")
+    document.querySelector("html body header.site-header").setAttribute("style","background-color:#0000 !important;width: 80%;")
 
     let ContentColor//自定义颜色储存
 
@@ -239,8 +239,7 @@
     document.querySelector("body").insertAdjacentHTML("afterbegin",addHTML);
     let addtarge=document.querySelector("#backread");
     let bac=document.querySelector("body")//网页本体
-    document.querySelector("#header > div > a.navbar-brand.text-truncate.hidden-md.hidden-sm").innerHTML=""//删除手机模式下顶部的图标
-    let UserId=document.querySelector("#myDropdown > div.card-header.my_jifen").innerText.slice(document.querySelector("#myDropdown > div.card-header.my_jifen").innerText.indexOf(">"),document.querySelector("#myDropdown > div.card-header.my_jifen").innerText.indexOf("<"))//用户id记录
+    let UserId=""//脚本聊天页面所用用户id
 
     //方片特效准备
     let DIVboxsize=localStorage.BoxSize;
@@ -280,21 +279,21 @@
     }
     getColorSet()
 
-    function leftANDtop() {
+    function CSSAdd() {//修改后css添加
         let MsgBoxRed=Number("0x"+localStorage.MsgBoxColor.substring(1,3)),MsgBoxGreen=Number("0x"+localStorage.MsgBoxColor.substring(3,5)),MsgBoxBlue=Number("0x"+localStorage.MsgBoxColor.substring(5))
-        let NeedFixStyle=document.querySelector("head");//插入样式表修改左侧与顶栏样式
-        NeedFixStyle.insertAdjacentHTML("afterbegin",'<style id="style1"></style>');//杂，但是为多页面内共有项目
-        let nedAddStyle=document.createTextNode(`
+        let Addlocan=document.querySelector("head");
+        //添加全局css
+        let AddToAll=`
+        <style id="AddToAll">
         .RangeSetting{height:0.5rem;width:7.8125rem;} 
         .ColorSettinr{width:2.75rem;} 
-        .SettiingInput{padding:2px 1px;border:0.125rem 0rem;} 
-        border:0 !important;margin:0 !important; transition: 0.3s;} 
+        .SettiingInput{padding:2px 1px;border:0.125rem;} 
         hr{margin: 0.125rem 0 !important;color:#f0f5f9;} 
         small{text-shadow: 1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},-1px 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor},0 -1px ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor} ;font-size:${localStorage.NameFontSize}px !important; color:${localStorage.LocalFontColorsec} } 
         .fuckyou2{
         background-color:rgba(40,64,120,0.4); 
         color: aqua; 
-        margin:0px;
+        margin:0;
         padding: 2px 7px;
         border: 1px aqua solid;
         cursor: pointer;
@@ -303,18 +302,17 @@
         .fuckyou2:hover{
         background-color: #FFFFFF; 
         color:#66ccff; 
-        -webkit-text-stroke:0px;} 
+        -webkit-text-stroke:0;} 
         .fuckyou3{background-color: rgba(40,64,120,0.4); 
         color: aqua; 
-        margin:0px;
+        margin:0;
         padding: 2px 7px;
         border: 1px aqua solid;
         cursor: pointer;
         transition: background-color 0.3s;
-        border-radius: 0px;}
+        border-radius: 0;}
         .fuckyou3:hover{background-color: #FFFFFF;
-        color:#66ccff;
-        -webkit-text-stroke:0px;}  
+        color:#66ccff;}  
         .fuckyou{background-color: #2b2c4030; 
         color: white; 
         margin:0.3125rem;
@@ -333,66 +331,10 @@
         border: 0.125rem gray solid;
         font-size:0.625rem;
         cursor: pointer;
-        transition: background-color 0.3s;border-radius: 10px;}} 
-        `)
-        let FixStyle=document.querySelector("#style1");
-        FixStyle.appendChild(nedAddStyle);
-        //方片动态背景的相关css
-        let BorderRGBRed=Number("0x"+localStorage.BoxBorderColor.substring(1,3)),BorderRGBGreen=Number("0x"+localStorage.BoxBorderColor.substring(3,5)),BorderRGBBlue=Number("0x"+localStorage.BoxBorderColor.substring(5))
-        NeedFixStyle.insertAdjacentHTML("afterbegin",'<style id="style3"></style>');
-        let nedAddStyleSec=document.createTextNode(`
-    .M27MojPackImg{
-    width:100px; height:100px;background-size:cover;background-color:#000000;margin:10px} 
-    .M27flexDivSet{
-    pointer-events: none; 
-    transition: background-color 2s;
-    width:${localStorage.BoxSize}px;height:${localStorage.BoxSize}px;
-    flex-basis:${localStorage.BoxSize}px;
-    border:1px solid rgba(${BorderRGBRed},${BorderRGBGreen},${BorderRGBBlue},0.${localStorage.BoxBorderCansee});margin;0px;
-    }`)
-        let FixStyleSec=document.querySelector("#style3");
-        FixStyleSec.appendChild(nedAddStyleSec);
-        //修改站长加的消息时间|添加指示灯的相关css动画样式
-        let NeedFixStyleThee=document.querySelector("head");
-        NeedFixStyleThee.insertAdjacentHTML("beforeend",'<style id="style4"></style>');//聊天室使用的css样式表（应该
-        let FixStyleThee=document.querySelector("#style4")
-        let nedAddStyleThee=document.createTextNode(`
-        .card{
-        --bs-card-bg: rgba(45, 45, 45, 0.7) !important;}
-        .M27-chat-history-body {
-        flex: 0 1 auto;height: calc(100vh - 19.5rem);
-        padding: 1.25rem 1.25rem;
-        overflow-x: hidden;
-        overflow-y: auto;}
-        .M27-list-unstyled {list-style: none;
-        padding-left: 0;}
-        .M27-online-users-list {overflow:auto;padding: 5px;
-        max-height:200px;
-        scrollbar-width:thin !important;}
-        .M27-online-users-btn {border: none;
-        background: none;padding: 8px;display: flex;
-        align-items: center;cursor: pointer;
-        color: var(--bs-body-color);
-        transition: all 0.2s;position: relative;
-        width:36px;height:36px;}
-        .M27-online-users-btn:hover {
-        color: var(--bs-primary);}
-        .text-muted {
-        --bs-text-opacity: 1;text-shadow: 0 0 ${localStorage.BorderTextSize}px ${localStorage.LocalFontColor};
-        font-size:${localStorage.NameFontSize}px; color:${localStorage.LocalFontColorsec} !important;}
-        .message-quote{
-        backdrop-filter: blur(5px) !important;
-        background-color: rgba(${MsgBoxRed},${MsgBoxGreen},${MsgBoxBlue},${localStorage.MsgBoxTra/2}) !important;
-        box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .25) !important;
-        }
-        .bubble{
-        backdrop-filter: blur(5px) !important;
-        background-color: rgba(${MsgBoxRed},${MsgBoxGreen},${MsgBoxBlue},${localStorage.MsgBoxTra}) !important;
-        box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .25) !important;}
-        .dropdown-item {line-height: 1.54;backdrop-filter: blur(5px);}
-        .offcanvas {background-color: rgba(43,44,64,0.5); }
-        @keyframes M27shineGreen{0%{opacity:0.5;background-color:green;}100%{opacity:1;background-color:#77F602;}} @keyframes M27shineYellow{0%{opacity:0.5;background-color:yellow;}100%{opacity:1;background-color:#F6D603;}} @keyframes M27shineRed{0%{opacity:0.5;background-color:red;}100%{opacity:1;background-color:#F60303;}} .linkOpen{animation:M27shineGreen 5s ease-in infinite alternate} .linkBadWeb{animation:M27shineRed 2s ease-in infinite alternate} .linkOutTime{animation:M27shineYellow 4s ease-in infinite alternate} .loading-more {text-align: center;padding: 10px;color: #666;font-size: 12px;background-color: #66CCFF00; }`)
-        FixStyleThee.appendChild(nedAddStyleThee);
+        transition: background-color 0.3s;border-radius: 10px;}}
+        </style>
+        `
+        Addlocan.insertAdjacentHTML("beforeend",AddToAll)
     }
 
     function  handleFileSelect(){//图片转base64存储在indexedDB
@@ -451,7 +393,7 @@
 
     function backPrint(BBSmsgBack,Fromer,NowURL='defaut'){//背景渲染设定
         let FromerAddStyle;
-        if(NowURL.includes("bhb_chat")){
+        if(NowURL.includes("msx_chat")){
             FromerAddStyle=""
         }else{
             FromerAddStyle=`background-attachment:fixed;display: flex;align-items: center;justify-content: center;position: fixed;pointer-events: none;z-index:0;height:100%;width:100%;`
@@ -517,10 +459,10 @@
         let BoxPrintCheckOn;
         if(localStorage.BoxPrint!=="no"){BoxPrintCheckOn='checked'}else{BoxPrintCheckOn=''}
         let newaddbott="<button class='fuckyou' id='newtype'>插件设置</button>";
-        if(NowURL.includes("bhb_chat")&&webWidth<=768){
-            document.querySelector(".sidebar-user").insertAdjacentHTML("afterend",newaddbott);
+        if(NowURL.includes("msx_chat")&&webWidth<=768){
+            document.querySelector("html body main#site-main.page-shell.theme-page-shell-single section.msx-chat-shell.msx-chat-workspace aside.msx-chat-sidebar div.msx-chat-sidebar-panel header.msx-chat-sidebar-head").insertAdjacentHTML("afterend",newaddbott);
         }else{
-            document.querySelector(".container").insertAdjacentHTML("beforeend",newaddbott);
+            document.querySelector("html body header.site-header").insertAdjacentHTML("afterbegin",newaddbott);
         }
         document.querySelector("#newtype").addEventListener("click",()=>{
             if (document.querySelector("#SettingBox").style.display==="none"){
@@ -545,9 +487,13 @@
             transition: 0.5s;
             color: black !important;
         }
+        .SettingShow label{
+        display:block;
+        }
         .SettSelectChange{
             width: 65%;
-            height: 550px;
+            height: 850px;
+            max-height:100%;
             border: #71c9ce 1px solid;
         }
         #SettingSelect{
@@ -561,6 +507,7 @@
             transition: 0.2s ease-in-out;
         }
         .SettingBoxShow{
+            width:0 !important;
             overflow: auto;
             appearance:none;
             margin: 0;
@@ -625,7 +572,7 @@
         }
         .RangeSetting{height:0.5rem;width:7.8125rem;}
         .ColorSettinr{width:2.75rem;}
-        .SettiingInput{padding:2px 1px;border:0.125rem;}
+        .SettiingInput{padding:2px 1px;border:0.125rem;min-height:0;width:auto}
         .itemBox{
             border: 1px solid #71c9ce;
             width:40%;
@@ -656,6 +603,7 @@
             transition: 0.1s;
             height:24px;
             color:black;
+            width:auto;
         }
         .ShowInputText:focus-visible{
             outline: none;
@@ -704,7 +652,7 @@
 <div id="SettingBox" class="SettSelectChange" style="display: none;">
     <div style="position: absolute;z-index: 100000000;right:0;padding: 5px 10px;margin: 3px;background-color: #00b3b4;border:1px solid #71c9ce;border-radius: 5px;user-select: none;" id="quit" onclick="if (document.querySelector('#SettingBox').style.display==='none'){document.querySelector('#SettingBox').style.display='flex';}else {document.querySelector('#SettingBox').style.display='none';}"><span>X</span></div>
     <div id="SettingSelect" style="order:1;overflow: hidden;">
-        <div class="JsName"><img src="https://boyshelpboys.com//view/img/logo.png" alt="BHB社区" style="width: 48px"><a href="https://boyshelpboys.com/thread-2012.htm">设置</a></div><input type="radio" name="SettingBoxShow" id="one" class="SettingBoxShow" value="all"><label for="one" class="SettingBoxClickShow">通&nbsp&nbsp&nbsp用</label><input type="radio" name="SettingBoxShow" id="two" class="SettingBoxShow" value="Background"><label for="two" class="SettingBoxClickShow">背&nbsp&nbsp&nbsp景</label><input type="radio" name="SettingBoxShow" id="three" class="SettingBoxShow" value="Fort"><label for="three" class="SettingBoxClickShow">字&nbsp&nbsp&nbsp体</label><input type="radio" name="SettingBoxShow" id="fore" class="SettingBoxShow" value="Location"><label for="fore" class="SettingBoxClickShow">定&nbsp&nbsp&nbsp位</label><input type="radio" name="SettingBoxShow" id="five" class="SettingBoxShow" value="Mage"><label for="five" class="SettingBoxClickShow">特&nbsp&nbsp&nbsp效</label><input type="radio" name="SettingBoxShow" id="six" class="SettingBoxShow" value="Item"><label for="six" class="SettingBoxClickShow">部&nbsp&nbsp&nbsp件</label><input type="radio" name="SettingBoxShow" id="seven" class="SettingBoxShow" value="About" id="AboutSelect"><label for="seven" class="SettingBoxClickShow" >关&nbsp&nbsp&nbsp于</label>
+        <div class="JsName"><a href="https://boyshelpboys.com/thread-2012.htm">设置</a></div><input type="radio" name="SettingBoxShow" id="one" class="SettingBoxShow" value="all"><label for="one" class="SettingBoxClickShow">通&nbsp&nbsp&nbsp用</label><input type="radio" name="SettingBoxShow" id="two" class="SettingBoxShow" value="Background"><label for="two" class="SettingBoxClickShow">背&nbsp&nbsp&nbsp景</label><input type="radio" name="SettingBoxShow" id="three" class="SettingBoxShow" value="Fort"><label for="three" class="SettingBoxClickShow">字&nbsp&nbsp&nbsp体</label><input type="radio" name="SettingBoxShow" id="fore" class="SettingBoxShow" value="Location"><label for="fore" class="SettingBoxClickShow">定&nbsp&nbsp&nbsp位</label><input type="radio" name="SettingBoxShow" id="five" class="SettingBoxShow" value="Mage"><label for="five" class="SettingBoxClickShow">特&nbsp&nbsp&nbsp效</label><input type="radio" name="SettingBoxShow" id="six" class="SettingBoxShow" value="Item"><label for="six" class="SettingBoxClickShow">部&nbsp&nbsp&nbsp件</label><input type="radio" name="SettingBoxShow" id="seven" class="SettingBoxShow" value="About" id="AboutSelect"><label for="seven" class="SettingBoxClickShow" >关&nbsp&nbsp&nbsp于</label>
     </div>
     <div class="SettingShow" style="order:3;" id="all">
     <input type="button" value="┄" class="ShowButton">
@@ -714,7 +662,7 @@
             <span>杂项</span><hr>
         <label for="MsgLightCheck">
             <span>启用指示灯</span>
-            <input type="checkbox" style="user-select:none;-moz-user-select: none; " name="MsgLightCheck" id="MsgLightCheck" ${(()=>{if(localStorage.MsgLightCheckX==="true"){return "checked"}else{return ""}})()}>
+            <input type="checkbox" class="SettiingInput" style="user-select:none;-moz-user-select: none; " name="MsgLightCheck" id="MsgLightCheck" ${(()=>{if(localStorage.MsgLightCheckX==="true"){return "checked"}else{return ""}})()}>
         </label>
         <label for="ScrollSett">
             <span>隐藏滚动条</span>
@@ -850,6 +798,7 @@
             <div>
             <h1 style="font-family: '微软雅黑', sans-serif;margin: 0.25rem;">部件设置</h1>
             <hr>
+            
             <p>透明度限制为0-100；颜色为16进制RGB格式，不限制大小写（例：#66ccFF）。</p>
             </div>
         <div  style="display: flex;flex-wrap: wrap; justify-content: space-between; align-items: flex-start;margin-top: 5px;" >
@@ -981,38 +930,41 @@
             element.parentElement.style.left="30%"
         })})
         let timestamp = new Date().getTime();
-        $.ajax({//更新日志弹出判断|在线服务器版本号比对提醒
-            type:"GET",
-            url:`https://m27iarsite.cc/package.json?timestamp=${timestamp}`,
-            dataType:"json",
-            cache:false,
-            success:function(data){
-                document.querySelector("#UpdateLog").innerHTML=data.description;
-                if(!localStorage.version||localStorage.version!== data.version.toString()){//更新后修改部分选项，理论上不会影响用户
-                    document.querySelector("#WebV").innerHTML=`服务器端最新版本为：v${data.version.toString()}，Greayfork请前往以下站点下载更新：<a href="https://greasyfork.dpdns.org/zh-CN/scripts/519010-bhb%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2-%E5%B7%B2%E5%85%A8%E5%B1%80%E5%85%BC%E5%AE%B9">链接1</a><a href="https://greasyfork.org/zh-CN/scripts/519010-bhb%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2-%E5%B7%B2%E5%85%A8%E5%B1%80%E5%85%BC%E5%AE%B9">链接2</a><br>OpenUserJS请前往以下站点更新：<a href="https://openuserjs.org/scripts/M27IAR/BHB%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2%EF%BC%88%E5%B7%B2%E5%85%A8%E5%B1%80%E5%85%BC%E5%AE%B9%EF%BC%89">OpenUserJS链接</a>`
-                    document.querySelector("#SettingBox").style.display="flex";
-                    document.querySelector(`#About`).style.display = "flex";
-                    document.querySelector("#seven").checked=true;
-                }else{document.querySelector("#WebV").innerHTML=`服务器端最新版本为：v${data.version.toString()}`
-                    if(FirstTime){
+        let UpdateCheckConnect=new XMLHttpRequest();
+        UpdateCheckConnect.open('GET',`https://m27iarsite.cc/package.json?timestamp=${timestamp}`);
+        //UpdateCheckConnect.setRequestHeader('dataType','json');
+        UpdateCheckConnect.onload=function(response){
+            let data=JSON.parse(response.target.response);
+            console.log(data);
+                    document.querySelector("#UpdateLog").innerHTML=data.description;
+                    if(!localStorage.version||localStorage.version!== data.version.toString()){//更新后修改部分选项，理论上不会影响用户
+                        document.querySelector("#WebV").innerHTML=`服务器端最新版本为：v${data.version.toString()}，Greayfork请前往以下站点下载更新：<a href="https://greasyfork.dpdns.org/zh-CN/scripts/519010-bhb%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2-%E5%B7%B2%E5%85%A8%E5%B1%80%E5%85%BC%E5%AE%B9">链接1</a><a href="https://greasyfork.org/zh-CN/scripts/519010-bhb%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2-%E5%B7%B2%E5%85%A8%E5%B1%80%E5%85%BC%E5%AE%B9">链接2</a><br>OpenUserJS请前往以下站点更新：<a href="https://openuserjs.org/scripts/M27IAR/BHB%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%9B%B4%E6%8D%A2%EF%BC%88%E5%B7%B2%E5%85%A8%E5%B1%80%E5%85%BC%E5%AE%B9%EF%BC%89">OpenUserJS链接</a>`
                         document.querySelector("#SettingBox").style.display="flex";
                         document.querySelector(`#About`).style.display = "flex";
-                    }else{
-                    document.querySelector(`#About`).style.display = "none";}
-                }
-                },
-            error:function(){document.querySelector("#WebV").innerHTML="获取服务器数据失败"}
-        })
+                        document.querySelector("#seven").checked=true;
+                    }else{document.querySelector("#WebV").innerHTML=`服务器端最新版本为：v${data.version.toString()}`
+                        if(FirstTime){
+                            document.querySelector("#SettingBox").style.display="flex";
+                            document.querySelector(`#About`).style.display = "flex";
+                        }else{
+                        document.querySelector(`#About`).style.display = "none";}
+                    }
+        }
+        UpdateCheckConnect.onerror = function () {
+            console.error('Request failed');
+            document.querySelector("#WebV").innerHTML="获取服务器数据失败"
+        };
+        UpdateCheckConnect.send()
     }
 
-    function ScrollHidden() {//启动时滚动条调整
-       //修改滚动条状态
-        if (localStorage.scrollstyle==="1"){
-            document.querySelector("#custom-scrollbar").style.display="none";
-        }else{
-            document.querySelector("#custom-scrollbar").style.display="";
-        }
-    }
+    // function ScrollHidden() {//启动时滚动条调整
+    //    //修改滚动条状态
+    //     if (localStorage.scrollstyle==="1"){
+    //         document.querySelector("#custom-scrollbar").style.display="none";
+    //     }else{
+    //         document.querySelector("#custom-scrollbar").style.display="";
+    //     }
+    // }
     function rePrint(webWidth,webHeight) {//绘制启用方格特效时所需方格
         if(localStorage.BoxPrint==="yes"){//如果勾选渲染
             let RGBRed=Number("0x"+localStorage.BoxColor.substring(1,3)),RGBGreen=Number("0x"+localStorage.BoxColor.substring(3,5)),RGBBlue=Number("0x"+localStorage.BoxColor.substring(5))
@@ -1292,15 +1244,17 @@
 
     let NowURL = window.location.href;//读取当前所在网页
 
-    if (NowURL.includes('boyshelpboys.com/bhb_chat.htm')) {//如果当前网页为聊天室页面
-        let histor=document.querySelector("#body > div > div.chat-wrapper > div.chat-container")//聊天页面外层边框
-        histor.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1} !important;`)//聊天页面外层边框
-
+    if (NowURL.includes('boyshelpboys.com/p/msx_chat')) {//如果当前网页为聊天室页面
         backPrint(document.querySelector("#top > div > div"),document.querySelector("#top > div > div > main > div"),NowURL);
-        WidthHeightSet();
-        leftANDtop();
-        ScrollHidden();
         NewAddSeet();
+        CSSAdd();
+        WidthHeightSet();
+        //ScrollHidden();
+
+        //修改聊天室界面组件
+        document.querySelector("html body main#site-main.page-shell.theme-page-shell-single section.msx-chat-shell.msx-chat-workspace").setAttribute('style','background-color:#0000')
+        document.querySelector("html body main#site-main.page-shell.theme-page-shell-single section.msx-chat-shell.msx-chat-workspace aside.msx-chat-sidebar").setAttribute('style','background-color:#0000')
+
         //聊天室页面的独占设置内容
         let AddSetter=`
     <div class="itemBox">
@@ -1391,254 +1345,254 @@
         `)
         document.querySelector("#ChatStyle").appendChild(ChatAddStyle)
 
-        let baca=document.querySelector("#body > div > div.chat-wrapper > div.chat-container > div.chat-main")//聊天历史记录1
-        let ul=document.querySelector("#messages")//聊天历史记录2（位置更靠里）
-        let msginputbox=document.querySelector("#input")//输入框自己
-        let LiuYanTop=document.querySelector("#body > div > div.chat-wrapper > div.chat-container > div.chat-main > div.chat-header")
+        // let baca=document.querySelector("#body > div > div.chat-wrapper > div.chat-container > div.chat-main")//聊天历史记录1
+        // let ul=document.querySelector("#messages")//聊天历史记录2（位置更靠里）
+        // let msginputbox=document.querySelector("#input")//输入框自己
+        // let LiuYanTop=document.querySelector("#body > div > div.chat-wrapper > div.chat-container > div.chat-main > div.chat-header")
+        //
+        // let addlocalupdate=document.querySelector("#webimgsrc");
+        //
+        // bac.setAttribute('style',`background-color:${localStorage.BackGroundColor};`)//网页背景部分
+        // LiuYanTop.setAttribute("style",`background-color:${localStorage.CantSeeColor5}${localStorage.CantSeeset5};border:0px !important;`);
+        // baca.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1} !important;`)//聊天历史记录1
+        // ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1} !important;`)//聊天历史记录2（位置更靠里）
+        // msginputbox.setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;border:1px solid ${localStorage.CantSeeColor8}${localStorage.CantSeeset8} !important;height:2.5rem !important;`)//输入框部分
 
-        let addlocalupdate=document.querySelector("#webimgsrc");
-
-        bac.setAttribute('style',`background-color:${localStorage.BackGroundColor};`)//网页背景部分
-        LiuYanTop.setAttribute("style",`background-color:${localStorage.CantSeeColor5}${localStorage.CantSeeset5};border:0px !important;`);
-        baca.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1} !important;`)//聊天历史记录1
-        ul.setAttribute('style', `background-color: ${localStorage.CantSeeColor1}${localStorage.CantSeeset1} !important;`)//聊天历史记录2（位置更靠里）
-        msginputbox.setAttribute('style', `background-color: ${localStorage.CantSeeColor7}${localStorage.CantSeeset7} !important;border:1px solid ${localStorage.CantSeeColor8}${localStorage.CantSeeset8} !important;height:2.5rem !important;`)//输入框部分
-
-        addlocalupdate.addEventListener("change",handleFileSelect,false)//本体提交图片时向DBD保存base64
+        //addlocalupdate.addEventListener("change",handleFileSelect,false)//本体提交图片时向DBD保存base64
 
         //表情功能 暂时搁置
-        let MojPack=`<button id="MojPack" class="toolbar-btn">😀</button>`
-        let ToolBar=document.querySelector("#inputToolbar");
-        ToolBar.insertAdjacentHTML("beforeend",MojPack)
-        let MojPackOut=document.querySelector("#MojPack");
-        let adddiv4=`<div id="MojPackBack" ></div>`
-        bac.insertAdjacentHTML("beforeend",adddiv4)
-        let adddiv4Out=document.querySelector("#MojPackBack");
-        adddiv4Out.setAttribute('style','overflow:auto; border-radius: 5px;position: absolute;top: 40%;left: 20%;transform: translate(0%, -45%);width: 70%;height: 65%;border: 1px solid gray;z-index:1;display:none;background-color:rgba(30, 32, 34, 0.70);color:#f0f5f9;flex-wrap:wrap;flex-direction:row;justify-content:space-around;align-items:center;z-index:1000000;')
-        MojPackOut.addEventListener('click',()=>{if(adddiv4Out.style.display==="none" ){adddiv4Out.style.display="flex"}else{adddiv4Out.style.display="none"}})
-        let MojPackAdd=`
-        <div class="M27MojPackImg las la-minus-circle" title="点击删除图片" style="text-align: center;line-height: 100px; font-size: 80px;" id="MojPackDeleteImg" ></div>
-        <div class="M27MojPackImg la la-plus-circle" title="点击添加图片" style="text-align: center;line-height: 100px; font-size: 80px;" id="MojPackAddImg" ></div>`
-        adddiv4Out.insertAdjacentHTML("afterbegin",MojPackAdd);
-        let MojPackAddGet=document.querySelector("#MojPackAddImg");
-        let MojPackDeleteGet=document.querySelector("#MojPackDeleteImg");
-        let request = indexedDB.open('databaseName', 13);
-        request.onsuccess=(e)=>{//启动数据库，准备填充表情包界面
-            let db=e.target.result
-            let objectStore =  db.transaction('EmoDB').objectStore('EmoDB');
-            objectStore.openCursor().onsuccess=(e)=>{
-                let cursor=e.target.result
-                if (cursor){//遍历中|读取到一个填充一个
-                    let binaryString=atob(cursor.value.picBASE64.slice(cursor.value.picBASE64.indexOf(",")+1))
-                    const byteArray=new Uint8Array(binaryString.length)
-                    for(let i=0;i<byteArray.length;i++){
-                        byteArray[i]=binaryString.charCodeAt(i);
-                    }
-                    const blobIMG=new Blob([byteArray],{type:`${cursor.value.picBASE64.slice(cursor.value.picBASE64.indexOf(":")+1,cursor.value.picBASE64.indexOf(";"))}`});
-                    const imageUrl = URL.createObjectURL(blobIMG);
-                    let MojIMGAdd=`<div class="M27MojPackImg la M27Mojuse" title='${cursor.value.picNAME}' style="text-align: center;line-height: 100px; font-size: 80px;background-image:url(${imageUrl});background-position: center" ></div>`
-                    MojPackAddGet.insertAdjacentHTML("afterend",MojIMGAdd);
-                    cursor.continue();
-                }else{//遍历完成|为之前填充的表情包添加点击发送事件
-                    console.log("数据库遍历完毕");
-                    document.querySelectorAll('.M27Mojuse').forEach((e)=>{
-                        e.addEventListener('click',function Send(e){
-                            let SearchTitle=e.target.title;
-                            let request = indexedDB.open('databaseName', 13);
-                            request.onsuccess=(e)=>{
-                            let db=e.target.result
-                            let objectStore =  db.transaction('EmoDB','readonly').objectStore('EmoDB');
-                            let SearchReport=objectStore.index('picNAME').get(`${SearchTitle}`)
-                            SearchReport.onsuccess=(e)=>{//读取数据库并重编码为File类型
-                                console.log(e.target.result);
-                                if (e.target.result!==undefined){
-                                let binaryString=atob(e.target.result.picBASE64.slice(e.target.result.picBASE64.indexOf(",")+1))
-                                const byteArray=new Uint8Array(binaryString.length)
-                                for(let i=0;i<byteArray.length;i++){
-                                    byteArray[i]=binaryString.charCodeAt(i);
-                                }
-                                const blobIMG=new Blob([byteArray],{type:`${e.target.result.picBASE64.slice(e.target.result.picBASE64.indexOf(":")+1,e.target.result.picBASE64.indexOf(";"))}`});
-                                console.log(blobIMG)
-                                const formData=new FormData();
-                                formData.append('file',blobIMG,e.target.result.picNAME);
-                                let fileReader=new FileReader()
-                                fileReader.addEventListener("loadend",()=>{
-                                    console.log(fileReader.result)
-                                })
-                                fileReader.readAsText(blobIMG);
-                                console.log(`${e.target.result.picBASE64.slice(e.target.result.picBASE64.indexOf(":")+1,e.target.result.picBASE64.indexOf(";",e.target.result.picBASE64.indexOf("/")+1))}`);
-                                $.ajax({//上传并发送
-                                    url:'https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=upload_image',
-                                    type: 'POST',
-                                    data: formData,
-                                    contentType:false,
-                                    processData: false,
-                                    success: function(response) {
-                                        try {
-                                            if (typeof response === 'string') {
-                                                response = JSON.parse(response);
-                                                console.log(response);
-                                            }
-                                            if (response.code === 0 && response.data) {
-                                                console.log(response.data);
-                                                document.querySelector("#input").value=response.data;
-                                                document.querySelector("#sendBtn").click()
-                                            } else {
-                                                alert('上传失败：' + (response.message || '未知错误'));
-                                            }
-                                        } catch (e) {
-                                            console.error('Response parse error:', e, response);
-                                            alert('上传失败：服务器响应解析错误');
-                                        }
-                                    },
-                                    error: function(xhr, status, error) {
-                                        console.error('Upload error:', {xhr, status, error});
-                                        alert('上传失败：' + error);
-                                    }
-                                });
-                                }
-                            }
-                            }
-                        })
-                    })
-                }
-            }
-        }
-        MojPackAddGet.addEventListener("click",()=>{//表情包添加事件
-            console.log("work")
-            const $input = $('<input type="file" accept="image/*" multiple style="display:none" id="AddMoj">');//添加文件选择框并激活点击事件
-            $('body').append($input);
-            $input.trigger('click');
-            document.querySelector("#AddMoj").addEventListener('change',(e)=>{//选中后填充到数据库
-                console.table(e.target.files);
-                Array.from(e.target.files).forEach((file,index)=>{
-                    let imgFile = new FileReader();
-                    let EmoInputList=e.target.files[index]
-                    imgFile.readAsDataURL(EmoInputList)
-                    imgFile.onload=()=>{
-                        let inputBASE64=imgFile.result
-                        let request = indexedDB.open('databaseName', 13);
-                        console.log(inputBASE64)
-                        request.onsuccess=(e)=>{
-                            let db=e.target.result
-                            let transaction = db.transaction('EmoDB', 'readwrite');
-                            let objectStore = transaction.objectStore('EmoDB');
-                            objectStore.put({id:localStorage.EmoDBlist,picNAME:EmoInputList.name,picBASE64:inputBASE64})//保存图片计数|图片名|图片BASE64数据
-                            localStorage.EmoDBlist++
-                            let binaryString=atob(inputBASE64.slice(inputBASE64.indexOf(",")+1))
-                            const byteArray=new Uint8Array(binaryString.length)
-                            for(let i=0;i<byteArray.length;i++){
-                                byteArray[i]=binaryString.charCodeAt(i);
-                            }
-                            const blobIMG=new Blob([byteArray],{type:`${inputBASE64.slice(inputBASE64.indexOf(":")+1,inputBASE64.indexOf(";"))}`});
-                            const imageUrl = URL.createObjectURL(blobIMG);
-                            let MojIMGAdd=`<div class="M27MojPackImg la M27Mojuse" title='${EmoInputList.name}' style="text-align: center;line-height: 100px; font-size: 80px;background-image:url(${imageUrl});background-position: center" ></div>`
-                            MojPackAddGet.insertAdjacentHTML("afterend",MojIMGAdd);
-                            console.log(MojPackAddGet.nextElementSibling);
-                            MojPackAddGet.nextElementSibling.addEventListener('click',function Send(e){
-                                let SearchTitle=e.target.title;
-                                let request = indexedDB.open('databaseName', 13);
-                                request.onsuccess=(e)=>{
-                                    let db=e.target.result
-                                    let objectStore =  db.transaction('EmoDB','readonly').objectStore('EmoDB');
-                                    let SearchReport=objectStore.index('picNAME').get(`${SearchTitle}`)
-                                    SearchReport.onsuccess=(e)=>{//读取数据库并重编码为File类型
-                                        console.log(e.target.result);
-                                        if (e.target.result!==undefined){
-                                            let binaryString=atob(e.target.result.picBASE64.slice(e.target.result.picBASE64.indexOf(",")+1))
-                                            const byteArray=new Uint8Array(binaryString.length)
-                                            for(let i=0;i<byteArray.length;i++){
-                                                byteArray[i]=binaryString.charCodeAt(i);
-                                            }
-                                            const blobIMG=new Blob([byteArray],{type:`${e.target.result.picBASE64.slice(e.target.result.picBASE64.indexOf(":")+1,e.target.result.picBASE64.indexOf(";"))}`});
-                                            console.log(blobIMG)
-                                            const formData=new FormData();
-                                            formData.append('file',blobIMG,e.target.result.picNAME);
-                                            let fileReader=new FileReader()
-                                            fileReader.addEventListener("loadend",()=>{
-                                                console.log(fileReader.result)
-                                            })
-                                            fileReader.readAsText(blobIMG);
-                                            console.log(`${e.target.result.picBASE64.slice(e.target.result.picBASE64.indexOf(":")+1,e.target.result.picBASE64.indexOf(";",e.target.result.picBASE64.indexOf("/")+1))}`);
-                                            $.ajax({//上传并发送
-                                                url:'https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=upload_image',
-                                                type: 'POST',
-                                                data: formData,
-                                                contentType:false,
-                                                processData: false,
-                                                success: function(response) {
-                                                    try {
-                                                        if (typeof response === 'string') {
-                                                            response = JSON.parse(response);
-                                                            console.log(response);
-                                                        }
-                                                        if (response.code === 0 && response.data) {
-                                                            console.log(response.data);
-                                                            document.querySelector("#input").value=response.data;
-                                                            document.querySelector("#sendBtn").click()
-                                                        } else {
-                                                            alert('上传失败：' + (response.message || '未知错误'));
-                                                        }
-                                                    } catch (e) {
-                                                        console.error('Response parse error:', e, response);
-                                                        alert('上传失败：服务器响应解析错误');
-                                                    }
-                                                },
-                                                error: function(xhr, status, error) {
-                                                    console.error('Upload error:', {xhr, status, error});
-                                                    alert('上传失败：' + error);
-                                                }
-                                            });
-                                        }
-                                    }
-                                }
-                            })
-                        }
-                        request.onerror = (event)=> {
-                            console.error('Database error:', event.target.error);
-                        };
-                    }
-                })
-            });
-            $input.remove()
-        })
-        let StartRemove=false;//判断是否为删除模式
-        MojPackDeleteGet.addEventListener("click",()=>{//表情包删除事件
-            if(!StartRemove){
-                document.querySelectorAll('.M27Mojuse').forEach(e=>{
-                    let ReadyRemove=e;
-                    let Title=e.title;
-                    let AddDeleteButton=`<input type="button" class="DeleteButton" title="${Title}"  style="display: none" id="M27Moj${Title}"><label class="DeleteButtonLabel" for="M27Moj${Title}" style="width: 30px;height:30px;background-color: rgba(0,0,0,0.3);line-height: 28px;font-size: 19px;text-align: center;position: relative;top: -55%;left: -33%;">X</label>`;
-                    e.insertAdjacentHTML('afterbegin',AddDeleteButton)
-                    e.querySelector('.DeleteButton').addEventListener('click', (e)=>{
-                        e.stopPropagation();
-                        let request = indexedDB.open('databaseName', 13);
-                        request.onsuccess=(e)=>{
-                            let db=e.target.result
-                            let objectStore =  db.transaction('EmoDB','readwrite').objectStore('EmoDB');
-                            let SearchReport=objectStore.index('picNAME').get(`${Title}`)
-                            SearchReport.onsuccess=(e)=>{
-                                console.log(e.target.result)
-                                let DeleteWorker=objectStore.delete(e.target.result.id);
-                                DeleteWorker.onsuccess=()=>{
-                                    ReadyRemove.remove();
-                                    localStorage.EmoDBlist--
-                                    console.log("删除完成")
-                                }
-                            }
-                        }
-                    })
-                    StartRemove=true;
-                })
-            }else{
-                document.querySelectorAll('.M27Mojuse').forEach(e=>{
-                    console.log(e.querySelector('.DeleteButton'))
-                    e.querySelector('.DeleteButton').remove()
-                    e.querySelector('.DeleteButtonLabel').remove()
-                })
-                StartRemove=false;
-            }
-        })
+        // let MojPack=`<button id="MojPack" class="toolbar-btn">😀</button>`
+        // let ToolBar=document.querySelector("#inputToolbar");
+        // ToolBar.insertAdjacentHTML("beforeend",MojPack)
+        // let MojPackOut=document.querySelector("#MojPack");
+        // let adddiv4=`<div id="MojPackBack" ></div>`
+        // bac.insertAdjacentHTML("beforeend",adddiv4)
+        // let adddiv4Out=document.querySelector("#MojPackBack");
+        // adddiv4Out.setAttribute('style','overflow:auto; border-radius: 5px;position: absolute;top: 40%;left: 20%;transform: translate(0%, -45%);width: 70%;height: 65%;border: 1px solid gray;z-index:1;display:none;background-color:rgba(30, 32, 34, 0.70);color:#f0f5f9;flex-wrap:wrap;flex-direction:row;justify-content:space-around;align-items:center;z-index:1000000;')
+        // MojPackOut.addEventListener('click',()=>{if(adddiv4Out.style.display==="none" ){adddiv4Out.style.display="flex"}else{adddiv4Out.style.display="none"}})
+        // let MojPackAdd=`
+        // <div class="M27MojPackImg las la-minus-circle" title="点击删除图片" style="text-align: center;line-height: 100px; font-size: 80px;" id="MojPackDeleteImg" ></div>
+        // <div class="M27MojPackImg la la-plus-circle" title="点击添加图片" style="text-align: center;line-height: 100px; font-size: 80px;" id="MojPackAddImg" ></div>`
+        // adddiv4Out.insertAdjacentHTML("afterbegin",MojPackAdd);
+        // let MojPackAddGet=document.querySelector("#MojPackAddImg");
+        // let MojPackDeleteGet=document.querySelector("#MojPackDeleteImg");
+        // let request = indexedDB.open('databaseName', 13);
+        // request.onsuccess=(e)=>{//启动数据库，准备填充表情包界面
+        //     let db=e.target.result
+        //     let objectStore =  db.transaction('EmoDB').objectStore('EmoDB');
+        //     objectStore.openCursor().onsuccess=(e)=>{
+        //         let cursor=e.target.result
+        //         if (cursor){//遍历中|读取到一个填充一个
+        //             let binaryString=atob(cursor.value.picBASE64.slice(cursor.value.picBASE64.indexOf(",")+1))
+        //             const byteArray=new Uint8Array(binaryString.length)
+        //             for(let i=0;i<byteArray.length;i++){
+        //                 byteArray[i]=binaryString.charCodeAt(i);
+        //             }
+        //             const blobIMG=new Blob([byteArray],{type:`${cursor.value.picBASE64.slice(cursor.value.picBASE64.indexOf(":")+1,cursor.value.picBASE64.indexOf(";"))}`});
+        //             const imageUrl = URL.createObjectURL(blobIMG);
+        //             let MojIMGAdd=`<div class="M27MojPackImg la M27Mojuse" title='${cursor.value.picNAME}' style="text-align: center;line-height: 100px; font-size: 80px;background-image:url(${imageUrl});background-position: center" ></div>`
+        //             MojPackAddGet.insertAdjacentHTML("afterend",MojIMGAdd);
+        //             cursor.continue();
+        //         }else{//遍历完成|为之前填充的表情包添加点击发送事件
+        //             console.log("数据库遍历完毕");
+        //             document.querySelectorAll('.M27Mojuse').forEach((e)=>{
+        //                 e.addEventListener('click',function Send(e){
+        //                     let SearchTitle=e.target.title;
+        //                     let request = indexedDB.open('databaseName', 13);
+        //                     request.onsuccess=(e)=>{
+        //                     let db=e.target.result
+        //                     let objectStore =  db.transaction('EmoDB','readonly').objectStore('EmoDB');
+        //                     let SearchReport=objectStore.index('picNAME').get(`${SearchTitle}`)
+        //                     SearchReport.onsuccess=(e)=>{//读取数据库并重编码为File类型
+        //                         console.log(e.target.result);
+        //                         if (e.target.result!==undefined){
+        //                         let binaryString=atob(e.target.result.picBASE64.slice(e.target.result.picBASE64.indexOf(",")+1))
+        //                         const byteArray=new Uint8Array(binaryString.length)
+        //                         for(let i=0;i<byteArray.length;i++){
+        //                             byteArray[i]=binaryString.charCodeAt(i);
+        //                         }
+        //                         const blobIMG=new Blob([byteArray],{type:`${e.target.result.picBASE64.slice(e.target.result.picBASE64.indexOf(":")+1,e.target.result.picBASE64.indexOf(";"))}`});
+        //                         console.log(blobIMG)
+        //                         const formData=new FormData();
+        //                         formData.append('file',blobIMG,e.target.result.picNAME);
+        //                         let fileReader=new FileReader()
+        //                         fileReader.addEventListener("loadend",()=>{
+        //                             console.log(fileReader.result)
+        //                         })
+        //                         fileReader.readAsText(blobIMG);
+        //                         console.log(`${e.target.result.picBASE64.slice(e.target.result.picBASE64.indexOf(":")+1,e.target.result.picBASE64.indexOf(";",e.target.result.picBASE64.indexOf("/")+1))}`);
+        //                         $.ajax({//上传并发送
+        //                             url:'https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=upload_image',
+        //                             type: 'POST',
+        //                             data: formData,
+        //                             contentType:false,
+        //                             processData: false,
+        //                             success: function(response) {
+        //                                 try {
+        //                                     if (typeof response === 'string') {
+        //                                         response = JSON.parse(response);
+        //                                         console.log(response);
+        //                                     }
+        //                                     if (response.code === 0 && response.data) {
+        //                                         console.log(response.data);
+        //                                         document.querySelector("#input").value=response.data;
+        //                                         document.querySelector("#sendBtn").click()
+        //                                     } else {
+        //                                         alert('上传失败：' + (response.message || '未知错误'));
+        //                                     }
+        //                                 } catch (e) {
+        //                                     console.error('Response parse error:', e, response);
+        //                                     alert('上传失败：服务器响应解析错误');
+        //                                 }
+        //                             },
+        //                             error: function(xhr, status, error) {
+        //                                 console.error('Upload error:', {xhr, status, error});
+        //                                 alert('上传失败：' + error);
+        //                             }
+        //                         });
+        //                         }
+        //                     }
+        //                     }
+        //                 })
+        //             })
+        //         }
+        //     }
+        // }
+        // MojPackAddGet.addEventListener("click",()=>{//表情包添加事件
+        //     console.log("work")
+        //     const $input = $('<input type="file" accept="image/*" multiple style="display:none" id="AddMoj">');//添加文件选择框并激活点击事件
+        //     $('body').append($input);
+        //     $input.trigger('click');
+        //     document.querySelector("#AddMoj").addEventListener('change',(e)=>{//选中后填充到数据库
+        //         console.table(e.target.files);
+        //         Array.from(e.target.files).forEach((file,index)=>{
+        //             let imgFile = new FileReader();
+        //             let EmoInputList=e.target.files[index]
+        //             imgFile.readAsDataURL(EmoInputList)
+        //             imgFile.onload=()=>{
+        //                 let inputBASE64=imgFile.result
+        //                 let request = indexedDB.open('databaseName', 13);
+        //                 console.log(inputBASE64)
+        //                 request.onsuccess=(e)=>{
+        //                     let db=e.target.result
+        //                     let transaction = db.transaction('EmoDB', 'readwrite');
+        //                     let objectStore = transaction.objectStore('EmoDB');
+        //                     objectStore.put({id:localStorage.EmoDBlist,picNAME:EmoInputList.name,picBASE64:inputBASE64})//保存图片计数|图片名|图片BASE64数据
+        //                     localStorage.EmoDBlist++
+        //                     let binaryString=atob(inputBASE64.slice(inputBASE64.indexOf(",")+1))
+        //                     const byteArray=new Uint8Array(binaryString.length)
+        //                     for(let i=0;i<byteArray.length;i++){
+        //                         byteArray[i]=binaryString.charCodeAt(i);
+        //                     }
+        //                     const blobIMG=new Blob([byteArray],{type:`${inputBASE64.slice(inputBASE64.indexOf(":")+1,inputBASE64.indexOf(";"))}`});
+        //                     const imageUrl = URL.createObjectURL(blobIMG);
+        //                     let MojIMGAdd=`<div class="M27MojPackImg la M27Mojuse" title='${EmoInputList.name}' style="text-align: center;line-height: 100px; font-size: 80px;background-image:url(${imageUrl});background-position: center" ></div>`
+        //                     MojPackAddGet.insertAdjacentHTML("afterend",MojIMGAdd);
+        //                     console.log(MojPackAddGet.nextElementSibling);
+        //                     MojPackAddGet.nextElementSibling.addEventListener('click',function Send(e){
+        //                         let SearchTitle=e.target.title;
+        //                         let request = indexedDB.open('databaseName', 13);
+        //                         request.onsuccess=(e)=>{
+        //                             let db=e.target.result
+        //                             let objectStore =  db.transaction('EmoDB','readonly').objectStore('EmoDB');
+        //                             let SearchReport=objectStore.index('picNAME').get(`${SearchTitle}`)
+        //                             SearchReport.onsuccess=(e)=>{//读取数据库并重编码为File类型
+        //                                 console.log(e.target.result);
+        //                                 if (e.target.result!==undefined){
+        //                                     let binaryString=atob(e.target.result.picBASE64.slice(e.target.result.picBASE64.indexOf(",")+1))
+        //                                     const byteArray=new Uint8Array(binaryString.length)
+        //                                     for(let i=0;i<byteArray.length;i++){
+        //                                         byteArray[i]=binaryString.charCodeAt(i);
+        //                                     }
+        //                                     const blobIMG=new Blob([byteArray],{type:`${e.target.result.picBASE64.slice(e.target.result.picBASE64.indexOf(":")+1,e.target.result.picBASE64.indexOf(";"))}`});
+        //                                     console.log(blobIMG)
+        //                                     const formData=new FormData();
+        //                                     formData.append('file',blobIMG,e.target.result.picNAME);
+        //                                     let fileReader=new FileReader()
+        //                                     fileReader.addEventListener("loadend",()=>{
+        //                                         console.log(fileReader.result)
+        //                                     })
+        //                                     fileReader.readAsText(blobIMG);
+        //                                     console.log(`${e.target.result.picBASE64.slice(e.target.result.picBASE64.indexOf(":")+1,e.target.result.picBASE64.indexOf(";",e.target.result.picBASE64.indexOf("/")+1))}`);
+        //                                     $.ajax({//上传并发送
+        //                                         url:'https://boyshelpboys.com/plugin/msto_chat/route/app/ajax.php?c=upload_image',
+        //                                         type: 'POST',
+        //                                         data: formData,
+        //                                         contentType:false,
+        //                                         processData: false,
+        //                                         success: function(response) {
+        //                                             try {
+        //                                                 if (typeof response === 'string') {
+        //                                                     response = JSON.parse(response);
+        //                                                     console.log(response);
+        //                                                 }
+        //                                                 if (response.code === 0 && response.data) {
+        //                                                     console.log(response.data);
+        //                                                     document.querySelector("#input").value=response.data;
+        //                                                     document.querySelector("#sendBtn").click()
+        //                                                 } else {
+        //                                                     alert('上传失败：' + (response.message || '未知错误'));
+        //                                                 }
+        //                                             } catch (e) {
+        //                                                 console.error('Response parse error:', e, response);
+        //                                                 alert('上传失败：服务器响应解析错误');
+        //                                             }
+        //                                         },
+        //                                         error: function(xhr, status, error) {
+        //                                             console.error('Upload error:', {xhr, status, error});
+        //                                             alert('上传失败：' + error);
+        //                                         }
+        //                                     });
+        //                                 }
+        //                             }
+        //                         }
+        //                     })
+        //                 }
+        //                 request.onerror = (event)=> {
+        //                     console.error('Database error:', event.target.error);
+        //                 };
+        //             }
+        //         })
+        //     });
+        //     $input.remove()
+        // })
+        // let StartRemove=false;//判断是否为删除模式
+        // MojPackDeleteGet.addEventListener("click",()=>{//表情包删除事件
+        //     if(!StartRemove){
+        //         document.querySelectorAll('.M27Mojuse').forEach(e=>{
+        //             let ReadyRemove=e;
+        //             let Title=e.title;
+        //             let AddDeleteButton=`<input type="button" class="DeleteButton" title="${Title}"  style="display: none" id="M27Moj${Title}"><label class="DeleteButtonLabel" for="M27Moj${Title}" style="width: 30px;height:30px;background-color: rgba(0,0,0,0.3);line-height: 28px;font-size: 19px;text-align: center;position: relative;top: -55%;left: -33%;">X</label>`;
+        //             e.insertAdjacentHTML('afterbegin',AddDeleteButton)
+        //             e.querySelector('.DeleteButton').addEventListener('click', (e)=>{
+        //                 e.stopPropagation();
+        //                 let request = indexedDB.open('databaseName', 13);
+        //                 request.onsuccess=(e)=>{
+        //                     let db=e.target.result
+        //                     let objectStore =  db.transaction('EmoDB','readwrite').objectStore('EmoDB');
+        //                     let SearchReport=objectStore.index('picNAME').get(`${Title}`)
+        //                     SearchReport.onsuccess=(e)=>{
+        //                         console.log(e.target.result)
+        //                         let DeleteWorker=objectStore.delete(e.target.result.id);
+        //                         DeleteWorker.onsuccess=()=>{
+        //                             ReadyRemove.remove();
+        //                             localStorage.EmoDBlist--
+        //                             console.log("删除完成")
+        //                         }
+        //                     }
+        //                 }
+        //             })
+        //             StartRemove=true;
+        //         })
+        //     }else{
+        //         document.querySelectorAll('.M27Mojuse').forEach(e=>{
+        //             console.log(e.querySelector('.DeleteButton'))
+        //             e.querySelector('.DeleteButton').remove()
+        //             e.querySelector('.DeleteButtonLabel').remove()
+        //         })
+        //         StartRemove=false;
+        //     }
+        // })
 
         //在线人数重写
         // document.querySelector("div.chat-history-header.border-bottom > div > div").nextElementSibling.remove();
@@ -1660,6 +1614,7 @@
         // })
 
         //自定义消息页面
+        /*
         if(localStorage.M27NewBBGPrint==="true"){
             ImgShowBoxLoad("load")//加载图像展示框
             setInterval(()=>{if(typeof c === 'undefined' ){}else{clearInterval(c);}},1);//删除站长原本的消息获取
@@ -2019,21 +1974,21 @@
                     });
                 })
             } while (MsgPageCount>0&&(MsgPageCount<=5?testNum<MsgPageCount:testNum<=5))
-        }
+        }*/
     }else if(NowURL.includes('boyshelpboys.com/plugin')){
             return "";
     }else if(NowURL.includes('boyshelpboys.com/my')){
         bac.setAttribute("style",`background-color:${localStorage.BackGroundColor};`)
         backPrint(bac,addtarge,NowURL);
-        leftANDtop();
+        CSSAdd();
         WidthHeightSet();
-        ScrollHidden();
+        //ScrollHidden();
         NewAddSeet();
     }else if(NowURL ==="https://www.boyshelpboys.com/"||NowURL ==="https://boyshelpboys.com/"||NowURL.includes("boyshelpboys.com/#")||NowURL.includes("boyshelpboys.com/index")){
         backPrint(bac,addtarge,NowURL);
         bac.setAttribute("style",`background-color:${localStorage.BackGroundColor};`)
-        ScrollHidden()
-        leftANDtop();
+        //ScrollHidden()
+        CSSAdd();
         WidthHeightSet();
 
 
@@ -2147,9 +2102,9 @@
         document.querySelector("#body > div > div > div.col-lg-9.main > ol").setAttribute("style",`background-color:${localStorage.CantSeeColor1}${localStorage.CantSeeset1}!important;`);
         document.querySelector("#body > div > div > div.col-lg-9.main > ol+div> div.card-footer").setAttribute("style",`background-color:${localStorage.CantSeeColor1}${localStorage.CantSeeset1}!important;`);
 
-        leftANDtop();
+        CSSAdd();
         WidthHeightSet();
-        ScrollHidden();
+        //ScrollHidden();
         rePrint(webWidth,webHeight);
         NewAddSeet();
         let addlocalupdate=document.querySelector("#webimgsrc");
@@ -2157,9 +2112,9 @@
     }
     else{
         backPrint(bac,addtarge,NowURL);
-        leftANDtop();
+        CSSAdd();
         WidthHeightSet();
-        ScrollHidden();
+        //ScrollHidden();
         rePrint(webWidth,webHeight);
 
         NewAddSeet();
