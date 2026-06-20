@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e6b40860-f461-492e-8b8d-8aad39704a18" name="更改" comment="适配，修bug。">
       <change afterPath="$PROJECT_DIR$/更新日志（临时）.TXT" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BHB.user.js" beforeDir="false" afterPath="$PROJECT_DIR$/BHB.user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -356,23 +354,7 @@
       <workItem from="1765375822005" duration="827000" />
       <workItem from="1780229797000" duration="6889000" />
       <workItem from="1780748651285" duration="4923000" />
-      <workItem from="1781952733186" duration="1857000" />
-    </task>
-    <task id="LOCAL-00078" summary="修复了在网站主页脚本加载异常BUG。&#10;修改左侧导航栏位交互与个性化页面颜色设定一致。">
-      <option name="closed" value="true" />
-      <created>1740323432860</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1740323432860</updated>
-    </task>
-    <task id="LOCAL-00079" summary="修复了在网站主页脚本加载异常BUG。&#10;修改左侧导航栏位交互与个性化页面颜色设定一致。">
-      <option name="closed" value="true" />
-      <created>1740323601849</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1740323601849</updated>
+      <workItem from="1781952733186" duration="2149000" />
     </task>
     <task id="LOCAL-00080" summary="修复了样式表插入错误的问题&#10;修复聊天室气泡磨砂效果失效问题&#10;添加了帖子页面图片大图展示的功能">
       <option name="closed" value="true" />
@@ -750,7 +732,23 @@
       <option name="project" value="LOCAL" />
       <updated>1765375892415</updated>
     </task>
-    <option name="localTasksCounter" value="127" />
+    <task id="LOCAL-00127" summary="适配，修bug。">
+      <option name="closed" value="true" />
+      <created>1781958638985</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1781958638985</updated>
+    </task>
+    <task id="LOCAL-00128" summary="适配，修bug。">
+      <option name="closed" value="true" />
+      <created>1781958712460</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1781958712460</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
